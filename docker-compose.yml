@@ -1,0 +1,12 @@
+services:
+  kaoyan-english-hub:
+    build: .
+    image: kaoyan-english-hub:2.3
+    container_name: kaoyan-english-hub
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:60231:60231"
+    volumes:
+      - ./db_volume:/data/db:rw
+      - ./db_migrations:/app/migrations:ro
+      - ./db_backups:/data/backups:rw
