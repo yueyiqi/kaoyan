@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2664 2490" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <style>
+    .font-main { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  </style>
+</defs>
+<rect x="0" y="0" width="2664" height="2490" fill="#F1F5F9"/>
+<rect x="0" y="0" width="2664" height="86" fill="#0F172A"/>
+<text x="36" y="38" class="font-main" font-size="24" font-weight="bold" fill="#FFFFFF">📊 PPTX 全页 1:1 矢量分镜预览图 (5 页幻灯片 · 25 原生图元 · 零乱码直览)</text>
+<text x="36" y="66" class="font-main" font-size="15" fill="#94A3B8">源文件: 15_sandboxCamelCaseEscapeFix_沙盒与驼峰逃逸根因治理.pptx | 右侧窗格可直接滚轮无损缩放查看每页细节；Keynote/Office 编辑请使用终端 open 命令打开原件</text>
+<text x="40" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 1 / 5 — P1 · 沙盒路径逃逸与驼峰命名逃逸根因穿透及 GitHub 闭环总览</text>
+<clipPath id="slide_clip_1"><rect x="36" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_1)">
+  <rect x="36" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="69.6" y="174.0" width="1212.5" height="91.2" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="675.9" y="204.4" text-anchor="middle" class="font-main" font-size="21.2" font-weight="bold" fill="#1E3A8A">P1 · 沙盒路径逃逸与驼峰命名逃逸根因穿透及 GitHub 闭环总览</text>
+  <text x="75.6" y="222.3" text-anchor="start" class="font-main" font-size="13.0" font-weight="normal" fill="#475569">Root-Cause Forensics of Sandbox &amp; CamelCase Escape, Treeworker Alignment &amp; GitHub Closure</text>
+  <rect x="69.6" y="282.5" width="593.3" height="270.7" rx="10" fill="#FFF1F2" stroke="#E11D48" stroke-width="2.0"/>
+  <text x="366.2" y="307.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">1. 沙盒落盘逃逸根因 (Why ~/.gemini/brain?)</text>
+  <text x="75.6" y="326.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 漏洞 V1: Antigravity &lt;artifacts&gt; 提示词强制要求图片写入 ~/.gemini/antigravit</text>
+  <text x="75.6" y="341.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">y/brain/&lt;uuid&gt;。</text>
+  <text x="75.6" y="360.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 漏洞 V2: 编译脚本将 ART_DIR 设为 Markdown 主链接，违反 Skill 42 G10 (brain 易</text>
+  <text x="75.6" y="376.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">失不入库)。</text>
+  <text x="75.6" y="394.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 漏洞 V3: srbg10 稀疏检出未调用 new_bz.sh 创立 .bz/08_.../95_kaoyanEnglishHub</text>
+  <text x="75.6" y="410.3" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">_考研英语精读平台。</text>
+  <text x="75.6" y="428.9" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 漏洞 V4: GATE-0522 仅检查已暂存 .bz/ 文件，pptx_preview_shunt 缺少 Rule-B3 </text>
+  <text x="75.6" y="444.6" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">沙盒链接拦截。</text>
+  <rect x="688.8" y="282.5" width="593.3" height="270.7" rx="10" fill="#FFFBEB" stroke="#D97706" stroke-width="2.0"/>
+  <text x="985.5" y="307.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">2. 驼峰命名逃逸根因 (Why 14_*.pptx not CamelCase?)</text>
+  <text x="694.8" y="326.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 核心结论 [K]: 直接由 treeworker 跨槽未对齐 + ADR-0701 v1 漏检文件双因叠加所致</text>
+  <text x="694.8" y="341.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">！</text>
+  <text x="694.8" y="360.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 根因 R1: ADR-0701 (13614a8b06) 仅在 cfzy0 提交，未合流 master，srbg10 滞后 1</text>
+  <text x="694.8" y="376.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">9 个提交。</text>
+  <text x="694.8" y="394.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 根因 R2: srbg10 旧版 gate_0522 正则 ^[0-9]+_[a-z0-9_]+_ 仅允许小写，大写驼峰</text>
+  <text x="694.8" y="410.3" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">反被拦截。</text>
+  <text x="694.8" y="428.9" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 根因 R3: ADR-0701 v1 外专仅校验目录名，未覆盖 .pptx/.md/.png/.html 交付文件名</text>
+  <text x="694.8" y="444.6" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">。</text>
+  <rect x="69.6" y="570.5" width="593.3" height="270.7" rx="10" fill="#F0FDF4" stroke="#16A34A" stroke-width="2.0"/>
+  <text x="366.2" y="595.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">3. 当前工作区合规落盘位置与三段式驼峰重命名</text>
+  <text x="75.6" y="614.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 工作区路径: .bz/08_research_frontier_.../95_kaoyanEnglishHub_考研英语精读平</text>
+  <text x="75.6" y="629.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">台/</text>
+  <text x="75.6" y="648.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 00~15 全量 16 套交付物统一为 &lt;序号&gt;_&lt;camelCase英文&gt;_&lt;简短中文≤12字&gt;.&lt;ext&gt;。</text>
+  <text x="75.6" y="667.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 14_kaoyanPg18HaFullstackSpec_PG18高可用十二阶验收.pptx (99字-&gt;46字，43T-&gt;19T</text>
+  <text x="75.6" y="682.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">，省55.8%)。</text>
+  <text x="75.6" y="701.3" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 工作区所有 .md 内部 file:// 链接 100% 指向工作区 .bz/95_... (0 沙盒路径残留)</text>
+  <text x="75.6" y="716.9" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">。</text>
+  <rect x="688.8" y="570.5" width="593.3" height="270.7" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="985.5" y="595.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">4. 考研英语项目 GitHub 独立提交主权 (非 HP)</text>
+  <text x="694.8" y="614.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 唯一远端真源: origin -&gt; git@github.com:yueyiqi/kaoyan.git (严禁推向母舰 hp)</text>
+  <text x="694.8" y="629.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">。</text>
+  <text x="694.8" y="648.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 线上仓库同步: elena:/home/elena/kaoyan_english_hub/docs/ 同步入库 01~15 驼峰</text>
+  <text x="694.8" y="664.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">文档。</text>
+  <text x="694.8" y="682.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• post-receive 自愈: Windows git push prod main 自动触发本地检出重启 + GitHub </text>
+  <text x="694.8" y="698.3" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">远端同步。</text>
+</g>
+<rect x="36" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 2 / 5 — P2 · 漏洞一穿透：为什么产出物仅落盘沙盒而缺失工作区主权位置？</text>
+<clipPath id="slide_clip_2"><rect x="1348" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_2)">
+  <rect x="1348" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1381.6" y="174.0" width="1212.5" height="91.2" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1987.9" y="204.4" text-anchor="middle" class="font-main" font-size="21.2" font-weight="bold" fill="#1E3A8A">P2 · 漏洞一穿透：为什么产出物仅落盘沙盒而缺失工作区主权位置？</text>
+  <text x="1387.6" y="222.3" text-anchor="start" class="font-main" font-size="13.0" font-weight="normal" fill="#475569">Four-Link Dependency Chain of Sandbox-Only Persistence &amp; Gate Bypass</text>
+  <rect x="1381.6" y="282.5" width="593.3" height="270.7" rx="10" fill="#FFF1F2" stroke="#E11D48" stroke-width="2.0"/>
+  <text x="1678.2" y="307.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">环节 1: IDE 系统提示词与工作区天规冲突</text>
+  <text x="1387.6" y="326.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• Antigravity &lt;artifacts&gt; 要求: Only embed files located in &lt;appDataDir&gt;/brain</text>
+  <text x="1387.6" y="341.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">/&lt;conversation-id&gt;。</text>
+  <text x="1387.6" y="360.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• Agent 执行偏差: 将 brain 临时预览副本误当作最终交付主路径写入 Markdown 与回复</text>
+  <text x="1387.6" y="376.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">中。</text>
+  <text x="1387.6" y="394.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 违反条款: Skill 42 §6 G10 (持久化方向单向，严禁以 brain 为终点) 与 Rule XXVI</text>
+  <text x="1387.6" y="410.3" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B"> / Rule LIX。</text>
+  <rect x="2000.8" y="282.5" width="593.3" height="270.7" rx="10" fill="#FFFBEB" stroke="#D97706" stroke-width="2.0"/>
+  <text x="2297.5" y="307.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">环节 2: srbg10 稀疏检出锥与未立项盲区</text>
+  <text x="2006.8" y="326.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• srbg10 默认 sparse-checkout 仅挂载 .bz/08_.../86_shirong_baigong_师融百工。</text>
+  <text x="2006.8" y="344.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 考研英语作为独立业务系统，未先通过 new_bz.sh 创立 95_kaoyanEnglishHub_考研英</text>
+  <text x="2006.8" y="360.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">语精读平台。</text>
+  <text x="2006.8" y="379.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 导致 01~14 产出全部堆积在 _ephemeral_blackbox/eb_9036 与 ~/.gemini/brain 沙</text>
+  <text x="2006.8" y="394.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">盒。</text>
+  <rect x="1381.6" y="570.5" width="593.3" height="270.7" rx="10" fill="#FEF2F2" stroke="#DC2626" stroke-width="2.0"/>
+  <text x="1678.2" y="595.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">环节 3: GATE-0522 触发条件旁路漏洞</text>
+  <text x="1387.6" y="614.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 原 gate_0522 第 15 行: if [[ -z "$STAGED_BZ_FILES" ]]; then exit 0; fi。</text>
+  <text x="1387.6" y="632.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 当文件只提交到 _ephemeral_blackbox 时，STAGED_BZ_FILES 为空，门禁直接跳过！</text>
+  <text x="1387.6" y="651.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 原 pptx_preview_shunt 仅检查 Rule-B1/B2，未拦截 file:///.../.gemini/antigrav</text>
+  <text x="1387.6" y="667.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">ity/brain/。</text>
+  <rect x="2000.8" y="570.5" width="593.3" height="270.7" rx="10" fill="#F0FDF4" stroke="#16A34A" stroke-width="2.0"/>
+  <text x="2297.5" y="595.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">环节 4: 根治方案 (已实装验证)</text>
+  <text x="2006.8" y="614.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 创立 .bz/08_research_frontier_.../95_kaoyanEnglishHub_考研英语精读平台 并加</text>
+  <text x="2006.8" y="629.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">入 sparse-checkout。</text>
+  <text x="2006.8" y="648.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 升级 GATE-0522 v2.0 + pptx_preview_shunt Rule-B3: 扫描所有 .md 硬拦截 brain </text>
+  <text x="2006.8" y="664.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">沙盒链接。</text>
+</g>
+<rect x="1348" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 3 / 5 — P3 · 漏洞二穿透：为什么 14_*.pptx 发生驼峰命名逃逸？</text>
+<clipPath id="slide_clip_3"><rect x="36" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_3)">
+  <rect x="36" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="69.6" y="966.0" width="1212.5" height="91.2" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="675.9" y="996.4" text-anchor="middle" class="font-main" font-size="21.2" font-weight="bold" fill="#1E3A8A">P3 · 漏洞二穿透：为什么 14_*.pptx 发生驼峰命名逃逸？</text>
+  <text x="75.6" y="1014.3" text-anchor="start" class="font-main" font-size="13.0" font-weight="normal" fill="#475569">Three-Layer Root Cause: Treeworker Cross-Slot Drift (cfzy0 vs srbg10) + File-Level Blindness</text>
+  <rect x="69.6" y="1074.5" width="593.3" height="270.7" rx="10" fill="#FFFBEB" stroke="#D97706" stroke-width="2.0"/>
+  <text x="366.2" y="1099.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">第 1 层根因: Treeworker 跨工作树未对齐 [K]</text>
+  <text x="75.6" y="1118.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• git branch -a --contains 13614a8b06 实测: ADR-0701 仅存在于 worker/cfzy0 分</text>
+  <text x="75.6" y="1133.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">支！</text>
+  <text x="75.6" y="1152.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• master 停留在 No.5396 (caaac6d352)，srbg10 与 cfzy0 共同祖先停在 No.5318 (35</text>
+  <text x="75.6" y="1168.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">07a547e4)。</text>
+  <text x="75.6" y="1186.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• srbg10 工作区物理缺失 ADR-0701、Skill 240 与 camel_case_jit_naming_shunt_eng</text>
+  <text x="75.6" y="1202.3" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">ine.py。</text>
+  <rect x="688.8" y="1074.5" width="593.3" height="270.7" rx="10" fill="#FFF1F2" stroke="#E11D48" stroke-width="2.0"/>
+  <text x="985.5" y="1099.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">第 2 层根因: srbg10 旧版闸口反向排斥驼峰 [K]</text>
+  <text x="694.8" y="1118.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 未同步前，srbg10 的 gate_0522 正则为 ^[0-9]{2,3}_[a-z0-9_]+_ (不含大写 A-Z)</text>
+  <text x="694.8" y="1133.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">。</text>
+  <text x="694.8" y="1152.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 在旧闸口下，任何包含大写字母的 camelCase 命名反而会被误判为违规并阻断提交！</text>
+  <rect x="69.6" y="1362.5" width="593.3" height="270.7" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="366.2" y="1387.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">第 3 层根因: ADR-0701 v1 重目录、漏文件 [K]</text>
+  <text x="75.6" y="1406.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 即便在 cfzy0 的 13614a8b06 中，外专与 gate_0522 也仅扫描目录名 (os.path.isdir</text>
+  <text x="75.6" y="1421.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">)。</text>
+  <text x="75.6" y="1440.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 对目录内的交付物文件 (.pptx/.md/.png/.html) 及 _slides_preview 后缀完全未做驼</text>
+  <text x="75.6" y="1456.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">峰约束。</text>
+  <rect x="688.8" y="1362.5" width="593.3" height="270.7" rx="10" fill="#F0FDF4" stroke="#16A34A" stroke-width="2.0"/>
+  <text x="985.5" y="1387.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">根治效果: ADR-0701 v2.0 全域目录+文件同构</text>
+  <text x="694.8" y="1406.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• camel_case_jit_naming_shunt_engine.py v2.0 支持任意扩展名与 _slides_preview </text>
+  <text x="694.8" y="1421.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">伴生后缀。</text>
+  <text x="694.8" y="1440.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• gate_0522 v2.0 新增第 3.5 节：对新增 01..99 交付文件强制校验 lowerCamelCase +</text>
+  <text x="694.8" y="1456.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B"> ≤12字中文。</text>
+</g>
+<rect x="36" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 4 / 5 — P4 · 全量 01 ~ 15 产出物三段式驼峰重命名与 BPE Token 节省账本</text>
+<clipPath id="slide_clip_4"><rect x="1348" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_4)">
+  <rect x="1348" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1381.6" y="966.0" width="1212.5" height="91.2" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1987.9" y="996.4" text-anchor="middle" class="font-main" font-size="21.2" font-weight="bold" fill="#1E3A8A">P4 · 全量 01 ~ 15 产出物三段式驼峰重命名与 BPE Token 节省账本</text>
+  <text x="1387.6" y="1014.3" text-anchor="start" class="font-main" font-size="13.0" font-weight="normal" fill="#475569">Before vs After Naming Comparison in 95_kaoyanEnglishHub_考研英语精读平台/</text>
+  <rect x="1381.6" y="1074.5" width="593.3" height="270.7" rx="10" fill="#F8FAFC" stroke="#64748B" stroke-width="2.0"/>
+  <text x="1678.2" y="1099.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">01 ~ 08 语义单、竞品对标、SSL 与非 Root 分层</text>
+  <text x="1387.6" y="1118.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 01: 01_kaoyanWebSrsPrd_考研网站语义单与PRD.{md,py,png,pptx,html} (省 21 Toke</text>
+  <text x="1387.6" y="1133.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">ns)</text>
+  <text x="1387.6" y="1152.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 02: 02_kaoyanPeerBenchmarkUxV2_竞品对标与前端优化.{md,py} (省 22 Tokens)</text>
+  <text x="1387.6" y="1171.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 03: 03_kaoyanSslFixLiveV2_SSL根因与真机修复.{md,py} (省 19 Tokens)</text>
+  <text x="1387.6" y="1189.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 04~08: 04_elenaNonrootTieredStorage | 05_elenalylEdgeProxySpec | 06..08 守护</text>
+  <text x="1387.6" y="1205.3" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">脚本</text>
+  <rect x="2000.8" y="1074.5" width="593.3" height="270.7" rx="10" fill="#F8FAFC" stroke="#64748B" stroke-width="2.0"/>
+  <text x="2297.5" y="1099.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">09 ~ 13 免密配置、取证、UML 泳道图与 HTTPS 总结</text>
+  <text x="2006.8" y="1118.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 09~11: 09_kaoyanSslDeployReport | 10_windowsSshPubkeyConfig | 11_sshGitCont</text>
+  <text x="2006.8" y="1133.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">radictionFix</text>
+  <text x="2006.8" y="1152.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 12: 12_sshPasswordlessUmlSwimlane_免密框架UML泳道图.{md,png,pptx,html} (省 2</text>
+  <text x="2006.8" y="1168.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">4 Tokens)</text>
+  <text x="2006.8" y="1186.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 13: 13_windowsKaoyanHttpsSummary_Win视角HTTPS发布总结.{md,png,pptx,html} (省</text>
+  <text x="2006.8" y="1202.3" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B"> 22 Tokens)</text>
+  <rect x="1381.6" y="1362.5" width="593.3" height="270.7" rx="10" fill="#F0FDF4" stroke="#16A34A" stroke-width="2.0"/>
+  <text x="1678.2" y="1387.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">14 PG18 双擎高可用十二阶设计与 24 项验收四件套</text>
+  <text x="1387.6" y="1406.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 旧名: 14_kaoyan_pg18_ha_fullstack_12stage_..._考研英语全栈...验收大典.pptx (</text>
+  <text x="1387.6" y="1421.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">99字/43T)</text>
+  <text x="1387.6" y="1440.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 新名: 14_kaoyanPg18HaFullstackSpec_PG18高可用十二阶验收.pptx (46字/19T，省 5</text>
+  <text x="1387.6" y="1456.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">5.8%!)</text>
+  <text x="1387.6" y="1474.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 架构图: 14_kaoyanPg18HaArchDiagram_PG18高可用十二阶架构图.png (39字/17T)</text>
+  <rect x="2000.8" y="1362.5" width="593.3" height="270.7" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2297.5" y="1387.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">15 沙盒与驼峰逃逸根因治理四件套 (本大典)</text>
+  <text x="2006.8" y="1406.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 主文档/PPTX/HTML: 15_sandboxCamelCaseEscapeFix_沙盒与驼峰逃逸根因治理.{md,pn</text>
+  <text x="2006.8" y="1421.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">g,pptx,html}</text>
+  <text x="2006.8" y="1440.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 依赖链架构图: 15_sandboxCamelCaseFixArch_沙盒与驼峰治理架构图.png</text>
+</g>
+<rect x="1348" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="1726" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 5 / 5 — P5 · 考研英语项目 GitHub 独立提交闭环 (git@github.com:yueyiqi/kaoyan.git)</text>
+<clipPath id="slide_clip_5"><rect x="36" y="1734" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_5)">
+  <rect x="36" y="1734" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="69.6" y="1758.0" width="1212.5" height="91.2" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="675.9" y="1788.4" text-anchor="middle" class="font-main" font-size="21.2" font-weight="bold" fill="#1E3A8A">P5 · 考研英语项目 GitHub 独立提交闭环 (git@github.com:yueyiqi/kaoyan.git)</text>
+  <text x="75.6" y="1806.3" text-anchor="start" class="font-main" font-size="13.0" font-weight="normal" fill="#475569">Strict Sovereign Separation: Kaoyan Project Pushes to GitHub (yueyiqi/kaoyan), Never to HP</text>
+  <rect x="69.6" y="1866.5" width="593.3" height="270.7" rx="10" fill="#FFF1F2" stroke="#E11D48" stroke-width="2.0"/>
+  <text x="366.2" y="1891.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">1. 为什么考研英语项目严禁提交至 HP？</text>
+  <text x="75.6" y="1910.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 考研英语项目是学生/同事协作的独立 Web 工程，远端真源位于 GitHub (git@github.c</text>
+  <text x="75.6" y="1925.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">om:yueyiqi/kaoyan.git)。</text>
+  <text x="75.6" y="1944.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• Phase 4 曾仅推送到 elena 本地裸仓 (/home/elena/repos/kaoyan.git)，导致 origi</text>
+  <text x="75.6" y="1960.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">n/main 滞后 3 个提交。</text>
+  <rect x="688.8" y="1866.5" width="593.3" height="270.7" rx="10" fill="#F0FDF4" stroke="#16A34A" stroke-width="2.0"/>
+  <text x="985.5" y="1891.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">2. 线上 elena -&gt; GitHub 自动双推闭环</text>
+  <text x="694.8" y="1910.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 已在 elena (8.163.29.42) 验证 ssh -T git@github.com 认证通过 (Hi yueyiqi!)。</text>
+  <text x="694.8" y="1928.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 已将 PG18 双擎高可用 v3.0 与 docs/01~15 全套三段式驼峰文档推送至 GitHub origi</text>
+  <text x="694.8" y="1944.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">n/main。</text>
+  <text x="694.8" y="1963.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 已升级 /home/elena/repos/kaoyan.git/hooks/post-receive：每次 push prod 自动</text>
+  <text x="694.8" y="1978.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">同步 GitHub。</text>
+  <rect x="69.6" y="2154.5" width="593.3" height="270.7" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="366.2" y="2179.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">3. 当前工作区 95_kaoyanEnglishHub 本地镜像同步</text>
+  <text x="75.6" y="2198.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 路径: /Users/liuzengyu/treeworker/workers/srbg10/.bz/08_.../95_kaoyanEnglish</text>
+  <text x="75.6" y="2213.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">Hub_考研英语精读平台/</text>
+  <text x="75.6" y="2232.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• 完整包含 backend/、frontend/、db_migrations/、docs/ 与 00~15 全模态驼峰交付物</text>
+  <text x="75.6" y="2248.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">。</text>
+  <rect x="688.8" y="2154.5" width="593.3" height="270.7" rx="10" fill="#FFFBEB" stroke="#D97706" stroke-width="2.0"/>
+  <text x="985.5" y="2179.5" text-anchor="middle" class="font-main" font-size="16.5" font-weight="bold" fill="#1E3A8A">4. 门禁与自检结果 (100% PASS)</text>
+  <text x="694.8" y="2198.1" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• camel_case_jit_naming_shunt_engine.py --mode audit-files: 0 违规、0 沙盒链接</text>
+  <text x="694.8" y="2213.7" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">泄漏。</text>
+  <text x="694.8" y="2232.4" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">• pptx_preview_shunt_engine.py self-check: 01 / 12 / 13 / 14 / 15 全部 self_co</text>
+  <text x="694.8" y="2248.0" text-anchor="start" class="font-main" font-size="13.6" font-weight="normal" fill="#1E293B">nsistent=True。</text>
+</g>
+<rect x="36" y="1734" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+</svg>

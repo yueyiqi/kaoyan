@@ -1,7 +1,9 @@
+<!-- [IoC_Skill_Telemetry] Status: VERIFIED (ev:ev-0005, ev:ev-0006, ev:ev-0009); Agent: antigravity; Node: srbg10; LLM: gemini-4-argon-high; Skills_Loaded: pm-lifecycle-and-semantic-spec-synthesis, spec-driven-industrial-pipeline, prd-review-preflight, peer-benchmark-imitation-loop, adaptive-presentation-compiler, adaptive-html-response-pipeline, slot_artifact_persistence, completion-evidence-protocol; Task_ID: eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt; Evidence: ev:ev-0001, ev:ev-0002, ev:ev-0005, ev:ev-0006, ev:ev-0009 -->
+
 # 增强型业务需求最小语义单与工业级 PRD 大典：研词真源 (KaoyanEnglish Hub v2.3)
 # Enhanced SRS-MSU & Industrial PRD: Ingestion, Reader, Vocab, Essay, RBAC Progress Anchor & Dockerized 8-Table DB
 
-> **Status**: `PASSED` / `VERIFIED` (`ev:ev-0005`, `ev:ev-0006`, `ev:ev-0009`) | **规模拨盘 (Right-Sizing Dial)**: `Heavy` | **生产域名**: `https://kaoyan.liuzengyu.top` | **Docker 容器拓扑**: `CVM Caddy (:443) -> FRP (:40131) -> HP Docker kaoyan-english-hub (:60231)` | **外专引擎**: [`kaoyan_english_web_semantic_prd_shunt_engine.py`](file:///Users/liuzengyu/treeworker/workers/kaoyan-workspace/scripts/3_governance_治理门禁/shunt/kaoyan_english_web_semantic_prd_shunt_engine.py) (`ev:ev-0009`)
+> **Status**: `PASSED` / `VERIFIED` (`ev:ev-0005`, `ev:ev-0006`, `ev:ev-0009`) | **规模拨盘 (Right-Sizing Dial)**: `Heavy` | **生产域名**: `https://kaoyan.liuzengyu.top` | **Docker 容器拓扑**: `CVM Caddy (:443) -> FRP (:40131) -> HP Docker kaoyan-english-hub (:60231)` | **外专引擎**: [`kaoyan_english_web_semantic_prd_shunt_engine.py`](file:///Users/liuzengyu/treeworker/workers/srbg10/scripts/3_governance_治理门禁/shunt/kaoyan_english_web_semantic_prd_shunt_engine.py) (`ev:ev-0009`)
 
 ---
 
@@ -44,7 +46,7 @@
 ### 2.1 域名选型裁决与 HP Docker + CVM Caddy 三层部署 (`kaoyan.liuzengyu.top` 已绑定生效)
 | 候选主域名 | DNSPod 物理状态 (`[K]` 实测) | 选型裁决 | 核心工程与配额依据 (据 `DNS-SPEC-20260922-V1` 真源) |
 | :--- | :--- | :---: | :--- |
-| **`kaoyan.liuzengyu.top`** | **个人付费版 · 已绑定生效**<br>(`<EDGE_GATEWAY_IP>`) | 🟢 **首选推荐 & 已上线** | 符合母舰『个人实验 / 英语学习』战略定位；配 `TTL=1800s` + 本地缓存，日均 DNS `< 100` 次。 |
+| **`kaoyan.liuzengyu.top`** | **个人付费版 · 已绑定生效**<br>(`43.160.227.166`) | 🟢 **首选推荐 & 已上线** | 符合母舰『个人实验 / 英语学习』战略定位；配 `TTL=1800s` + 本地缓存，日均 DNS `< 100` 次。 |
 | **`xxxx.liuzengyu.vip`** | **免费版 · 已挂 44 条记录**<br>(昨日 **9.3万/10万 · 93%极危**) | 🔴 **红牌否决** | `liuzengyu.vip` 承载 14+ 个线上商业微服务，逼近 10 万 QPD 免费熔断红线，**严禁接入新业务**！ |
 
 ### 2.2 追问三专项：前端 RBAC 鉴权登录与五维学习进度锚定体系 (`MOD-04`, Rule LVIII 零信任游客隔离)

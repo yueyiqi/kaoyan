@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" width="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <marker id="arrBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arrAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#D97706"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bgGrad)"/>
+
+  <!-- Header -->
+  <rect x="36" y="24" width="1528" height="82" rx="14" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2"/>
+  <text x="64" y="58" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="800" fill="#0F172A">
+    考研英语全栈 PG18 双擎高可用架构与十二阶工程设计全景图 (PG18 + SQLite WAL HA &amp; 12-Stage Spec)
+  </text>
+  <text x="64" y="88" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13.5" font-weight="600" fill="#475569">
+    Host: elena (8.163.29.42 · 2 vCPU / 1.7 GiB RAM · 512 MiB Used) | Edge: Caddy :443 | App: Python 3.14 :60231 | DB: PG 18.6 + SQLite WAL + T2 19TB
+  </text>
+  <rect x="1310" y="40" width="230" height="46" rx="23" fill="#DCFCE7" stroke="#16A34A" stroke-width="1.5"/>
+  <text x="1425" y="69" text-anchor="middle" font-family="PingFang SC, sans-serif" font-size="15" font-weight="800" fill="#166534">
+    24/24 测试 100% PASS
+  </text>
+
+  <!-- Left Column: Frontend & Edge -->
+  <rect x="36" y="126" width="350" height="520" rx="14" fill="#FFFFFF" stroke="#93C5FD" stroke-width="2"/>
+  <rect x="36" y="126" width="350" height="44" rx="14" fill="#DBEAFE"/>
+  <text x="211" y="154" text-anchor="middle" font-family="PingFang SC, sans-serif" font-size="16" font-weight="800" fill="#1E3A8A">
+    前端表现层与网关层 (Vue 3 Reactive + Caddy)
+  </text>
+
+  <rect x="56" y="186" width="310" height="110" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="72" y="212" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#0F172A">1. 三模态双视口响应式工作台 (Rule LV)</text>
+  <text x="72" y="236" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#334155">• Daylight / Midnight / Eyecare 零闪烁切换</text>
+  <text x="72" y="258" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#334155">• PC 三栏沉浸大屏 + Mobile 底部抽屉工效学视口</text>
+  <text x="72" y="280" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#059669" font-weight="700">• KaoyanReactiveStore Proxy 细粒度状态机</text>
+
+  <rect x="56" y="312" width="310" height="110" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="72" y="338" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#0F172A">2. 离线沙箱与云端双轨同步 (Dual-Track)</text>
+  <text x="72" y="362" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#334155">• 访客态 (GUEST): LocalStorage 只读沙箱演练</text>
+  <text x="72" y="384" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#334155">• 学籍态 (SCHOLAR): Bearer Token + X-Idempotency-Key</text>
+  <text x="72" y="406" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#2563EB" font-weight="700">• 顶部实时渲染 PG18 + SQLite 双擎 10 表健康徽章</text>
+
+  <rect x="56" y="438" width="310" height="190" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="72" y="464" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#14532D">3. Caddy 2.11 TLS 边缘网关 (:443 / :3389)</text>
+  <text x="72" y="488" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#166534">• Let's Encrypt R13 证书 (kaoyan.8.163.29.42.nip.io)</text>
+  <text x="72" y="510" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#166534">• HTTP/2 + HTTP/3 (QUIC) + Zstd/Gzip 压缩</text>
+  <text x="72" y="532" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#166534">• 反向代理 127.0.0.1:60231 (零内部端口暴露)</text>
+  <text x="72" y="554" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#166534">• Windows git push prod main &lt;= 3.0s 极速热更新</text>
+  <text x="72" y="576" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#166534">• 预设域名 kaoyan.elenalyl.top 备案完成后无缝接管</text>
+
+  <!-- Center Column: 5-Layer Middleware & 4 Domain Services -->
+  <rect x="420" y="126" width="520" height="520" rx="14" fill="#FFFFFF" stroke="#6EE7B7" stroke-width="2"/>
+  <rect x="420" y="126" width="520" height="44" rx="14" fill="#D1FAE5"/>
+  <text x="680" y="154" text-anchor="middle" font-family="PingFang SC, sans-serif" font-size="16" font-weight="800" fill="#065F46">
+    五层中间件管道与四域模块化单体内核 (Python 3.14 · 28MiB RSS)
+  </text>
+
+  <rect x="442" y="186" width="476" height="196" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="458" y="212" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#0F172A">五层轻量级中间件管道 (5-Layer Middleware Pipeline)</text>
+  <text x="458" y="236" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#334155">L1. Trace &amp; Timing: 注入 X-Request-ID / X-Latency-Ms / X-DB-Engine</text>
+  <text x="458" y="258" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#DC2626" font-weight="700">L2. Scanner Shield: 硬拦截 /.env /db_dump.sql /.php /.bak 返回 404</text>
+  <text x="458" y="280" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#334155">L3. Zero-Trust RBAC: 校验 Bearer Token，阻断 GUEST 写操作 (401)</text>
+  <text x="458" y="302" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#2563EB" font-weight="700">L4. Idempotency Guard: X-Idempotency-Key + SHA256 防重放与 409 冲突</text>
+  <text x="458" y="324" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#334155">L5. Schema Validator: 校验 para_idx ∈ [0,200]、lemma 正则、文本长度 (422)</text>
+  <text x="458" y="346" font-family="PingFang SC, sans-serif" font-size="12.5" fill="#059669" font-weight="700">↳ 附 Spring Boot 3.4 / Java 21 1:1 契约映射表（&gt;16GB 集群平滑演进）</text>
+
+  <rect x="442" y="398" width="230" height="110" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="456" y="424" font-family="PingFang SC, sans-serif" font-size="13.5" font-weight="800" fill="#1E3A8A">S1. ScholarAuth &amp; Anchor</text>
+  <text x="456" y="446" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• POST /api/auth/login</text>
+  <text x="456" y="466" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• POST /api/progress/anchor</text>
+  <text x="456" y="486" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• 乐观锁 rev_no 单调递增</text>
+
+  <rect x="688" y="398" width="230" height="110" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="702" y="424" font-family="PingFang SC, sans-serif" font-size="13.5" font-weight="800" fill="#1E3A8A">S2. Passage &amp; Annotation</text>
+  <text x="702" y="446" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• POST /api/ingest/passage</text>
+  <text x="702" y="466" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• POST /api/annotations/save</text>
+  <text x="702" y="486" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• 词/句/段三粒度字符偏移锚定</text>
+
+  <rect x="442" y="522" width="230" height="106" rx="10" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="456" y="548" font-family="PingFang SC, sans-serif" font-size="13.5" font-weight="800" fill="#92400E">S3. Ebbinghaus Vocab Engine</text>
+  <text x="456" y="570" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• POST /api/vocab/lookup</text>
+  <text x="456" y="590" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• 艾宾浩斯紧迫度动态计算 U(w)</text>
+  <text x="456" y="610" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• 5500 大纲词频与熟稔度状态机</text>
+
+  <rect x="688" y="522" width="230" height="106" rx="10" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="702" y="548" font-family="PingFang SC, sans-serif" font-size="13.5" font-weight="800" fill="#92400E">S4. Essay Promotion Engine</text>
+  <text x="702" y="570" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• POST /api/annotations/promote</text>
+  <text x="702" y="590" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• 自动生成 [KEY: word] 挖空模板</text>
+  <text x="702" y="610" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">• 双向回写 promoted_snippet_id</text>
+
+  <!-- Right Column: PG18 Primary + SQLite WAL Hot Standby + T2 Cold Archive -->
+  <rect x="974" y="126" width="590" height="520" rx="14" fill="#FFFFFF" stroke="#C4B5FD" stroke-width="2"/>
+  <rect x="974" y="126" width="590" height="44" rx="14" fill="#EDE9FE"/>
+  <text x="1269" y="154" text-anchor="middle" font-family="PingFang SC, sans-serif" font-size="16" font-weight="800" fill="#4C1D95">
+    三级高可用数据底座 (PG 18.6 主库 + SQLite WAL 热备 + T2 19TB 异地冷备)
+  </text>
+
+  <rect x="996" y="186" width="546" height="164" rx="10" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+  <text x="1014" y="212" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#1E3A8A">
+    Tier-1 Primary: PostgreSQL 18.6 (127.0.0.1:5432/kaoyan_prod · 60MiB RSS)
+  </text>
+  <text x="1014" y="236" font-family="PingFang SC, sans-serif" font-size="12" fill="#1E40AF">
+    • 低内存高可用调优: shared_buffers=128MB, work_mem=4MB, synchronous_commit=on
+  </text>
+  <text x="1014" y="258" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">
+    • 10 张核心表: sys_users | user_progress_anchors | syllabus_5500_lexicon | exam_passages
+  </text>
+  <text x="1014" y="280" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">
+    • annotation_spans | user_vocab_ledger | essay_corpus_snippets | schema_migrations
+  </text>
+  <text x="1014" y="302" font-family="PingFang SC, sans-serif" font-size="12" fill="#334155">
+    • ha_sync_wal_journal (双写事务审计日志) | api_idempotency_keys (幂等防重表)
+  </text>
+  <text x="1014" y="326" font-family="PingFang SC, sans-serif" font-size="12" fill="#059669" font-weight="700">
+    • 4 大复合索引: idx_spans_user_passage / idx_essay_theme / idx_vocab_urgency / sha256
+  </text>
+
+  <rect x="996" y="366" width="546" height="128" rx="10" fill="#F0FDF4" stroke="#4ADE80" stroke-width="2"/>
+  <text x="1014" y="392" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#14532D">
+    Tier-2 Hot Standby: SQLite 3 WAL (kaoyan_storage/hot_db/kaoyan_hub.sqlite3)
+  </text>
+  <text x="1014" y="416" font-family="PingFang SC, sans-serif" font-size="12" fill="#166534">
+    • ACTIVE_ACTIVE_DUAL_WRITE: 每次写操作同步落盘 PG18 与 SQLite WAL，记录 tx_uuid
+  </text>
+  <text x="1014" y="438" font-family="PingFang SC, sans-serif" font-size="12" fill="#166534">
+    • RTO &lt; 5ms 故障自动切换: PG 维护或故障时零报错降级至 SQLite WAL 热备响应读写
+  </text>
+  <text x="1014" y="460" font-family="PingFang SC, sans-serif" font-size="12" fill="#166534">
+    • RPO = 0 自动追平 (Catch-Up Replay): PG 恢复后自动重放 WAL 差量并恢复 10 表对齐
+  </text>
+
+  <rect x="996" y="510" width="546" height="118" rx="10" fill="#FFFBEB" stroke="#FBBF24" stroke-width="2"/>
+  <text x="1014" y="536" font-family="PingFang SC, sans-serif" font-size="14" font-weight="800" fill="#92400E">
+    Tier-3 Cold Archive: T2 NAS (/vol1/backup/elena_kaoyan_cold_archive · 19TB)
+  </text>
+  <text x="1014" y="560" font-family="PingFang SC, sans-serif" font-size="12" fill="#78350F">
+    • elena_cold_offload_to_t2.py v3.0: 每日 03:30 定时导出 PG18 pg_dump + SQLite WAL
+  </text>
+  <text x="1014" y="582" font-family="PingFang SC, sans-serif" font-size="12" fill="#78350F">
+    • 双压缩归档包: kaoyan_pg18_archive_*.sql.gz + kaoyan_cold_archive_*.sql.gz (SHA256)
+  </text>
+  <text x="1014" y="604" font-family="PingFang SC, sans-serif" font-size="12" fill="#78350F">
+    • 保障 elena 40GB 云盘占用恒定 &lt; 15%（实测仅 7.98% / 3.11GB）
+  </text>
+
+  <!-- Arrows between columns -->
+  <line x1="386" y1="360" x2="418" y2="360" stroke="#2563EB" stroke-width="3" marker-end="url(#arrBlue)"/>
+  <line x1="940" y1="270" x2="992" y2="270" stroke="#2563EB" stroke-width="3" marker-end="url(#arrBlue)"/>
+  <line x1="940" y1="430" x2="992" y2="430" stroke="#059669" stroke-width="3" marker-end="url(#arrGreen)"/>
+  <line x1="1269" y1="494" x2="1269" y2="508" stroke="#D97706" stroke-width="3" marker-end="url(#arrAmber)"/>
+
+  <!-- Bottom Full-Width Box: 12-Stage Industrial Pipeline -->
+  <rect x="36" y="668" width="1528" height="286" rx="14" fill="#FFFFFF" stroke="#94A3B8" stroke-width="2"/>
+  <rect x="36" y="668" width="1528" height="42" rx="14" fill="#F1F5F9"/>
+  <text x="800" y="695" text-anchor="middle" font-family="PingFang SC, sans-serif" font-size="16" font-weight="800" fill="#0F172A">
+    十二阶工业级软件工程设计闭环 (12-Stage Spec-Driven Engineering Pipeline: 6 User-Requested + 6 Architect-Added)
+  </text>
+
+  <!-- Row 1 of 6 stages -->
+  <rect x="56" y="726" width="236" height="96" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="68" y="750" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#1E3A8A">① 需求语义单 (SRS-MSU)</text>
+  <text x="68" y="772" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">6 大最小语义单元 (MSU-01~06)</text>
+  <text x="68" y="792" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#2563EB" font-weight="700">[统帅点名 · Skill 170/209]</text>
+
+  <rect x="306" y="726" width="236" height="96" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="318" y="750" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#1E3A8A">② 产品需求文档 (PRD)</text>
+  <text x="318" y="772" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">四阶拆解 + Given/When/Then</text>
+  <text x="318" y="792" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#2563EB" font-weight="700">[统帅点名 · Rule LXVI]</text>
+
+  <rect x="556" y="726" width="236" height="96" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="568" y="750" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#14532D">③ 领域本体与公理契约 ★</text>
+  <text x="568" y="772" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">Class/Property + 5 条不变量公理</text>
+  <text x="568" y="792" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#059669" font-weight="700">[架构师补齐 · Skill 191]</text>
+
+  <rect x="806" y="726" width="236" height="96" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="818" y="750" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#1E3A8A">④ 概要设计 (HLD)</text>
+  <text x="818" y="772" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">五层拓扑 + 中间件/前端定量裁决</text>
+  <text x="818" y="792" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#2563EB" font-weight="700">[统帅点名 · Skill 209]</text>
+
+  <rect x="1056" y="726" width="236" height="96" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="1068" y="750" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#14532D">⑤ PG18+SQLite 物理库表 ★</text>
+  <text x="1068" y="772" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">10 表字段字典 + 3-2-1 容灾设计</text>
+  <text x="1068" y="792" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#059669" font-weight="700">[统帅核心命题 · DB/HA]</text>
+
+  <rect x="1306" y="726" width="236" height="96" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="1318" y="750" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#1E3A8A">⑥ 详细设计 (LLD)</text>
+  <text x="1318" y="772" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">12 个 REST 端点契约与状态机</text>
+  <text x="1318" y="792" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#2563EB" font-weight="700">[统帅点名 · API Contract]</text>
+
+  <!-- Row 2 of 6 stages -->
+  <rect x="56" y="838" width="236" height="96" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="68" y="862" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#1E3A8A">⑦ 伪码与算法设计</text>
+  <text x="68" y="884" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">双擎双写回退 + 艾宾浩斯紧迫度</text>
+  <text x="68" y="904" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#2563EB" font-weight="700">[统帅点名 · Pseudocode]</text>
+
+  <rect x="306" y="838" width="236" height="96" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="318" y="862" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#14532D">⑧ 零信任 RBAC 与幂等防重 ★</text>
+  <text x="318" y="884" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">GUEST/SCHOLAR 隔离 + 扫描器404</text>
+  <text x="318" y="904" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#059669" font-weight="700">[架构师补齐 · Rule LVIII]</text>
+
+  <rect x="556" y="838" width="236" height="96" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="568" y="862" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#14532D">⑨ 性能预算与三模态视口 ★</text>
+  <text x="568" y="884" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">Daylight/Midnight/Eyecare + 双视口</text>
+  <text x="568" y="904" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#059669" font-weight="700">[架构师补齐 · Rule LV]</text>
+
+  <rect x="806" y="838" width="236" height="96" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="818" y="862" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#14532D">⑩ Pre-Mortem 与追溯矩阵 ★</text>
+  <text x="818" y="884" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">Tigers/Elephants 预演 + 双向 RTM</text>
+  <text x="818" y="904" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#059669" font-weight="700">[架构师补齐 · Skill 199/209]</text>
+
+  <rect x="1056" y="838" width="236" height="96" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="1068" y="862" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#1E3A8A">⑪ 四维正交测试用例矩阵</text>
+  <text x="1068" y="884" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#334155">24 项 Happy/Boundary/HA/Sec 用例</text>
+  <text x="1068" y="904" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#2563EB" font-weight="700">[统帅点名 · Skill 196]</text>
+
+  <rect x="1306" y="838" width="236" height="96" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+  <text x="1318" y="862" font-family="PingFang SC, sans-serif" font-size="13" font-weight="800" fill="#92400E">⑫ 分阶段实施与真机验收 ★</text>
+  <text x="1318" y="884" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#78350F">Phase 1~5 逐相落地 + 24/24 全绿</text>
+  <text x="1318" y="904" font-family="PingFang SC, sans-serif" font-size="11.5" fill="#B45309" font-weight="800">[统帅点名 · ev:ev-0054]</text>
+</svg>

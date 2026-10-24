@@ -1,15 +1,16 @@
+<!-- [IoC_Skill_Telemetry] Status: SPEC_PERSISTED; Agent: antigravity; Node: srbg10; LLM: gemini-4-argon-high; Skills_Loaded: peer-benchmark-imitation-loop, pm-lifecycle-and-semantic-spec-synthesis, spec-driven-industrial-pipeline, frontend-ui-7skills-orthogonality-and-vercel-pro-max-shunt, design-md-token-shunt-and-trimodal-compiler, interactive-cognitive-microapp-pipeline, prd-review-preflight, versioned-deliverable-and-preflight-shunt; Task_ID: eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt -->
 <!-- [LLM_ROUTER] Author: gemini-4-argon-high; Exec: gemini-4-argon-high; AutoExec: OPEN; Trigger: "web 无法打开，给出根因解释和修复方案，落盘实施" -->
 
 # 研词真源 (KaoyanEnglish Hub) v2.0：主流考研英语网站九维对标、前端学习效果认知裁决与外部专家全套优化方案大典
 # KaoyanEnglish Hub v2.0: 5-Platform Benchmark, Cognitive Learning Efficacy Verdict & Full-Suite Specialist Optimization Specification
 
-> **Status**: `IMPLEMENTED` / `VERIFIED` (`ev:ev-0005`, `ev:ev-0006`, `ev:ev-0009`, `ev:ev-0010`) | **线上生产域名**: `https://kaoyan.liuzengyu.top` & `https://kaoyan.<EDGE_GATEWAY_IP>.nip.io` | **拓扑**: `CVM Caddy (:443) -> FRP (:40131) -> HP Docker kaoyan-english-hub (:60231)` (`ev:ev-0010`)
+> **Status**: `IMPLEMENTED` / `VERIFIED` (`ev:ev-0005`, `ev:ev-0006`, `ev:ev-0009`, `ev:ev-0010`) | **线上生产域名**: `https://kaoyan.liuzengyu.top` & `https://kaoyan.43.160.227.166.nip.io` | **拓扑**: `CVM Caddy (:443) -> FRP (:40131) -> HP Docker kaoyan-english-hub (:60231)` (`ev:ev-0010`)
 
 ---
 
 ## §0. 外部专家全套编排总览与问题拆解 (Full-Suite Specialist Orchestration)
 
-为彻底回答统帅两大核心命题——**① 前端页面怎么展示「学习效果」才真正最好？② 横向对比 5 个主流考研/英语精读网站后，我们的 v2 应该如何取长补短？**——本方案串联母舰 **6 大 0-Token 外部专家套件** 联合会诊（算子源：[`kaoyan_english_benchmark_ux_v2_shunt_engine.py`](file:///Users/liuzengyu/treeworker/workers/kaoyan-workspace/scripts/3_governance_治理门禁/shunt/kaoyan_english_benchmark_ux_v2_shunt_engine.py)）：
+为彻底回答统帅两大核心命题——**① 前端页面怎么展示「学习效果」才真正最好？② 横向对比 5 个主流考研/英语精读网站后，我们的 v2 应该如何取长补短？**——本方案串联母舰 **6 大 0-Token 外部专家套件** 联合会诊（算子源：[`kaoyan_english_benchmark_ux_v2_shunt_engine.py`](file:///Users/liuzengyu/treeworker/workers/srbg10/scripts/3_governance_治理门禁/shunt/kaoyan_english_benchmark_ux_v2_shunt_engine.py)）：
 
 | 专家序号 | 挂载外部专家套件 (`Specialist Skill`) | 核心赋能职责与在本 v2 方案中的产出截面 |
 | :---: | :--- | :--- |
