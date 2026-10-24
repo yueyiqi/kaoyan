@@ -207,7 +207,17 @@ class DualEngineHARepository:
                         )
                     for r in sconn.execute("SELECT tx_uuid, op_type, target_table, record_pk, payload_json, pg_status, sqlite_status, created_at FROM ha_sync_wal_journal").fetchall():
                         cur.execute(
-                            "INSERT INTO ha_sync_wal_journal (tx_uuid, op_type, target_table, record_pk, payload_json, pg_status, sqlite_status, created_at) VALUES (%s,%s,%s,%s,%s,'REPLAYED_COMMITTED',%s,%s) ON CONFLICT (tx_uuid) DO NOTHING",
+                            "INSERT INTO ha_sync_wal_journal (tx_uuid, op_type, target_table, record_pk, payload_json, pg_status, sqlite_status, created_at) VALUES (%s,%s,%s,%s,%s,'REPLAYED',%s,%s) ON CONFLICT (tx_uuid) DO NOTHING",
+                            (r[0], r[1], r[2], r[3], r[4], r[6], r[7]),
+                        )
+                    for r in sconn.execute("SELECT idempotency_key, user_id, endpoint, req_hash, resp_code, resp_body_json, created_at FROM api_idempotency_keys").fetchall():
+                        cur.execute(
+                            "INSERT INTO api_idempotency_keys (idempotency_key, user_id, endpoint, req_hash, resp_code, resp_body_json, created_at) VALUES (%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (idempotency_key) DO NOTHING",
+                            tuple(r),
+                        )
+                    for r in sconn.execute("SELECT tx_uuid, op_type, target_table, record_pk, payload_json, pg_status, sqlite_status, created_at FROM ha_sync_wal_journal").fetchall():
+                        cur.execute(
+                            "INSERT INTO ha_sync_wal_journal (tx_uuid, op_type, target_table, record_pk, payload_json, pg_status, sqlite_status, created_at) VALUES (%s,%s,%s,%s,%s,'REPLAYED',%s,%s) ON CONFLICT (tx_uuid) DO NOTHING",
                             (r[0], r[1], r[2], r[3], r[4], r[6], r[7]),
                         )
                     for r in sconn.execute("SELECT idempotency_key, user_id, endpoint, req_hash, resp_code, resp_body_json, created_at FROM api_idempotency_keys").fetchall():
@@ -253,6 +263,11 @@ class DualEngineHARepository:
         pg_counts = {}
         pg_online = False
         pg_version = "offline"
+        if not simulate_pg_down:
+            try:
+                self.init_and_migrate_both_engines()
+            except Exception:
+                pass
         if not simulate_pg_down:
             try:
                 self.init_and_migrate_both_engines()
