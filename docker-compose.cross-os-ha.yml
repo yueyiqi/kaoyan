@@ -1,0 +1,49 @@
+# docker-compose.cross-os-ha.yml — Kaoyan English Hub v4.0 Cross-OS Dynamic Roaming HA
+# Supports OS-Agnostic deployment across:
+#   - Node 1: HP (Ubuntu 26.04.1 LTS Linux x86_64)
+#   - Node 2: W1 (Windows 11 Pro 10.0.26200 + WSL2 Docker x86_64)
+#   - Node 3: M1 (macOS Darwin ARM64 Apple Silicon)
+#   - Node 4: M4/Elena (Arbiter & Public HTTPS Edge Gateway)
+
+services:
+  kaoyan-pg18-primary:
+    image: postgres:18-alpine
+    container_name: kaoyan-pg18-ha
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kaoyan_prod
+      POSTGRES_USER: elena
+      POSTGRES_PASSWORD: ${KAOYAN_PG_PASSWORD:-kaoyan_pg18_ha_2026}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./db_volume/pg18_data:/var/lib/postgresql/data:rw
+      - ./db_migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elena -d kaoyan_prod"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  kaoyan-roaming-backend:
+    build: .
+    image: kaoyan-english-hub:4.0-cross-os-ha
+    container_name: kaoyan-english-hub-v4
+    restart: unless-stopped
+    depends_on:
+      kaoyan-pg18-primary:
+        condition: service_healthy
+    environment:
+      KAOYAN_NODE_ID: ${KAOYAN_NODE_ID:-hp}
+      KAOYAN_OS_LABEL: ${KAOYAN_OS_LABEL:-Ubuntu 26.04.1 LTS}
+      KAOYAN_PORT: ${KAOYAN_PORT:-60231}
+      KAOYAN_ACTIVE_NODES_JSON: '${KAOYAN_ACTIVE_NODES_JSON:-["hp","w1","m1"]}'
+      KAOYAN_PRIMARY_NODE: ${KAOYAN_PRIMARY_NODE:-hp}
+      KAOYAN_PEER_ENDPOINTS_JSON: '${KAOYAN_PEER_ENDPOINTS_JSON:-{}}'
+      KAOYAN_DB_PATH: /data/db/kaoyan_hub.sqlite3
+      KAOYAN_BACKUP_DIR: /data/backups
+    ports:
+      - "${KAOYAN_BIND_HOST:-127.0.0.1}:${KAOYAN_PORT:-60231}:60231"
+    volumes:
+      - ./db_volume:/data/db:rw
+      - ./db_migrations:/app/db_migrations:ro
+      - ./db_backups:/data/backups:rw

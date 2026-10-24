@@ -913,14 +913,22 @@ renderTables(); updateDraftCount(); updateAuthUI(); switchTab(authState.role ===
     inSync: true,
     tablesCount: 10,
     probeLatencyMs: 0,
+    clusterMode: 'ROAMING_3NODE_1P_2R',
+    primaryNode: 'hp',
+    activeNodes: 'hp,w1,m1',
+    epoch: 1,
+    walLsn: 0,
     lastRequestId: ''
   }, function(prop, val, st) {
     var pill = document.getElementById('pgHaLiveBanner');
     if (!pill) return;
     var dotColor = (st.pgOnline && st.sqliteOnline && st.inSync) ? '#10b981' : '#f59e0b';
+    var modeBadge = st.clusterMode === 'SINGLE_SURVIVOR_STANDALONE_RW'
+      ? '⚡ 单节点读写并重 (STANDALONE_RW: ' + String(st.primaryNode).toUpperCase() + ')'
+      : '🌐 跨OS漫游 1主2从 (Primary RW: ' + String(st.primaryNode).toUpperCase() + ' | Active: ' + st.activeNodes + ')';
     pill.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + dotColor + ';margin-right:6px;"></span>' +
-      '<strong>DB 高可用双擎:</strong> PG18 主库 (' + (st.pgOnline ? 'ONLINE' : 'STANDBY') + ') + SQLite WAL 热备 (' + (st.sqliteOnline ? 'ONLINE' : 'OFF') + ') · ' +
-      '10 表同步: <strong>' + (st.inSync ? '100% ALIGNED' : 'SYNCING') + '</strong> · 探针: ' + st.probeLatencyMs + 'ms';
+      '<strong>v4.0 跨OS高可用:</strong> ' + modeBadge + ' · Epoch ' + st.epoch + ' · LSN #' + st.walLsn + ' · ' +
+      'PG18 (' + (st.pgOnline ? 'ONLINE' : 'STANDBY') + ') + SQLite WAL · 探针: ' + st.probeLatencyMs + 'ms';
   });
 
   window.refreshHaTelemetry = function() {
@@ -934,6 +942,13 @@ renderTables(); updateDraftCount(); updateAuthUI(); switchTab(authState.role ===
         window.KaoyanReactiveStore.inSync = !!d.in_sync;
         window.KaoyanReactiveStore.tablesCount = d.tables_count || 10;
         window.KaoyanReactiveStore.probeLatencyMs = d.probe_latency_ms || 1.2;
+        if (d.roaming_topology) {
+          window.KaoyanReactiveStore.clusterMode = d.roaming_topology.cluster_mode || 'ROAMING_3NODE_1P_2R';
+          window.KaoyanReactiveStore.primaryNode = d.roaming_topology.primary_node || 'hp';
+          window.KaoyanReactiveStore.activeNodes = (d.roaming_topology.active_nodes || ['hp','w1','m1']).join(',');
+          window.KaoyanReactiveStore.epoch = d.roaming_topology.epoch || 1;
+          window.KaoyanReactiveStore.walLsn = d.roaming_topology.wal_lsn || 0;
+        }
       }
     }).catch(function(){});
   };
