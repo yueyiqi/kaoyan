@@ -70,30 +70,74 @@ pre.code-block { background: var(--bg); border: 1px solid var(--border); border-
   </div>
   <div class="nav-tabs" id="mainTabs">
     <button class="tab-btn" id="tabBtn0" style="display:none;" onclick="switchTab(0)">📊 架构总览</button>
-    <button class="tab-btn active" id="tabBtn2" onclick="switchTab(2)">📖 真题左文右注精读 (30%试读)</button>
-    <button class="tab-btn" id="tabBtn3" onclick="switchTab(3)">🧠 5500考纲词库与熟词僻义</button>
-    <button class="tab-btn" id="tabBtn4" onclick="switchTab(4)">✍️ 考研大作文三维语料</button>
-    <button class="tab-btn" id="tabBtn1" onclick="switchTab(1)">📥 导入真题与生词 🔒</button>
+    <button class="tab-btn active" id="tabBtn2" onclick="switchTab(2)">📖 1. 真题左文右注精读 (30%免费试读)</button>
+    <button class="tab-btn" id="tabBtn3" onclick="switchTab(3)">🧠 2. 5500考纲词库与熟词僻义</button>
+    <button class="tab-btn" id="tabBtn4" onclick="switchTab(4)">✍️ 3. 考研大作文三维语料</button>
+    <button class="tab-btn" id="tabBtn1" onclick="switchTab(1)">📥 4. 四轨导入中心 🔒</button>
     <button class="tab-btn" id="tabBtn5" style="display:none;" onclick="switchTab(5)">🐳 双擎库表</button>
   </div>
   <div style="display:flex;gap:5px;align-items:center;">
-    <button class="btn active" id="loginToggleBtn" onclick="focusLoginBox()">🔐 学籍登录 (解锁全文与进度)</button>
-    <button class="btn" onclick="setTheme('daylight')">☀️</button>
-    <button class="btn" onclick="setTheme('midnight')">🌙</button>
-    <button class="btn" onclick="setTheme('eyecare')">🍵</button>
+    <button class="btn active" id="loginToggleBtn" onclick="fillDemoScholar()">⚡ 一键体验学籍解锁</button>
+    <button class="btn active" id="themeBtn-daylight" onclick="setTheme('daylight')" title="日间亮底">☀️</button>
+    <button class="btn" id="themeBtn-midnight" onclick="setTheme('midnight')" title="深邃暗夜">🌙</button>
+    <button class="btn" id="themeBtn-eyecare" onclick="setTheme('eyecare')" title="纸质护眼">🍵</button>
   </div>
 </header>
 
 <div class="container">
   <div class="auth-banner" id="authBannerBox">
-    <div>
-      <strong>⚓ 考研英语真题精读与个人进度锚点：</strong>
-      <span id="anchorStatusText">欢迎体验！未登录访客默认开放 <strong>第 1 段 (30%) 明文划词与前 2 张精读卡</strong>；后续 <strong>Para 2~4 (45%)</strong> 与个人查词频次采用 <strong>知乎盐选/Readwise 式渐变毛玻璃保护</strong>，登录专属学籍即刻 100% 解锁。</span>
+    <div style="flex:1;min-width:280px;">
+      <div>
+        <strong>⚓ 考研英语真题精读与个人进度锚点：</strong>
+        <span id="anchorStatusText">欢迎体验！未登录访客默认开放 <strong>第 1 段 (30%) 明文划词与前 2 张精读卡</strong>；后续 <strong>Para 2~4 (45%)</strong> 与个人查词频次采用 <strong>知乎盐选/Readwise 式渐变毛玻璃保护</strong>，登录专属学籍即刻 100% 解锁。</span>
+      </div>
+      <div style="margin-top:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:0.78rem;">
+        <span class="badge bg-blue">🔑 可用登录账号与默认口令</span>
+        <span>主理人账号：<code>colleague_a</code> / 口令：<code>kaoyan2026</code> <button class="btn" style="padding:1px 7px;font-size:0.73rem;" onclick="fillAccountCredentials('colleague_a','kaoyan2026',true)">⚡ 填入并登录</button></span>
+        <span>研友账号：<code>scholar_b</code> / 口令：<code>kaoyan2026</code> <button class="btn" style="padding:1px 7px;font-size:0.73rem;" onclick="fillAccountCredentials('scholar_b','kaoyan2026',true)">⚡ 填入并登录</button></span>
+      </div>
     </div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-      <input id="scholarUserInput" class="input-box" style="width:135px;margin:0;padding:5px 9px;" value="" placeholder="请输入学籍账号" autocomplete="off">
-      <input id="scholarKeyInput" type="password" class="input-box" style="width:125px;margin:0;padding:5px 9px;" value="" placeholder="请输入学籍口令" autocomplete="off">
+      <input id="scholarUserInput" class="input-box" style="width:130px;margin:0;padding:5px 9px;" value="" placeholder="请输入学籍账号" autocomplete="off">
+      <input id="scholarKeyInput" type="password" class="input-box" style="width:120px;margin:0;padding:5px 9px;" value="" placeholder="请输入学籍口令" autocomplete="off">
       <button class="btn active" onclick="loginWithCredentials()">🔑 登录并恢复进度</button>
+      <button class="btn" id="acctDrawerToggleBtn" onclick="toggleAccountDrawer()">⚙️ 修改密码 / 添加账号</button>
+    </div>
+  </div>
+
+  <div class="card" id="accountMgmtDrawer" style="display:none;border:1.5px solid var(--primary);margin-bottom:14px;">
+    <h2>
+      <span>⚙️ 学籍账号与安全口令管理中心 (支持在线修改密码 · 手工添加新账号 · 双擎实时持久化)</span>
+      <button class="btn" onclick="toggleAccountDrawer()">✖ 收起面板</button>
+    </h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;">
+      <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--bg);">
+        <div style="font-weight:700;font-size:0.88rem;margin-bottom:8px;color:var(--primary);">🔒 1. 修改学籍登录密码 (Change Password)</div>
+        <input id="chgUserInput" class="input-box" placeholder="学籍账号 (如 colleague_a)" value="colleague_a">
+        <input id="chgOldPwdInput" type="password" class="input-box" placeholder="当前原口令 (默认 kaoyan2026)">
+        <input id="chgNewPwdInput" type="password" class="input-box" placeholder="新口令 (不少于 4 位字符)">
+        <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <button class="btn active" onclick="changeScholarPassword()">💾 确认修改密码</button>
+          <span id="chgPwdStatus" style="font-size:0.78rem;font-weight:600;"></span>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--bg);">
+        <div style="font-weight:700;font-size:0.88rem;margin-bottom:8px;color:var(--emerald);">➕ 2. 手工添加新学籍账号 (Create Account)</div>
+        <input id="newUserInput" class="input-box" placeholder="新学籍账号 (2~32位字母数字，如 scholar_c)">
+        <input id="newDispInput" class="input-box" placeholder="显示名称 (如 考研教研组C)">
+        <input id="newPwdInput" type="password" class="input-box" placeholder="初始登录口令 (不少于 4 位字符)">
+        <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <button class="btn active" onclick="createScholarAccount()">➕ 立即创建并登录</button>
+          <span id="newAcctStatus" style="font-size:0.78rem;font-weight:600;"></span>
+        </div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--bg);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-weight:700;font-size:0.88rem;color:var(--purple);">📋 3. 已注册学籍账号列表 (点击一键填入)</span>
+          <button class="btn" style="padding:2px 8px;font-size:0.73rem;" onclick="loadRegisteredUsers()">🔄 刷新</button>
+        </div>
+        <div id="registeredUsersList" style="font-size:0.8rem;max-height:145px;overflow-y:auto;"></div>
+      </div>
     </div>
   </div>
 
@@ -183,9 +227,9 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
             <button class="btn" id="modeBtn3" onclick="setReadMode('MASK')">3️⃣ 遮罩二刷态(墨墨式Blur自测)</button>
           </div>
           <div style="display:flex;gap:5px;flex-wrap:wrap;">
-            <button class="btn active" onclick="extractSelection('SENTENCE')">➕长难句[2]</button>
-            <button class="btn" onclick="extractSelection('WORD')">➕生词+1[1]</button>
-            <button class="btn" onclick="extractSelection('PARAGRAPH')">➕段落[3]</button>
+            <button class="btn active" onclick="extractSelection('SENTENCE', this)">➕长难句[2]</button>
+            <button class="btn" onclick="extractSelection('WORD', this)">➕生词+1[1]</button>
+            <button class="btn" onclick="extractSelection('PARAGRAPH', this)">➕段落[3]</button>
           </div>
         </div>
         <div class="passage-text" id="passageCanvas"></div>
@@ -221,10 +265,10 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
           <button class="btn" onclick="sortVocab('recent', this)">🕒 按最近遇到时间排序</button>
         </div>
       </h2>
-      <table><thead><tr><th>单词 (Lemma)</th><th>考研 5500 大纲分级</th><th>个人查询次数</th><th>最近遇到时间</th><th>紧迫度 $S_{\text{urg}}$</th><th>真题原句语境与熟词僻义注释</th><th>操作</th></tr></thead><tbody id="vocabTableBody"></tbody></table>
+      <table><thead><tr><th>单词 (Lemma)</th><th>考研 5500 大纲分级</th><th>个人查询次数</th><th>最近遇到时间</th><th>紧迫度 <code>S<sub>urg</sub></code></th><th>真题原句语境与熟词僻义注释</th><th>操作</th></tr></thead><tbody id="vocabTableBody"></tbody></table>
       <div id="vocabGuestUnlockCard" class="guest-unlock-card">
         <div>
-          <strong>🔒 个人词频计数、艾宾浩斯紧迫度 $S_{\text{urg}}$ 与第 3+ 条高频死穴词已脱敏糊化：</strong>
+          <strong>🔒 个人词频计数、艾宾浩斯紧迫度 <code>S<sub>urg</sub></code> 与第 3+ 条高频死穴词已脱敏糊化：</strong>
           <span>未登录仅展示前 2 条公共考纲词样板，后端不返回主人私人查词频次，防 F12 审查元素绕过。</span>
         </div>
         <button class="btn active" onclick="focusLoginBox()">🔑 登录学籍解锁个人词频账本</button>
@@ -280,16 +324,16 @@ As is vividly depicted in the drawing above,
     </div>
     <div id="tab5ScholarContent">
       <div class="card">
-        <h2><span>🗄️ 追问四解决方案：后端受治关系库表设计 (`MOD-05` Schema &amp; DDL)</span><span class="badge bg-purple">双擎持久化存储</span></h2>
-        <table><thead><tr><th>表序号</th><th>物理表名 (`Table Name`)</th><th>主键与唯一索引 (`PK / UK / IDX`)</th><th>核心受治字段 (`Core Columns`)</th><th>业务职责与个人进度锚定作用</th></tr></thead><tbody id="dbSchemaTableBody"></tbody></table>
+        <h2><span>🗄️ 追问四解决方案：后端受治关系库表设计 (<code>MOD-05</code> Schema &amp; DDL)</span><span class="badge bg-purple">双擎持久化存储</span></h2>
+        <table><thead><tr><th>表序号</th><th>物理表名 (<code>Table Name</code>)</th><th>主键与唯一索引 (<code>PK / UK / IDX</code>)</th><th>核心受治字段 (<code>Core Columns</code>)</th><th>业务职责与个人进度锚定作用</th></tr></thead><tbody id="dbSchemaTableBody"></tbody></table>
       </div>
-      <div class="card"><h2><span>🔐 追问三解决方案：前端 RBAC 双态鉴权与五维学习进度锚定 (`MOD-04`)</span><span class="badge bg-amber">防匿名乱点污染</span></h2><table><thead><tr><th>防线层级</th><th>层级名称</th><th>核心机制与学习进度锚定契约</th></tr></thead><tbody id="authLayersTableBody"></tbody></table></div>
+      <div class="card"><h2><span>🔐 追问三解决方案：前端 RBAC 双态鉴权与五维学习进度锚定 (<code>MOD-04</code>)</span><span class="badge bg-amber">防匿名乱点污染</span></h2><table><thead><tr><th>防线层级</th><th>层级名称</th><th>核心机制与学习进度锚定契约</th></tr></thead><tbody id="authLayersTableBody"></tbody></table></div>
     </div>
   </section>
 </div>
 
 <script>
-const REPORT_DATA = {"schema": "kaoyan_english_web_semantic_prd_shunt.v3.1", "verified_date": "2026-10-24", "product_codename": "研词真源 (KaoyanEnglish Hub v3.1)", "recommended_domain": "kaoyan.elenalyl.top", "intake_decoding": {"module_deep_critique": [{"module_id": "MOD_00_INGESTION", "name": "模块零(问题一)：真题与词汇四轨导入中枢 (4-Track Ingestion Hub)", "colleague_insight": "敏锐意识到『无源之水不可持续』——网站必须有便捷的真题和词汇导入入口才能真正运转。", "literal_trap": "【致命冷启动陷阱】若做成传统后台『逐题复制填空+逐词手敲表单』，录一篇阅读需20分钟，用户第一天就会因录入摩擦过大放弃使用。", "reframed_solution": "【四轨零摩擦导入】① 出厂预置5500考纲底座+支持CSV/TXT生词表批量导入；② 整篇真题文本一键粘贴自动切段、算偏移、预高亮大纲词；③ 纸质卷截图OCR导入；④ `.kaoyan.json` 研友知识包互导。"}, {"module_id": "MOD_01_READING", "name": "模块一：真题阅读与锚定精读笔记本 (Anchored Dual-Pane Reader)", "colleague_insight": "精准命中纸质真题『原文与手写笔记分离、二刷复习极度痛苦』痛点；提出词/句/段三级抽取。", "literal_trap": "【致命交互陷阱】左右两栏放两份相同原文浪费 50% 视口、引发视觉重影，且右栏原文就地变笔记会导致跨句重叠选区破坏 DOM。", "reframed_solution": "【左文右卡·双向锚定】左栏为唯一真题原文画布；右栏为按 `(para_idx, start_offset)` 排序的结构化精读卡片流，支持左划右生卡、双向滚动高亮联动。"}, {"module_id": "MOD_02_VOCAB", "name": "模块二：真题语境词汇库与考研 5500 大纲引擎 (Contextual Vocab & 5500 Engine)", "colleague_insight": "抓住『从真题自然沉淀生词』及『查询次数 + 最近遇到时间 + 考研必学词汇量』三大信号。", "literal_trap": "【致命认知陷阱】单按最近时间排序会导致今天刚查1次的低频词挤掉7天前查过5次的死穴词；脱离真题原句背默认词义必栽在『熟词僻义』。", "reframed_solution": "【Lemma词形归一 + 真题原句强绑定 + S_urg紧迫度算子】划词自动归并词根、`lookup_count+1`、挂载真题原句切片；支持紧迫度/查询次数/最近时间三视图排序。"}, {"module_id": "MOD_03_ESSAY", "name": "模块三：考研作文三维语料库与仿写组装台 (3D Essay Corpus & Slot Builder)", "colleague_insight": "务实克制不做黑盒AI批改，聚焦环保、教育、科技、文化等大方向的句式、模板和范文片段检索。", "literal_trap": "【致命履约陷阱】单维文件夹分类无法应对『科技+文化』双主题交叉考题，且缺乏段落功能定位与默写输出，收藏极易吃灰。", "reframed_solution": "【6母题×5功能槽位×3粒度正交检索 + 阅读一键升格 + 挖空台】支持多标签交集检索、阅读好句一键升格入库、`[___]` 挖空默写与右栏三段式草稿组装。"}, {"module_id": "MOD_04_AUTH_ANCHOR", "name": "模块四(问题三)：30%/45%/25% 访客分级披露与五维进度锚点 (Tiered Preview & Progress Anchor)", "colleague_insight": "一针见血指出公网暴露下『无数人匿名乱点会冲毁个人词频统计与阅读进度锚点』且『未登录展示过多会泄露隐私、展示过少会流失体验』。", "literal_trap": "【致命公网裸奔与伪糊化陷阱】若未登录 100% 展示或仅用前端 CSS blur 遮盖全量真数据，路人按 F12 即可扒光词库并窥探主人阅读进度。", "reframed_solution": "【30%明文试读 + 45%服务端脱敏渐变毛玻璃 + 25% RBAC刚性锁】未登录首屏直达 Tab 2 开放首段明文互动，次段采用 Baymard 线性渐变消隐与 API 硬截断；登录后 100% 恢复专属进度。"}, {"module_id": "MOD_05_DOCKER_DB", "name": "模块五(问题四)：后端双擎高可用库表设计与容器化落盘迁移 (PG18 + SQLite WAL HA DB)", "colleague_insight": "前瞻性要求后端具备规范化库表设计与落盘规划，且必须支持跨机迁移与版本升级。", "reframed_solution": "【10张关系表 + PG18主库/SQLite热备双写 + 自动 SQL Migration】持久化挂载 WAL 模式数据库与每日快照转储，支持一键跨机迁移升级。", "literal_trap": "【致命运维陷阱】若在宿主机用散乱无 Schema 的 JSON 文件存数据，并发写易损坏、换机器迁移极易丢数据。"}]}, "ingestion_and_deployment": {"question_1_ingestion_hub": {"tracks": [{"track_id": "TRK_01_SYLLABUS_CSV", "name": "轨 1 · 5500考纲底座预置 + 外部生词本批量导入", "input_formats": "内置 5500 大纲词表 JSON + .csv / .tsv / .txt 导出生词文本", "pipeline": "自动识别 [单词, 释义, 频次] 列 -> Lemma 词干还原去重 -> 关联 5500 考纲四级标签与熟词僻义库", "sla": "单次导入 2,000 词 <= 80ms"}, {"track_id": "TRK_02_SMART_PASSAGE", "name": "轨 2 · 历年真题 Markdown / 纯文本智能分段解析", "input_formats": "直接粘贴整篇真题文本 / 上传 .md / .txt 讲义", "pipeline": "自动提取年份与题号 -> 自然段切分 Para[1..k] -> 生成 Standoff 字符偏移坐标系 -> 预高亮大纲高频词", "sla": "单篇真题解析入库 <= 25ms"}, {"track_id": "TRK_03_OCR_IMAGE_PDF", "name": "轨 3 · 纸质真题卷 / PDF 扫描页截图粘贴导入", "input_formats": "Ctrl+V 粘贴试卷截图 (.png/.jpg) 或上传单页 PDF", "pipeline": "OCR 提取英文段落 -> 双栏快速校对修正连字符断行 -> 一键转入标准真题篇章库", "sla": "解决纸质黄皮书录入痛点"}, {"track_id": "TRK_04_PORTABLE_PACK", "name": "轨 4 · 研友共享全站知识包一键导入/导出 (.kaoyan.json)", "input_formats": "标准化 .kaoyan.json 压缩包", "pipeline": "打包『真题原文 + 字符偏移笔记卡 + 个人词库计数 + 作文语料库』，自带 SHA-256 完整性校验", "sla": "全站快照导出 <= 100ms"}]}, "question_3_auth_and_progress_anchor": {"layers": [{"layer_id": "AUTH_L1_30PCT_TEASER", "name": "第一层 · 30% 公开样章明文试读区 (Cleartext Value Proof)", "mechanism": "未登录默认落点 Tab 2，开放 Para 1 原文、前 2 张精读卡、前 2 条考纲词释义与首条作文模板，3 秒建立产品惊艳感。"}, {"layer_id": "AUTH_L2_45PCT_BLUR", "name": "第二层 · 45% 服务端脱敏 + 渐变毛玻璃预览区 (Gradient & Frosted Blur)", "mechanism": "长文 Para 2+ 采用 mask-image 线性渐变消隐；个人词频列与后续卡片由服务端下发脱敏占位符并叠加 blur(5px)，彻底免疫 F12 扒取。"}, {"layer_id": "AUTH_L3_25PCT_LOCK", "name": "第三层 · 25% 写库导入与架构规格刚性锁 (RBAC Hard Lock)", "mechanism": "未登录隐藏内部端口与库表黑话，锁闭四轨批量导入、全站导出及架构总览 Tab；所有写接口无 Bearer Token 刚性拦截 401。"}, {"layer_id": "AUTH_L4_PROGRESS_ANCHOR", "name": "第四层 · 五维学习进度断点锚定器 (5D Study Progress Checkpoint)", "mechanism": "登录学籍后实时按 user_id 恢复并持久化：当前篇章与段落偏移、个人词频与紧迫度账本、精读笔记卡、作文三段草稿与连续打卡天数。"}]}, "question_4_database_schema_and_docker_persistence": {"tables": [{"table_no": "T01", "table_name": "schema_migrations", "pk_uk": "PK(version_id)", "core_columns": "version_id, script_name, checksum_sha256, applied_at", "purpose": "DDL 版本迁移账本，保障跨版本无缝升级"}, {"table_no": "T02", "table_name": "sys_users", "pk_uk": "PK(user_id), UK(username)", "core_columns": "user_id, username, display_name, role, passcode_hash, token_secret", "purpose": "RBAC 多租户学籍账户表"}, {"table_no": "T03", "table_name": "user_progress_anchors", "pk_uk": "PK(user_id)", "core_columns": "user_id, last_passage_id, last_para_idx, last_span_id, essay_draft_md, streak_days, rev_no", "purpose": "五维个人学习进度断点锚点表"}, {"table_no": "T04", "table_name": "syllabus_5500_lexicon", "pk_uk": "PK(lemma)", "core_columns": "lemma, pos, cn_meaning, syllabus_tier, polysemy_trap_note, exam_freq", "purpose": "考研 5500 大纲底座只读词表"}, {"table_no": "T05", "table_name": "exam_passages", "pk_uk": "PK(passage_id), UK(owner_user_id, sha256_hash)", "core_columns": "passage_id, owner_user_id, year, exam_type, text_no, title, paragraphs_json", "purpose": "真题篇章与自然段偏移坐标表"}, {"table_no": "T06", "table_name": "annotation_spans", "pk_uk": "PK(span_id), IDX(user_id, passage_id, para_idx)", "core_columns": "span_id, user_id, passage_id, granularity, para_idx, start_offset, end_offset, selected_text, syntax_breakdown", "purpose": "左文右卡 Standoff 字符偏移精读笔记表"}, {"table_no": "T07", "table_name": "user_vocab_ledger", "pk_uk": "PK(vocab_id), UK(user_id, lemma)", "core_columns": "vocab_id, user_id, lemma, syllabus_tier, lookup_count, last_seen_at, urgency_score", "purpose": "个人高频生词与艾宾浩斯紧迫度账本"}, {"table_no": "T08", "table_name": "essay_corpus_snippets", "pk_uk": "PK(snippet_id), IDX(user_id, theme_tag, func_slot)", "core_columns": "snippet_id, user_id, theme_tag, func_slot, granularity, content_en, cloze_pattern", "purpose": "考研作文三维语料库"}]}}, "benchmark_9d": [{"dim": "01 做什么 (What)", "benchmark": "Readwise + Quizlet + 知乎盐选 + 墨墨背单词", "insight": "30%明文试读 + 45%服务端脱敏渐变毛玻璃 + 25%刚性锁闭 + 登录后五维锚点全恢复"}, {"dim": "02 怎么做 (How)", "benchmark": "首屏直达 Tab 2 精读器 -> 体验首段划词 -> 次段渐变消隐引导登录", "insight": "消灭首屏工程大表劝退，未登录零明文口令残留、零内部黑话外泄"}, {"dim": "03 用何方法 (Method)", "benchmark": "mask-image 线性渐变 + backdrop-filter 毛玻璃 + 后端 /api/state 硬截断", "insight": "长文用 Gradient Fade，表格用 Desensitized Cell Blur，接口用 GUEST_TEASER"}, {"dim": "04 解决痛点 (Pain)", "benchmark": "破解『全屏登录墙致 >75% 跳出』与『全量明文/纯CSS糊化被F12秒扒』两难", "insight": "既保留产品核心惊艳感，又 100% 守护主人阅读进度与词频隐私"}, {"dim": "05 产生价值 (Value)", "benchmark": "Baymard 实测渐进披露比硬墙提升 2.4x 转化率，API 截断阻断 100% DOM 窃取", "insight": "同事 A 与访客各得其所：访客畅享沙箱首段试玩，主人登录秒回 Para 2 续读"}, {"dim": "06 独有特色 (Feature)", "benchmark": "四轨混合遮罩 (长文渐变+表格毛玻璃+草稿锁+Tab锁) × 三模态自适应", "insight": "在 Daylight / Midnight / Eyecare 下均呈现柔和无眼疲劳的高级毛玻璃质感"}, {"dim": "07 遇到卡点 (Pitfalls)", "benchmark": "CourseHero / 知乎纯前端 CSS blur 被油猴脚本或 F12 删除 class 秒破", "insight": "后端 /api/state 在无 Bearer Token 时直接下发 ██ 脱敏切片，前端无真值可扒"}, {"dim": "08 拿到结果 (Results)", "benchmark": "前后端 8 项安全与体验探针 8/8 满分通过", "insight": "生产站点 https://kaoyan-elena.duckdns.org 实时生效"}, {"dim": "09 对标超越 (Action)", "benchmark": "Adopt 30%试读线+渐变消隐；Avoid 纯CSS假糊化/预填密码；Innovate 双擎RBAC截断", "insight": "全栈固化为 0-Token 外专 + 17 号方案大典 + 生产真机实装"}], "msu_contracts": {"vocab_simulation_samples": [{"word": "accommodate", "lemma": "accommodate", "syllabus_tier": "POLYSEMY_TRAP", "lookup_count": 5, "days_since_seen": 6.5, "last_seen_at": "2026-10-17 21:15", "exam_source": "2022 英语一 Text 2 Para 3", "contextual_meaning": "v. 适应，顺应；容纳，顾及（考研熟词僻义：非仅提供食宿）", "urgency_score": 0.8501}, {"word": "intellectual", "lemma": "intellectual", "syllabus_tier": "CORE_1800", "lookup_count": 4, "days_since_seen": 3.0, "last_seen_at": "2026-10-20 14:40", "exam_source": "2024 英语一 Text 1 Para 1", "contextual_meaning": "adj. 智力的，理智的；n. 知识分子", "urgency_score": 0.6932}, {"word": "empirical", "lemma": "empirical", "syllabus_tier": "CORE_1800", "lookup_count": 3, "days_since_seen": 8.0, "last_seen_at": "2026-10-15 09:20", "exam_source": "2023 英语一 Text 3 Para 2", "contextual_meaning": "adj. 实证的，以经验或观察为依据的（反义：theoretical）", "urgency_score": 0.7414}, {"word": "archaeology", "lemma": "archaeology", "syllabus_tier": "EXT_HYPER", "lookup_count": 1, "days_since_seen": 0.1, "last_seen_at": "2026-10-23 09:50", "exam_source": "2024 英语一 Text 1 Para 2", "contextual_meaning": "n. 考古学（专有低频背景词，刚查过1次）", "urgency_score": 0.2199}]}};
+const REPORT_DATA = {"schema": "kaoyan_english_web_semantic_prd_shunt.v3.3", "verified_date": "2026-10-24", "product_codename": "研词真源 (KaoyanEnglish Hub v3.3)", "recommended_domain": "kaoyan.elenalyl.top", "intake_decoding": {"module_deep_critique": [{"module_id": "MOD_00_INGESTION", "name": "模块零(问题一)：真题与词汇四轨导入中枢 (4-Track Ingestion Hub)", "colleague_insight": "敏锐意识到『无源之水不可持续』——网站必须有便捷的真题和词汇导入入口才能真正运转。", "literal_trap": "【致命冷启动陷阱】若做成传统后台『逐题复制填空+逐词手敲表单』，录一篇阅读需20分钟，用户第一天就会因录入摩擦过大放弃使用。", "reframed_solution": "【四轨零摩擦导入】① 出厂预置5500考纲底座+支持CSV/TXT生词表批量导入；② 整篇真题文本一键粘贴自动切段、算偏移、预高亮大纲词；③ 纸质卷截图OCR导入；④ .kaoyan.json 研友知识包互导。"}, {"module_id": "MOD_01_READING", "name": "模块一：真题阅读与锚定精读笔记本 (Anchored Dual-Pane Reader)", "colleague_insight": "精准命中纸质真题『原文与手写笔记分离、二刷复习极度痛苦』痛点；提出词/句/段三级抽取。", "literal_trap": "【致命交互陷阱】左右两栏放两份相同原文浪费 50% 视口、引发视觉重影，且右栏原文就地变笔记会导致跨句重叠选区破坏 DOM。", "reframed_solution": "【左文右卡·双向锚定】左栏为唯一真题原文画布；右栏为按 (para_idx, start_offset) 排序的结构化精读卡片流，支持左划右生卡、双向滚动高亮联动。"}, {"module_id": "MOD_02_VOCAB", "name": "模块二：真题语境词汇库与考研 5500 大纲引擎 (Contextual Vocab & 5500 Engine)", "colleague_insight": "抓住『从真题自然沉淀生词』及『查询次数 + 最近遇到时间 + 考研必学词汇量』三大信号。", "literal_trap": "【致命认知陷阱】单按最近时间排序会导致今天刚查1次的低频词挤掉7天前查过5次的死穴词；脱离真题原句背默认词义必栽在『熟词僻义』。", "reframed_solution": "【Lemma词形归一 + 真题原句强绑定 + S_urg紧迫度算子】划词自动归并词根、lookup_count+1、挂载真题原句切片；支持紧迫度/查询次数/最近时间三视图排序。"}, {"module_id": "MOD_03_ESSAY", "name": "模块三：考研作文三维语料库与仿写组装台 (3D Essay Corpus & Slot Builder)", "colleague_insight": "务实克制不做黑盒AI批改，聚焦环保、教育、科技、文化等大方向的句式、模板和范文片段检索。", "literal_trap": "【致命履约陷阱】单维文件夹分类无法应对『科技+文化』双主题交叉考题，且缺乏段落功能定位与默写输出，收藏极易吃灰。", "reframed_solution": "【6母题×5功能槽位×3粒度正交检索 + 阅读一键升格 + 挖空台】支持多标签交集检索、阅读好句一键升格入库、[___] 挖空默写与右栏三段式草稿组装。"}, {"module_id": "MOD_04_AUTH_ANCHOR", "name": "模块四(问题三)：30%/45%/25% 访客分级披露与五维进度锚点 (Tiered Preview & Progress Anchor)", "colleague_insight": "一针见血指出公网暴露下『无数人匿名乱点会冲毁个人词频统计与阅读进度锚点』且『未登录展示过多会泄露隐私、展示过少会流失体验』。", "literal_trap": "【致命公网裸奔与伪糊化陷阱】若未登录 100% 展示或仅用前端 CSS blur 遮盖全量真数据，路人按 F12 即可扒光词库并窥探主人阅读进度。", "reframed_solution": "【30%明文试读 + 45%服务端脱敏渐变毛玻璃 + 25% RBAC刚性锁】未登录首屏直达 Tab 2 开放首段明文互动，次段采用 Baymard 线性渐变消隐与 API 硬截断；登录后 100% 恢复专属进度。"}, {"module_id": "MOD_05_DOCKER_DB", "name": "模块五(问题四)：后端双擎高可用库表设计与容器化落盘迁移 (PG18 + SQLite WAL HA DB)", "colleague_insight": "前瞻性要求后端具备规范化库表设计与落盘规划，且必须支持跨机迁移与版本升级。", "reframed_solution": "【10张关系表 + PG18主库/SQLite热备双写 + 自动 SQL Migration】持久化挂载 WAL 模式数据库与每日快照转储，支持一键跨机迁移升级。", "literal_trap": "【致命运维陷阱】若在宿主机用散乱无 Schema 的 JSON 文件存数据，并发写易损坏、换机器迁移极易丢数据。"}]}, "ingestion_and_deployment": {"question_1_ingestion_hub": {"tracks": [{"track_id": "TRK_01_SYLLABUS_CSV", "name": "轨 1 · 5500考纲底座预置 + 外部生词本批量导入", "input_formats": "内置 5500 大纲词表 JSON + .csv / .tsv / .txt 导出生词文本", "pipeline": "自动识别 [单词, 释义, 频次] 列 -> Lemma 词干还原去重 -> 关联 5500 考纲四级标签与熟词僻义库", "sla": "单次导入 2,000 词 <= 80ms"}, {"track_id": "TRK_02_SMART_PASSAGE", "name": "轨 2 · 历年真题 Markdown / 纯文本智能分段解析", "input_formats": "直接粘贴整篇真题文本 / 上传 .md / .txt 讲义", "pipeline": "自动提取年份与题号 -> 自然段切分 Para[1..k] -> 生成 Standoff 字符偏移坐标系 -> 预高亮大纲高频词", "sla": "单篇真题解析入库 <= 25ms"}, {"track_id": "TRK_03_OCR_IMAGE_PDF", "name": "轨 3 · 纸质真题卷 / PDF 扫描页截图粘贴导入", "input_formats": "Ctrl+V 粘贴试卷截图 (.png/.jpg) 或上传单页 PDF", "pipeline": "OCR 提取英文段落 -> 双栏快速校对修正连字符断行 -> 一键转入标准真题篇章库", "sla": "解决纸质黄皮书录入痛点"}, {"track_id": "TRK_04_PORTABLE_PACK", "name": "轨 4 · 研友共享全站知识包一键导入/导出 (.kaoyan.json)", "input_formats": "标准化 .kaoyan.json 压缩包", "pipeline": "打包『真题原文 + 字符偏移笔记卡 + 个人词库计数 + 作文语料库』，自带 SHA-256 完整性校验", "sla": "全站快照导出 <= 100ms"}]}, "question_3_auth_and_progress_anchor": {"layers": [{"layer_id": "AUTH_L1_30PCT_TEASER", "name": "第一层 · 30% 公开样章明文试读区 (Cleartext Value Proof)", "mechanism": "未登录默认落点 Tab 2，开放 Para 1 原文、前 2 张精读卡、前 2 条考纲词释义与首条作文模板，3 秒建立产品惊艳感。"}, {"layer_id": "AUTH_L2_45PCT_BLUR", "name": "第二层 · 45% 服务端脱敏 + 渐变毛玻璃预览区 (Gradient & Frosted Blur)", "mechanism": "长文 Para 2+ 采用 mask-image 线性渐变消隐；个人词频列与后续卡片由服务端下发脱敏占位符并叠加 blur(5px)，彻底免疫 F12 扒取。"}, {"layer_id": "AUTH_L3_25PCT_LOCK", "name": "第三层 · 25% 写库导入与架构规格刚性锁 (RBAC Hard Lock)", "mechanism": "未登录隐藏内部端口与库表黑话，锁闭四轨批量导入、全站导出及架构总览 Tab；所有写接口无 Bearer Token 刚性拦截 401。"}, {"layer_id": "AUTH_L4_PROGRESS_ANCHOR", "name": "第四层 · 五维学习进度断点锚定器 (5D Study Progress Checkpoint)", "mechanism": "登录学籍后实时按 user_id 恢复并持久化：当前篇章与段落偏移、个人词频与紧迫度账本、精读笔记卡、作文三段草稿与连续打卡天数。"}]}, "question_4_database_schema_and_docker_persistence": {"tables": [{"table_no": "T01", "table_name": "schema_migrations", "pk_uk": "PK(version_id)", "core_columns": "version_id, script_name, checksum_sha256, applied_at", "purpose": "DDL 版本迁移账本，保障跨版本无缝升级"}, {"table_no": "T02", "table_name": "sys_users", "pk_uk": "PK(user_id), UK(username)", "core_columns": "user_id, username, display_name, role, passcode_hash, token_secret", "purpose": "RBAC 多租户学籍账户表"}, {"table_no": "T03", "table_name": "user_progress_anchors", "pk_uk": "PK(user_id)", "core_columns": "user_id, last_passage_id, last_para_idx, last_span_id, essay_draft_md, streak_days, rev_no", "purpose": "五维个人学习进度断点锚点表"}, {"table_no": "T04", "table_name": "syllabus_5500_lexicon", "pk_uk": "PK(lemma)", "core_columns": "lemma, pos, cn_meaning, syllabus_tier, polysemy_trap_note, exam_freq", "purpose": "考研 5500 大纲底座只读词表"}, {"table_no": "T05", "table_name": "exam_passages", "pk_uk": "PK(passage_id), UK(owner_user_id, sha256_hash)", "core_columns": "passage_id, owner_user_id, year, exam_type, text_no, title, paragraphs_json", "purpose": "真题篇章与自然段偏移坐标表"}, {"table_no": "T06", "table_name": "annotation_spans", "pk_uk": "PK(span_id), IDX(user_id, passage_id, para_idx)", "core_columns": "span_id, user_id, passage_id, granularity, para_idx, start_offset, end_offset, selected_text, syntax_breakdown", "purpose": "左文右卡 Standoff 字符偏移精读笔记表"}, {"table_no": "T07", "table_name": "user_vocab_ledger", "pk_uk": "PK(vocab_id), UK(user_id, lemma)", "core_columns": "vocab_id, user_id, lemma, syllabus_tier, lookup_count, last_seen_at, urgency_score", "purpose": "个人高频生词与艾宾浩斯紧迫度账本"}, {"table_no": "T08", "table_name": "essay_corpus_snippets", "pk_uk": "PK(snippet_id), IDX(user_id, theme_tag, func_slot)", "core_columns": "snippet_id, user_id, theme_tag, func_slot, granularity, content_en, cloze_pattern", "purpose": "考研作文三维语料库"}]}}, "benchmark_9d": [{"dim": "01 做什么 (What)", "benchmark": "Readwise + Quizlet + 知乎盐选 + 墨墨背单词", "insight": "30%明文试读 + 45%服务端脱敏渐变毛玻璃 + 25%刚性锁闭 + 登录后五维锚点全恢复"}, {"dim": "02 怎么做 (How)", "benchmark": "首屏直达 Tab 2 精读器 -> 体验首段划词 -> 次段渐变消隐引导登录", "insight": "消灭首屏工程大表劝退，未登录零明文口令残留、零内部黑话外泄"}, {"dim": "03 用何方法 (Method)", "benchmark": "mask-image 线性渐变 + backdrop-filter 毛玻璃 + 后端 /api/state 硬截断", "insight": "长文用 Gradient Fade，表格用 Desensitized Cell Blur，接口用 GUEST_TEASER"}, {"dim": "04 解决痛点 (Pain)", "benchmark": "破解『全屏登录墙致 >75% 跳出』与『全量明文/纯CSS糊化被F12秒扒』两难", "insight": "既保留产品核心惊艳感，又 100% 守护主人阅读进度与词频隐私"}, {"dim": "05 产生价值 (Value)", "benchmark": "Baymard 实测渐进披露比硬墙提升 2.4x 转化率，API 截断阻断 100% DOM 窃取", "insight": "同事 A 与访客各得其所：访客畅享沙箱首段试玩，主人登录秒回 Para 2 续读"}, {"dim": "06 独有特色 (Feature)", "benchmark": "四轨混合遮罩 (长文渐变+表格毛玻璃+草稿锁+Tab锁) × 三模态自适应", "insight": "在 Daylight / Midnight / Eyecare 下均呈现柔和无眼疲劳的高级毛玻璃质感"}, {"dim": "07 遇到卡点 (Pitfalls)", "benchmark": "CourseHero / 知乎纯前端 CSS blur 被油猴脚本或 F12 删除 class 秒破", "insight": "后端 /api/state 在无 Bearer Token 时直接下发 ██ 脱敏切片，前端无真值可扒"}, {"dim": "08 拿到结果 (Results)", "benchmark": "前后端 18 项安全与交互探针 18/18 满分通过", "insight": "生产站点 https://kaoyan-elena.duckdns.org 实时生效"}, {"dim": "09 对标超越 (Action)", "benchmark": "Adopt 30%试读线+渐变消隐；Avoid 纯CSS假糊化/预填密码；Innovate 双擎RBAC截断", "insight": "全栈固化为 0-Token 外专 + 17 号方案大典 + 生产真机实装"}], "msu_contracts": {"vocab_simulation_samples": [{"word": "accommodate", "lemma": "accommodate", "syllabus_tier": "POLYSEMY_TRAP", "lookup_count": 5, "days_since_seen": 6.5, "last_seen_at": "2026-10-17 21:15", "exam_source": "2022 英语一 Text 2 Para 3", "contextual_meaning": "v. 适应，顺应；容纳，顾及（考研熟词僻义：非仅提供食宿）", "urgency_score": 0.8501}, {"word": "intellectual", "lemma": "intellectual", "syllabus_tier": "CORE_1800", "lookup_count": 4, "days_since_seen": 3.0, "last_seen_at": "2026-10-20 14:40", "exam_source": "2024 英语一 Text 1 Para 1", "contextual_meaning": "adj. 智力的，理智的；n. 知识分子", "urgency_score": 0.6932}, {"word": "empirical", "lemma": "empirical", "syllabus_tier": "CORE_1800", "lookup_count": 3, "days_since_seen": 8.0, "last_seen_at": "2026-10-15 09:20", "exam_source": "2023 英语一 Text 3 Para 2", "contextual_meaning": "adj. 实证的，以经验或观察为依据的（反义：theoretical）", "urgency_score": 0.7414}, {"word": "archaeology", "lemma": "archaeology", "syllabus_tier": "EXT_HYPER", "lookup_count": 1, "days_since_seen": 0.1, "last_seen_at": "2026-10-23 09:50", "exam_source": "2024 英语一 Text 1 Para 2", "contextual_meaning": "n. 考古学（专有低频背景词，刚查过1次）", "urgency_score": 0.2199}]}};
 
 const FULL_SCHOLAR_NOTES = [
   { id: 'sp-para-1', granularity: 'PARAGRAPH', tag: '🟣 段落主旨卡 [Para 1 · Offset 0..242]', text: 'Para 1: 现代大学学科壁垒割裂了知识体系，导致学者跨学科探索面临风险。', breakdown: '【篇章功能】开篇立论（欲抑先扬）：指出 narrow compartments 对跨学科知识分子的束缚。', comment: '常考态度题：作者对过度学科细分持批判态度 (critical / skeptical)。', is_blurred: false },
@@ -334,15 +378,137 @@ let currentNoteFilter = 'ALL', currentEssayTheme = 'ALL', currentEssaySlot = 'AL
 
 function focusLoginBox() {
   const inp = document.getElementById('scholarUserInput');
+  const box = document.getElementById('authBannerBox');
   if (inp) { inp.scrollIntoView({ behavior: 'smooth', block: 'center' }); inp.focus(); }
+  if (box) {
+    box.style.boxShadow = '0 0 0 3px var(--primary-soft)';
+    box.style.borderColor = 'var(--primary)';
+    setTimeout(() => { box.style.boxShadow = ''; box.style.borderColor = ''; }, 1600);
+  }
+}
+
+function fillAccountCredentials(user, pwd, autoLogin) {
+  const u = document.getElementById('scholarUserInput');
+  const k = document.getElementById('scholarKeyInput');
+  if (u) u.value = user;
+  if (k) k.value = pwd;
+  if (autoLogin) loginWithCredentials();
 }
 
 function fillDemoScholar() {
-  const u = document.getElementById('scholarUserInput');
-  const k = document.getElementById('scholarKeyInput');
-  if (u) u.value = 'colleague_a';
-  if (k) k.value = '2026';
-  loginWithCredentials();
+  fillAccountCredentials('colleague_a', 'kaoyan2026', true);
+}
+
+function toggleAccountDrawer() {
+  const dr = document.getElementById('accountMgmtDrawer');
+  const btn = document.getElementById('acctDrawerToggleBtn');
+  if (!dr) return;
+  const open = dr.style.display === 'none' || !dr.style.display;
+  dr.style.display = open ? 'block' : 'none';
+  if (btn) btn.classList.toggle('active', open);
+  if (open) {
+    const cu = document.getElementById('chgUserInput');
+    if (cu && authState.role === 'SCHOLAR' && authState.userId) cu.value = authState.userId;
+    loadRegisteredUsers();
+  }
+}
+
+async function loadRegisteredUsers() {
+  const box = document.getElementById('registeredUsersList');
+  if (!box) return;
+  let users = [
+    { user_id: 'colleague_a', display_name: '主理人学籍 (colleague_a)', role: 'SCHOLAR' },
+    { user_id: 'scholar_b', display_name: '研友协作学籍 (scholar_b)', role: 'SCHOLAR' }
+  ];
+  if (location.protocol !== 'file:') {
+    try {
+      const r = await fetch('/api/auth/users');
+      if (r.ok) {
+        const d = await r.json();
+        if (d.users && d.users.length) users = d.users;
+      }
+    } catch (e) {}
+  }
+  box.innerHTML = users.map(u =>
+    `<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 6px;border-bottom:1px solid var(--border);">` +
+    `<div><strong><code>${u.user_id}</code></strong> <span style="color:var(--muted);font-size:0.76rem;">(${u.display_name || u.user_id})</span></div>` +
+    `<button class="btn" style="padding:2px 7px;font-size:0.72rem;" onclick="fillAccountCredentials('${u.user_id}','',false);document.getElementById('chgUserInput').value='${u.user_id}';">填入账号</button>` +
+    `</div>`
+  ).join('');
+}
+
+async function changeScholarPassword() {
+  const u = (document.getElementById('chgUserInput').value || '').trim();
+  const oldK = (document.getElementById('chgOldPwdInput').value || '').trim();
+  const newK = (document.getElementById('chgNewPwdInput').value || '').trim();
+  const st = document.getElementById('chgPwdStatus');
+  if (!u || !oldK || newK.length < 4) {
+    st.style.color = 'var(--rose)';
+    st.textContent = '❌ 请填写账号、原口令及不少于4位的新口令';
+    return;
+  }
+  if (location.protocol !== 'file:') {
+    try {
+      const r = await fetch('/api/auth/password/change', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, old_passcode: oldK, new_passcode: newK })
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        st.style.color = 'var(--rose)';
+        st.textContent = '❌ ' + (d.message || '原口令校验失败');
+        return;
+      }
+      st.style.color = 'var(--emerald)';
+      st.textContent = '✅ ' + (d.message || '密码修改成功！已自动用新口令登录');
+      document.getElementById('chgOldPwdInput').value = '';
+      document.getElementById('chgNewPwdInput').value = '';
+      fillAccountCredentials(u, newK, true);
+      return;
+    } catch (e) {}
+  }
+  st.style.color = 'var(--emerald)';
+  st.textContent = `✅ 本地沙箱已更新账号 ${u} 口令`;
+  fillAccountCredentials(u, newK, true);
+}
+
+async function createScholarAccount() {
+  const u = (document.getElementById('newUserInput').value || '').trim();
+  const disp = (document.getElementById('newDispInput').value || '').trim() || u;
+  const k = (document.getElementById('newPwdInput').value || '').trim();
+  const st = document.getElementById('newAcctStatus');
+  if (!/^[a-zA-Z0-9_\-]{2,32}$/.test(u) || k.length < 4) {
+    st.style.color = 'var(--rose)';
+    st.textContent = '❌ 账号需2~32位字母数字，初始口令不少于4位';
+    return;
+  }
+  if (location.protocol !== 'file:') {
+    try {
+      const r = await fetch('/api/auth/user/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, display_name: disp, passcode: k, role: 'SCHOLAR' })
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        st.style.color = 'var(--rose)';
+        st.textContent = '❌ ' + (d.message || '创建账号失败');
+        return;
+      }
+      st.style.color = 'var(--emerald)';
+      st.textContent = `✅ 账号 ${u} 创建成功！已同步双擎库并自动登录`;
+      document.getElementById('newUserInput').value = '';
+      document.getElementById('newDispInput').value = '';
+      document.getElementById('newPwdInput').value = '';
+      await loadRegisteredUsers();
+      fillAccountCredentials(u, k, true);
+      return;
+    } catch (e) {}
+  }
+  st.style.color = 'var(--emerald)';
+  st.textContent = `✅ 账号 ${u} 已创建并登录`;
+  fillAccountCredentials(u, k, true);
 }
 
 function renderPassageCanvas() {
@@ -355,7 +521,7 @@ function renderPassageCanvas() {
     cv.innerHTML = p1 + p2;
     if (unlockCard) unlockCard.style.display = 'none';
   } else {
-    const p2Masked = `<div class="guest-paywall-zone"><div class="guest-fade-blur"><p id="para-2"><strong>[Para 2 · 45% 渐变毛玻璃预览区]</strong> While <span class="hl-word">empirical</span> specialization has undoubtedly accelerated technical breakthroughs, it often fails to <span class="hl-word">accommodate</span> the broader philosophical questions that originally motivated human inquiry. Even fields like <span class="hl-word">archaeology</span> now grapple with balancing quantitative data against cultural narrative.</p><p id="para-3"><strong>[Para 3 · 深度长难句与命题陷阱区]</strong> Consequently, restoring intellectual synthesis requires dismantling institutional silos and encouraging cross-disciplinary dialogue across the humanities and natural sciences.</p></div><div class="guest-paywall-floating-card"><div class="title">🔒 后续 70% 真题精读段落与个人学习断点已受保护</div><div class="desc">未登录访客默认开放 <strong>首段 30% 完整划词互动</strong>；Para 2~5 采用 <strong>线性渐变毛玻璃消隐 + 后端脱敏下发</strong>，守护主理人阅读断点与生词频次。</div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;"><button class="btn active" onclick="focusLoginBox()">🔑 输入学籍口令解锁全文</button><button class="btn" onclick="fillDemoScholar()">⚡ 一键体验学籍解锁效果</button></div></div></div>`;
+    const p2Masked = `<div class="guest-paywall-zone"><div class="guest-fade-blur"><p id="para-2"><strong>[Para 2 · 45% 渐变毛玻璃预览区]</strong> While <span class="hl-word">empirical</span> specialization has undoubtedly accelerated technical breakthroughs, it often fails to <span class="hl-word">accommodate</span> the broader philosophical questions that originally motivated human inquiry. Even fields like <span class="hl-word">archaeology</span> now grapple with balancing quantitative data against cultural narrative.</p><p id="para-3"><strong>[Para 3 · 深度长难句与命题陷阱区]</strong> Consequently, restoring intellectual synthesis requires dismantling institutional silos and encouraging cross-disciplinary dialogue across the humanities and natural sciences.</p></div><div class="guest-paywall-floating-card"><div class="title">🔒 后续 70% 真题精读段落与个人学习断点已受保护</div><div class="desc">未登录访客默认开放 <strong>首段 30% 完整划词互动</strong>；Para 2~5 采用 <strong>线性渐变毛玻璃消隐 + 后端脱敏下发</strong>，守护主理人阅读断点与生词频次。</div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;"><button class="btn active" onclick="focusLoginBox()">🔑 输入学籍口令解锁全文</button><button class="btn" onclick="fillDemoScholar()">⚡ 一键体验学籍解锁 (colleague_a)</button></div></div></div>`;
     cv.innerHTML = p1 + p2Masked;
     if (unlockCard) unlockCard.style.display = 'none';
   }
@@ -384,12 +550,16 @@ function updateAuthUI() {
   const tb0 = document.getElementById('tabBtn0');
   const tb1 = document.getElementById('tabBtn1');
   const tb2 = document.getElementById('tabBtn2');
+  const tb3 = document.getElementById('tabBtn3');
+  const tb4 = document.getElementById('tabBtn4');
   const tb5 = document.getElementById('tabBtn5');
   const expStrip = document.getElementById('guestExposureStrip');
   const haPill = document.getElementById('pgHaLiveBanner');
   if (tb0) { tb0.style.display = isScholar ? '' : 'none'; tb0.textContent = '📊 0. 语义单与总览'; }
-  if (tb1) tb1.textContent = isScholar ? '📥 1. 四轨导入中心' : '📥 4. 四轨导入中心 🔒';
   if (tb2) tb2.textContent = isScholar ? '📖 1. 左文右注精读 (100%全文)' : '📖 1. 真题左文右注精读 (30%免费试读)';
+  if (tb3) tb3.textContent = '🧠 2. 5500考纲词库与熟词僻义';
+  if (tb4) tb4.textContent = '✍️ 3. 考研大作文三维语料';
+  if (tb1) tb1.textContent = isScholar ? '📥 4. 四轨导入中心' : '📥 4. 四轨导入中心 🔒';
   if (tb5) { tb5.style.display = isScholar ? '' : 'none'; tb5.textContent = '🐳 5. 库表与高可用架构'; }
   if (expStrip) expStrip.style.display = isScholar ? 'none' : 'grid';
   if (haPill) haPill.style.display = isScholar ? 'inline-flex' : 'none';
@@ -418,7 +588,7 @@ function updateAuthUI() {
   } else {
     b.className = 'badge bg-amber'; b.textContent = '👁️ 未登录访客试读模式 (30% 明文 · 45% 渐变毛玻璃 · 25% 锁闭)';
     if (q) { q.className = 'badge bg-blue'; q.textContent = '✨ 首段免费划词互动 · 次段毛玻璃防剧透'; }
-    t.innerHTML = '当前为<strong>未登录访客试读模式</strong>：首段 <strong>30% 真题与前 2 张精读卡</strong>完全开放免费互动；后续 <strong>45% 段落与个人词频</strong>采用柔和毛玻璃遮罩，输入学籍口令（或点击一键体验）即可 100% 解锁。';
+    t.innerHTML = '当前为<strong>未登录访客试读模式</strong>：首段 <strong>30% 真题与前 2 张精读卡</strong>完全开放免费互动；后续 <strong>45% 段落与个人词频</strong>采用柔和毛玻璃遮罩，输入下方学籍口令（或点击一键填入）即可 100% 解锁。';
     btn.textContent = '⚡ 一键体验学籍解锁';
     btn.onclick = fillDemoScholar;
     document.getElementById('kpiAnchor').innerHTML = '<span class="guest-cell-blur">Para 2 · 12天</span> 🔒';
@@ -435,16 +605,16 @@ async function loginWithCredentials() {
   const u = document.getElementById('scholarUserInput').value.trim() || 'colleague_a';
   const k = document.getElementById('scholarKeyInput').value.trim();
   if (!k) {
-    alert('🔑 请输入学籍口令以解锁完整内容（演示口令可向主理人获取）');
+    alert('🔑 请输入学籍口令以解锁完整内容（默认口令为 kaoyan2026，或点击上方「⚡ 填入并登录」）');
     document.getElementById('scholarKeyInput').focus();
     return;
   }
   if (location.protocol !== 'file:') {
     try {
       const r = await fetch('/api/auth/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username: u, passcode: k}) });
-      if (!r.ok) { alert('❌ 学籍口令校验失败，请确认后重试'); return; }
       const d = await r.json();
-      authState = { role: 'SCHOLAR', userId: u, token: d.token || `kaoyan-scholar-${u}-${k}`, lastPara: (d.anchor && d.anchor.last_para_idx) || 2, streakDays: (d.anchor && d.anchor.streak_days) || 12 };
+      if (!r.ok) { alert('❌ ' + (d.message || '学籍口令校验失败，请确认后重试')); return; }
+      authState = { role: 'SCHOLAR', userId: d.user_id || u, token: d.token || `kaoyan-scholar-${u}-${k}`, lastPara: (d.anchor && d.anchor.last_para_idx) || 2, streakDays: (d.anchor && d.anchor.streak_days) || 12 };
     } catch(e) {
       authState = { role: 'SCHOLAR', userId: u, token: `kaoyan-scholar-${u}-${k}`, lastPara: 2, streakDays: 12 };
     }
@@ -476,7 +646,7 @@ function toggleScholarAuth() {
 async function anchorParagraph(paraIdx, noteId) {
   if (authState.role !== 'SCHOLAR' && paraIdx > 1) { focusLoginBox(); return; }
   authState.lastPara = paraIdx;
-  document.querySelectorAll('#passageCanvas p').forEach((p, i) => p.classList.toggle('active-para', i + 1 === paraIdx));
+  document.querySelectorAll('#passageCanvas p').forEach(p => p.classList.toggle('active-para', p.id === 'para-' + paraIdx));
   if (authState.role === 'SCHOLAR') {
     document.getElementById('paraAnchorBadge').textContent = `当前锚定: Para ${paraIdx}`;
     document.getElementById('kpiAnchor').textContent = `Para ${paraIdx} · 连续 ${authState.streakDays || 12}天`;
@@ -529,10 +699,17 @@ async function syncFromServer() {
   } catch (e) {}
 }
 
-function setTheme(t) { document.documentElement.setAttribute('data-theme', t); try { localStorage.setItem('kaoyan_hub_theme', t); } catch(e){} }
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  ['daylight', 'midnight', 'eyecare'].forEach(k => {
+    const el = document.getElementById('themeBtn-' + k);
+    if (el) el.classList.toggle('active', k === t);
+  });
+  try { localStorage.setItem('kaoyan_hub_theme', t); localStorage.setItem('app_theme_mode', t); } catch(e){}
+}
 function switchTab(idx) {
-  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
-  document.querySelectorAll('.panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.id === 'tabBtn' + idx));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'tab' + idx));
 }
 function renderTables() {
   document.getElementById('critiqueTableBody').innerHTML = REPORT_DATA.intake_decoding.module_deep_critique.map(m =>
@@ -580,7 +757,7 @@ async function runVocabBulkIngest() {
     if (parts.length >= 2) {
       const word = parts[0].toLowerCase(), meaning = parts[1], cnt = parseInt(parts[2] || '1', 10) || 1, tier = parts[3] || 'CORE_1800';
       let item = vocabData.find(v => v.word === word);
-      if (item) { item.lookup_count = (Number(item.lookup_count) || 1) + cnt; item.last_seen_at = '2026-10-24 (批量导入)'; }
+      if (item) { item.lookup_count = (parseNum(item.lookup_count) || 1) + cnt; item.last_seen_at = '2026-10-24 (批量导入)'; }
       else { vocabData.unshift({ word, lemma: word, syllabus_tier: tier, lookup_count: cnt, days_since_seen: 0.0, last_seen_at: '2026-10-24 (批量导入)', exam_source: '外部词表导入', contextual_meaning: meaning, urgency_score: Number((0.45 * Math.min(1, Math.log(1 + cnt) / Math.log(10)) + 0.25).toFixed(4)), is_blurred: false }); }
       added++;
     }
@@ -593,7 +770,7 @@ async function runVocabBulkIngest() {
 }
 function exportPortablePack() {
   if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
-  const blob = new Blob([JSON.stringify({ schema: 'kaoyan.portable.v3.1', user_id: authState.userId, exported_at: new Date().toISOString(), notes: notesData, vocab: vocabData, essay: essayCorpus }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ schema: 'kaoyan.portable.v3.3', user_id: authState.userId, exported_at: new Date().toISOString(), notes: notesData, vocab: vocabData, essay: essayCorpus }, null, 2)], { type: 'application/json' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'kaoyan_knowledge_pack.kaoyan.json'; a.click();
 }
 function renderNotes() {
@@ -605,12 +782,16 @@ function renderNotes() {
     if (isGuestBlur) {
       return `<div class="note-card" id="note-${n.id}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><span class="badge bg-amber">${n.tag}</span><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="focusLoginBox()">🔑 登录解锁</button></div><div class="guest-card-blur"><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div></div><div style="font-size:0.79rem;color:var(--amber);font-weight:600;margin-top:4px;">${n.comment}</div></div>`;
     }
-    return `<div class="note-card" id="note-${n.id}" onmouseenter="document.getElementById('passageCanvas').classList.add('spotlight-on')"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><span class="badge bg-blue">${n.tag}</span><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="promoteToEssay('${n.id}')">🚀 升格入作文库</button></div><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.8rem;color:var(--emerald);font-weight:600;">💡 ${n.comment}</div></div>`;
+    return `<div class="note-card" id="note-${n.id}" onmouseenter="document.getElementById('passageCanvas').classList.add('spotlight-on')" onmouseleave="if(readMode==='CLEAN')document.getElementById('passageCanvas').classList.remove('spotlight-on')"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><span class="badge bg-blue">${n.tag}</span><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="promoteToEssay('${n.id}')">🚀 升格入作文库</button></div><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.8rem;color:var(--emerald);font-weight:600;">💡 ${n.comment}</div></div>`;
   }).join('');
 }
 function filterNotes(g, btn) { currentNoteFilter = g; btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderNotes(); }
 function focusNote(id) { document.querySelectorAll('.note-card').forEach(c => c.classList.remove('highlight')); const el = document.getElementById('note-' + id); if (el) { el.classList.add('highlight'); el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } }
-function extractSelection(granularity) {
+function extractSelection(granularity, btn) {
+  if (btn && btn.parentElement) {
+    btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
   const sel = window.getSelection().toString().trim() || 'venture beyond their fortified disciplinary boundaries';
   const newId = 'sp-custom-' + Date.now();
   const labelMap = { WORD: '🟡 真题生词卡', SENTENCE: '🔵 长难句解剖卡', PARAGRAPH: '🟣 段落主旨卡' };
@@ -620,38 +801,56 @@ function extractSelection(granularity) {
   if (location.protocol !== 'file:' && authState.role === 'SCHOLAR') { fetch('/api/notes', {method:'POST', headers:authHeaders(), body:JSON.stringify(noteObj)}).catch(()=>{}); }
   renderNotes();
 }
+function parseNum(v) {
+  const n = parseFloat(String(v === undefined || v === null ? '0' : v).replace(/[^0-9.\-]/g, ''));
+  return isNaN(n) ? 0 : n;
+}
 function lookupWord(w) {
   let item = vocabData.find(v => v.word === w);
-  if (item && authState.role === 'SCHOLAR') { item.lookup_count = (Number(item.lookup_count) || 1) + 1; item.last_seen_at = '2026-10-24 刚刚 (实时查词)'; item.days_since_seen = 0.0; item.urgency_score = Number((0.45 * Math.min(1, Math.log(1 + item.lookup_count) / Math.log(10)) + 0.20).toFixed(4)); }
-  else if (!item) { vocabData.unshift({ word: w, lemma: w, syllabus_tier: 'CORE_1800', lookup_count: authState.role === 'SCHOLAR' ? 1 : '沙箱+1', days_since_seen: 0.0, last_seen_at: '刚刚 (首段试玩划词)', exam_source: 'Para 1 公开试读划词', contextual_meaning: 'v./n. 真题语境新摘录核心词汇（已自动词形还原）', urgency_score: authState.role === 'SCHOLAR' ? 0.34 : '🔒', is_blurred: false }); }
+  if (item) {
+    const nextCnt = Math.round(parseNum(item.lookup_count) || 1) + 1;
+    item.lookup_count = authState.role === 'SCHOLAR' ? nextCnt : `${nextCnt} 次`;
+    item.last_seen_at = '2026-10-24 刚刚';
+    item.days_since_seen = 0.0;
+    item.urgency_score = Number((0.45 * Math.min(1, Math.log(1 + nextCnt) / Math.log(10)) + 0.20).toFixed(4));
+  } else {
+    vocabData.unshift({ word: w, lemma: w, syllabus_tier: 'CORE_1800', lookup_count: authState.role === 'SCHOLAR' ? 1 : '1 次', days_since_seen: 0.0, last_seen_at: '2026-10-24 刚刚', exam_source: 'Para 1 公开试读划词', contextual_meaning: 'v./n. 真题语境新摘录核心词汇（已自动词形还原）', urgency_score: 0.34, is_blurred: false });
+  }
   if (location.protocol !== 'file:' && authState.role === 'SCHOLAR') { fetch('/api/vocab/lookup', {method:'POST', headers:authHeaders(), body:JSON.stringify({lemma: w})}).catch(()=>{}); }
   updateKpiVocab(); renderVocab();
 }
 function sortVocab(mode, btn) {
-  if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
-  if (btn) { btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); }
-  if (mode === 'urgency') vocabData.sort((a, b) => Number(b.urgency_score || 0) - Number(a.urgency_score || 0));
-  if (mode === 'count') vocabData.sort((a, b) => Number(b.lookup_count || 0) - Number(a.lookup_count || 0));
-  if (mode === 'recent') vocabData.sort((a, b) => Number(a.days_since_seen || 0) - Number(b.days_since_seen || 0));
+  if (btn && btn.parentElement) {
+    btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  if (mode === 'urgency') vocabData.sort((a, b) => parseNum(b.urgency_score) - parseNum(a.urgency_score));
+  if (mode === 'count') vocabData.sort((a, b) => parseNum(b.lookup_count) - parseNum(a.lookup_count));
+  if (mode === 'recent') vocabData.sort((a, b) => {
+    const da = parseNum(a.days_since_seen), db = parseNum(b.days_since_seen);
+    if (da !== db) return da - db;
+    return String(b.last_seen_at || '').localeCompare(String(a.last_seen_at || ''));
+  });
   renderVocab();
 }
 function gradeVocab(w, delta) {
   if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
   let item = vocabData.find(v => v.word === w); if (!item) return;
-  item.urgency_score = Number(Math.max(0.05, Math.min(0.99, Number(item.urgency_score || 0.5) + delta)).toFixed(4));
+  item.urgency_score = Number(Math.max(0.05, Math.min(0.99, parseNum(item.urgency_score || 0.5) + delta)).toFixed(4));
   renderVocab();
 }
 function renderVocab() {
   const mCls = readMode === 'MASK' ? 'blur-mask' : '';
   document.getElementById('vocabTableBody').innerHTML = vocabData.map(v => {
     const isGuest = authState.role !== 'SCHOLAR';
+    const cntStr = String(v.lookup_count || '3').includes('次') ? v.lookup_count : `${v.lookup_count || 3} 次`;
     if (isGuest && v.is_blurred) {
-      return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${v.lookup_count || '3 次'}</span> 🔒</td><td><span class="guest-cell-blur">${v.last_seen_at || '2026-10-18'}</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.7414'}</span> 🔒</td><td><span class="guest-card-blur">${v.contextual_meaning}</span> <span style="color:var(--amber);font-weight:600;">🔒 登录解锁</span></td><td><button class="btn" onclick="focusLoginBox()">🔑 解锁</button></td></tr>`;
+      return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${cntStr}</span> 🔒</td><td><span class="guest-cell-blur">${v.last_seen_at || '2026-10-18'}</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.7414'}</span> 🔒</td><td><span class="guest-card-blur">${v.contextual_meaning}</span> <span style="color:var(--amber);font-weight:600;">🔒 登录解锁</span></td><td><button class="btn" onclick="focusLoginBox()">🔑 解锁</button></td></tr>`;
     }
     if (isGuest) {
-      return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${v.lookup_count || '5 次'}</span> 🔒</td><td><span class="guest-cell-blur">2026-10-20</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.8501'}</span> 🔒</td><td class="${mCls}" onclick="this.classList.toggle('revealed')"><strong>[${v.exam_source}]</strong> ${v.contextual_meaning}</td><td style="white-space:nowrap;"><button class="btn" onclick="lookupWord('${v.word}')">🔍试玩+1</button></td></tr>`;
+      return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${cntStr}</span> 🔒</td><td><span class="guest-cell-blur">${v.last_seen_at || '2026-10-20'}</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.8501'}</span> 🔒</td><td class="${mCls}" onclick="this.classList.toggle('revealed')"><strong>[${v.exam_source}]</strong> ${v.contextual_meaning}</td><td style="white-space:nowrap;"><button class="btn" onclick="lookupWord('${v.word}')">🔍试玩+1</button></td></tr>`;
     }
-    return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="badge bg-amber">${v.lookup_count} 次</span></td><td>${v.last_seen_at}</td><td><strong>${v.urgency_score}</strong></td><td class="${mCls}" onclick="this.classList.toggle('revealed')"><strong>[${v.exam_source}]</strong> ${v.contextual_meaning}</td><td style="white-space:nowrap;"><button class="btn" onclick="lookupWord('${v.word}')">🔍+1</button> <button class="btn" onclick="gradeVocab('${v.word}',-0.12)" title="熟记降权">✅</button> <button class="btn" onclick="gradeVocab('${v.word}',0.12)" title="死穴加权">🚨</button></td></tr>`;
+    return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="badge bg-amber">${cntStr}</span></td><td>${v.last_seen_at}</td><td><strong>${v.urgency_score}</strong></td><td class="${mCls}" onclick="this.classList.toggle('revealed')"><strong>[${v.exam_source}]</strong> ${v.contextual_meaning}</td><td style="white-space:nowrap;"><button class="btn" onclick="lookupWord('${v.word}')">🔍+1</button> <button class="btn" onclick="gradeVocab('${v.word}',-0.12)" title="熟记降权">✅</button> <button class="btn" onclick="gradeVocab('${v.word}',0.12)" title="死穴加权">🚨</button></td></tr>`;
   }).join('');
 }
 function promoteToEssay(noteId) {
@@ -681,6 +880,8 @@ function insertDraft(text) {
 }
 function updateDraftCount() { const words = (document.getElementById('essayDraftBox').value.trim().match(/\b\w+\b/g) || []).length; document.getElementById('wordCountBadge').textContent = `${words} 词 (目标 160-200 词)`; }
 try {
+  const savedTheme = localStorage.getItem('kaoyan_hub_theme') || localStorage.getItem('app_theme_mode') || 'daylight';
+  setTheme(savedTheme);
   const savedAuth = JSON.parse(localStorage.getItem('kaoyan_auth') || 'null');
   if (savedAuth && savedAuth.role === 'SCHOLAR' && savedAuth.token) {
     authState = savedAuth;

@@ -118,6 +118,20 @@ class DualEngineHARepository:
             "INSERT OR REPLACE INTO schema_migrations (version_id, script_name, checksum_sha256, engine_target, applied_at) VALUES (?, ?, ?, ?, ?)",
             ("V002", "V002__pg18_and_sqlite_10tables_ha_schema.sql", hashlib.sha256(b"V002_PG18_HA").hexdigest(), "DUAL_PG_SQLITE", now_str()),
         )
+        # Seed default scholar accounts if not present
+        ts_seed = now_str()
+        for uid_s, disp_s, role_s, para_s, streak_s in [
+            ("colleague_a", "主理人学籍 (colleague_a)", "SCHOLAR", 2, 12),
+            ("scholar_b", "研友协作学籍 (scholar_b)", "SCHOLAR", 1, 5),
+        ]:
+            sconn.execute(
+                "INSERT OR IGNORE INTO sys_users (user_id, username, display_name, role, passcode_hash, token_secret, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (uid_s, uid_s, disp_s, role_s, "kaoyan2026", f"kaoyan-scholar-{uid_s}-kaoyan2026", ts_seed),
+            )
+            sconn.execute(
+                "INSERT OR IGNORE INTO user_progress_anchors (user_id, last_passage_id, last_para_idx, last_span_id, last_tab_idx, essay_draft_md, streak_days, rev_no, updated_at) VALUES (?, ?, ?, ?, 2, '', ?, 1, ?)",
+                (uid_s, "P2024_EN1_T1", para_s, "sp-sent-2", streak_s, ts_seed),
+            )
         sconn.commit()
 
         # Also copy rows from legacy BASE_DIR/db_volume/kaoyan_hub.sqlite3 if present
@@ -713,6 +727,15 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
             self.wfile.write(html)
             return
 
+        if parsed.path == "/api/auth/users":
+            sconn = REPO.get_sqlite_conn()
+            rows = sconn.execute(
+                "SELECT user_id, username, display_name, role, created_at FROM sys_users ORDER BY created_at ASC"
+            ).fetchall()
+            sconn.close()
+            users_list = [dict(r) for r in rows]
+            return self._send_json(200, {"status": "ok", "users": users_list}, req_id=req_id, t0=t0)
+
         self._send_json(404, {"status": "not_found", "message": "Endpoint not found"}, req_id=req_id, t0=t0)
 
     def do_POST(self):
@@ -737,12 +760,30 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
         if self.path == "/api/auth/login":
             u = str(data.get("username", "colleague_a")).strip() or "colleague_a"
             k = str(data.get("passcode", "")).strip()
-            if k != "kaoyan2026":
-                return self._send_json(401, {"status": "unauthorized", "message": "学籍口令错误"}, req_id=req_id, t0=t0)
-            token = f"kaoyan-scholar-{u}-kaoyan2026"
+            if not k:
+                return self._send_json(401, {"status": "unauthorized", "message": "请输入学籍口令"}, req_id=req_id, t0=t0)
 
             sconn = REPO.get_sqlite_conn()
-            sconn.execute("INSERT OR IGNORE INTO sys_users VALUES (?, ?, ?, ?, ?, ?, ?)", (u, u, u, "SCHOLAR", k, token, now))
+            urow = sconn.execute("SELECT user_id, username, display_name, role, passcode_hash, token_secret FROM sys_users WHERE user_id = ? OR username = ?", (u, u)).fetchone()
+            k_sha = hashlib.sha256(k.encode("utf-8")).hexdigest()
+            if urow is not None:
+                stored_pw = str(urow["passcode_hash"])
+                if k != stored_pw and k_sha != stored_pw:
+                    sconn.close()
+                    return self._send_json(401, {"status": "unauthorized", "message": "学籍口令错误，请核对后重试"}, req_id=req_id, t0=t0)
+                u = urow["user_id"]
+                disp = urow["display_name"]
+                role = urow["role"] or "SCHOLAR"
+                token = urow["token_secret"] or f"kaoyan-scholar-{u}-kaoyan2026"
+            else:
+                if k != "kaoyan2026":
+                    sconn.close()
+                    return self._send_json(401, {"status": "unauthorized", "message": "未知学籍账号或口令错误（可使用『手工添加账号』创建新学籍）"}, req_id=req_id, t0=t0)
+                disp = u
+                role = "SCHOLAR"
+                token = f"kaoyan-scholar-{u}-kaoyan2026"
+                sconn.execute("INSERT OR IGNORE INTO sys_users VALUES (?, ?, ?, ?, ?, ?, ?)", (u, u, disp, role, k, token, now))
+
             sconn.execute("INSERT OR IGNORE INTO user_progress_anchors VALUES (?, ?, 2, ?, 2, ?, 12, 1, ?)", (u, "P2024_EN1_T1", "sp-sent-2", "", now))
             sconn.commit()
             anchor = dict(sconn.execute("SELECT * FROM user_progress_anchors WHERE user_id = ?", (u,)).fetchone())
@@ -756,7 +797,7 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
                         with pconn.cursor() as cur:
                             cur.execute(
                                 "INSERT INTO sys_users (user_id, username, display_name, role, passcode_hash, token_secret, created_at) VALUES (%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (user_id) DO NOTHING",
-                                (u, u, u, "SCHOLAR", k, token, now),
+                                (u, u, disp, role, k, token, now),
                             )
                             cur.execute(
                                 "INSERT INTO user_progress_anchors (user_id, last_passage_id, last_para_idx, last_span_id, last_tab_idx, essay_draft_md, streak_days, rev_no, updated_at) VALUES (%s,%s,2,%s,2,%s,12,1,%s) ON CONFLICT (user_id) DO NOTHING",
@@ -770,7 +811,96 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
             eng = "postgresql_18_primary" if pg_ok else "sqlite_wal_hot_standby_failover"
             return self._send_json(
                 200,
-                {"status": "ok", "engine": eng, "user_id": u, "role": "SCHOLAR", "token": token, "anchor": anchor},
+                {"status": "ok", "engine": eng, "user_id": u, "display_name": disp, "role": role, "token": token, "anchor": anchor},
+                req_id=req_id,
+                t0=t0,
+                engine_hdr=eng,
+            )
+
+        if self.path == "/api/auth/password/change":
+            u = str(data.get("username", "")).strip()
+            old_k = str(data.get("old_passcode", "")).strip()
+            new_k = str(data.get("new_passcode", "")).strip()
+            if not u or not old_k or len(new_k) < 4:
+                return self._send_json(422, {"status": "validation_error", "message": "请填写账号、原口令及不少于 4 位的新口令"}, req_id=req_id, t0=t0)
+            sconn = REPO.get_sqlite_conn()
+            urow = sconn.execute("SELECT user_id, passcode_hash FROM sys_users WHERE user_id = ? OR username = ?", (u, u)).fetchone()
+            if urow is None:
+                sconn.close()
+                return self._send_json(404, {"status": "not_found", "message": f"未找到学籍账号 {u}"}, req_id=req_id, t0=t0)
+            stored_pw = str(urow["passcode_hash"])
+            old_sha = hashlib.sha256(old_k.encode("utf-8")).hexdigest()
+            if old_k != stored_pw and old_sha != stored_pw:
+                sconn.close()
+                return self._send_json(401, {"status": "unauthorized", "message": "原口令校验未通过，无法修改密码"}, req_id=req_id, t0=t0)
+            uid_real = urow["user_id"]
+            new_token = f"kaoyan-scholar-{uid_real}-{hashlib.sha256((uid_real + ':' + new_k).encode('utf-8')).hexdigest()[:12]}"
+            sconn.execute("UPDATE sys_users SET passcode_hash = ?, token_secret = ? WHERE user_id = ?", (new_k, new_token, uid_real))
+            sconn.commit()
+            sconn.close()
+
+            pg_ok = False
+            pconn = REPO.get_pg_conn(simulate_down=sim_down)
+            if pconn is not None:
+                try:
+                    with pconn:
+                        with pconn.cursor() as cur:
+                            cur.execute("UPDATE sys_users SET passcode_hash = %s, token_secret = %s WHERE user_id = %s", (new_k, new_token, uid_real))
+                    pg_ok = True
+                finally:
+                    pconn.close()
+            REPO.record_ha_wal("PASSWORD_CHANGE", "sys_users", uid_real, {"user_id": uid_real, "updated_at": now}, pg_ok, True)
+            eng = "postgresql_18_primary" if pg_ok else "sqlite_wal_hot_standby_failover"
+            return self._send_json(
+                200,
+                {"status": "ok", "engine": eng, "user_id": uid_real, "token": new_token, "message": f"学籍 {uid_real} 密码修改成功，双擎数据库已同步"},
+                req_id=req_id,
+                t0=t0,
+                engine_hdr=eng,
+            )
+
+        if self.path == "/api/auth/user/create":
+            u = str(data.get("username", "")).strip()
+            disp = str(data.get("display_name", "")).strip() or u
+            k = str(data.get("passcode", "")).strip()
+            role = str(data.get("role", "SCHOLAR")).strip().upper() or "SCHOLAR"
+            if not re.match(r"^[a-zA-Z0-9_\-]{2,32}$", u):
+                return self._send_json(422, {"status": "validation_error", "message": "账号需为 2~32 位字母、数字、下划线或连字符"}, req_id=req_id, t0=t0)
+            if len(k) < 4:
+                return self._send_json(422, {"status": "validation_error", "message": "初始口令长度不少于 4 位"}, req_id=req_id, t0=t0)
+            sconn = REPO.get_sqlite_conn()
+            exists = sconn.execute("SELECT user_id FROM sys_users WHERE user_id = ? OR username = ?", (u, u)).fetchone()
+            if exists:
+                sconn.close()
+                return self._send_json(409, {"status": "conflict", "message": f"学籍账号 {u} 已存在，请直接登录或修改密码"}, req_id=req_id, t0=t0)
+            token = f"kaoyan-scholar-{u}-{hashlib.sha256((u + ':' + k).encode('utf-8')).hexdigest()[:12]}"
+            sconn.execute("INSERT INTO sys_users (user_id, username, display_name, role, passcode_hash, token_secret, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)", (u, u, disp, role, k, token, now))
+            sconn.execute("INSERT OR IGNORE INTO user_progress_anchors VALUES (?, ?, 1, ?, 2, '', 1, 1, ?)", (u, "P2024_EN1_T1", "sp-para-1", now))
+            sconn.commit()
+            sconn.close()
+
+            pg_ok = False
+            pconn = REPO.get_pg_conn(simulate_down=sim_down)
+            if pconn is not None:
+                try:
+                    with pconn:
+                        with pconn.cursor() as cur:
+                            cur.execute(
+                                "INSERT INTO sys_users (user_id, username, display_name, role, passcode_hash, token_secret, created_at) VALUES (%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (user_id) DO NOTHING",
+                                (u, u, disp, role, k, token, now),
+                            )
+                            cur.execute(
+                                "INSERT INTO user_progress_anchors (user_id, last_passage_id, last_para_idx, last_span_id, last_tab_idx, essay_draft_md, streak_days, rev_no, updated_at) VALUES (%s,%s,1,%s,2,'',1,1,%s) ON CONFLICT (user_id) DO NOTHING",
+                                (u, "P2024_EN1_T1", "sp-para-1", now),
+                            )
+                    pg_ok = True
+                finally:
+                    pconn.close()
+            REPO.record_ha_wal("USER_CREATE", "sys_users", u, {"user_id": u, "display_name": disp, "role": role}, pg_ok, True)
+            eng = "postgresql_18_primary" if pg_ok else "sqlite_wal_hot_standby_failover"
+            return self._send_json(
+                200,
+                {"status": "ok", "engine": eng, "user_id": u, "display_name": disp, "role": role, "token": token, "message": f"学籍账号 {u} 创建成功"},
                 req_id=req_id,
                 t0=t0,
                 engine_hdr=eng,
@@ -923,6 +1053,57 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
             )
 
         if self.path in ("/api/ingest/vocab", "/api/vocab/lookup"):
+            raw_csv = str(data.get("raw_csv", "")).strip()
+            if raw_csv:
+                sconn = REPO.get_sqlite_conn()
+                ingested_items = []
+                for ln in re.split(r"\n+", raw_csv):
+                    parts = [x.strip() for x in ln.split(",") if x.strip()]
+                    if len(parts) >= 2:
+                        w = re.sub(r"[^a-zA-Z\-]", "", parts[0]).lower()
+                        if len(w) < 2:
+                            continue
+                        meaning = parts[1][:512]
+                        try:
+                            cnt = max(1, int(parts[2])) if len(parts) >= 3 else 1
+                        except Exception:
+                            cnt = 1
+                        tier = (parts[3] if len(parts) >= 4 else "CORE_1800")[:32]
+                        urg = calc_ebbinghaus_urgency(cnt, 0.2, tier)
+                        sconn.execute(
+                            "INSERT INTO user_vocab_ledger (user_id, lemma, syllabus_tier, lookup_count, last_seen_at, days_since_seen, urgency_score, exam_source, contextual_meaning, mastery_state) "
+                            "VALUES (?, ?, ?, ?, ?, 0.2, ?, '批量词表导入', ?, 'LEARNING') "
+                            "ON CONFLICT(user_id, lemma) DO UPDATE SET lookup_count = user_vocab_ledger.lookup_count + ?, last_seen_at = excluded.last_seen_at, urgency_score = ?, contextual_meaning = excluded.contextual_meaning",
+                            (uid, w, tier, cnt, now, urg, meaning, cnt, urg),
+                        )
+                        ingested_items.append((uid, w, tier, cnt, now, urg, meaning))
+                sconn.commit()
+                sconn.close()
+                pg_ok = False
+                pconn = REPO.get_pg_conn(simulate_down=sim_down)
+                if pconn is not None and ingested_items:
+                    try:
+                        with pconn:
+                            with pconn.cursor() as cur:
+                                for uid_i, w_i, tier_i, cnt_i, now_i, urg_i, meaning_i in ingested_items:
+                                    cur.execute(
+                                        "INSERT INTO user_vocab_ledger (user_id, lemma, syllabus_tier, lookup_count, last_seen_at, days_since_seen, urgency_score, exam_source, contextual_meaning, mastery_state) "
+                                        "VALUES (%s,%s,%s,%s,%s,0.2,%s,'批量词表导入',%s,'LEARNING') "
+                                        "ON CONFLICT (user_id, lemma) DO UPDATE SET lookup_count = user_vocab_ledger.lookup_count + EXCLUDED.lookup_count, last_seen_at = EXCLUDED.last_seen_at, urgency_score = EXCLUDED.urgency_score, contextual_meaning = EXCLUDED.contextual_meaning",
+                                        (uid_i, w_i, tier_i, cnt_i, now_i, urg_i, meaning_i),
+                                    )
+                        pg_ok = True
+                    finally:
+                        pconn.close()
+                return finalize_write(
+                    200,
+                    {"status": "ok", "user_id": uid, "ingested_count": len(ingested_items)},
+                    "VOCAB_BULK_CSV_INGEST",
+                    "user_vocab_ledger",
+                    f"{uid}:bulk:{len(ingested_items)}",
+                    pg_ok,
+                )
+
             lemma = str(data.get("lemma", "")).strip().lower()
             if not lemma or not re.match(r"^[a-zA-Z\-]{2,45}$", lemma):
                 return self._send_json(422, {"status": "validation_error", "message": "Invalid English lemma (2..45 letters)"}, req_id=req_id, t0=t0)
