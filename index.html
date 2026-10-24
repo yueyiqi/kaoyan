@@ -69,15 +69,16 @@ pre.code-block { background: var(--bg); border: 1px solid var(--border); border-
     <span class="badge bg-blue" id="quotaBadge">✨ 首段可划词互动 · 次段渐变毛玻璃保护</span>
   </div>
   <div class="nav-tabs" id="mainTabs">
-    <button class="tab-btn" id="tabBtn0" style="display:none;" onclick="switchTab(0)">📊 架构总览</button>
+    <button class="tab-btn" id="tabBtn0" style="display:none;" onclick="switchTab(0)">📊 0. 架构总览</button>
     <button class="tab-btn active" id="tabBtn2" onclick="switchTab(2)">📖 1. 真题左文右注精读 (30%免费试读)</button>
     <button class="tab-btn" id="tabBtn3" onclick="switchTab(3)">🧠 2. 5500考纲词库与熟词僻义</button>
     <button class="tab-btn" id="tabBtn4" onclick="switchTab(4)">✍️ 3. 考研大作文三维语料</button>
     <button class="tab-btn" id="tabBtn1" onclick="switchTab(1)">📥 4. 四轨导入中心 🔒</button>
-    <button class="tab-btn" id="tabBtn5" style="display:none;" onclick="switchTab(5)">🐳 双擎库表</button>
+    <button class="tab-btn" id="tabBtn6" style="display:none;" onclick="switchTab(6)">🔐 5. 账号与RBAC管理</button>
+    <button class="tab-btn" id="tabBtn5" style="display:none;" onclick="switchTab(5)">🐳 6. 双擎库表</button>
   </div>
   <div style="display:flex;gap:5px;align-items:center;">
-    <button class="btn active" id="loginToggleBtn" onclick="fillDemoScholar()">⚡ 一键体验学籍解锁</button>
+    <button class="btn active" id="loginToggleBtn" onclick="focusLoginBox()">🔑 账号登录</button>
     <button class="btn active" id="themeBtn-daylight" onclick="setTheme('daylight')" title="日间亮底">☀️</button>
     <button class="btn" id="themeBtn-midnight" onclick="setTheme('midnight')" title="深邃暗夜">🌙</button>
     <button class="btn" id="themeBtn-eyecare" onclick="setTheme('eyecare')" title="纸质护眼">🍵</button>
@@ -88,56 +89,22 @@ pre.code-block { background: var(--bg); border: 1px solid var(--border); border-
   <div class="auth-banner" id="authBannerBox">
     <div style="flex:1;min-width:280px;">
       <div>
-        <strong>⚓ 考研英语真题精读与个人进度锚点：</strong>
-        <span id="anchorStatusText">欢迎体验！未登录访客默认开放 <strong>第 1 段 (30%) 明文划词与前 2 张精读卡</strong>；后续 <strong>Para 2~4 (45%)</strong> 与个人查词频次采用 <strong>知乎盐选/Readwise 式渐变毛玻璃保护</strong>，登录专属学籍即刻 100% 解锁。</span>
+        <strong>⚓ 考研英语真题精读与 RBAC 多角色安全锚点：</strong>
+        <span id="anchorStatusText">欢迎体验！未登录访客默认开放 <strong>第 1 段 (30%) 明文划词与前 2 张精读卡</strong>；后续 <strong>Para 2~4 (45%)</strong> 与个人查词频次采用 <strong>知乎盐选/Readwise 式渐变毛玻璃保护</strong>，输入账号与掩码密码登录即可解锁。</span>
       </div>
       <div style="margin-top:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:0.78rem;">
-        <span class="badge bg-blue">🔑 可用登录账号与默认口令</span>
-        <span>主理人账号：<code>colleague_a</code> / 口令：<code>kaoyan2026</code> <button class="btn" style="padding:1px 7px;font-size:0.73rem;" onclick="fillAccountCredentials('colleague_a','kaoyan2026',true)">⚡ 填入并登录</button></span>
-        <span>研友账号：<code>scholar_b</code> / 口令：<code>kaoyan2026</code> <button class="btn" style="padding:1px 7px;font-size:0.73rem;" onclick="fillAccountCredentials('scholar_b','kaoyan2026',true)">⚡ 填入并登录</button></span>
+        <span class="badge bg-blue">🛡️ RBAC 三级权限与零留存安全契约</span>
+        <span>支持 <strong>系统管理员 (<code>ADMIN</code> · L100)</strong> 与 <strong>正式研友学籍 (<code>SCHOLAR</code> · L50)</strong> 登录 · 密码全链路默认掩码 (<code>••••••</code>) 且页面零记忆留存</span>
       </div>
     </div>
-    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-      <input id="scholarUserInput" class="input-box" style="width:130px;margin:0;padding:5px 9px;" value="" placeholder="请输入学籍账号" autocomplete="off">
-      <input id="scholarKeyInput" type="password" class="input-box" style="width:120px;margin:0;padding:5px 9px;" value="" placeholder="请输入学籍口令" autocomplete="off">
+    <div id="guestLoginControls" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+      <input id="scholarUserInput" class="input-box" style="width:140px;margin:0;padding:5px 9px;" value="" placeholder="账号 (学籍/管理员)" autocomplete="off" data-lpignore="true">
+      <input id="scholarKeyInput" type="password" class="input-box" style="width:130px;margin:0;padding:5px 9px;" value="" placeholder="掩码密码 (••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
       <button class="btn active" onclick="loginWithCredentials()">🔑 登录并恢复进度</button>
-      <button class="btn" id="acctDrawerToggleBtn" onclick="toggleAccountDrawer()">⚙️ 修改密码 / 添加账号</button>
     </div>
-  </div>
-
-  <div class="card" id="accountMgmtDrawer" style="display:none;border:1.5px solid var(--primary);margin-bottom:14px;">
-    <h2>
-      <span>⚙️ 学籍账号与安全口令管理中心 (支持在线修改密码 · 手工添加新账号 · 双擎实时持久化)</span>
-      <button class="btn" onclick="toggleAccountDrawer()">✖ 收起面板</button>
-    </h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;">
-      <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--bg);">
-        <div style="font-weight:700;font-size:0.88rem;margin-bottom:8px;color:var(--primary);">🔒 1. 修改学籍登录密码 (Change Password)</div>
-        <input id="chgUserInput" class="input-box" placeholder="学籍账号 (如 colleague_a)" value="colleague_a">
-        <input id="chgOldPwdInput" type="password" class="input-box" placeholder="当前原口令 (默认 kaoyan2026)">
-        <input id="chgNewPwdInput" type="password" class="input-box" placeholder="新口令 (不少于 4 位字符)">
-        <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <button class="btn active" onclick="changeScholarPassword()">💾 确认修改密码</button>
-          <span id="chgPwdStatus" style="font-size:0.78rem;font-weight:600;"></span>
-        </div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--bg);">
-        <div style="font-weight:700;font-size:0.88rem;margin-bottom:8px;color:var(--emerald);">➕ 2. 手工添加新学籍账号 (Create Account)</div>
-        <input id="newUserInput" class="input-box" placeholder="新学籍账号 (2~32位字母数字，如 scholar_c)">
-        <input id="newDispInput" class="input-box" placeholder="显示名称 (如 考研教研组C)">
-        <input id="newPwdInput" type="password" class="input-box" placeholder="初始登录口令 (不少于 4 位字符)">
-        <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <button class="btn active" onclick="createScholarAccount()">➕ 立即创建并登录</button>
-          <span id="newAcctStatus" style="font-size:0.78rem;font-weight:600;"></span>
-        </div>
-      </div>
-      <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--bg);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <span style="font-weight:700;font-size:0.88rem;color:var(--purple);">📋 3. 已注册学籍账号列表 (点击一键填入)</span>
-          <button class="btn" style="padding:2px 8px;font-size:0.73rem;" onclick="loadRegisteredUsers()">🔄 刷新</button>
-        </div>
-        <div id="registeredUsersList" style="font-size:0.8rem;max-height:145px;overflow-y:auto;"></div>
-      </div>
+    <div id="postLoginControls" style="display:none;gap:8px;align-items:center;flex-wrap:wrap;">
+      <button class="btn active" onclick="switchTab(6)">🔐 进入账号与RBAC管理中心</button>
+      <button class="btn" onclick="toggleScholarAuth()">🚪 安全退出登录</button>
     </div>
   </div>
 
@@ -330,6 +297,140 @@ As is vividly depicted in the drawing above,
       <div class="card"><h2><span>🔐 追问三解决方案：前端 RBAC 双态鉴权与五维学习进度锚定 (<code>MOD-04</code>)</span><span class="badge bg-amber">防匿名乱点污染</span></h2><table><thead><tr><th>防线层级</th><th>层级名称</th><th>核心机制与学习进度锚定契约</th></tr></thead><tbody id="authLayersTableBody"></tbody></table></div>
     </div>
   </section>
+
+  <!-- TAB 6: Post-Login RBAC Account & Security Management Center -->
+  <section class="panel" id="tab6">
+    <div id="tab6GuestGate" class="guest-rbac-gate" style="display:none;">
+      <h3 style="margin:0 0 8px 0;">🔒 登录后账号与 RBAC 权限管理中心 (需先登录学籍或管理员账号)</h3>
+      <p style="margin:0 0 12px 0;font-size:0.86rem;color:var(--muted);">为保障密码安全与零信任隔离，未登录访客无法访问账号管理系统。请在顶部输入账号与掩码密码登录后进入。</p>
+      <button class="btn active" onclick="focusLoginBox()">🔑 前往顶栏登录</button>
+    </div>
+    <div id="tab6ScholarContent">
+      <div class="card">
+        <h2>
+          <span>🛡️ 登录后专题：账号安全与五表 RBAC 权限管理中心 (Role-Based Access Control v3.4)</span>
+          <span class="badge bg-purple" id="rbacCurRoleBadge">当前身份校验中</span>
+        </h2>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:0.83rem;margin-bottom:8px;">
+          <span>👤 当前登录账号：<strong id="rbacCurUser">-</strong></span>
+          <span>🔐 密码保护策略：<span class="badge bg-green">PBKDF2-HMAC-SHA256 (10,000次加盐哈希) · 默认掩码 · 页面零记忆留存</span></span>
+          <span>🗄️ RBAC 受治表：<span class="badge bg-blue">5 张核心权限表 (14 表双擎实时同步)</span></span>
+        </div>
+        <div style="font-size:0.79rem;color:var(--muted);">当前角色已授予原子权限点 (<code>sys_role_permissions</code>)：<span id="rbacCurPermsList"></span></div>
+      </div>
+
+      <div class="dual-pane">
+        <!-- Left Pane: Self-Service Password Change & RBAC 5-Table Schema -->
+        <div id="selfSecurityPanel">
+          <div class="card">
+            <h2>
+              <span>🔑 1. 本人登录密码修改 (管理员与普通用户通用 · 掩码零留存)</span>
+              <span class="badge bg-green">Perm: account:password:self</span>
+            </h2>
+            <p style="margin:0 0 8px 0;font-size:0.8rem;color:var(--muted);">修改当前已登录账号 (<strong id="selfPwdAccountLabel">-</strong>) 的密码。所有密码框强制启用 <code>type="password"</code> 与 <code>autocomplete="new-password"</code>，提交后立即清空 DOM 值并自动轮换会话签名令牌。</p>
+            <input id="selfOldPwd" type="password" class="input-box" value="" placeholder="输入当前原密码 (默认掩码 ••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
+            <input id="selfNewPwd" type="password" class="input-box" value="" placeholder="输入新密码 (不少于 4 位，默认掩码 ••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
+            <input id="selfConfirmPwd" type="password" class="input-box" value="" placeholder="再次确认新密码 (默认掩码 ••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+              <button class="btn active" onclick="submitSelfPasswordChange()">💾 确认修改本人密码</button>
+              <span id="selfPwdStatus" style="font-size:0.8rem;font-weight:600;"></span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>
+              <span>🗄️ 3. RBAC 五表数据库模型与字段设计 (PG18 + SQLite WAL 同构)</span>
+              <span class="badge bg-blue">5 RBAC Tables</span>
+            </h2>
+            <table>
+              <thead><tr><th>RBAC 表名</th><th>主键 / 索引</th><th>核心字段定义 (Columns)</th><th>权限治理职责</th></tr></thead>
+              <tbody>
+                <tr><td><code>sys_users</code></td><td><code>PK(user_id), UK(username)</code></td><td><code>user_id, username, display_name, role, account_status, passcode_hash, passcode_salt, token_secret, failed_login_count, last_login_at, password_updated_at, created_by</code></td><td>区分 <code>ADMIN</code> 与 <code>SCHOLAR</code>，存储 PBKDF2 密码哈希与独立盐值</td></tr>
+                <tr><td><code>sys_roles</code></td><td><code>PK(role_code)</code></td><td><code>role_code, role_name, role_level, is_system, description, created_at</code></td><td>三级角色层级：<code>ADMIN(100)</code> / <code>SCHOLAR(50)</code> / <code>GUEST(10)</code></td></tr>
+                <tr><td><code>sys_permissions</code></td><td><code>PK(perm_code)</code></td><td><code>perm_code, perm_name, resource_domain, action_type, description</code></td><td>11 项原子权限点（涵盖真题、生词、作文、导入、本人改密、管理员管控）</td></tr>
+                <tr><td><code>sys_role_permissions</code></td><td><code>PK(role_code, perm_code)</code></td><td><code>role_code, perm_code, granted_at, granted_by</code></td><td>角色与原子权限的多对多绑定关系表</td></tr>
+                <tr><td><code>sys_rbac_audit_log</code></td><td><code>PK(audit_id)</code></td><td><code>audit_id, actor_user_id, actor_role, target_user_id, action, detail_json, client_ip, created_at</code></td><td>记录登录、改密、建号、重置密码、角色切换与越权拦截全流水</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right Pane: Admin-Only User Provisioning, Password Reset, Role Switch & Audit Log -->
+        <div id="adminOnlyMgmtPanel">
+          <div id="scholarRbacNotice" class="card" style="display:none;border:1.5px dashed var(--amber);">
+            <h2>
+              <span>🔒 2. 管理员专属管控域 (当前为普通用户 SCHOLAR · 零信任权限隔离)</span>
+              <span class="badge bg-amber">RBAC L50 隔离态</span>
+            </h2>
+            <p style="font-size:0.83rem;line-height:1.6;color:var(--text);">
+              您当前登录的角色为 <strong>普通研友学籍 (<code>SCHOLAR</code> · 权限等级 L50)</strong>：
+            </p>
+            <ul style="font-size:0.81rem;line-height:1.65;color:var(--muted);padding-left:18px;">
+              <li>✅ <strong>已授权能力</strong>：100% 真题全文精读、个人生词账本读写、作文语料升格、四轨数据导入，以及在左侧面板<strong>修改本人登录密码</strong>。</li>
+              <li>⛔ <strong>管理员专属能力 (需 <code>ADMIN</code> L100)</strong>：查看全量账号列表 (<code>GET /api/admin/users</code>)、手工添加新账号 (<code>POST /api/admin/users</code>)、强制重置他人密码 (<code>POST /api/admin/users/password</code>)、切换角色与启停账号 (<code>POST /api/admin/users/role_status</code>) 均受后端 <code>require_admin</code> 刚性守卫，普通用户调用将返回 <code>403 Forbidden</code> 并记入安全审计表。</li>
+            </ul>
+          </div>
+
+          <div id="adminRbacWorkspace" style="display:none;">
+            <div class="card">
+              <h2>
+                <span>➕ 2A. 管理员：手工添加新账号 (支持创建普通用户 SCHOLAR 或管理员 ADMIN)</span>
+                <span class="badge bg-green">Perm: admin:user:create</span>
+              </h2>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+                <input id="adminNewUser" class="input-box" value="" placeholder="新账号ID (如 scholar_d)" autocomplete="off">
+                <input id="adminNewDisplay" class="input-box" value="" placeholder="显示名称 (如 研友 D)" autocomplete="off">
+                <select id="adminNewRole" class="input-box">
+                  <option value="SCHOLAR">🎓 SCHOLAR (普通用户 L50)</option>
+                  <option value="ADMIN">🛡️ ADMIN (系统管理员 L100)</option>
+                </select>
+                <input id="adminNewPwd" type="password" class="input-box" value="" placeholder="初始掩码密码 (≥4位)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
+              </div>
+              <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <button class="btn active" onclick="submitAdminCreateUser()">➕ 立即创建账号 (PBKDF2加密入库)</button>
+                <span id="adminCreateStatus" style="font-size:0.8rem;font-weight:600;"></span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2>
+                <span>🔄 2B. 管理员：强制重置指定账号密码 (无需原密码 · 掩码输入)</span>
+                <span class="badge bg-amber">Perm: admin:user:password_reset</span>
+              </h2>
+              <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center;">
+                <input id="adminResetTarget" class="input-box" style="margin-top:0;" value="" placeholder="目标账号ID (可点下方列表带入)" autocomplete="off">
+                <input id="adminResetPwd" type="password" class="input-box" style="margin-top:0;" value="" placeholder="重置后的新掩码密码 (≥4位)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
+                <button class="btn active" onclick="submitAdminResetPassword()">🔄 确认重置密码</button>
+              </div>
+              <div id="adminResetStatus" style="margin-top:6px;font-size:0.8rem;font-weight:600;"></div>
+            </div>
+
+            <div class="card">
+              <h2>
+                <span>👥 2C. 全量注册账号台账与角色/启停管控 (密码全掩码不可逆)</span>
+                <button class="btn" onclick="loadAdminRbacData()">🔄 刷新台账与审计日志</button>
+              </h2>
+              <table>
+                <thead><tr><th>账号 (<code>user_id</code>)</th><th>显示名称</th><th>RBAC 角色</th><th>状态</th><th>密码存储掩码</th><th>最近登录 / 改密</th><th>管理员操作</th></tr></thead>
+                <tbody id="adminUsersTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="card">
+              <h2>
+                <span>📜 2D. RBAC 安全审计流水 (<code>sys_rbac_audit_log</code> 最近事件)</span>
+                <span class="badge bg-purple">Perm: admin:rbac:audit</span>
+              </h2>
+              <table>
+                <thead><tr><th>审计ID</th><th>操作人 (角色)</th><th>目标对象</th><th>安全事件类型</th><th>脱敏详情</th><th>时间</th></tr></thead>
+                <tbody id="adminAuditTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <script>
@@ -370,11 +471,30 @@ const GUEST_TEASER_VOCAB = [
 ];
 
 const defaultGuestTab = 2;
-let authState = { role: 'GUEST', userId: 'guest', token: '', lastPara: 1, streakDays: 0 };
+const RBAC_PERMS_BY_ROLE = {
+  GUEST: ['passage:read:teaser'],
+  SCHOLAR: ['passage:read:teaser', 'passage:read:full', 'vocab:write:own', 'essay:write:own', 'ingest:write:own', 'account:password:self'],
+  ADMIN: ['passage:read:teaser', 'passage:read:full', 'vocab:write:own', 'essay:write:own', 'ingest:write:own', 'account:password:self', 'admin:user:list', 'admin:user:create', 'admin:user:password_reset', 'admin:user:role_status', 'admin:rbac:audit']
+};
+let authState = { role: 'GUEST', userId: 'guest', displayName: '未登录访客', token: '', lastPara: 1, streakDays: 0, permissions: RBAC_PERMS_BY_ROLE.GUEST };
 let notesData = GUEST_TEASER_NOTES.slice();
 let vocabData = GUEST_TEASER_VOCAB.slice();
 let essayCorpus = GUEST_TEASER_ESSAYS.slice();
 let currentNoteFilter = 'ALL', currentEssayTheme = 'ALL', currentEssaySlot = 'ALL', clozeActive = false, passageCount = 2, readMode = 'PARSE';
+
+function isLoggedIn() {
+  return authState.role === 'SCHOLAR' || authState.role === 'ADMIN';
+}
+function isAdmin() {
+  return authState.role === 'ADMIN';
+}
+
+function clearAllPasswordInputs() {
+  ['scholarKeyInput', 'selfOldPwd', 'selfNewPwd', 'selfConfirmPwd', 'adminNewPwd', 'adminResetPwd'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
 
 function focusLoginBox() {
   const inp = document.getElementById('scholarUserInput');
@@ -387,141 +507,17 @@ function focusLoginBox() {
   }
 }
 
-function fillAccountCredentials(user, pwd, autoLogin) {
-  const u = document.getElementById('scholarUserInput');
-  const k = document.getElementById('scholarKeyInput');
-  if (u) u.value = user;
-  if (k) k.value = pwd;
-  if (autoLogin) loginWithCredentials();
-}
-
-function fillDemoScholar() {
-  fillAccountCredentials('colleague_a', 'kaoyan2026', true);
-}
-
-function toggleAccountDrawer() {
-  const dr = document.getElementById('accountMgmtDrawer');
-  const btn = document.getElementById('acctDrawerToggleBtn');
-  if (!dr) return;
-  const open = dr.style.display === 'none' || !dr.style.display;
-  dr.style.display = open ? 'block' : 'none';
-  if (btn) btn.classList.toggle('active', open);
-  if (open) {
-    const cu = document.getElementById('chgUserInput');
-    if (cu && authState.role === 'SCHOLAR' && authState.userId) cu.value = authState.userId;
-    loadRegisteredUsers();
-  }
-}
-
-async function loadRegisteredUsers() {
-  const box = document.getElementById('registeredUsersList');
-  if (!box) return;
-  let users = [
-    { user_id: 'colleague_a', display_name: '主理人学籍 (colleague_a)', role: 'SCHOLAR' },
-    { user_id: 'scholar_b', display_name: '研友协作学籍 (scholar_b)', role: 'SCHOLAR' }
-  ];
-  if (location.protocol !== 'file:') {
-    try {
-      const r = await fetch('/api/auth/users');
-      if (r.ok) {
-        const d = await r.json();
-        if (d.users && d.users.length) users = d.users;
-      }
-    } catch (e) {}
-  }
-  box.innerHTML = users.map(u =>
-    `<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 6px;border-bottom:1px solid var(--border);">` +
-    `<div><strong><code>${u.user_id}</code></strong> <span style="color:var(--muted);font-size:0.76rem;">(${u.display_name || u.user_id})</span></div>` +
-    `<button class="btn" style="padding:2px 7px;font-size:0.72rem;" onclick="fillAccountCredentials('${u.user_id}','',false);document.getElementById('chgUserInput').value='${u.user_id}';">填入账号</button>` +
-    `</div>`
-  ).join('');
-}
-
-async function changeScholarPassword() {
-  const u = (document.getElementById('chgUserInput').value || '').trim();
-  const oldK = (document.getElementById('chgOldPwdInput').value || '').trim();
-  const newK = (document.getElementById('chgNewPwdInput').value || '').trim();
-  const st = document.getElementById('chgPwdStatus');
-  if (!u || !oldK || newK.length < 4) {
-    st.style.color = 'var(--rose)';
-    st.textContent = '❌ 请填写账号、原口令及不少于4位的新口令';
-    return;
-  }
-  if (location.protocol !== 'file:') {
-    try {
-      const r = await fetch('/api/auth/password/change', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, old_passcode: oldK, new_passcode: newK })
-      });
-      const d = await r.json();
-      if (!r.ok) {
-        st.style.color = 'var(--rose)';
-        st.textContent = '❌ ' + (d.message || '原口令校验失败');
-        return;
-      }
-      st.style.color = 'var(--emerald)';
-      st.textContent = '✅ ' + (d.message || '密码修改成功！已自动用新口令登录');
-      document.getElementById('chgOldPwdInput').value = '';
-      document.getElementById('chgNewPwdInput').value = '';
-      fillAccountCredentials(u, newK, true);
-      return;
-    } catch (e) {}
-  }
-  st.style.color = 'var(--emerald)';
-  st.textContent = `✅ 本地沙箱已更新账号 ${u} 口令`;
-  fillAccountCredentials(u, newK, true);
-}
-
-async function createScholarAccount() {
-  const u = (document.getElementById('newUserInput').value || '').trim();
-  const disp = (document.getElementById('newDispInput').value || '').trim() || u;
-  const k = (document.getElementById('newPwdInput').value || '').trim();
-  const st = document.getElementById('newAcctStatus');
-  if (!/^[a-zA-Z0-9_\-]{2,32}$/.test(u) || k.length < 4) {
-    st.style.color = 'var(--rose)';
-    st.textContent = '❌ 账号需2~32位字母数字，初始口令不少于4位';
-    return;
-  }
-  if (location.protocol !== 'file:') {
-    try {
-      const r = await fetch('/api/auth/user/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, display_name: disp, passcode: k, role: 'SCHOLAR' })
-      });
-      const d = await r.json();
-      if (!r.ok) {
-        st.style.color = 'var(--rose)';
-        st.textContent = '❌ ' + (d.message || '创建账号失败');
-        return;
-      }
-      st.style.color = 'var(--emerald)';
-      st.textContent = `✅ 账号 ${u} 创建成功！已同步双擎库并自动登录`;
-      document.getElementById('newUserInput').value = '';
-      document.getElementById('newDispInput').value = '';
-      document.getElementById('newPwdInput').value = '';
-      await loadRegisteredUsers();
-      fillAccountCredentials(u, k, true);
-      return;
-    } catch (e) {}
-  }
-  st.style.color = 'var(--emerald)';
-  st.textContent = `✅ 账号 ${u} 已创建并登录`;
-  fillAccountCredentials(u, k, true);
-}
-
 function renderPassageCanvas() {
   const cv = document.getElementById('passageCanvas');
   const unlockCard = document.getElementById('passageGuestUnlockCard');
   if (!cv) return;
   const p1 = `<p id="para-1" class="${authState.lastPara === 1 ? 'active-para' : ''}" onclick="anchorParagraph(1, 'sp-para-1')"><strong>[Para 1 · 30% 免费明文试读区（可点击高亮词与长难句体验互动）]</strong> In recent decades, the relationship between <span class="hl-word" onclick="event.stopPropagation();lookupWord('intellectual')">intellectual</span> history and the broader humanities has undergone a profound transformation. <span class="hl-sent" onclick="event.stopPropagation();focusNote('sp-sent-1')">The modern university structure segments knowledge into narrow compartments, making it increasingly perilous for scholars to venture beyond their fortified disciplinary boundaries.</span></p>`;
-  if (authState.role === 'SCHOLAR') {
+  if (isLoggedIn()) {
     const p2 = `<p id="para-2" class="${authState.lastPara === 2 ? 'active-para' : ''}" onclick="anchorParagraph(2, 'sp-sent-2')"><strong>[Para 2 · 上次续读锚点]</strong> <span class="hl-sent" onclick="event.stopPropagation();focusNote('sp-sent-2')">While <span class="hl-word" onclick="event.stopPropagation();lookupWord('empirical')">empirical</span> specialization has undoubtedly accelerated technical breakthroughs, it often fails to <span class="hl-word" onclick="event.stopPropagation();lookupWord('accommodate')">accommodate</span> the broader philosophical questions that originally motivated human inquiry.</span> Even fields like <span class="hl-word" onclick="event.stopPropagation();lookupWord('archaeology')">archaeology</span> now grapple with balancing quantitative data against cultural narrative.</p>`;
     cv.innerHTML = p1 + p2;
     if (unlockCard) unlockCard.style.display = 'none';
   } else {
-    const p2Masked = `<div class="guest-paywall-zone"><div class="guest-fade-blur"><p id="para-2"><strong>[Para 2 · 45% 渐变毛玻璃预览区]</strong> While <span class="hl-word">empirical</span> specialization has undoubtedly accelerated technical breakthroughs, it often fails to <span class="hl-word">accommodate</span> the broader philosophical questions that originally motivated human inquiry. Even fields like <span class="hl-word">archaeology</span> now grapple with balancing quantitative data against cultural narrative.</p><p id="para-3"><strong>[Para 3 · 深度长难句与命题陷阱区]</strong> Consequently, restoring intellectual synthesis requires dismantling institutional silos and encouraging cross-disciplinary dialogue across the humanities and natural sciences.</p></div><div class="guest-paywall-floating-card"><div class="title">🔒 后续 70% 真题精读段落与个人学习断点已受保护</div><div class="desc">未登录访客默认开放 <strong>首段 30% 完整划词互动</strong>；Para 2~5 采用 <strong>线性渐变毛玻璃消隐 + 后端脱敏下发</strong>，守护主理人阅读断点与生词频次。</div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;"><button class="btn active" onclick="focusLoginBox()">🔑 输入学籍口令解锁全文</button><button class="btn" onclick="fillDemoScholar()">⚡ 一键体验学籍解锁 (colleague_a)</button></div></div></div>`;
+    const p2Masked = `<div class="guest-paywall-zone"><div class="guest-fade-blur"><p id="para-2"><strong>[Para 2 · 45% 渐变毛玻璃预览区]</strong> While <span class="hl-word">empirical</span> specialization has undoubtedly accelerated technical breakthroughs, it often fails to <span class="hl-word">accommodate</span> the broader philosophical questions that originally motivated human inquiry. Even fields like <span class="hl-word">archaeology</span> now grapple with balancing quantitative data against cultural narrative.</p><p id="para-3"><strong>[Para 3 · 深度长难句与命题陷阱区]</strong> Consequently, restoring intellectual synthesis requires dismantling institutional silos and encouraging cross-disciplinary dialogue across the humanities and natural sciences.</p></div><div class="guest-paywall-floating-card"><div class="title">🔒 后续 70% 真题精读段落与个人学习断点已受保护</div><div class="desc">未登录访客默认开放 <strong>首段 30% 完整划词互动</strong>；Para 2~5 采用 <strong>线性渐变毛玻璃消隐 + 后端脱敏下发</strong>，守护阅读断点与生词频次。</div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;"><button class="btn active" onclick="focusLoginBox()">🔑 输入账号与掩码密码解锁全文</button></div></div></div>`;
     cv.innerHTML = p1 + p2Masked;
     if (unlockCard) unlockCard.style.display = 'none';
   }
@@ -538,14 +534,46 @@ function setReadMode(m) {
 
 function authHeaders() { const h = { 'Content-Type': 'application/json' }; if (authState.token) h['Authorization'] = 'Bearer ' + authState.token; return h; }
 
+function updateRbacTabUI() {
+  const curUserEl = document.getElementById('rbacCurUser');
+  const selfLbl = document.getElementById('selfPwdAccountLabel');
+  const roleBadge = document.getElementById('rbacCurRoleBadge');
+  const permsList = document.getElementById('rbacCurPermsList');
+  const scholarNotice = document.getElementById('scholarRbacNotice');
+  const adminWs = document.getElementById('adminRbacWorkspace');
+  if (curUserEl) curUserEl.textContent = isLoggedIn() ? `${authState.userId} (${authState.displayName || authState.userId})` : '未登录访客 (GUEST)';
+  if (selfLbl) selfLbl.textContent = authState.userId || '-';
+  if (roleBadge) {
+    if (isAdmin()) {
+      roleBadge.className = 'badge bg-purple';
+      roleBadge.textContent = '🛡️ 系统管理员 (ADMIN · L100 · 全量RBAC管控)';
+    } else if (isLoggedIn()) {
+      roleBadge.className = 'badge bg-green';
+      roleBadge.textContent = '🎓 普通研友学籍 (SCHOLAR · L50 · 仅限本人改密)';
+    } else {
+      roleBadge.className = 'badge bg-amber';
+      roleBadge.textContent = '👁️ 未登录访客 (GUEST · L10)';
+    }
+  }
+  const perms = authState.permissions || RBAC_PERMS_BY_ROLE[authState.role] || RBAC_PERMS_BY_ROLE.GUEST;
+  if (permsList) {
+    permsList.innerHTML = perms.map(p => `<span class="badge ${p.startsWith('admin:') ? 'bg-purple' : 'bg-blue'}" style="margin-right:4px;margin-bottom:3px;">${p}</span>`).join('');
+  }
+  if (scholarNotice) scholarNotice.style.display = (isLoggedIn() && !isAdmin()) ? 'block' : 'none';
+  if (adminWs) adminWs.style.display = isAdmin() ? 'block' : 'none';
+  if (isAdmin()) {
+    loadAdminRbacData();
+  }
+}
+
 function updateAuthUI() {
   const b = document.getElementById('authBadge'), q = document.getElementById('quotaBadge'), t = document.getElementById('anchorStatusText'), btn = document.getElementById('loginToggleBtn');
-  const isScholar = authState.role === 'SCHOLAR';
-  ['tab0', 'tab1', 'tab5'].forEach(tid => {
+  const loggedIn = isLoggedIn();
+  ['tab0', 'tab1', 'tab5', 'tab6'].forEach(tid => {
     const gate = document.getElementById(tid + 'GuestGate');
     const content = document.getElementById(tid + 'ScholarContent');
-    if (gate) gate.style.display = isScholar ? 'none' : 'block';
-    if (content) content.style.display = isScholar ? 'block' : 'none';
+    if (gate) gate.style.display = loggedIn ? 'none' : 'block';
+    if (content) content.style.display = loggedIn ? 'block' : 'none';
   });
   const tb0 = document.getElementById('tabBtn0');
   const tb1 = document.getElementById('tabBtn1');
@@ -553,44 +581,51 @@ function updateAuthUI() {
   const tb3 = document.getElementById('tabBtn3');
   const tb4 = document.getElementById('tabBtn4');
   const tb5 = document.getElementById('tabBtn5');
+  const tb6 = document.getElementById('tabBtn6');
   const expStrip = document.getElementById('guestExposureStrip');
   const haPill = document.getElementById('pgHaLiveBanner');
-  if (tb0) { tb0.style.display = isScholar ? '' : 'none'; tb0.textContent = '📊 0. 语义单与总览'; }
-  if (tb2) tb2.textContent = isScholar ? '📖 1. 左文右注精读 (100%全文)' : '📖 1. 真题左文右注精读 (30%免费试读)';
+  if (tb0) { tb0.style.display = loggedIn ? '' : 'none'; tb0.textContent = '📊 0. 语义单与总览'; }
+  if (tb2) tb2.textContent = loggedIn ? '📖 1. 左文右注精读 (100%全文)' : '📖 1. 真题左文右注精读 (30%免费试读)';
   if (tb3) tb3.textContent = '🧠 2. 5500考纲词库与熟词僻义';
   if (tb4) tb4.textContent = '✍️ 3. 考研大作文三维语料';
-  if (tb1) tb1.textContent = isScholar ? '📥 4. 四轨导入中心' : '📥 4. 四轨导入中心 🔒';
-  if (tb5) { tb5.style.display = isScholar ? '' : 'none'; tb5.textContent = '🐳 5. 库表与高可用架构'; }
-  if (expStrip) expStrip.style.display = isScholar ? 'none' : 'grid';
-  if (haPill) haPill.style.display = isScholar ? 'inline-flex' : 'none';
+  if (tb1) tb1.textContent = loggedIn ? '📥 4. 四轨导入中心' : '📥 4. 四轨导入中心 🔒';
+  if (tb6) {
+    tb6.style.display = loggedIn ? '' : 'none';
+    tb6.textContent = isAdmin() ? '🛡️ 5. 账号与RBAC管理 (ADMIN)' : '🔐 5. 账号与密码管理 (本人)';
+  }
+  if (tb5) { tb5.style.display = loggedIn ? '' : 'none'; tb5.textContent = '🐳 6. 库表与高可用架构'; }
+  if (expStrip) expStrip.style.display = loggedIn ? 'none' : 'grid';
+  if (haPill) haPill.style.display = loggedIn ? 'inline-flex' : 'none';
 
   const vUnlock = document.getElementById('vocabGuestUnlockCard');
   const eUnlock = document.getElementById('essayGuestUnlockCard');
   const draftWrap = document.getElementById('essayDraftWrapper');
   const draftBox = document.getElementById('essayDraftBox');
-  if (vUnlock) vUnlock.style.display = isScholar ? 'none' : 'flex';
-  if (eUnlock) eUnlock.style.display = isScholar ? 'none' : 'flex';
-  if (draftWrap) draftWrap.className = isScholar ? '' : 'guest-card-blur';
-  if (draftBox) draftBox.readOnly = !isScholar;
+  if (vUnlock) vUnlock.style.display = loggedIn ? 'none' : 'flex';
+  if (eUnlock) eUnlock.style.display = loggedIn ? 'none' : 'flex';
+  if (draftWrap) draftWrap.className = loggedIn ? '' : 'guest-card-blur';
+  if (draftBox) draftBox.readOnly = !loggedIn;
 
-  if (isScholar) {
-    b.className = 'badge bg-green'; b.textContent = `🟢 学籍已锚定: ${authState.userId} (Para ${authState.lastPara} · 100% 全量解锁)`;
-    if (q) { q.className = 'badge bg-green'; q.textContent = '🔓 已解除访客糊化限制 · PG18 + SQLite 双擎实时同步'; }
-    t.innerHTML = `已登录专属学籍 <strong>${authState.userId}</strong>：您的词频计数、精读笔记与阅读段落断点 (<code>Para ${authState.lastPara}</code>) 实时持久化至云端数据库！`;
-    btn.textContent = '🔒 退出至访客试读沙箱';
+  if (loggedIn) {
+    const roleLabel = isAdmin() ? '🛡️ 管理员 ADMIN' : '🎓 学籍 SCHOLAR';
+    b.className = isAdmin() ? 'badge bg-purple' : 'badge bg-green';
+    b.textContent = `🟢 已认证 [${roleLabel}]: ${authState.userId} (Para ${authState.lastPara} · 100% 全量解锁)`;
+    if (q) { q.className = 'badge bg-green'; q.textContent = '🔓 已解除访客糊化 · 14表 RBAC 双擎实时同步'; }
+    t.innerHTML = `当前登录身份：<strong>${authState.userId}</strong> (<span class="badge ${isAdmin() ? 'bg-purple' : 'bg-green'}">${authState.role}</span>) · 密码采用 <code>PBKDF2-HMAC-SHA256</code> 掩码零留存保护。<a href="javascript:void(0)" onclick="switchTab(6)" style="color:var(--primary);font-weight:700;margin-left:6px;">👉 进入『账号与RBAC管理中心』</a>`;
+    btn.textContent = '🔒 安全退出 (清空会话与密码框)';
     btn.onclick = toggleScholarAuth;
     document.getElementById('kpiAnchor').textContent = `Para ${authState.lastPara} · 连续 ${authState.streakDays || 12}天`;
     document.getElementById('kpiPassages').textContent = `${passageCount} 篇 (全文已解锁)`;
     document.getElementById('kpiVocab').textContent = `5,500 + ${vocabData.length} 词`;
-    document.getElementById('kpiQuota').textContent = '100% 全量解锁';
-    document.getElementById('kpiDomain').textContent = '🟢 专属学籍云端同步';
+    document.getElementById('kpiQuota').textContent = isAdmin() ? 'ADMIN L100 全权' : 'SCHOLAR L50 解锁';
+    document.getElementById('kpiDomain').textContent = '🟢 RBAC 双擎同步';
     document.getElementById('paraAnchorBadge').textContent = `当前锚定: Para ${authState.lastPara}`;
   } else {
     b.className = 'badge bg-amber'; b.textContent = '👁️ 未登录访客试读模式 (30% 明文 · 45% 渐变毛玻璃 · 25% 锁闭)';
-    if (q) { q.className = 'badge bg-blue'; q.textContent = '✨ 首段免费划词互动 · 次段毛玻璃防剧透'; }
-    t.innerHTML = '当前为<strong>未登录访客试读模式</strong>：首段 <strong>30% 真题与前 2 张精读卡</strong>完全开放免费互动；后续 <strong>45% 段落与个人词频</strong>采用柔和毛玻璃遮罩，输入下方学籍口令（或点击一键填入）即可 100% 解锁。';
-    btn.textContent = '⚡ 一键体验学籍解锁';
-    btn.onclick = fillDemoScholar;
+    if (q) { q.className = 'badge bg-blue'; q.textContent = '✨ 首段免费划词互动 · 密码默认掩码零记忆'; }
+    t.innerHTML = '当前为<strong>未登录访客试读模式</strong>：首段 <strong>30% 真题与前 2 张精读卡</strong>开放免费互动；请在右侧输入<strong>学籍账号或管理员账号</strong>与<strong>掩码密码</strong>登录（页面不展示且不记忆任何明文密码）。';
+    btn.textContent = '🔑 聚焦输入框登录';
+    btn.onclick = focusLoginBox;
     document.getElementById('kpiAnchor').innerHTML = '<span class="guest-cell-blur">Para 2 · 12天</span> 🔒';
     document.getElementById('kpiPassages').textContent = '2 篇 (首段30%免费试读)';
     document.getElementById('kpiVocab').innerHTML = '5,500 + <span class="guest-cell-blur">128 词</span> 🔒';
@@ -598,44 +633,92 @@ function updateAuthUI() {
     document.getElementById('kpiDomain').textContent = '🟢 访客试读沙箱就绪';
     document.getElementById('paraAnchorBadge').textContent = '免费试读: Para 1 开放';
   }
+  updateRbacTabUI();
   renderPassageCanvas(); renderNotes(); renderVocab(); renderEssayCorpus();
 }
 
 async function loginWithCredentials() {
-  const u = document.getElementById('scholarUserInput').value.trim() || 'colleague_a';
-  const k = document.getElementById('scholarKeyInput').value.trim();
-  if (!k) {
-    alert('🔑 请输入学籍口令以解锁完整内容（默认口令为 kaoyan2026，或点击上方「⚡ 填入并登录」）');
-    document.getElementById('scholarKeyInput').focus();
+  const uInput = document.getElementById('scholarUserInput');
+  const kInput = document.getElementById('scholarKeyInput');
+  const u = (uInput ? uInput.value : '').trim();
+  const k = (kInput ? kInput.value : '').trim();
+  if (!u || !k) {
+    alert('🔑 请输入登录账号与密码（支持普通用户 SCHOLAR 与系统管理员 ADMIN 账号；密码全程掩码且不在页面留存）');
+    if (!u && uInput) uInput.focus();
+    else if (kInput) kInput.focus();
     return;
   }
+  // Zero-memory guarantee: wipe password DOM field immediately after reading into local scope
+  if (kInput) kInput.value = '';
   if (location.protocol !== 'file:') {
     try {
-      const r = await fetch('/api/auth/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({username: u, passcode: k}) });
+      const r = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, passcode: k })
+      });
       const d = await r.json();
-      if (!r.ok) { alert('❌ ' + (d.message || '学籍口令校验失败，请确认后重试')); return; }
-      authState = { role: 'SCHOLAR', userId: d.user_id || u, token: d.token || `kaoyan-scholar-${u}-${k}`, lastPara: (d.anchor && d.anchor.last_para_idx) || 2, streakDays: (d.anchor && d.anchor.streak_days) || 12 };
-    } catch(e) {
-      authState = { role: 'SCHOLAR', userId: u, token: `kaoyan-scholar-${u}-${k}`, lastPara: 2, streakDays: 12 };
+      if (!r.ok) {
+        clearAllPasswordInputs();
+        alert('❌ ' + (d.message || '账号或密码校验失败，请确认后重试'));
+        return;
+      }
+      const role = d.role || 'SCHOLAR';
+      authState = {
+        role,
+        userId: d.user_id || u,
+        displayName: d.display_name || u,
+        token: d.token || '',
+        lastPara: (d.anchor && d.anchor.last_para_idx) || 2,
+        streakDays: (d.anchor && d.anchor.streak_days) || 12,
+        permissions: d.permissions || RBAC_PERMS_BY_ROLE[role] || RBAC_PERMS_BY_ROLE.SCHOLAR
+      };
+    } catch (e) {
+      clearAllPasswordInputs();
+      alert('❌ 登录请求异常，请检查网络连接');
+      return;
     }
   } else {
-    authState = { role: 'SCHOLAR', userId: u, token: `kaoyan-scholar-${u}-${k}`, lastPara: 2, streakDays: 12 };
+    const role = (u === 'admin' || u === 'commander') ? 'ADMIN' : 'SCHOLAR';
+    authState = {
+      role,
+      userId: u,
+      displayName: u,
+      token: 'local-sandbox-token-' + u,
+      lastPara: 2,
+      streakDays: 12,
+      permissions: RBAC_PERMS_BY_ROLE[role]
+    };
   }
+  clearAllPasswordInputs();
   notesData = FULL_SCHOLAR_NOTES.slice();
   vocabData = REPORT_DATA.msu_contracts.vocab_simulation_samples.slice();
   essayCorpus = FULL_SCHOLAR_ESSAYS.slice();
-  try { localStorage.setItem('kaoyan_auth', JSON.stringify(authState)); } catch(e){}
-  updateAuthUI(); syncFromServer();
+  try {
+    localStorage.setItem('kaoyan_auth', JSON.stringify({
+      role: authState.role,
+      userId: authState.userId,
+      displayName: authState.displayName,
+      token: authState.token,
+      lastPara: authState.lastPara,
+      streakDays: authState.streakDays,
+      permissions: authState.permissions
+    }));
+  } catch (e) {}
+  updateAuthUI();
+  syncFromServer();
 }
 
 function toggleScholarAuth() {
-  if (authState.role === 'SCHOLAR') {
-    authState = { role: 'GUEST', userId: 'guest', token: '', lastPara: 1, streakDays: 0 };
+  if (isLoggedIn()) {
+    authState = { role: 'GUEST', userId: 'guest', displayName: '未登录访客', token: '', lastPara: 1, streakDays: 0, permissions: RBAC_PERMS_BY_ROLE.GUEST };
     notesData = GUEST_TEASER_NOTES.slice();
     vocabData = GUEST_TEASER_VOCAB.slice();
     essayCorpus = GUEST_TEASER_ESSAYS.slice();
-    try { localStorage.removeItem('kaoyan_auth'); } catch(e){}
-    document.getElementById('scholarKeyInput').value = '';
+    try { localStorage.removeItem('kaoyan_auth'); } catch (e) {}
+    const uInput = document.getElementById('scholarUserInput');
+    if (uInput) uInput.value = '';
+    clearAllPasswordInputs();
     updateAuthUI();
     switchTab(defaultGuestTab);
   } else {
@@ -643,16 +726,217 @@ function toggleScholarAuth() {
   }
 }
 
+async function submitSelfPasswordChange() {
+  if (!isLoggedIn()) { focusLoginBox(); return; }
+  const oldEl = document.getElementById('selfOldPwd');
+  const newEl = document.getElementById('selfNewPwd');
+  const cfmEl = document.getElementById('selfConfirmPwd');
+  const st = document.getElementById('selfPwdStatus');
+  const oldK = (oldEl ? oldEl.value : '').trim();
+  const newK = (newEl ? newEl.value : '').trim();
+  const cfmK = (cfmEl ? cfmEl.value : '').trim();
+  // Immediately wipe DOM password inputs to enforce zero page retention
+  clearAllPasswordInputs();
+  if (!oldK || newK.length < 4) {
+    st.style.color = 'var(--rose)';
+    st.textContent = '❌ 请输入当前原密码，且新密码不少于 4 位';
+    return;
+  }
+  if (newK !== cfmK) {
+    st.style.color = 'var(--rose)';
+    st.textContent = '❌ 两次输入的新密码不一致，已清空输入框，请重新输入';
+    return;
+  }
+  if (location.protocol !== 'file:') {
+    try {
+      const r = await fetch('/api/auth/password/change', {
+        method: 'POST',
+        headers: authHeaders(),
+        body: JSON.stringify({ username: authState.userId, old_passcode: oldK, new_passcode: newK })
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        st.style.color = 'var(--rose)';
+        st.textContent = '❌ ' + (d.message || '原密码校验失败');
+        return;
+      }
+      if (d.token) {
+        authState.token = d.token;
+        try { localStorage.setItem('kaoyan_auth', JSON.stringify(authState)); } catch (e) {}
+      }
+      st.style.color = 'var(--emerald)';
+      st.textContent = '✅ ' + (d.message || '本人密码修改成功！PBKDF2 哈希已更新，输入框已清空');
+      if (isAdmin()) loadAdminRbacData();
+      return;
+    } catch (e) {
+      st.style.color = 'var(--rose)';
+      st.textContent = '❌ 网络异常，密码修改未完成';
+      return;
+    }
+  }
+  st.style.color = 'var(--emerald)';
+  st.textContent = '✅ 本地沙箱已更新本人密码并清空密码框';
+}
+
+async function submitAdminCreateUser() {
+  if (!isAdmin()) { alert('⛔ 权限拒绝 (403)：仅系统管理员 (ADMIN) 可创建账号'); return; }
+  const uEl = document.getElementById('adminNewUser');
+  const dEl = document.getElementById('adminNewDisplay');
+  const rEl = document.getElementById('adminNewRole');
+  const pEl = document.getElementById('adminNewPwd');
+  const st = document.getElementById('adminCreateStatus');
+  const u = (uEl ? uEl.value : '').trim();
+  const disp = (dEl ? dEl.value : '').trim() || u;
+  const role = (rEl ? rEl.value : 'SCHOLAR').trim();
+  const k = (pEl ? pEl.value : '').trim();
+  clearAllPasswordInputs();
+  if (!/^[a-zA-Z0-9_\-]{2,32}$/.test(u) || k.length < 4) {
+    st.style.color = 'var(--rose)';
+    st.textContent = '❌ 账号需为 2~32 位字母/数字/下划线，且初始密码不少于 4 位';
+    return;
+  }
+  if (location.protocol !== 'file:') {
+    try {
+      const r = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: authHeaders(),
+        body: JSON.stringify({ username: u, display_name: disp, role, passcode: k })
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        st.style.color = 'var(--rose)';
+        st.textContent = '❌ ' + (d.message || '创建账号失败');
+        return;
+      }
+      st.style.color = 'var(--emerald)';
+      st.textContent = `✅ 账号 ${u} (${role}) 创建成功！密码已 PBKDF2 加密入库且页面零留存`;
+      if (uEl) uEl.value = '';
+      if (dEl) dEl.value = '';
+      await loadAdminRbacData();
+      return;
+    } catch (e) {
+      st.style.color = 'var(--rose)';
+      st.textContent = '❌ 请求失败，请检查网络';
+      return;
+    }
+  }
+  st.style.color = 'var(--emerald)';
+  st.textContent = `✅ 沙箱已创建账号 ${u} (${role})`;
+}
+
+async function submitAdminResetPassword() {
+  if (!isAdmin()) { alert('⛔ 权限拒绝 (403)：仅系统管理员 (ADMIN) 可重置他人密码'); return; }
+  const tEl = document.getElementById('adminResetTarget');
+  const pEl = document.getElementById('adminResetPwd');
+  const st = document.getElementById('adminResetStatus');
+  const target = (tEl ? tEl.value : '').trim();
+  const newK = (pEl ? pEl.value : '').trim();
+  clearAllPasswordInputs();
+  if (!target || newK.length < 4) {
+    st.style.color = 'var(--rose)';
+    st.textContent = '❌ 请填写目标账号 ID 且重置的新密码不少于 4 位';
+    return;
+  }
+  if (location.protocol !== 'file:') {
+    try {
+      const r = await fetch('/api/admin/users/password', {
+        method: 'POST',
+        headers: authHeaders(),
+        body: JSON.stringify({ target_user_id: target, new_passcode: newK })
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        st.style.color = 'var(--rose)';
+        st.textContent = '❌ ' + (d.message || '重置密码失败');
+        return;
+      }
+      st.style.color = 'var(--emerald)';
+      st.textContent = '✅ ' + (d.message || `账号 ${target} 密码已重置，旧会话已吊销`);
+      await loadAdminRbacData();
+      return;
+    } catch (e) {
+      st.style.color = 'var(--rose)';
+      st.textContent = '❌ 请求失败，请检查网络';
+      return;
+    }
+  }
+  st.style.color = 'var(--emerald)';
+  st.textContent = `✅ 沙箱已重置账号 ${target} 密码`;
+}
+
+async function toggleUserRoleStatus(targetUserId, newRole, newStatus) {
+  if (!isAdmin()) return;
+  try {
+    const r = await fetch('/api/admin/users/role_status', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ target_user_id: targetUserId, role: newRole, account_status: newStatus })
+    });
+    const d = await r.json();
+    if (!r.ok) {
+      alert('❌ ' + (d.message || '变更角色/状态失败'));
+      return;
+    }
+    await loadAdminRbacData();
+  } catch (e) {}
+}
+
+async function loadAdminRbacData() {
+  if (!isAdmin() || location.protocol === 'file:') return;
+  try {
+    const r = await fetch('/api/admin/users', { headers: authHeaders() });
+    if (r.ok) {
+      const d = await r.json();
+      const tbody = document.getElementById('adminUsersTableBody');
+      if (tbody && d.users) {
+        tbody.innerHTML = d.users.map(u => {
+          const isSelf = u.user_id === authState.userId;
+          const nextRole = u.role === 'ADMIN' ? 'SCHOLAR' : 'ADMIN';
+          const nextStatus = u.account_status === 'ACTIVE' ? 'DISABLED' : 'ACTIVE';
+          return `<tr>
+            <td><strong><code>${u.user_id}</code></strong>${isSelf ? ' <span class="badge bg-blue">当前本人</span>' : ''}</td>
+            <td>${u.display_name || u.user_id}</td>
+            <td><span class="badge ${u.role === 'ADMIN' ? 'bg-purple' : 'bg-green'}">${u.role}</span></td>
+            <td><span class="badge ${u.account_status === 'ACTIVE' ? 'bg-green' : 'bg-rose'}">${u.account_status}</span></td>
+            <td><code>${u.password_masked || '••••••••'}</code> <span style="color:var(--muted);font-size:0.72rem;">(${u.kdf_algo || 'PBKDF2'})</span></td>
+            <td style="font-size:0.75rem;color:var(--muted);">登录: ${(u.last_login_at || '-').slice(0,19)}<br>改密: ${(u.password_updated_at || '-').slice(0,19)}</td>
+            <td style="white-space:nowrap;">
+              <button class="btn" style="padding:2px 7px;font-size:0.72rem;" onclick="document.getElementById('adminResetTarget').value='${u.user_id}';document.getElementById('adminResetPwd').focus();">🔑选定重置密码</button>
+              ${isSelf ? '' : `<button class="btn" style="padding:2px 7px;font-size:0.72rem;" onclick="toggleUserRoleStatus('${u.user_id}','${nextRole}','${u.account_status}')">⇄切为${nextRole}</button>
+              <button class="btn" style="padding:2px 7px;font-size:0.72rem;" onclick="toggleUserRoleStatus('${u.user_id}','${u.role}','${nextStatus}')">${u.account_status === 'ACTIVE' ? '🚫禁用' : '✅启用'}</button>`}
+            </td>
+          </tr>`;
+        }).join('');
+      }
+    }
+    const ra = await fetch('/api/admin/rbac/audit', { headers: authHeaders() });
+    if (ra.ok) {
+      const da = await ra.json();
+      const atbody = document.getElementById('adminAuditTableBody');
+      if (atbody && da.audit_logs) {
+        atbody.innerHTML = da.audit_logs.slice(0, 12).map(lg => `<tr>
+          <td><code>${lg.audit_id}</code></td>
+          <td><strong>${lg.actor_user_id}</strong> <span class="badge bg-blue">${lg.actor_role}</span></td>
+          <td><code>${lg.target_user_id}</code></td>
+          <td><span class="badge ${String(lg.action).includes('FAIL') || String(lg.action).includes('DENY') ? 'bg-rose' : 'bg-green'}">${lg.action}</span></td>
+          <td style="font-size:0.75rem;color:var(--muted);"><code>${lg.detail_json || '{}'}</code></td>
+          <td style="font-size:0.75rem;color:var(--muted);">${(lg.created_at || '').slice(0,19)}</td>
+        </tr>`).join('');
+      }
+    }
+  } catch (e) {}
+}
+
 async function anchorParagraph(paraIdx, noteId) {
-  if (authState.role !== 'SCHOLAR' && paraIdx > 1) { focusLoginBox(); return; }
+  if (!isLoggedIn() && paraIdx > 1) { focusLoginBox(); return; }
   authState.lastPara = paraIdx;
   document.querySelectorAll('#passageCanvas p').forEach(p => p.classList.toggle('active-para', p.id === 'para-' + paraIdx));
-  if (authState.role === 'SCHOLAR') {
+  if (isLoggedIn()) {
     document.getElementById('paraAnchorBadge').textContent = `当前锚定: Para ${paraIdx}`;
     document.getElementById('kpiAnchor').textContent = `Para ${paraIdx} · 连续 ${authState.streakDays || 12}天`;
   }
   if (noteId) focusNote(noteId);
-  if (location.protocol !== 'file:' && authState.role === 'SCHOLAR') fetch('/api/progress/anchor', { method: 'POST', headers: authHeaders(), body: JSON.stringify({ last_para_idx: paraIdx, last_span_id: noteId || '' }) }).catch(()=>{});
+  if (location.protocol !== 'file:' && isLoggedIn()) fetch('/api/progress/anchor', { method: 'POST', headers: authHeaders(), body: JSON.stringify({ last_para_idx: paraIdx, last_span_id: noteId || '' }) }).catch(()=>{});
 }
 
 async function syncFromServer() {
@@ -660,7 +944,7 @@ async function syncFromServer() {
   try {
     const r = await fetch('/api/state?user_id=' + encodeURIComponent(authState.userId), { headers: authHeaders() }); if (!r.ok) return;
     const st = await r.json();
-    if (st.auth_tier === 'GUEST_TEASER' && authState.role !== 'SCHOLAR') {
+    if (st.auth_tier === 'GUEST_TEASER' && !isLoggedIn()) {
       if (st.vocab && st.vocab.length) vocabData = st.vocab;
       if (st.annotations && st.annotations.length) notesData = st.annotations;
       if (st.essays && st.essays.length) essayCorpus = st.essays;
@@ -694,8 +978,8 @@ async function syncFromServer() {
       }));
       renderEssayCorpus();
     }
-    if (st.passage_count) { passageCount = st.passage_count; if (authState.role === 'SCHOLAR') document.getElementById('kpiPassages').textContent = passageCount + ' 篇 (全文已解锁)'; }
-    if (authState.role === 'SCHOLAR' && st.anchor && st.anchor.last_para_idx) anchorParagraph(st.anchor.last_para_idx);
+    if (st.passage_count) { passageCount = st.passage_count; if (isLoggedIn()) document.getElementById('kpiPassages').textContent = passageCount + ' 篇 (全文已解锁)'; }
+    if (isLoggedIn() && st.anchor && st.anchor.last_para_idx) anchorParagraph(st.anchor.last_para_idx);
   } catch (e) {}
 }
 
@@ -710,6 +994,7 @@ function setTheme(t) {
 function switchTab(idx) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.id === 'tabBtn' + idx));
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'tab' + idx));
+  if (idx === 6 && isLoggedIn()) updateRbacTabUI();
 }
 function renderTables() {
   document.getElementById('critiqueTableBody').innerHTML = REPORT_DATA.intake_decoding.module_deep_critique.map(m =>
@@ -724,10 +1009,10 @@ function renderTables() {
     `<tr><td><span class="badge bg-amber">${ly.layer_id}</span></td><td><strong>${ly.name}</strong></td><td>${ly.mechanism}</td></tr>`).join('');
 }
 function updateKpiVocab() {
-  if (authState.role === 'SCHOLAR') document.getElementById('kpiVocab').textContent = `5,500 + ${vocabData.length} 词`;
+  if (isLoggedIn()) document.getElementById('kpiVocab').textContent = `5,500 + ${vocabData.length} 词`;
 }
 async function runPassageIngest() {
-  if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
+  if (!isLoggedIn()) { focusLoginBox(); return; }
   const title = document.getElementById('ingestYearTitle').value.trim() || '2025 英语一 新导入真题';
   const raw = document.getElementById('ingestPassageBox').value.trim(); if (!raw) return;
   const paras = raw.split(/\n+/).map(s => s.trim()).filter(Boolean);
@@ -742,13 +1027,13 @@ async function runPassageIngest() {
   document.getElementById('passageCanvas').innerHTML = html;
   passageCount += 1; document.getElementById('kpiPassages').textContent = `${passageCount} 篇 (全文已解锁)`;
   document.getElementById('ingestPassageResult').textContent = `✅ 已完成 0-Token 切段 (${paras.length} 段 / ${cursor} 字符) 并写入云端真题篇章表！`;
-  if (location.protocol !== 'file:' && authState.role === 'SCHOLAR') {
+  if (location.protocol !== 'file:' && isLoggedIn()) {
     fetch('/api/ingest/passage', {method:'POST', headers:authHeaders(), body:JSON.stringify({title, raw_text: raw})}).catch(()=>{});
   }
   setTimeout(() => switchTab(2), 500);
 }
 async function runVocabBulkIngest() {
-  if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
+  if (!isLoggedIn()) { focusLoginBox(); return; }
   const raw = document.getElementById('ingestVocabBox').value.trim(); if (!raw) return;
   const lines = raw.split(/\n+/).map(s => s.trim()).filter(Boolean);
   let added = 0;
@@ -764,21 +1049,21 @@ async function runVocabBulkIngest() {
   });
   updateKpiVocab(); renderVocab();
   document.getElementById('ingestVocabResult').textContent = `✅ 已导入/归并 ${added} 个考研生词并落盘云端词频账本！`;
-  if (location.protocol !== 'file:' && authState.role === 'SCHOLAR') {
+  if (location.protocol !== 'file:' && isLoggedIn()) {
     fetch('/api/ingest/vocab', {method:'POST', headers:authHeaders(), body:JSON.stringify({raw_csv: raw})}).catch(()=>{});
   }
 }
 function exportPortablePack() {
-  if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
-  const blob = new Blob([JSON.stringify({ schema: 'kaoyan.portable.v3.3', user_id: authState.userId, exported_at: new Date().toISOString(), notes: notesData, vocab: vocabData, essay: essayCorpus }, null, 2)], { type: 'application/json' });
+  if (!isLoggedIn()) { focusLoginBox(); return; }
+  const blob = new Blob([JSON.stringify({ schema: 'kaoyan.portable.v3.4', user_id: authState.userId, exported_at: new Date().toISOString(), notes: notesData, vocab: vocabData, essay: essayCorpus }, null, 2)], { type: 'application/json' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'kaoyan_knowledge_pack.kaoyan.json'; a.click();
 }
 function renderNotes() {
   const list = notesData.filter(n => currentNoteFilter === 'ALL' || n.granularity === currentNoteFilter);
   const mCls = readMode === 'MASK' ? 'blur-mask' : '';
-  document.getElementById('noteCountBadge').textContent = authState.role === 'SCHOLAR' ? `${list.length} 张精读卡 (${readMode})` : `前 2 张开放 · 后 2 张脱敏糊化`;
+  document.getElementById('noteCountBadge').textContent = isLoggedIn() ? `${list.length} 张精读卡 (${readMode})` : `前 2 张开放 · 后 2 张脱敏糊化`;
   document.getElementById('notesContainer').innerHTML = list.map(n => {
-    const isGuestBlur = (authState.role !== 'SCHOLAR' && n.is_blurred);
+    const isGuestBlur = (!isLoggedIn() && n.is_blurred);
     if (isGuestBlur) {
       return `<div class="note-card" id="note-${n.id}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><span class="badge bg-amber">${n.tag}</span><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="focusLoginBox()">🔑 登录解锁</button></div><div class="guest-card-blur"><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div></div><div style="font-size:0.79rem;color:var(--amber);font-weight:600;margin-top:4px;">${n.comment}</div></div>`;
     }
@@ -795,10 +1080,10 @@ function extractSelection(granularity, btn) {
   const sel = window.getSelection().toString().trim() || 'venture beyond their fortified disciplinary boundaries';
   const newId = 'sp-custom-' + Date.now();
   const labelMap = { WORD: '🟡 真题生词卡', SENTENCE: '🔵 长难句解剖卡', PARAGRAPH: '🟣 段落主旨卡' };
-  const noteObj = { id: newId, granularity, tag: `${labelMap[granularity]} [实时划选 · ${authState.role === 'SCHOLAR' ? '云端同步' : '沙箱试玩'}]`, text: sel, breakdown: '【自动锚定】已记录段落与字符偏移量，二刷点击即可回跳原文。', comment: `摘录状态: ${authState.role === 'SCHOLAR' ? authState.userId : '访客本地内存体验'}`, is_blurred: false };
+  const noteObj = { id: newId, granularity, tag: `${labelMap[granularity]} [实时划选 · ${isLoggedIn() ? '云端同步' : '沙箱试玩'}]`, text: sel, breakdown: '【自动锚定】已记录段落与字符偏移量，二刷点击即可回跳原文。', comment: `摘录状态: ${isLoggedIn() ? authState.userId : '访客本地内存体验'}`, is_blurred: false };
   notesData.unshift(noteObj);
   if (granularity === 'WORD') lookupWord(sel.split(/\s+/)[0].toLowerCase().replace(/[^a-z]/g, '') || 'venture');
-  if (location.protocol !== 'file:' && authState.role === 'SCHOLAR') { fetch('/api/notes', {method:'POST', headers:authHeaders(), body:JSON.stringify(noteObj)}).catch(()=>{}); }
+  if (location.protocol !== 'file:' && isLoggedIn()) { fetch('/api/notes', {method:'POST', headers:authHeaders(), body:JSON.stringify(noteObj)}).catch(()=>{}); }
   renderNotes();
 }
 function parseNum(v) {
@@ -809,14 +1094,14 @@ function lookupWord(w) {
   let item = vocabData.find(v => v.word === w);
   if (item) {
     const nextCnt = Math.round(parseNum(item.lookup_count) || 1) + 1;
-    item.lookup_count = authState.role === 'SCHOLAR' ? nextCnt : `${nextCnt} 次`;
+    item.lookup_count = isLoggedIn() ? nextCnt : `${nextCnt} 次`;
     item.last_seen_at = '2026-10-24 刚刚';
     item.days_since_seen = 0.0;
     item.urgency_score = Number((0.45 * Math.min(1, Math.log(1 + nextCnt) / Math.log(10)) + 0.20).toFixed(4));
   } else {
-    vocabData.unshift({ word: w, lemma: w, syllabus_tier: 'CORE_1800', lookup_count: authState.role === 'SCHOLAR' ? 1 : '1 次', days_since_seen: 0.0, last_seen_at: '2026-10-24 刚刚', exam_source: 'Para 1 公开试读划词', contextual_meaning: 'v./n. 真题语境新摘录核心词汇（已自动词形还原）', urgency_score: 0.34, is_blurred: false });
+    vocabData.unshift({ word: w, lemma: w, syllabus_tier: 'CORE_1800', lookup_count: isLoggedIn() ? 1 : '1 次', days_since_seen: 0.0, last_seen_at: '2026-10-24 刚刚', exam_source: 'Para 1 公开试读划词', contextual_meaning: 'v./n. 真题语境新摘录核心词汇（已自动词形还原）', urgency_score: 0.34, is_blurred: false });
   }
-  if (location.protocol !== 'file:' && authState.role === 'SCHOLAR') { fetch('/api/vocab/lookup', {method:'POST', headers:authHeaders(), body:JSON.stringify({lemma: w})}).catch(()=>{}); }
+  if (location.protocol !== 'file:' && isLoggedIn()) { fetch('/api/vocab/lookup', {method:'POST', headers:authHeaders(), body:JSON.stringify({lemma: w})}).catch(()=>{}); }
   updateKpiVocab(); renderVocab();
 }
 function sortVocab(mode, btn) {
@@ -834,7 +1119,7 @@ function sortVocab(mode, btn) {
   renderVocab();
 }
 function gradeVocab(w, delta) {
-  if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
+  if (!isLoggedIn()) { focusLoginBox(); return; }
   let item = vocabData.find(v => v.word === w); if (!item) return;
   item.urgency_score = Number(Math.max(0.05, Math.min(0.99, parseNum(item.urgency_score || 0.5) + delta)).toFixed(4));
   renderVocab();
@@ -842,7 +1127,7 @@ function gradeVocab(w, delta) {
 function renderVocab() {
   const mCls = readMode === 'MASK' ? 'blur-mask' : '';
   document.getElementById('vocabTableBody').innerHTML = vocabData.map(v => {
-    const isGuest = authState.role !== 'SCHOLAR';
+    const isGuest = !isLoggedIn();
     const cntStr = String(v.lookup_count || '3').includes('次') ? v.lookup_count : `${v.lookup_count || 3} 次`;
     if (isGuest && v.is_blurred) {
       return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${cntStr}</span> 🔒</td><td><span class="guest-cell-blur">${v.last_seen_at || '2026-10-18'}</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.7414'}</span> 🔒</td><td><span class="guest-card-blur">${v.contextual_meaning}</span> <span style="color:var(--amber);font-weight:600;">🔒 登录解锁</span></td><td><button class="btn" onclick="focusLoginBox()">🔑 解锁</button></td></tr>`;
@@ -854,11 +1139,11 @@ function renderVocab() {
   }).join('');
 }
 function promoteToEssay(noteId) {
-  if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
+  if (!isLoggedIn()) { focusLoginBox(); return; }
   const n = notesData.find(x => x.id === noteId); if (!n) return;
   const snip = { id: 'ec-prom-' + Date.now(), theme: '教育文化', slot: '第二段·原因与正反论证', gran: '真题升格佳句', en: n.text, cloze: n.text.replace(/\b(segments|perilous|accommodate|venture)\b/g, '[______]'), zh: n.comment + '（从阅读笔记一键升格）', source: '真题笔记升格', is_blurred: false };
   essayCorpus.unshift(snip);
-  if (location.protocol !== 'file:' && authState.role === 'SCHOLAR') { fetch('/api/essay', {method:'POST', headers:authHeaders(), body:JSON.stringify(snip)}).catch(()=>{}); }
+  if (location.protocol !== 'file:' && isLoggedIn()) { fetch('/api/essay', {method:'POST', headers:authHeaders(), body:JSON.stringify(snip)}).catch(()=>{}); }
   renderEssayCorpus(); switchTab(4);
 }
 function setEssayTheme(t, btn) { currentEssayTheme = t; btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderEssayCorpus(); }
@@ -868,32 +1153,33 @@ function renderEssayCorpus() {
   const q = (document.getElementById('essaySearchInput').value || '').toLowerCase();
   const list = essayCorpus.filter(c => (currentEssayTheme === 'ALL' || c.theme === currentEssayTheme) && (currentEssaySlot === 'ALL' || c.slot === currentEssaySlot) && (!q || c.en.toLowerCase().includes(q) || c.zh.toLowerCase().includes(q) || c.theme.includes(q)));
   document.getElementById('essayCorpusList').innerHTML = list.map(c => {
-    if (authState.role !== 'SCHOLAR' && c.is_blurred) {
+    if (!isLoggedIn() && c.is_blurred) {
       return `<div class="note-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><button class="btn" onclick="focusLoginBox()">🔑 登录解锁</button></div><div class="guest-card-blur" style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${c.en}</div><div style="font-size:0.78rem;color:var(--amber);font-weight:600;">${c.zh}</div></div>`;
     }
     return `<div class="note-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><button class="btn" onclick="insertDraft(${JSON.stringify(c.en).replace(/"/g,'&quot;')})">➕ 插入草稿</button></div><div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${clozeActive ? c.cloze : c.en}</div><div style="font-size:0.78rem;color:var(--muted);">${c.zh} <span style="color:var(--primary);">[${c.source}]</span></div></div>`;
   }).join('');
 }
 function insertDraft(text) {
-  if (authState.role !== 'SCHOLAR') { focusLoginBox(); return; }
+  if (!isLoggedIn()) { focusLoginBox(); return; }
   const box = document.getElementById('essayDraftBox'); box.value = box.value.trim() + '\n' + text + '\n'; updateDraftCount();
 }
 function updateDraftCount() { const words = (document.getElementById('essayDraftBox').value.trim().match(/\b\w+\b/g) || []).length; document.getElementById('wordCountBadge').textContent = `${words} 词 (目标 160-200 词)`; }
 try {
+  clearAllPasswordInputs();
   const savedTheme = localStorage.getItem('kaoyan_hub_theme') || localStorage.getItem('app_theme_mode') || 'daylight';
   setTheme(savedTheme);
   const savedAuth = JSON.parse(localStorage.getItem('kaoyan_auth') || 'null');
-  if (savedAuth && savedAuth.role === 'SCHOLAR' && savedAuth.token) {
+  if (savedAuth && (savedAuth.role === 'SCHOLAR' || savedAuth.role === 'ADMIN') && savedAuth.token) {
     authState = savedAuth;
     notesData = FULL_SCHOLAR_NOTES.slice();
     vocabData = REPORT_DATA.msu_contracts.vocab_simulation_samples.slice();
     essayCorpus = FULL_SCHOLAR_ESSAYS.slice();
   }
 } catch(e){}
-renderTables(); updateDraftCount(); updateAuthUI(); switchTab(authState.role === 'SCHOLAR' ? 2 : defaultGuestTab); syncFromServer();
+renderTables(); updateDraftCount(); updateAuthUI(); switchTab(isLoggedIn() ? 2 : defaultGuestTab); syncFromServer();
 </script>
 
-<!-- [V3.2 PG18 + SQLite WAL Dual-Engine HA & Vue-Reactive Composable Store Enhancement] -->
+<!-- [V3.4 PG18 + SQLite WAL Dual-Engine HA & RBAC Reactive Composable Store] -->
 <script>
 (function(){
   function createReactiveState(initial, onChange) {
@@ -911,24 +1197,16 @@ renderTables(); updateDraftCount(); updateAuthUI(); switchTab(authState.role ===
     pgOnline: true,
     sqliteOnline: true,
     inSync: true,
-    tablesCount: 10,
+    tablesCount: 14,
     probeLatencyMs: 0,
-    clusterMode: 'ROAMING_3NODE_1P_2R',
-    primaryNode: 'hp',
-    activeNodes: 'hp,w1,m1',
-    epoch: 1,
-    walLsn: 0,
     lastRequestId: ''
   }, function(prop, val, st) {
     var pill = document.getElementById('pgHaLiveBanner');
     if (!pill) return;
     var dotColor = (st.pgOnline && st.sqliteOnline && st.inSync) ? '#10b981' : '#f59e0b';
-    var modeBadge = st.clusterMode === 'SINGLE_SURVIVOR_STANDALONE_RW'
-      ? '⚡ 单节点读写并重 (STANDALONE_RW: ' + String(st.primaryNode).toUpperCase() + ')'
-      : '🌐 跨OS漫游 1主2从 (Primary RW: ' + String(st.primaryNode).toUpperCase() + ' | Active: ' + st.activeNodes + ')';
     pill.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + dotColor + ';margin-right:6px;"></span>' +
-      '<strong>v4.0 跨OS高可用:</strong> ' + modeBadge + ' · Epoch ' + st.epoch + ' · LSN #' + st.walLsn + ' · ' +
-      'PG18 (' + (st.pgOnline ? 'ONLINE' : 'STANDBY') + ') + SQLite WAL · 探针: ' + st.probeLatencyMs + 'ms';
+      '<strong>DB 高可用双擎:</strong> PG18 主库 (' + (st.pgOnline ? 'ONLINE' : 'STANDBY') + ') + SQLite WAL 热备 (' + (st.sqliteOnline ? 'ONLINE' : 'OFF') + ') · ' +
+      (st.tablesCount || 14) + ' 表同步: <strong>' + (st.inSync ? '100% ALIGNED' : 'SYNCING') + '</strong> · 探针: ' + st.probeLatencyMs + 'ms';
   });
 
   window.refreshHaTelemetry = function() {
@@ -940,26 +1218,20 @@ renderTables(); updateDraftCount(); updateAuthUI(); switchTab(authState.role ===
         window.KaoyanReactiveStore.pgOnline = !!d.pg_primary_online;
         window.KaoyanReactiveStore.sqliteOnline = !!d.sqlite_standby_online;
         window.KaoyanReactiveStore.inSync = !!d.in_sync;
-        window.KaoyanReactiveStore.tablesCount = d.tables_count || 10;
+        window.KaoyanReactiveStore.tablesCount = d.tables_count || 14;
         window.KaoyanReactiveStore.probeLatencyMs = d.probe_latency_ms || 1.2;
-        if (d.roaming_topology) {
-          window.KaoyanReactiveStore.clusterMode = d.roaming_topology.cluster_mode || 'ROAMING_3NODE_1P_2R';
-          window.KaoyanReactiveStore.primaryNode = d.roaming_topology.primary_node || 'hp';
-          window.KaoyanReactiveStore.activeNodes = (d.roaming_topology.active_nodes || ['hp','w1','m1']).join(',');
-          window.KaoyanReactiveStore.epoch = d.roaming_topology.epoch || 1;
-          window.KaoyanReactiveStore.walLsn = d.roaming_topology.wal_lsn || 0;
-        }
       }
     }).catch(function(){});
   };
 
   window.addEventListener('DOMContentLoaded', function(){
+    clearAllPasswordInputs();
     var nav = document.querySelector('.top-nav') || document.body;
     if (!document.getElementById('pgHaLiveBanner')) {
       var bar = document.createElement('div');
       bar.id = 'pgHaLiveBanner';
-      bar.style.cssText = 'background:rgba(16,185,129,0.10);border:1px solid rgba(16,185,129,0.35);color:var(--text,#0f172a);padding:4px 12px;border-radius:999px;font-size:0.75rem;margin-top:6px;display:' + (authState.role === 'SCHOLAR' ? 'inline-flex' : 'none') + ';align-items:center;';
-      bar.innerHTML = '<strong>DB 高可用双擎:</strong> PG18 主库 + SQLite WAL 热备 · 10 表实时双写就绪';
+      bar.style.cssText = 'background:rgba(16,185,129,0.10);border:1px solid rgba(16,185,129,0.35);color:var(--text,#0f172a);padding:4px 12px;border-radius:999px;font-size:0.75rem;margin-top:6px;display:' + (isLoggedIn() ? 'inline-flex' : 'none') + ';align-items:center;';
+      bar.innerHTML = '<strong>DB 高可用双擎:</strong> PG18 主库 + SQLite WAL 热备 · 14 表实时双写就绪';
       nav.appendChild(bar);
     }
     window.refreshHaTelemetry();
