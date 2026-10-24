@@ -432,13 +432,191 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
 
         if parsed.path in ("/api/bootstrap", "/api/state", "/api/passages", "/api/annotations/list", "/api/essay/list"):
             qs = parse_qs(parsed.query)
-            uid = verify_bearer(self.headers, simulate_pg_down=sim_down) or qs.get("user_id", ["colleague_a"])[0]
+            verified_uid = verify_bearer(self.headers, simulate_pg_down=sim_down)
             passage_id = qs.get("passage_id", ["P2024_EN1_T1"])[0]
             theme_filter = qs.get("theme_tag", [""])[0]
 
             pconn = REPO.get_pg_conn(simulate_down=sim_down)
             engine_used = "postgresql_18_primary" if pconn is not None else "sqlite_wal_hot_standby_failover"
 
+            if not verified_uid:
+                if pconn is not None:
+                    try:
+                        pconn.close()
+                    except Exception:
+                        pass
+                guest_passages = [
+                    {
+                        "passage_id": "P2024_EN1_T1",
+                        "year": 2024,
+                        "exam_type": "英语一",
+                        "text_no": "Text 1",
+                        "title": "2024 考研英语一 Text 1 (访客 30% 公开试读样章)",
+                        "cleartext_para_1": "In recent decades, the relationship between intellectual history and the broader humanities has undergone a profound transformation. The modern university structure segments knowledge into narrow compartments, making it increasingly perilous for scholars to venture beyond their fortified disciplinary boundaries.",
+                        "blurred_para_2_teaser": "While empirical specialization has undoubtedly accelerated... [🔒 访客免费试读已达 30% 阈值：后端 API 已硬截断后续段落，请登录学籍解锁 Para 2~5 全文、熟词僻义预警与五维进度锚点]",
+                        "is_truncated": True,
+                    }
+                ]
+                guest_annotations = [
+                    {
+                        "id": "sp-para-1",
+                        "granularity": "PARAGRAPH",
+                        "tag": "🟣 段落主旨卡 [Para 1 · 公开试读 1/2]",
+                        "text": "Para 1: 现代大学学科壁垒割裂了知识体系，导致学者跨学科探索面临风险。",
+                        "breakdown": "【篇章功能】开篇立论（欲抑先扬）：指出 narrow compartments 对跨学科知识分子的束缚。",
+                        "comment": "常考态度题：作者对过度学科细分持批判态度 (critical / skeptical)。",
+                        "is_blurred": False,
+                    },
+                    {
+                        "id": "sp-sent-1",
+                        "granularity": "SENTENCE",
+                        "tag": "🔵 长难句解剖卡 [Para 1 · 公开试读 2/2]",
+                        "text": "The modern university structure segments knowledge into narrow compartments, making it increasingly perilous for scholars to venture beyond their fortified disciplinary boundaries.",
+                        "breakdown": "【主干】structure segments knowledge | 【分词结果状语】making it perilous for scholars to venture beyond...",
+                        "comment": "绝佳写作句式！可改写用于【教育文化/科技创新】大作文。",
+                        "is_blurred": False,
+                    },
+                    {
+                        "id": "sp-sent-2-redacted",
+                        "granularity": "SENTENCE",
+                        "tag": "🔒 长难句解剖卡 [Para 2 · 45% 毛玻璃预览]",
+                        "text": "While empirical specialization has undoubtedly accelerated technical breakthroughs, it often fails to accommodate broader philosophical inquiry.",
+                        "breakdown": "【让步状语从句】While empirical specialization has... | 【主干】it fails to accommodate... (服务端脱敏样板 ██)",
+                        "comment": "🔒 登录学籍后解锁完整句法切分与双刃剑论证升格模板",
+                        "is_blurred": True,
+                    },
+                    {
+                        "id": "sp-word-1-redacted",
+                        "granularity": "WORD",
+                        "tag": "🔒 真题熟词僻义卡 [Para 2 · 45% 毛玻璃预览]",
+                        "text": "accommodate / empirical (考研高频熟词僻义陷阱)",
+                        "breakdown": "【熟词僻义预警】考研阅读常考『容纳、顾及、顺应』之意，切忌死背基础词义 (服务端脱敏样板 ██)",
+                        "comment": "🔒 登录学籍后解锁个人真题语境查词频次与艾宾浩斯复习锚点",
+                        "is_blurred": True,
+                    },
+                ]
+                guest_vocab = [
+                    {
+                        "word": "accommodate",
+                        "lemma": "accommodate",
+                        "syllabus_tier": "POLYSEMY_TRAP",
+                        "lookup_count": "5",
+                        "days_since_seen": 0.0,
+                        "last_seen_at": "2026-10-20",
+                        "exam_source": "2022 英语一 Text 2 Para 3 (公共考纲样板)",
+                        "contextual_meaning": "v. 适应，顺应；容纳，顾及（考研熟词僻义：非仅提供食宿）",
+                        "urgency_score": "0.85",
+                        "is_blurred": False,
+                    },
+                    {
+                        "word": "intellectual",
+                        "lemma": "intellectual",
+                        "syllabus_tier": "CORE_1800",
+                        "lookup_count": "4",
+                        "days_since_seen": 0.0,
+                        "last_seen_at": "2026-10-21",
+                        "exam_source": "2024 英语一 Text 1 Para 1 (公共考纲样板)",
+                        "contextual_meaning": "adj. 智力的，理智的；n. 知识分子",
+                        "urgency_score": "0.69",
+                        "is_blurred": False,
+                    },
+                    {
+                        "word": "empirical",
+                        "lemma": "empirical",
+                        "syllabus_tier": "CORE_1800",
+                        "lookup_count": "3",
+                        "days_since_seen": 0.0,
+                        "last_seen_at": "2026-10-18",
+                        "exam_source": "2023 英语一 Text 3 Para 2",
+                        "contextual_meaning": "adj. 实证的，以经验或观察为依据的（反义：theoretical · 脱敏样板 ██）",
+                        "urgency_score": "0.74",
+                        "is_blurred": True,
+                    },
+                    {
+                        "word": "archaeology",
+                        "lemma": "archaeology",
+                        "syllabus_tier": "EXT_HYPER",
+                        "lookup_count": "2",
+                        "days_since_seen": 0.0,
+                        "last_seen_at": "2026-10-22",
+                        "exam_source": "2024 英语一 Text 1 Para 2",
+                        "contextual_meaning": "n. 考古学；文化遗迹研究（个人真题生词账本 · 脱敏样板 ██）",
+                        "urgency_score": "0.42",
+                        "is_blurred": True,
+                    },
+                ]
+                guest_essays = [
+                    {
+                        "id": "ec-1",
+                        "theme": "科技创新",
+                        "slot": "第一段·图画图表描述",
+                        "gran": "模板骨架 (公开样板)",
+                        "en": "As is vividly depicted in the cartoon, the rapid proliferation of artificial intelligence has sparked heated debate.",
+                        "cloze": "As is [vividly depicted] in the cartoon, the [rapid proliferation] of artificial intelligence has [sparked heated debate].",
+                        "zh": "正如漫画生动描绘的那样，人工智能的迅猛普及引发了激烈讨论。",
+                        "source": "2024 英语一大作文公开样板",
+                        "is_blurred": False,
+                    },
+                    {
+                        "id": "ec-2-redacted",
+                        "theme": "科技创新",
+                        "slot": "第二段·原因与正反论证",
+                        "gran": "🔒 真题升格长难句",
+                        "en": "While technological specialization has undoubtedly accelerated breakthroughs, it often fails to accommodate broader ethical questions.",
+                        "cloze": "[While] technological specialization has [accelerated breakthroughs], it often [fails to accommodate] broader ethical questions.",
+                        "zh": "尽管技术专门化加速了突破，但往往未能顾及更广泛的伦理问题（服务端脱敏样板 ██）",
+                        "source": "🔒 登录学籍解锁",
+                        "is_blurred": True,
+                    },
+                    {
+                        "id": "ec-3-redacted",
+                        "theme": "教育文化",
+                        "slot": "第二段·原因与正反论证",
+                        "gran": "🔒 真题升格长难句",
+                        "en": "Rigid compartmentalization of knowledge makes it perilous for young minds to venture beyond conventional boundaries.",
+                        "cloze": "Rigid [compartmentalization] of knowledge makes it [perilous] for young minds to venture beyond.",
+                        "zh": "知识的僵化割裂使得青年学者跨越传统边界变得困难重重（服务端脱敏样板 ██）",
+                        "source": "🔒 登录学籍解锁",
+                        "is_blurred": True,
+                    },
+                ]
+                if parsed.path == "/api/passages":
+                    return self._send_json(200, {"status": "ok", "auth_tier": "GUEST_TEASER", "engine": engine_used, "passages": guest_passages}, req_id=req_id, t0=t0, engine_hdr=engine_used)
+                if parsed.path == "/api/annotations/list":
+                    return self._send_json(200, {"status": "ok", "auth_tier": "GUEST_TEASER", "engine": engine_used, "annotations": guest_annotations}, req_id=req_id, t0=t0, engine_hdr=engine_used)
+                if parsed.path == "/api/essay/list":
+                    return self._send_json(200, {"status": "ok", "auth_tier": "GUEST_TEASER", "engine": engine_used, "essays": guest_essays}, req_id=req_id, t0=t0, engine_hdr=engine_used)
+                return self._send_json(
+                    200,
+                    {
+                        "status": "ok",
+                        "auth_tier": "GUEST_TEASER",
+                        "exposure_policy": {
+                            "cleartext_ratio_pct": 30,
+                            "blurred_teaser_pct": 45,
+                            "hard_locked_pct": 25,
+                            "strategy": "HYBRID_API_TRUNCATION_GRADIENT_AND_FROSTED_BLUR",
+                        },
+                        "engine": engine_used,
+                        "user_id": "guest",
+                        "passage_count": 2,
+                        "passages": guest_passages,
+                        "anchor": {
+                            "last_para_idx": None,
+                            "streak_days": None,
+                            "rev_no": 0,
+                            "masked_label": "Para * · 连续 ** 天 (🔒登录解锁)",
+                        },
+                        "vocab": guest_vocab,
+                        "annotations": guest_annotations,
+                        "essays": guest_essays,
+                    },
+                    req_id=req_id,
+                    t0=t0,
+                    engine_hdr=engine_used,
+                )
+
+            uid = verified_uid
             if pconn is not None:
                 try:
                     with pconn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
@@ -500,16 +678,17 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
                 sconn.close()
 
             if parsed.path == "/api/passages":
-                return self._send_json(200, {"status": "ok", "engine": engine_used, "passages": passages}, req_id=req_id, t0=t0, engine_hdr=engine_used)
+                return self._send_json(200, {"status": "ok", "auth_tier": "SCHOLAR_FULL", "engine": engine_used, "passages": passages}, req_id=req_id, t0=t0, engine_hdr=engine_used)
             if parsed.path == "/api/annotations/list":
-                return self._send_json(200, {"status": "ok", "engine": engine_used, "annotations": annotations}, req_id=req_id, t0=t0, engine_hdr=engine_used)
+                return self._send_json(200, {"status": "ok", "auth_tier": "SCHOLAR_FULL", "engine": engine_used, "annotations": annotations}, req_id=req_id, t0=t0, engine_hdr=engine_used)
             if parsed.path == "/api/essay/list":
-                return self._send_json(200, {"status": "ok", "engine": engine_used, "essays": essays}, req_id=req_id, t0=t0, engine_hdr=engine_used)
+                return self._send_json(200, {"status": "ok", "auth_tier": "SCHOLAR_FULL", "engine": engine_used, "essays": essays}, req_id=req_id, t0=t0, engine_hdr=engine_used)
 
             return self._send_json(
                 200,
                 {
                     "status": "ok",
+                    "auth_tier": "SCHOLAR_FULL",
                     "engine": engine_used,
                     "user_id": uid,
                     "passage_count": p_cnt,
