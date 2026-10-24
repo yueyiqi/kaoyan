@@ -32,7 +32,7 @@ MIGRATION_V2 = BASE_DIR / "db_migrations" / "V002__pg18_and_sqlite_10tables_ha_s
 BACKUP_DIR = Path(os.environ.get("KAOYAN_BACKUP_DIR", str(BASE_DIR / "db_backups")))
 HTML_PATH = Path(os.environ.get("KAOYAN_HTML_PATH", str(BASE_DIR / "index.html")))
 
-PG_DSN = os.environ.get("KAOYAN_PG_DSN", "dbname=kaoyan_prod user=elena host=127.0.0.1 port=5432 password=kaoyan_pg_2026")
+PG_DSN = os.environ.get("KAOYAN_PG_DSN", "dbname=kaoyan_prod user=elena host=127.0.0.1 port=5432 password=kaoyan_pg18_ha_2026")
 
 CORE_TABLES = [
     "annotation_spans",
@@ -205,6 +205,16 @@ class DualEngineHARepository:
                             "INSERT INTO schema_migrations (version_id, script_name, checksum_sha256, engine_target, applied_at) VALUES (%s,%s,%s,%s,%s) ON CONFLICT (version_id) DO UPDATE SET applied_at = EXCLUDED.applied_at",
                             tuple(r),
                         )
+                    for r in sconn.execute("SELECT tx_uuid, op_type, target_table, record_pk, payload_json, pg_status, sqlite_status, created_at FROM ha_sync_wal_journal").fetchall():
+                        cur.execute(
+                            "INSERT INTO ha_sync_wal_journal (tx_uuid, op_type, target_table, record_pk, payload_json, pg_status, sqlite_status, created_at) VALUES (%s,%s,%s,%s,%s,'REPLAYED_COMMITTED',%s,%s) ON CONFLICT (tx_uuid) DO NOTHING",
+                            (r[0], r[1], r[2], r[3], r[4], r[6], r[7]),
+                        )
+                    for r in sconn.execute("SELECT idempotency_key, user_id, endpoint, req_hash, resp_code, resp_body_json, created_at FROM api_idempotency_keys").fetchall():
+                        cur.execute(
+                            "INSERT INTO api_idempotency_keys (idempotency_key, user_id, endpoint, req_hash, resp_code, resp_body_json, created_at) VALUES (%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (idempotency_key) DO NOTHING",
+                            tuple(r),
+                        )
             pconn.close()
         sconn.close()
 
@@ -243,6 +253,11 @@ class DualEngineHARepository:
         pg_counts = {}
         pg_online = False
         pg_version = "offline"
+        if not simulate_pg_down:
+            try:
+                self.init_and_migrate_both_engines()
+            except Exception:
+                pass
         pconn = self.get_pg_conn(simulate_down=simulate_pg_down)
         if pconn is not None:
             try:
@@ -297,9 +312,9 @@ def calc_ebbinghaus_urgency(lookup_count: int, days_since_seen: float, syllabus_
 def generate_cloze_pattern(content_en: str) -> str:
     words = content_en.split()
     if len(words) >= 4:
-        words[1] = "[______]"
+        words[1] = f"[KEY: {words[1]}]"
         if len(words) >= 7:
-            words[4] = "[______]"
+            words[4] = f"[KEY: {words[4]}]"
         return " ".join(words)
     return f"[______] ({content_en})"
 
@@ -350,7 +365,9 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
         if req_id:
             self.send_header("X-Request-ID", req_id)
         if t0 > 0:
-            self.send_header("X-Response-Time-Ms", str(round((time.perf_counter() - t0) * 1000, 2)))
+            lat_str = str(round((time.perf_counter() - t0) * 1000, 2))
+            self.send_header("X-Response-Time-Ms", lat_str)
+            self.send_header("X-Latency-Ms", lat_str)
         self.send_header("X-DB-Engine", engine_hdr)
         if idem_replay:
             self.send_header("X-Idempotent-Replay", "true")
@@ -398,7 +415,7 @@ class KaoyanModularHandler(BaseHTTPRequestHandler):
             ha = REPO.get_ha_status(simulate_pg_down=sim_down)
             return self._send_json(200, ha, req_id=req_id, t0=t0, engine_hdr=ha["active_engine"])
 
-        if parsed.path in ("/api/state", "/api/passages", "/api/annotations/list", "/api/essay/list"):
+        if parsed.path in ("/api/bootstrap", "/api/state", "/api/passages", "/api/annotations/list", "/api/essay/list"):
             qs = parse_qs(parsed.query)
             uid = verify_bearer(self.headers, simulate_pg_down=sim_down) or qs.get("user_id", ["colleague_a"])[0]
             passage_id = qs.get("passage_id", ["P2024_EN1_T1"])[0]
