@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS essay_corpus_snippets (
 );
 CREATE INDEX IF NOT EXISTS idx_essay_user_theme ON essay_corpus_snippets(user_id, theme_tag, func_slot);
 
-INSERT OR IGNORE INTO schema_migrations VALUES ('V001', 'V001__init_kaoyan_8tables.sql', 'sha256:8tables_v23', datetime('now'));
+INSERT OR IGNORE INTO schema_migrations (version_id, script_name, checksum_sha256, applied_at) VALUES ('V001', 'V001__init_kaoyan_8tables.sql', 'sha256:8tables_v23', datetime('now'));
 INSERT OR IGNORE INTO sys_users VALUES ('colleague_a', 'colleague_a', '同事 A (考研英语主理人)', 'SCHOLAR', 'kaoyan2026', 'kaoyan-scholar-colleague_a-kaoyan2026', datetime('now'));
 INSERT OR IGNORE INTO sys_users VALUES ('commander', 'commander', '统帅 (集群架构管理员)', 'ADMIN', 'kaoyan2026', 'kaoyan-scholar-commander-kaoyan2026', datetime('now'));
 INSERT OR IGNORE INTO user_progress_anchors VALUES ('colleague_a', 'P2024_EN1_T1', 2, 'sp-sent-2', 2, '', 12, 1, datetime('now'));
