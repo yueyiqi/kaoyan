@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="100%" preserveAspectRatio="xMidYMid meet">
+  <rect width="1600" height="960" fill="#F8FAFC"/>
+  <rect x="36" y="28" width="1528" height="96" rx="16" fill="#0F172A"/>
+  <text x="68" y="72" fill="#F8FAFC" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="26" font-weight="bold">考研英语精读平台 (KaoyanEnglish Hub v3.4) 登录后 RBAC 账号权限管理与零记忆密码架构图 (#18)</text>
+  <text x="68" y="106" fill="#94A3B8" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16">五表 RBAC 数据库模型 (14表双擎同步) · 区分管理员(ADMIN L100)与普通用户(SCHOLAR L50) · 密码默认掩码且页面零记忆 · 38/38 验收 0 Bug</text>
+
+  <!-- Card 1: Top-Left -->
+  <rect x="36" y="148" width="748" height="370" rx="14" fill="#FFFFFF" stroke="#EF4444" stroke-width="2.5"/>
+  <rect x="36" y="148" width="748" height="48" rx="14" fill="#FEE2E2"/>
+  <text x="60" y="180" fill="#991B1B" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">① 密码默认掩码与页面零记忆安全契约 (Zero-Memory Password)</text>
+  <text x="60" y="222" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 彻底清除页面明文密码展示与一键代填函数:</text>
+  <text x="80" y="246" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">物理移除顶栏横幅中的明文口令提示及自动代填按钮，前后端源码零明文口令驻留。</text>
+  <text x="60" y="282" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 全部密码框强制启用默认掩码与反浏览器记忆属性:</text>
+  <text x="80" y="306" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">全站 6 处密码框均设置 type=&quot;password&quot; autocomplete=&quot;new-password&quot; data-lpignore=&quot;true&quot;。</text>
+  <text x="60" y="342" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 操作瞬间擦除 DOM 值 (clearAllPasswordInputs):</text>
+  <text x="80" y="366" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">点击登录、退出、修改密码、创建账号、重置密码后立即将所有密码框 value 擦除为空。</text>
+  <text x="60" y="402" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 后端 PBKDF2-HMAC-SHA256 独立盐值哈希存储:</text>
+  <text x="80" y="426" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">10,000 次迭代加盐哈希 + hmac.compare_digest 恒定时间比对；前端存储仅保留脱敏令牌。</text>
+  <rect x="60" y="452" width="700" height="44" rx="8" fill="#FEF2F2" stroke="#FCA5A5"/>
+  <text x="80" y="480" fill="#B91C1C" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">安全红线: 普通用户与管理员密码全程 •••••••• 掩码，页面 DOM 与本地存储零密码记忆</text>
+
+  <!-- Card 2: Top-Right -->
+  <rect x="816" y="148" width="748" height="370" rx="14" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.5"/>
+  <rect x="816" y="148" width="748" height="48" rx="14" fill="#DBEAFE"/>
+  <text x="840" y="180" fill="#1E40AF" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">② 五表 RBAC 数据库模型与核心字段设计 (5 RBAC Tables)</text>
+  <text x="840" y="222" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• T01 [sys_users] 用户主表 (PK: user_id, UK: username):</text>
+  <text x="860" y="246" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">role(ADMIN/SCHOLAR), account_status, passcode_hash, passcode_salt, token_secret, failed_login_count</text>
+  <text x="840" y="282" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• T11 [sys_roles] 角色层级表 &amp; T12 [sys_permissions] 原子权限表:</text>
+  <text x="860" y="306" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">三级角色 ADMIN(L100) / SCHOLAR(L50) / GUEST(L10) × 11 项细粒度原子权限码 (perm_code)</text>
+  <text x="840" y="342" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• T13 [sys_role_permissions] 角色-权限多对多映射表:</text>
+  <text x="860" y="366" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">PK(role_code, perm_code), granted_at, granted_by · 支撑后端接口级刚性鉴权</text>
+  <text x="840" y="402" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• T14 [sys_rbac_audit_log] 安全审计流水表 (PK: audit_id):</text>
+  <text x="860" y="426" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">actor_user_id, actor_role, target_user_id, action, detail_json, client_ip, created_at</text>
+  <rect x="840" y="452" width="700" height="44" rx="8" fill="#EFF6FF" stroke="#93C5FD"/>
+  <text x="860" y="480" fill="#1D4ED8" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">双擎持久化: PostgreSQL 18 主库 + SQLite WAL 热备共 14 张表 100% 实时双写同步</text>
+
+  <!-- Card 3: Bottom-Left -->
+  <rect x="36" y="544" width="748" height="380" rx="14" fill="#FFFFFF" stroke="#059669" stroke-width="2.5"/>
+  <rect x="36" y="544" width="748" height="48" rx="14" fill="#D1FAE5"/>
+  <text x="60" y="576" fill="#065F46" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">③ 登录后专题账号管理系统：管理员 vs 普通用户权责隔离</text>
+  <text x="60" y="620" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 未登录访客 (GUEST L10) — 零入口隐藏与 401 刚性拦截:</text>
+  <text x="80" y="644" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">未登录态完全隐藏『账号与RBAC管理』导航标签，直接请求管理接口刚性返回 401。</text>
+  <text x="60" y="684" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 普通研友用户 (SCHOLAR L50) — 仅限本人改密，越权 403 拦截:</text>
+  <text x="80" y="708" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">登录后可查看本人已授权限并修改本人密码；访问用户列表/建号/重置他人密码返回 403。</text>
+  <text x="60" y="748" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 系统管理员 (ADMIN L100) — 全量账号生命周期与审计管控:</text>
+  <text x="80" y="772" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">手工新增账号(ADMIN/SCHOLAR)、强制重置密码、角色切换、账号启停与安全审计流水查阅。</text>
+  <text x="60" y="812" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 管理员防自锁保护机制 (Self-Lockout Prevention):</text>
+  <text x="80" y="836" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">后端刚性阻断管理员降级或停用当前自身登录账号 (HTTP 422)，保障系统管理连续性。</text>
+  <rect x="60" y="860" width="700" height="44" rx="8" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text x="80" y="888" fill="#047857" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">预置管理员: admin / Kaoyan@Admin2026 · 普通用户: colleague_a / kaoyan2026</text>
+
+  <!-- Card 4: Bottom-Right -->
+  <rect x="816" y="544" width="748" height="380" rx="14" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2.5"/>
+  <rect x="816" y="544" width="748" height="48" rx="14" fill="#EDE9FE"/>
+  <text x="840" y="576" fill="#5B21B6" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">④ 生产环境实施与 38/38 零 Bug 测试验收报告 (Zero-Bug Report)</text>
+  <text x="840" y="620" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">1. [静态合规探针 26/26 PASS] 预览糊化 + 交互修复 + RBAC 密码零记忆:</text>
+  <text x="860" y="644" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">8项分级预览 + 10项按钮高亮与交互修复 + 8项五表RBAC与密码零记忆静态检查全部通过。</text>
+  <text x="840" y="684" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">2. [真机鉴权隔离探针 E2E-01~08 PASS] 访客 401 与普通用户 403 验证:</text>
+  <text x="860" y="708" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">colleague_a 登录成功且本人改密/恢复通过，越权调用 4 个管理接口与改他人密码均拦截 403。</text>
+  <text x="840" y="748" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">3. [真机管理员探针 E2E-09~12 PASS] 建号/重置密码/启停/防自锁验证:</text>
+  <text x="860" y="772" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">admin 登录返回 11 项权限，创建 scholar_c、重置密码、禁用阻断登录与防自锁 422 全部通过。</text>
+  <text x="840" y="812" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">4. [生产站点双点热部署就绪] 云端与本地容器 14 表同步在线:</text>
+  <text x="860" y="836" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">https://kaoyan-elena.duckdns.org 与 https://kaoyan.8.163.29.42.nip.io 实时验证 0 Bug。</text>
+  <rect x="840" y="860" width="700" height="44" rx="8" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text x="860" y="888" fill="#6D28D9" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">验收结论: 26 项静态检查 + 12 项线上端到端测试 = 38/38 全绿通过 (0 Bug)</text>
+</svg>

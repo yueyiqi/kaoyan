@@ -1,0 +1,94 @@
+{
+  "schema": "kaoyan_rbac_accounts_ssot/v1.0",
+  "project_id": "95_kaoyan_考研",
+  "project_canonical_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台",
+  "public_login_portal": "https://kaoyan-elena.duckdns.org",
+  "login_api_endpoint": "https://kaoyan-elena.duckdns.org/api/auth/login",
+  "ui_circled_inputs": {
+    "account_input_id": "scholarUserInput",
+    "account_placeholder": "账号 (学籍/管理员)",
+    "passcode_input_id": "scholarKeyInput",
+    "passcode_placeholder": "掩码密码 (······)",
+    "submit_button_id": "loginSubmitBtn",
+    "submit_button_label": "🔑 登录并恢复进度"
+  },
+  "password_kdf_contract": {
+    "algorithm": "PBKDF2-HMAC-SHA256",
+    "iterations": 10000,
+    "frontend_retention": "ZERO_PLAINTEXT_RETENTION (masked input, cleared immediately upon submit)"
+  },
+  "active_accounts": [
+    {
+      "user_id": "admin",
+      "username": "admin",
+      "initial_passcode": "Kaoyan@Admin2026",
+      "display_name": "系统管理员 (admin)",
+      "role": "ADMIN",
+      "role_level": "L100",
+      "account_status": "ACTIVE",
+      "passcode_salt": "salt_admin_2026",
+      "passcode_hash": "d567d098a5c267dcff373bd8b43aa54e020a38af87db169e1e6f940ff3aefa4c",
+      "live_https_login_verified": true,
+      "permissions_summary": "全量真题精读 + 5层18表146字段全库下钻 + 新增/启停账号 + 重置任意账号密码 + RBAC安全审计流水"
+    },
+    {
+      "user_id": "commander",
+      "username": "commander",
+      "initial_passcode": "Kaoyan@Admin2026",
+      "display_name": "统帅 (集群架构管理员)",
+      "role": "ADMIN",
+      "role_level": "L100",
+      "account_status": "ACTIVE",
+      "passcode_salt": "salt_cmd_2026",
+      "passcode_hash": "b698890defe2ff1fb8078c7d283e0268dda519fa12c8862f70fc3dd6c2255783",
+      "live_https_login_verified": true,
+      "permissions_summary": "全量真题精读 + 5层18表146字段全库下钻 + 新增/启停账号 + 重置任意账号密码 + RBAC安全审计流水"
+    },
+    {
+      "user_id": "colleague_a",
+      "username": "colleague_a",
+      "initial_passcode": "kaoyan2026",
+      "display_name": "同事 A (考研英语主理人)",
+      "role": "SCHOLAR",
+      "role_level": "L50",
+      "account_status": "ACTIVE",
+      "passcode_salt": "salt_6c5c88bf59",
+      "passcode_hash": "bf66b0839ef00eb79f3eed2e5f2b5ddedb39ba17e67879d3acd9bca16f2df4d3",
+      "live_https_login_verified": true,
+      "permissions_summary": "解锁100%真题全文精读(解除45%毛玻璃与25%锁闭) + 个人词频账本 + 个人断点云端漫游 + 凭原密码修改本人密码"
+    },
+    {
+      "user_id": "scholar_b",
+      "username": "scholar_b",
+      "initial_passcode": "kaoyan2026",
+      "display_name": "研友协作学籍 (scholar_b)",
+      "role": "SCHOLAR",
+      "role_level": "L50",
+      "account_status": "ACTIVE",
+      "passcode_salt": "salt_schb_2026",
+      "passcode_hash": "f2b7a73a26d66873bf248bca3ffa5fa7759124cd915687cd3b9632830dfd845d",
+      "live_https_login_verified": true,
+      "permissions_summary": "解锁100%真题全文精读 + 独立研友生词本与阅读断点漫游 + 凭原密码修改本人密码"
+    },
+    {
+      "user_id": "scholar_c",
+      "username": "scholar_c",
+      "initial_passcode": "kaoyan2026",
+      "display_name": "测试研友 (scholar_c)",
+      "role": "SCHOLAR",
+      "role_level": "L50",
+      "account_status": "ACTIVE",
+      "passcode_salt": "salt_ed3574f5bf",
+      "passcode_hash": "747b37d00ae48f6f004fb7da762e3771138d10c20639baf1d47325d531ff8349",
+      "live_https_login_verified": true,
+      "permissions_summary": "解锁100%真题全文精读 + 独立研友生词本与阅读断点漫游 + 凭原密码修改本人密码"
+    }
+  ],
+  "disabled_ephemeral_test_accounts": [
+    "accept_c2ce5ef1",
+    "accept_e384b5c6",
+    "accept_f6cbfb7b",
+    "docker_accept_00567960",
+    "docker_accept_03ad80b2"
+  ]
+}

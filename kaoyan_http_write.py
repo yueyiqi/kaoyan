@@ -1,5 +1,6 @@
 """Business write routes with shared authentication and idempotency contract."""
 from __future__ import annotations
+import math
 from kaoyan_runtime import hashlib, json, now_str, re, time, uuid
 from kaoyan_repository import REPO
 from kaoyan_auth import calc_ebbinghaus_urgency, generate_cloze_pattern, verify_bearer
@@ -17,7 +18,9 @@ class WriteHandlerMixin:
             return self._send_json(413, {"status": "payload_too_large", "message": "Request payload exceeds 2MB limit"}, req_id=req_id, t0=t0)
         raw = self.rfile.read(length).decode("utf-8") if length > 0 else "{}"
         try:
-            data = json.loads(raw)
+            def reject_nonfinite(value):
+                raise ValueError('Non-finite JSON value')
+            data = json.loads(raw, parse_constant=reject_nonfinite)
             if not isinstance(data, dict):
                 raise ValueError("JSON root must be object")
         except Exception:
@@ -231,6 +234,8 @@ class WriteHandlerMixin:
                 return self._send_json(422, {"status": "validation_error", "message": "Invalid English lemma (2..45 letters)"}, req_id=req_id, t0=t0)
             tier = str(data.get("syllabus_tier", "CORE_1800"))[:32]
             days_ago = float(data.get("days_since_seen", 0.5))
+            if not math.isfinite(days_ago) or days_ago < 0:
+                return self._send_json(422, {"status": "validation_error", "message": "days_since_seen must be finite and nonnegative"}, req_id=req_id, t0=t0)
             exam_src = str(data.get("exam_source", "真题实时查词"))[:128]
             ctx_meaning = str(data.get("contextual_meaning", "学籍云端同步词条"))[:512]
 
@@ -289,6 +294,10 @@ class WriteHandlerMixin:
             span_id = str(data.get("span_id", data.get("id", ""))).strip() or f"sp-{hashlib.sha256(f'{uid}:{passage_id}:{para_idx}:{selected_text}'.encode('utf-8')).hexdigest()[:12]}"
 
             sconn = REPO.get_sqlite_conn()
+            owner = sconn.execute("SELECT user_id FROM annotation_spans WHERE span_id = ?", (span_id,)).fetchone()
+            if owner and owner["user_id"] != uid:
+                sconn.close()
+                return self._send_json(403, {"status": "forbidden", "message": "仅可修改本人批注 (Own notes only)"}, req_id=req_id, t0=t0)
             sconn.execute(
                 "INSERT INTO annotation_spans (span_id, user_id, passage_id, granularity, para_idx, start_offset, end_offset, selected_text, prefix_quote, suffix_quote, syntax_breakdown, user_comment, promoted_snippet_id, version, created_at) "
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?, '', 1, ?) "
@@ -333,6 +342,11 @@ class WriteHandlerMixin:
             source_ref = str(data.get("source_ref", "2024 英语一 Text 1"))[:128]
 
             sconn = REPO.get_sqlite_conn()
+            if span_id:
+                owner = sconn.execute("SELECT user_id FROM annotation_spans WHERE span_id = ?", (span_id,)).fetchone()
+                if owner and owner["user_id"] != uid:
+                    sconn.close()
+                    return self._send_json(403, {"status": "forbidden", "message": "仅可关联本人批注 (Own notes only)"}, req_id=req_id, t0=t0)
             if self.path == "/api/annotations/promote" and span_id and not content_en:
                 sp_row = sconn.execute("SELECT * FROM annotation_spans WHERE span_id = ?", (span_id,)).fetchone()
                 if not sp_row:
@@ -349,6 +363,10 @@ class WriteHandlerMixin:
 
             cloze = str(data.get("cloze_pattern", "")).strip() or generate_cloze_pattern(content_en)
             snippet_id = str(data.get("snippet_id", data.get("id", ""))).strip() or f"es-{hashlib.sha256(f'{uid}:{theme_tag}:{content_en}'.encode('utf-8')).hexdigest()[:12]}"
+            owner = sconn.execute("SELECT user_id FROM essay_corpus_snippets WHERE snippet_id = ?", (snippet_id,)).fetchone()
+            if owner and owner["user_id"] != uid:
+                sconn.close()
+                return self._send_json(403, {"status": "forbidden", "message": "仅可修改本人作文 (Own essays only)"}, req_id=req_id, t0=t0)
 
             sconn.execute(
                 "INSERT INTO essay_corpus_snippets (snippet_id, user_id, theme_tag, func_slot, granularity, content_en, cloze_pattern, translation_zh, source_ref, usage_count, created_at) "

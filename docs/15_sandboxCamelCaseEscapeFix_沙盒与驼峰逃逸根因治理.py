@@ -250,7 +250,7 @@ def render_svg_1_overview(svg_path: Path, png_path: Path) -> None:
             "rows": [
                 ("漏洞 V1 (指令劫持)", "IDE <artifacts> 提示词强制要求图片写入 ~/.gemini/antigravity/brain/<uuid>"),
                 ("漏洞 V2 (指针倒置)", "编译脚本将 ART_DIR 设为 Markdown 主链接，违背 Skill 42 G10 单向原则"),
-                ("漏洞 V3 (立项缺失)", "srbg10 稀疏检出仅含 86_，未调用 new_bz.sh 创立 95_kaoyanEnglishHub_..."),
+                ("漏洞 V3 (立项缺失)", "srbg10 稀疏检出仅含 86_，未调用 new_bz.sh 创立 95_kaoyanEnglishHub"),
                 ("漏洞 V4 (门禁盲区)", "GATE-0522 仅在暂存 .bz/ 时触发；pptx_preview_shunt 缺 Rule-B3 沙盒拦截"),
                 ("根治落盘位置", ".bz/08_research_frontier_.../95_kaoyanEnglishHub_考研英语精读平台/"),
                 ("防复发硬门禁", "GATE-0522 v2.0 + pptx_preview_shunt Rule-B3 硬拦截工作区 brain 链接"),

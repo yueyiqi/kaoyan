@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="100%" preserveAspectRatio="xMidYMid meet">
+  <rect width="1600" height="960" fill="#F8FAFC"/>
+  <rect x="36" y="28" width="1528" height="96" rx="16" fill="#0F172A"/>
+  <text x="68" y="72" fill="#F8FAFC" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="27" font-weight="bold">考研英语网站 (KaoyanEnglish Hub) 未登录分级预览比例与四轨防扒糊化架构图 (#17)</text>
+  <text x="68" y="106" fill="#94A3B8" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16">本地静态分析引擎 + 行业标杆调研 (Baymard / NN/g / Readwise / Quizlet / 知乎盐选) · 30%明文试读 / 45%毛玻璃遮蔽 / 25%刚性锁</text>
+
+  <!-- Card 1: Top-Left -->
+  <rect x="36" y="148" width="748" height="370" rx="14" fill="#FFFFFF" stroke="#EF4444" stroke-width="2.5"/>
+  <rect x="36" y="148" width="748" height="48" rx="14" fill="#FEE2E2"/>
+  <text x="60" y="180" fill="#991B1B" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">① 截图 2 现状四大病灶穿透 (RCA-U1 ~ RCA-U4)</text>
+  <text x="60" y="222" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• RCA-U1 (未登录 100% 裸奔暴露主人隐私与全量词频):</text>
+  <text x="80" y="246" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">顶栏直接暴露 colleague_a 的『Para 2 · 连续 12天』，/api/state 无凭证时默认回退查询主人账号。</text>
+  <text x="60" y="282" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• RCA-U2 (前端 DOM 硬编码明文口令 value=&quot;kaoyan2026&quot;):</text>
+  <text x="80" y="306" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">登录框预填真实账号与密码，任何公网路人点击按钮即可直接夺取主人学籍写权限。</text>
+  <text x="60" y="342" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• RCA-U3 (首屏停留在内部工程架构表 Tab 0 且外泄端口标识):</text>
+  <text x="80" y="366" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">首屏暴露后台服务器端口与内部接口函数名，未第一时间向访客呈现精读核心价值。</text>
+  <text x="60" y="402" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• RCA-U4 (纯前端 CSS blur 伪糊化可被 F12 一键剥离):</text>
+  <text x="80" y="426" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">CourseHero / 知乎攻防教训：若后端下发全量真值仅靠前端 filter:blur，F12 删除样式 1 秒破防。</text>
+  <rect x="60" y="452" width="700" height="44" rx="8" fill="#FEF2F2" stroke="#FCA5A5"/>
+  <text x="80" y="480" fill="#B91C1C" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">核心矛盾: 既要防止全屏冷冰冰登录墙致 &gt;75% 跳出，又要 100% 阻断 F12 扒取与隐私外泄</text>
+
+  <!-- Card 2: Top-Right -->
+  <rect x="816" y="148" width="748" height="370" rx="14" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.5"/>
+  <rect x="816" y="148" width="748" height="48" rx="14" fill="#DBEAFE"/>
+  <text x="840" y="180" fill="#1E40AF" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">② 问题一裁决：未登录展示多少适合？(30% / 45% / 25% 黄金配比)</text>
+  <text x="840" y="222" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 第一阶：30% 明文可交互样章区 (Cleartext Value Proof):</text>
+  <text x="860" y="246" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">首屏直达 Tab 2 精读器；开放 Para 1 原文划词、前 2 张精读卡、前 2 词考纲释义、首条作文模板。</text>
+  <text x="840" y="282" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 第二阶：45% 服务端截断渐变毛玻璃预览区 (Earned Curiosity):</text>
+  <text x="860" y="306" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">Para 2+ 原文、第 3~4 张笔记卡、个人查词频次/紧迫度列、第 2~4 条作文语料及草稿箱毛玻璃遮蔽。</text>
+  <text x="840" y="342" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 第三阶：25% 刚性鉴权锁闭与零内部参数隐藏区 (RBAC Hard Lock):</text>
+  <text x="860" y="366" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">Tab 0 (架构矩阵)、Tab 1 (四轨写库与导出)、Tab 5 (库表结构与部署) 加锁折叠；隐藏内部端口标识。</text>
+  <text x="840" y="402" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 登录后状态 (100% 满血恢复):</text>
+  <text x="860" y="426" fill="#0F766E" font-family="PingFang SC, sans-serif" font-size="14" font-weight="bold">验证学籍口令后秒级解除全部糊化与锁标，恢复 colleague_a 的 Para 2 断点与双擎 10 表数据。</text>
+  <rect x="840" y="452" width="700" height="44" rx="8" fill="#EFF6FF" stroke="#93C5FD"/>
+  <text x="860" y="480" fill="#1D4ED8" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">行业依据: Baymard / NN/g / Readwise / Quizlet 实测 30% 试读线转化率提升 2.4x</text>
+
+  <!-- Card 3: Bottom-Left -->
+  <rect x="36" y="544" width="748" height="380" rx="14" fill="#FFFFFF" stroke="#059669" stroke-width="2.5"/>
+  <rect x="36" y="544" width="748" height="48" rx="14" fill="#D1FAE5"/>
+  <text x="60" y="576" fill="#065F46" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">③ 问题二裁决：糊化还是怎么处理适合？(四轨混合防扒范式)</text>
+  <text x="60" y="620" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 轨道 A [真题长文 Para 2+] — 线性渐变消隐 + 轻毛玻璃 (.guest-fade-blur):</text>
+  <text x="80" y="644" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">mask-image: linear-gradient(180deg) + blur(4.2px) + 底部内联解锁卡，消除大面积重度模糊眼疲劳。</text>
+  <text x="60" y="684" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 轨道 B [词库表/笔记卡/KPI] — 服务端掩码占位 + 单元格毛玻璃 (.guest-cell-blur):</text>
+  <text x="80" y="708" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">保留表头与公共词释义，个人词频列渲染为『██ 次 / 0.████』并叠加 blur(4.8px) 激发好奇心。</text>
+  <text x="60" y="748" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 轨道 C [导入/导出/架构 Tab] — RBAC 权益锁卡折叠 (.guest-rbac-gate):</text>
+  <text x="80" y="772" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">未登录不渲染底层库表结构与批量导入表单，点击展示高颜值学籍权益说明卡引导登录。</text>
+  <text x="60" y="812" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 轨道 D [后端 /api/state 接口] — 服务端 API 级硬截断 (GUEST_TEASER):</text>
+  <text x="80" y="836" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">无访问令牌时后端绝不查询 colleague_a 真实行，从物理根源终结 F12 删除 CSS 去模糊漏洞。</text>
+  <rect x="60" y="860" width="700" height="44" rx="8" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text x="80" y="888" fill="#047857" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">结论: 严禁单靠前端 CSS blur；必须『API硬截断 + 长文渐变消隐 + 表格毛玻璃 + Tab锁』四轨合一</text>
+
+  <!-- Card 4: Bottom-Right -->
+  <rect x="816" y="544" width="748" height="380" rx="14" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2.5"/>
+  <rect x="816" y="544" width="748" height="48" rx="14" fill="#EDE9FE"/>
+  <text x="840" y="576" fill="#5B21B6" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">④ 全栈实装落盘与真机生产验收矩阵 (Live Verification)</text>
+  <text x="840" y="620" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">1. [静态审计引擎] kaoyan_unauth_preview_blur_shunt_engine.py:</text>
+  <text x="860" y="644" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">实装 8 项前后端未登录截断与糊化合规探针，从改造前 1/8 跃升至 8/8 满分通过。</text>
+  <text x="840" y="684" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">2. [后端升级] kaoyan_hub_server.py (/api/state 双轨分流):</text>
+  <text x="860" y="708" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">未登录返回 auth_tier=&quot;GUEST_TEASER&quot; (30%样章+掩码占位)；携带令牌登录后返回 &quot;SCHOLAR_FULL&quot;。</text>
+  <text x="840" y="748" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">3. [前端升级] index.html (v3.1 三模态自适应渐进披露工作台):</text>
+  <text x="860" y="772" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">清除明文预填口令，默认激活 Tab 2，实装长文渐变毛玻璃、词频单元格糊化与 Tab 0/1/5 锁卡。</text>
+  <text x="840" y="812" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">4. [生产同步] 云端主站与容器集群热部署上线:</text>
+  <text x="860" y="836" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">https://kaoyan-elena.duckdns.org 与 https://kaoyan.8.163.29.42.nip.io 实时验证 HTTP 200 生效。</text>
+  <rect x="840" y="860" width="700" height="44" rx="8" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text x="860" y="888" fill="#6D28D9" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">真机探针: 未登录 GET /api/state 返回 GUEST_TEASER · 登录后返回 SCHOLAR_FULL</text>
+</svg>

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2664 1698" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <style>
+    .font-main { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  </style>
+</defs>
+<rect x="0" y="0" width="2664" height="1698" fill="#F1F5F9"/>
+<rect x="0" y="0" width="2664" height="86" fill="#0F172A"/>
+<text x="36" y="38" class="font-main" font-size="24" font-weight="bold" fill="#FFFFFF">📊 PPTX 全页 1:1 矢量分镜预览图 (4 页幻灯片 · 24 原生图元 · 零乱码直览)</text>
+<text x="36" y="66" class="font-main" font-size="15" fill="#94A3B8">源文件: 28_kaoyanAdmin5LayerDrilldown_后台五层下钻与全字段验收.pptx | 右侧窗格可直接滚轮无损缩放查看每页细节；Keynote/Office 编辑请使用终端 open 命令打开原件</text>
+<text x="40" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 1 / 4 — Slide 1 · 管理员后台五层按需下钻架构 (L1 ➔ L5 Drill-Down)</text>
+<clipPath id="slide_clip_1"><rect x="36" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_1)">
+  <rect x="36" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="74.4" y="178.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="676.0" y="213.3" text-anchor="middle" class="font-main" font-size="24.8" font-weight="bold" fill="#F8FAFC">Slide 1 · 管理员后台五层按需下钻架构 (L1 ➔ L5 Drill-Down)</text>
+  <text x="80.4" y="233.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">实现从宏观业务域到物理表、账号跨表级联、全字段数据行、字段元数据与 JSON/外键的五层穿透</text>
+  <rect x="74.4" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="334.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">L1 · 业务与高可用五大域聚合层</text>
+  <text x="80.4" y="355.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">实时汇总 RBAC权限(5表)、真题大纲(2表)、学习资产(4表)、双擎高可用(3表)、</text>
+  <text x="80.4" y="372.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">三副本漫游(4表)。</text>
+  <rect x="688.8" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="334.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">L2 · 18张物理表选择 &amp; 账号跨 7 表级联</text>
+  <text x="694.8" y="355.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">支持按表直接下钻，或按指定账号(admin/colleague_a等)一键穿透 7 张关联表</text>
+  <text x="694.8" y="372.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">数据。</text>
+  <rect x="74.4" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="603.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">L3 · 选中表 100% 全字段真实数据宽表层</text>
+  <text x="80.4" y="624.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">表头与表体 100% 渲染该表所有物理列，敏感凭据列展示不可逆密码学掩码指纹</text>
+  <text x="80.4" y="641.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">。</text>
+  <rect x="688.8" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="603.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">L4 &amp; L5 · 字段元数据显微镜 &amp; JSON/外键跳转</text>
+  <text x="694.8" y="624.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">点击任意行展示 100% 字段的 cid/类型/约束/真实值，支持 JSON 树展开与外键</text>
+  <text x="694.8" y="641.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">跨表跳转。</text>
+</g>
+<rect x="36" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 2 / 4 — Slide 2 · 全库 18 张表 × 146 个库表字段 100% 页面全量展示</text>
+<clipPath id="slide_clip_2"><rect x="1348" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_2)">
+  <rect x="1348" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1386.4" y="178.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="1988.0" y="213.3" text-anchor="middle" class="font-main" font-size="24.8" font-weight="bold" fill="#F8FAFC">Slide 2 · 全库 18 张表 × 146 个库表字段 100% 页面全量展示</text>
+  <text x="1392.4" y="233.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">V005 核心 14 表 118 列 + 生产词表扩展 4 列 + 三副本集群 4 表 24 列 = 146 列 100% 零遗漏</text>
+  <rect x="1386.4" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="334.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">DOM_01 RBAC权限域 (5表36列)</text>
+  <text x="1392.4" y="355.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">sys_users(13), sys_roles(6), sys_permissions(5), sys_role_permissions</text>
+  <text x="1392.4" y="372.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">(4), sys_rbac_audit_log(8)</text>
+  <rect x="2000.8" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="334.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">DOM_02 真题大纲域 (2表20列) &amp; DOM_03 学习域 (4表46列)</text>
+  <text x="2006.8" y="355.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">syllabus_5500_lexicon(10), exam_passages(10), user_progress_anchors(9</text>
+  <text x="2006.8" y="372.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">), annotation_spans(15)等</text>
+  <rect x="1386.4" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="603.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">DOM_04 双擎高可用域 (3表20列) &amp; DOM_05 漫游域 (4表24列)</text>
+  <text x="1392.4" y="624.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">schema_migrations(5), ha_sync_wal_journal(8), api_idempotency_keys(7)</text>
+  <text x="1392.4" y="641.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">, ha_cluster_roaming_state(11)等</text>
+  <rect x="2000.8" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="603.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">页面四重 100% 字段展示锚点</text>
+  <text x="2006.8" y="624.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">覆盖账号台账(2C)、五层下钻台(2E)、146字段全景字典表(2F)与库表架构页(Tab</text>
+  <text x="2006.8" y="641.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155"> 5)。</text>
+</g>
+<rect x="1348" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 3 / 4 — Slide 3 · 100% 字段展示与密码零记忆脱敏安全机制</text>
+<clipPath id="slide_clip_3"><rect x="36" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_3)">
+  <rect x="36" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="74.4" y="970.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="676.0" y="1005.3" text-anchor="middle" class="font-main" font-size="24.8" font-weight="bold" fill="#F8FAFC">Slide 3 · 100% 字段展示与密码零记忆脱敏安全机制</text>
+  <text x="80.4" y="1025.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">在确保 100% 字段可见的同时，严格守住密码默认掩码、页面零记忆与 RBAC 401/403 边界</text>
+  <rect x="74.4" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="1126.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">凭据列不可逆掩码指纹 (mask_sensitive_row_fields)</text>
+  <text x="80.4" y="1147.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">passcode_hash / passcode_salt / token_secret 展示算法标识与尾4位掩码，</text>
+  <text x="80.4" y="1164.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">零明文泄露。</text>
+  <rect x="688.8" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="1126.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">RBAC 刚性权限守卫 (require_admin)</text>
+  <text x="694.8" y="1147.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">访客请求 /api/admin/db/drilldown 拦截 401；普通用户请求拦截 403 并写入</text>
+  <text x="694.8" y="1164.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">安全审计日志。</text>
+  <rect x="74.4" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="1395.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">只读探针零写库副作用</text>
+  <text x="80.4" y="1416.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">下钻查询 100% 只读，不递增 ha_cluster_meta.version，保障 HP/W1/S1 三副</text>
+  <text x="80.4" y="1433.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">本一致性。</text>
+  <rect x="688.8" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="1395.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">全站 6 处密码输入框默认掩码零留存</text>
+  <text x="694.8" y="1416.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">type='password' + autocomplete='new-password' + 操作后立即擦除 DOM 值</text>
+  <text x="694.8" y="1433.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">。</text>
+</g>
+<rect x="36" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 4 / 4 — Slide 4 · 三节点生产集群部署与 52/52 零 Bug 测试验收报告 (#28)</text>
+<clipPath id="slide_clip_4"><rect x="1348" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_4)">
+  <rect x="1348" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1386.4" y="970.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="1988.0" y="1005.3" text-anchor="middle" class="font-main" font-size="24.8" font-weight="bold" fill="#F8FAFC">Slide 4 · 三节点生产集群部署与 52/52 零 Bug 测试验收报告 (#28)</text>
+  <text x="1392.4" y="1025.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">36 项静态与字段覆盖检查 + 23 项本地单测/集群测试 + 16 项线上 E2E 探针全部通过 (0 Bug)</text>
+  <rect x="1386.4" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="1126.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">0-Token 静态与 100% 字段覆盖审计 (36/36 PASS)</text>
+  <text x="1392.4" y="1147.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">missing_tables_in_html=0, missing_cols_in_html=0，全部 36 项静态检查</text>
+  <text x="1392.4" y="1164.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">满分通过。</text>
+  <rect x="2000.8" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="1126.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">本地单测与集群故障演练 (23/23 PASS)</text>
+  <text x="2006.8" y="1147.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">test_portable_schema.py 与 test_live_cluster.py 全量 23 项测试 100% </text>
+  <text x="2006.8" y="1164.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">通过。</text>
+  <rect x="1386.4" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="1395.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">线上生产环境五层下钻 E2E 探针 (16/16 PASS)</text>
+  <text x="1392.4" y="1416.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">验证 3/3 副本在线、401/403 拦截、L1~L5 下钻、7 表用户级联与 146 列 100</text>
+  <text x="1392.4" y="1433.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">% 返回。</text>
+  <rect x="2000.8" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="1395.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">生产站点双域名实时在线</text>
+  <text x="2006.8" y="1416.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">https://kaoyan-elena.duckdns.org 与 https://kaoyan.liuzengyu.top 验证</text>
+  <text x="2006.8" y="1433.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155"> 0 Bug。</text>
+</g>
+<rect x="1348" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+</svg>

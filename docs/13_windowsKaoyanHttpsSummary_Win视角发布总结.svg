@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="softCardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <style>
+      .t-page-cn { font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif; font-size:28px; font-weight:800; fill:#0f172a; letter-spacing:-0.5px; }
+      .t-page-en { font-family:"SF Pro Text","Helvetica Neue",Arial,sans-serif; font-size:13.5px; font-weight:500; fill:#94a3b8; }
+      .c-title    { font-family:"PingFang SC",sans-serif; font-size:17px; font-weight:800; fill:#0f172a; }
+      .c-subtitle { font-family:"SF Pro Text",Arial,sans-serif; font-size:11.5px; font-weight:500; fill:#475569; }
+      .badge-t    { font-family:"PingFang SC",sans-serif; font-size:11.5px; font-weight:700; }
+      .m-lbl      { font-family:"PingFang SC",sans-serif; font-size:11.5px; font-weight:500; fill:#475569; }
+      .m-val      { font-family:"PingFang SC","SF Pro Display",sans-serif; font-size:18px; font-weight:800; }
+      .i-pfx      { font-family:"PingFang SC",sans-serif; font-size:13px; font-weight:700; fill:#0f172a; }
+      .i-desc     { font-family:"PingFang SC",sans-serif; font-size:12.5px; font-weight:400; fill:#475569; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <rect x="24" y="24" width="1552" height="912" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <!-- 页面主标题栏 -->
+  <g transform="translate(60, 68)">
+    <text x="0" y="0" class="t-page-cn">Windows 视角发布考研英语 HTTPS 站点全链路总结大典</text>
+    <text x="0" y="32" class="t-page-en">Windows-to-HTTPS Kaoyan English Site Publishing Master Summary: SSH Keyring, VS Code Git Push, Non-Root Runtime &amp; Dual-Path TLS</text>
+    <line x1="0" y1="52" x2="1480" y2="52" stroke="#e2e8f0" stroke-width="1.5"/>
+  </g>
+  <!-- Card: 一、Windows 本地研发与双门禁免密基座 -->
+  <g transform="translate(60, 130)">
+    <rect width="726" height="371" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 714 0 Q 726 0 726 12 L 726 62 L 0 62 Z" fill="#f4f7fe"/>
+    <line x1="0" y1="62" x2="726" y2="62" stroke="#2563eb" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">一、Windows 本地研发与双门禁免密基座</text>
+    <text x="24" y="47" class="c-subtitle">Win11 PowerShell / Git Bash / VS Code + 2 Keys vs. 2 Locks</text>
+    <rect x="548" y="17" width="158" height="26" rx="13" fill="#e4ecfc"/>
+    <text x="627" y="34" text-anchor="middle" class="badge-t" fill="#1945a4">阶段 1 · 免密基座</text>
+    <rect x="20" y="74" width="686" height="62" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="36" y="92" class="m-lbl">本地工作区与密钥</text>
+    <text x="36" y="118" class="m-val" fill="#2563eb">D:\kaoyanEnglish (VS Code)</text>
+    <line x1="363" y1="82" x2="363" y2="128" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="379" y="92" class="m-lbl">双向免密覆盖率</text>
+    <text x="379" y="118" class="m-val" fill="#2563eb">100% 双向免密 (2钥×2锁)</text>
+    <circle cx="32" cy="152" r="4" fill="#2563eb"/>
+    <text x="46" y="156"><tspan class="i-pfx">钥匙#1 (Windows私钥): </tspan><tspan class="i-desc">C:\Users\Lenovo\.ssh\id_ed25519_codeup (OFeU8L1B...)，经 icacls 收敛只读权限</tspan></text>
+    <circle cx="32" cy="198" r="4" fill="#2563eb"/>
+    <text x="46" y="202"><tspan class="i-pfx">Windows ~/.ssh/config: </tspan><tspan class="i-desc">统一绑定 Host elena (8.163.29.42) 与 Host github.com 自动挂载钥匙#1</tspan></text>
+    <circle cx="32" cy="244" r="4" fill="#2563eb"/>
+    <text x="46" y="248"><tspan class="i-pfx">钥匙#2 (阿里云私钥): </tspan><tspan class="i-desc">elena:/home/elena/.ssh/id_ed25519 (1/zjU68N...) 已加入 GitHub SSH Keys</tspan></text>
+    <circle cx="32" cy="290" r="4" fill="#2563eb"/>
+    <text x="46" y="294"><tspan class="i-pfx">安全收益: </tspan><tspan class="i-desc">彻底告别密码输入与 Permission denied，打通本地改码到云端拉取的认证闭环</tspan></text>
+  </g>
+  <!-- Card: 二、VS Code 改码与双通道秒级自动发布 -->
+  <g transform="translate(814, 130)">
+    <rect width="726" height="371" rx="12" fill="#ffffff" stroke="#059669" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 714 0 Q 726 0 726 12 L 726 62 L 0 62 Z" fill="#f2f9f7"/>
+    <line x1="0" y1="62" x2="726" y2="62" stroke="#059669" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">二、VS Code 改码与双通道秒级自动发布</text>
+    <text x="24" y="47" class="c-subtitle">GitHub Pull Channel (deploy-kaoyan) &amp; Direct Git Hook Channel</text>
+    <rect x="548" y="17" width="158" height="26" rx="13" fill="#e1f2ed"/>
+    <text x="627" y="34" text-anchor="middle" class="badge-t" fill="#036949">阶段 2 · 代码发布</text>
+    <rect x="20" y="74" width="686" height="62" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="36" y="92" class="m-lbl">标准发布命令</text>
+    <text x="36" y="118" class="m-val" fill="#059669">git push + deploy-kaoyan</text>
+    <line x1="363" y1="82" x2="363" y2="128" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="379" y="92" class="m-lbl">端到端生效耗时</text>
+    <text x="379" y="118" class="m-val" fill="#059669">&lt;= 3.0 秒 (含自动重启与健康探针)</text>
+    <circle cx="32" cy="152" r="4" fill="#059669"/>
+    <text x="46" y="156"><tspan class="i-pfx">通道A (GitHub协同流): </tspan><tspan class="i-desc">VS Code 推送 origin main 后，执行 ssh elena "deploy-kaoyan" 一键拉取上线</tspan></text>
+    <circle cx="32" cy="198" r="4" fill="#059669"/>
+    <text x="46" y="202"><tspan class="i-pfx">通道B (Git直推钩子流): </tspan><tspan class="i-desc">git push elena main 触发服务端 .git/hooks/post-receive 自动同步并重启</tspan></text>
+    <circle cx="32" cy="244" r="4" fill="#059669"/>
+    <text x="46" y="248"><tspan class="i-pfx">前后端双目录自动对齐: </tspan><tspan class="i-desc">脚本自动双向同步 frontend/index.html &lt;-&gt; index.html 与 backend/ 服务脚本</tspan></text>
+    <circle cx="32" cy="290" r="4" fill="#059669"/>
+    <text x="46" y="294"><tspan class="i-pfx">数据安全防误删保护: </tspan><tspan class="i-desc">.git/info/exclude 锁定 SQLite 热库与备份目录，代码重置绝不丢失用户学习数据</tspan></text>
+  </g>
+  <!-- Card: 三、阿里云 elena 非 Root 生产运行时底座 -->
+  <g transform="translate(60, 529)">
+    <rect width="726" height="371" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 714 0 Q 726 0 726 12 L 726 62 L 0 62 Z" fill="#f8f5fe"/>
+    <line x1="0" y1="62" x2="726" y2="62" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">三、阿里云 elena 非 Root 生产运行时底座</text>
+    <text x="24" y="47" class="c-subtitle">User=elena (uid=1000) Systemd Service + 8-Table SQLite WAL</text>
+    <rect x="548" y="17" width="158" height="26" rx="13" fill="#efe7fc"/>
+    <text x="627" y="34" text-anchor="middle" class="badge-t" fill="#5628a5">阶段 3 · 生产宿主</text>
+    <rect x="20" y="74" width="686" height="62" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="36" y="92" class="m-lbl">后端监听与权限</text>
+    <text x="36" y="118" class="m-val" fill="#7c3aed">127.0.0.1:60231 (User=elena)</text>
+    <line x1="363" y1="82" x2="363" y2="128" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="379" y="92" class="m-lbl">SQLite WAL 核心表</text>
+    <text x="379" y="118" class="m-val" fill="#7c3aed">8 张表 + 40GB 冷热防爆分层</text>
+    <circle cx="32" cy="152" r="4" fill="#7c3aed"/>
+    <text x="46" y="156"><tspan class="i-pfx">非Root最小权限原则: </tspan><tspan class="i-desc">kaoyan-english-hub.service 由普通账号 elena 运行，禁止 root 密码 SSH 登录</tspan></text>
+    <circle cx="32" cy="198" r="4" fill="#7c3aed"/>
+    <text x="46" y="202"><tspan class="i-pfx">8表持久化存储引擎: </tspan><tspan class="i-desc">涵盖真题篇章、5500考纲词、精读批注、生词本、作文语料、阅读进度锚点等 8 表</tspan></text>
+    <circle cx="32" cy="244" r="4" fill="#7c3aed"/>
+    <text x="46" y="248"><tspan class="i-pfx">40GB磁盘防爆治理: </tspan><tspan class="i-desc">热库 (&lt;=4GB) + 温快照 (&lt;=2GB, 7天) + 每日 03:30 自动压缩归档，磁盘仅占 8%</tspan></text>
+    <circle cx="32" cy="290" r="4" fill="#7c3aed"/>
+    <text x="46" y="294"><tspan class="i-pfx">本机双协议网关接入: </tspan><tspan class="i-desc">elena Caddy 监听 :443 (nip.io 极速直连) 与 :80/:3389 (供香港边缘免备案回源)</tspan></text>
+  </g>
+  <!-- Card: 四、HTTPS 证书架构与四大公网访问入口 -->
+  <g transform="translate(814, 529)">
+    <rect width="726" height="371" rx="12" fill="#ffffff" stroke="#ea580c" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 714 0 Q 726 0 726 12 L 726 62 L 0 62 Z" fill="#fdf6f2"/>
+    <line x1="0" y1="62" x2="726" y2="62" stroke="#ea580c" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">四、HTTPS 证书架构与四大公网访问入口</text>
+    <text x="24" y="47" class="c-subtitle">Direct TLS-ALPN-01 (nip.io) + HK Edge SNI/ICP Bypass Proxy</text>
+    <rect x="528" y="17" width="178" height="26" rx="13" fill="#fceae1"/>
+    <text x="617" y="34" text-anchor="middle" class="badge-t" fill="#a33d08">阶段 4 · HTTPS 上线</text>
+    <rect x="20" y="74" width="686" height="62" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="36" y="92" class="m-lbl">已签发受信任证书入口</text>
+    <text x="36" y="118" class="m-val" fill="#ea580c">3 条立即秒开 + 1 条待实名解封</text>
+    <line x1="363" y1="82" x2="363" y2="128" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="379" y="92" class="m-lbl">最快 HTTPS 首包响应</text>
+    <text x="379" y="118" class="m-val" fill="#ea580c">0.145s (kaoyan.8.163.29.42.nip.io)</text>
+    <circle cx="32" cy="152" r="4" fill="#ea580c"/>
+    <text x="46" y="156"><tspan class="i-pfx">直连极速入口 (首选): </tspan><tspan class="i-desc">https://kaoyan.8.163.29.42.nip.io (Let's Encrypt TLS-ALPN-01 证书，0.145s)</tspan></text>
+    <circle cx="32" cy="198" r="4" fill="#ea580c"/>
+    <text x="46" y="202"><tspan class="i-pfx">香港边缘同构入口: </tspan><tspan class="i-desc">https://kaoyan.43.160.227.166.nip.io 与 https://kaoyan.liuzengyu.top (HTTP 200)</tspan></text>
+    <circle cx="32" cy="244" r="4" fill="#ea580c"/>
+    <text x="46" y="248"><tspan class="i-pfx">为什么自定义域名走香港: </tspan><tspan class="i-desc">绕开境内机房对未 ICP 备案域名的 80 端口 403 与 443 端口 SNI RST 阻断</tspan></text>
+    <circle cx="32" cy="290" r="4" fill="#ea580c"/>
+    <text x="46" y="294"><tspan class="i-pfx">kaoyan.elenalyl.top 收口: </tspan><tspan class="i-desc">阿里云域名控制台【快速过户】勾选已实名模板 25324778 解除 clientHold 即刻自动签发</tspan></text>
+  </g>
+</svg>

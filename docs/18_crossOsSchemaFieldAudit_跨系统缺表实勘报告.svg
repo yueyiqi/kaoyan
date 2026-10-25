@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1120" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="softCardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <style>
+      .t-page-cn { font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif; font-size:28px; font-weight:800; fill:#0f172a; letter-spacing:-0.5px; }
+      .t-page-en { font-family:"SF Pro Text","Helvetica Neue",Arial,sans-serif; font-size:13.5px; font-weight:500; fill:#94a3b8; }
+      .c-title    { font-family:"PingFang SC",sans-serif; font-size:17px; font-weight:800; fill:#0f172a; }
+      .c-subtitle { font-family:"SF Pro Text",Arial,sans-serif; font-size:11.5px; font-weight:500; fill:#475569; }
+      .badge-t    { font-family:"PingFang SC",sans-serif; font-size:11.5px; font-weight:700; }
+      .m-lbl      { font-family:"PingFang SC",sans-serif; font-size:11.5px; font-weight:500; fill:#475569; }
+      .m-val      { font-family:"PingFang SC","SF Pro Display",sans-serif; font-size:18px; font-weight:800; }
+      .i-pfx      { font-family:"PingFang SC",sans-serif; font-size:13px; font-weight:700; fill:#0f172a; }
+      .i-desc     { font-family:"PingFang SC",sans-serif; font-size:12.5px; font-weight:400; fill:#475569; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <rect x="24" y="24" width="1752" height="1072" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <!-- 页面主标题栏 -->
+  <g transform="translate(60, 68)">
+    <text x="0" y="0" class="t-page-cn">跨系统缺表实勘 (Cross-OS Field Audit)</text>
+    <text x="0" y="32" class="t-page-en">2026-10-24 · W1 / HP / S1 native runtimes; live failover remains unverified</text>
+    <line x1="0" y1="52" x2="1680" y2="52" stroke="#e2e8f0" stroke-width="1.5"/>
+  </g>
+  <!-- Card: 缺表根因 -->
+  <g transform="translate(60, 130)">
+    <rect width="826" height="451" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 814 0 Q 826 0 826 12 L 826 62 L 0 62 Z" fill="#f4f7fe"/>
+    <line x1="0" y1="62" x2="826" y2="62" stroke="#2563eb" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">缺表根因</text>
+    <text x="24" y="47" class="c-subtitle">Missing schema root cause</text>
+    <rect x="677" y="17" width="129" height="26" rx="13" fill="#e4ecfc"/>
+    <text x="742" y="34" text-anchor="middle" class="badge-t" fill="#1945a4">已修复 FIXED</text>
+    <circle cx="32" cy="82" r="4" fill="#2563eb"/>
+    <text x="46" y="86"><tspan class="i-pfx">迁移路径</tspan><tspan class="i-desc">Migration mount did not match the code</tspan></text>
+    <circle cx="32" cy="128" r="4" fill="#2563eb"/>
+    <text x="46" y="132"><tspan class="i-pfx">真实故障</tspan><tspan class="i-desc">HP restart loop: schema_migrations missing</tspan></text>
+    <circle cx="32" cy="174" r="4" fill="#2563eb"/>
+    <text x="46" y="178"><tspan class="i-pfx">修复结果</tspan><tspan class="i-desc">14 tables ready; existing rows preserved</tspan></text>
+  </g>
+  <!-- Card: 原生测试 -->
+  <g transform="translate(914, 130)">
+    <rect width="826" height="451" rx="12" fill="#ffffff" stroke="#059669" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 814 0 Q 826 0 826 12 L 826 62 L 0 62 Z" fill="#f2f9f7"/>
+    <line x1="0" y1="62" x2="826" y2="62" stroke="#059669" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">原生测试</text>
+    <text x="24" y="47" class="c-subtitle">Native runtime acceptance</text>
+    <rect x="671" y="17" width="135" height="26" rx="13" fill="#e1f2ed"/>
+    <text x="738" y="34" text-anchor="middle" class="badge-t" fill="#036949">39 组 GROUPS</text>
+    <circle cx="32" cy="82" r="4" fill="#059669"/>
+    <text x="46" y="86"><tspan class="i-pfx">Windows</tspan><tspan class="i-desc">W1 native CPython: 13 tests</tspan></text>
+    <circle cx="32" cy="128" r="4" fill="#059669"/>
+    <text x="46" y="132"><tspan class="i-pfx">Linux</tspan><tspan class="i-desc">HP native CPython: 13 tests</tspan></text>
+    <circle cx="32" cy="174" r="4" fill="#059669"/>
+    <text x="46" y="178"><tspan class="i-pfx">macOS</tspan><tspan class="i-desc">S1 arm64: 13 tests; authorized replacement</tspan></text>
+  </g>
+  <!-- Card: 数据往返 -->
+  <g transform="translate(60, 609)">
+    <rect width="826" height="451" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 814 0 Q 826 0 826 12 L 826 62 L 0 62 Z" fill="#f8f5fe"/>
+    <line x1="0" y1="62" x2="826" y2="62" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">数据往返</text>
+    <text x="24" y="47" class="c-subtitle">Full snapshot round trip</text>
+    <rect x="689" y="17" width="117" height="26" rx="13" fill="#efe7fc"/>
+    <text x="748" y="34" text-anchor="middle" class="badge-t" fill="#5628a5">一致 MATCH</text>
+    <circle cx="32" cy="82" r="4" fill="#7c3aed"/>
+    <text x="46" y="86"><tspan class="i-pfx">真实路径</tspan><tspan class="i-desc">W1 → HP → S1 → W1</tspan></text>
+    <circle cx="32" cy="128" r="4" fill="#7c3aed"/>
+    <text x="46" y="132"><tspan class="i-pfx">完整内容</tspan><tspan class="i-desc">Synthetic DB: 14 app + 1 extension table</tspan></text>
+    <circle cx="32" cy="174" r="4" fill="#7c3aed"/>
+    <text x="46" y="178"><tspan class="i-pfx">完整校验</tspan><tspan class="i-desc">Rows and full SHA-256 match on every hop</tspan></text>
+  </g>
+  <!-- Card: 验收边界 -->
+  <g transform="translate(914, 609)">
+    <rect width="826" height="451" rx="12" fill="#ffffff" stroke="#d97706" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 814 0 Q 826 0 826 12 L 826 62 L 0 62 Z" fill="#fdf8f2"/>
+    <line x1="0" y1="62" x2="826" y2="62" stroke="#d97706" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">验收边界</text>
+    <text x="24" y="47" class="c-subtitle">Remaining acceptance</text>
+    <rect x="674" y="17" width="132" height="26" rx="13" fill="#faeee1"/>
+    <text x="740" y="34" text-anchor="middle" class="badge-t" fill="#975304">部分 PARTIAL</text>
+    <circle cx="32" cy="82" r="4" fill="#d97706"/>
+    <text x="46" y="86"><tspan class="i-pfx">三机目标</tspan><tspan class="i-desc">W1 / HP / S1 snapshot tests accepted</tspan></text>
+    <circle cx="32" cy="128" r="4" fill="#d97706"/>
+    <text x="46" y="132"><tspan class="i-pfx">在线切换</tspan><tspan class="i-desc">No evidence for zero downtime or RPO=0</tspan></text>
+    <circle cx="32" cy="174" r="4" fill="#d97706"/>
+    <text x="46" y="178"><tspan class="i-pfx">PG18</tspan><tspan class="i-desc">PostgreSQL 18 replication is not verified</tspan></text>
+  </g>
+</svg>

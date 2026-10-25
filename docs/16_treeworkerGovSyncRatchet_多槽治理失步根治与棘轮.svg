@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="100%" preserveAspectRatio="xMidYMid meet">
+  <rect width="1600" height="960" fill="#F8FAFC"/>
+  <rect x="36" y="28" width="1528" height="96" rx="16" fill="#0F172A"/>
+  <text x="68" y="72" fill="#F8FAFC" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="28" font-weight="bold">Treeworker 30槽工作树 P0 治理平面实时合流与防失步棘轮架构图 (ADR-0711 / Skill 253)</text>
+  <text x="68" y="106" fill="#94A3B8" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="17">穿透 G-RC1~G-RC5 五层失步根因 · 实装双平面正交热投影 (Two-Plane Overlay) · 五位一体闭环 (Shunt + ADR-0711 + Rule LXX-H + gate_0711 + Skill 253)</text>
+
+  <!-- Box 1: Top-Left -->
+  <rect x="36" y="148" width="748" height="370" rx="14" fill="#FFFFFF" stroke="#EF4444" stroke-width="2.5"/>
+  <rect x="36" y="148" width="748" height="48" rx="14" fill="#FEE2E2"/>
+  <text x="60" y="180" fill="#991B1B" font-family="PingFang SC, sans-serif" font-size="21" font-weight="bold">① 五层结构性失步根因穿透 (G-RC1 ~ G-RC5 Root-Cause Chain)</text>
+  <text x="60" y="222" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• G-RC1 (hp_commit_wrap.sh L209-214 R03 默认早退):</text>
+  <text x="80" y="246" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">未传 HP_PUSH=1 时直接 exit 0，导致 cfzy0 (ADR-0701) / cfzy1 (ADR-0708) 滞留单槽孤岛。</text>
+  <text x="60" y="282" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• G-RC2 (hp_commit_wrap.sh L259-261 幽灵脚本 tw_sync.py):</text>
+  <text x="80" y="306" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">调用不存在的 tw_sync.py（真实名为 treeworker_spine_sync_and_hygiene_engine.py），恒为空转。</text>
+  <text x="60" y="342" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• G-RC3 (tw_slice2 L224-230 硬编码 srbg0..9 十槽盲视):</text>
+  <text x="80" y="366" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">仅遍历 srbg0..9 符号链接，漏掉 srbg10..19 与 mjsp20..29 共 20 个真实物理槽位 (落后 19~26 提交)。</text>
+  <text x="60" y="402" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• G-RC4 &amp; G-RC5 (治理/业务强耦合 &amp; init_adr.py 单槽盲扫撞号):</text>
+  <text x="80" y="426" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">缺乏非破坏性 P0 治理热投影；单槽扫盘引发 ADR-0701/0703/0705 跨槽撞号；会话启动无失步自愈。</text>
+  <rect x="60" y="452" width="700" height="44" rx="8" fill="#FEF2F2" stroke="#FCA5A5"/>
+  <text x="80" y="480" fill="#B91C1C" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">证据锚定: cfzy0 (13614a8b06) vs master (caaac6d352) vs srbg10 (3507a547e4, 落后 19~26 提交)</text>
+
+  <!-- Box 2: Top-Right -->
+  <rect x="816" y="148" width="748" height="370" rx="14" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.5"/>
+  <rect x="816" y="148" width="748" height="48" rx="14" fill="#DBEAFE"/>
+  <text x="840" y="180" fill="#1E40AF" font-family="PingFang SC, sans-serif" font-size="21" font-weight="bold">② 双平面正交热投影定理 (Two-Plane Orthogonal Overlay Sync)</text>
+  <text x="840" y="222" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• 平面 P0 — 全局共享治理平面 (Non-Destructive Union-Latest Overlay):</text>
+  <text x="860" y="246" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">AGENTS.md + .adr/ + .agents/skills/ + .skills/ + scripts/3_governance_..7_renderers_ + .governance/</text>
+  <text x="860" y="272" fill="#0F766E" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">→ 只增不删、新版本覆盖旧版本、skill_access_log.jsonl 跨 30 槽去重并集，毫秒级同步 30 物理槽位！</text>
+  <text x="840" y="310" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• 平面 P1 — 槽位隔离业务与黑箱平面 (Strict Slot Isolation):</text>
+  <text x="860" y="334" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">.bz/ 业务工程源码与 _ephemeral_blackbox/ 会话黑箱严格隔离保护，绝不因治理同步被回滚或擦除。</text>
+  <text x="840" y="372" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• 30 个真实物理槽位动态发现 (discover_physical_worktrees):</text>
+  <text x="860" y="396" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">物理槽位: cfzy0..9 (10) + srbg10..19 (10) + mjsp20..29 (10) = 30 槽；自动识别 srbg0..9/idea0..9 软链。</text>
+  <rect x="840" y="452" width="700" height="44" rx="8" fill="#EFF6FF" stroke="#93C5FD"/>
+  <text x="860" y="480" fill="#1D4ED8" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">外专引擎: scripts/6_workspace_工作区运行时/treeworker_governance_sync_shunt_engine.py</text>
+
+  <!-- Box 3: Bottom-Left -->
+  <rect x="36" y="544" width="748" height="380" rx="14" fill="#FFFFFF" stroke="#059669" stroke-width="2.5"/>
+  <rect x="36" y="544" width="748" height="48" rx="14" fill="#D1FAE5"/>
+  <text x="60" y="576" fill="#065F46" font-family="PingFang SC, sans-serif" font-size="21" font-weight="bold">③ 三时机自动收敛闭环 (Three-Trigger Convergence Loop)</text>
+  <text x="60" y="620" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• Trigger 1 [会话启动 SessionStart — rrsi_ioc.py]:</text>
+  <text x="80" y="644" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">新会话启动自动触发 --mode check-gate --auto-heal，首回合即对齐全集群最新 P0 治理资产。</text>
+  <text x="60" y="684" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• Trigger 2 [提交前门禁 PreCommit — gate_0711 in 4_governance_gates.sh]:</text>
+  <text x="80" y="708" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">流水线 B [C59] 执行 gate_0711，校验当前工作树 P0 治理完整性并预热广播暂存区治理变更。</text>
+  <text x="60" y="748" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• Trigger 3 [提交后广播 PostCommit — hp_commit_wrap.sh + tw_sync.py]:</text>
+  <text x="80" y="772" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">无论是否设置 HP_PUSH=1，凡 HEAD 含 P0 治理变更即调用 tw_sync.py 实时投影至全部 30 物理槽位。</text>
+  <text x="60" y="812" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">• Trigger 4 [全局发号防撞 — init_adr.py + scan-sequences]:</text>
+  <text x="80" y="836" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">联立扫描 pool.git --all 与 30 物理槽位 .adr/，全局最大序号 ADR-0711 / Skill 253 零碰撞。</text>
+  <rect x="60" y="860" width="700" height="44" rx="8" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text x="80" y="888" fill="#047857" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">实测结果: 30 / 30 物理槽位 P0 治理平面 100% 对齐 (gov_plane_aligned_slots = 30)</text>
+
+  <!-- Box 4: Bottom-Right -->
+  <rect x="816" y="544" width="748" height="380" rx="14" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2.5"/>
+  <rect x="816" y="544" width="748" height="48" rx="14" fill="#EDE9FE"/>
+  <text x="840" y="576" fill="#5B21B6" font-family="PingFang SC, sans-serif" font-size="21" font-weight="bold">④ 五位一体单向棘轮实装与验收矩阵 (Five-Unity Verification)</text>
+  <text x="840" y="620" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">1. [0-Token 外专] treeworker_governance_sync_shunt_engine.py + tw_sync.py:</text>
+  <text x="860" y="644" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">支持 audit / sync-governance-overlay / scan-sequences / check-gate 四大确定性模式。</text>
+  <text x="840" y="684" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">2. [ADR 固化] ADR-0711 (adr_0711_treeworkerGovSyncRatchet_...):</text>
+  <text x="860" y="708" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">落盘 .adr/701-800/711-720/，配备 .md + .py 并同步至全部 30 个物理槽位。</text>
+  <text x="840" y="748" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">3. [天规 AGENTS.md] Rule LXX-H + 修复 P08 幻影引用:</text>
+  <text x="860" y="772" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">新增 Rule LXX-H (248行 / 10,554 tokens &lt; WARN 300行/11,000tok)；P08 幻影引用归零 (PASS)。</text>
+  <text x="840" y="812" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">4. [Gate 入册+接线 &amp; Skill 253] gate_0711 + Skill 253 (Tier1):</text>
+  <text x="860" y="836" fill="#475569" font-family="PingFang SC, sans-serif" font-size="15">gate_0711 接入 4_governance_gates.sh [C59] 并入册 gate_registry.json (覆盖率 100%, 接线率↑79.17%)。</text>
+  <rect x="840" y="860" width="700" height="44" rx="8" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text x="860" y="888" fill="#6D28D9" font-family="PingFang SC, sans-serif" font-size="16" font-weight="bold">门禁全绿: gate_0711 PASS · gate_0631 PASS (8 PASS/0 劣化) · gate_0544 PASS (74 &lt; 90)</text>
+</svg>

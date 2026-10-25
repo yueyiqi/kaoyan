@@ -1,0 +1,28 @@
+{
+  "host": "elena (8.163.29.42)",
+  "domain": "kaoyan.elenalyl.top",
+  "service_user": "elena (uid=1000, non-root)",
+  "elena_disk_zones": {
+    "zone1_system_and_logs": {
+      "path": "/var/log/journal",
+      "cap": "200MB (SystemMaxUse=200M, SystemKeepFree=8G)"
+    },
+    "zone2_tier_hot": {
+      "path": "/home/elena/kaoyan_storage/hot_db/kaoyan_hub.sqlite3",
+      "cap": "4.0GB"
+    },
+    "zone3_tier_warm": {
+      "path": "/home/elena/kaoyan_storage/warm_staging/",
+      "cap": "2.0GB (7-day rolling)"
+    },
+    "zone4_tier_cold_outbox": {
+      "path": "/home/elena/kaoyan_storage/cold_outbox/",
+      "cap": "500MB"
+    }
+  },
+  "t2_cold_archive": {
+    "ssh_alias": "t2 (47.121.112.172:39810, user=jasper)",
+    "btrfs_volume_path": "/vol1/backup/elena_kaoyan_cold_archive/",
+    "free_space": "16TB on /vol1 (avoids 4.6GB / root partition)"
+  }
+}

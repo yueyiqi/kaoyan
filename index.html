@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/kaoyan_network.js" defer></script>
+<script src="/kaoyan_admin_view.js"></script>
+<script src="/kaoyan_admin.js"></script>
+<script src="/kaoyan_admin_accounts.js"></script>
+<script src="/kaoyan_login.js"></script>
+
 <title>研词真源 · 考研英语真题左文右注精读与 5500 考纲词库工作台</title>
 <script>(function(){try{var s=localStorage.getItem('kaoyan_hub_theme')||'daylight';document.documentElement.setAttribute('data-theme',s);}catch(e){}})();</script>
 <style>
@@ -59,6 +65,17 @@ th, td { border-bottom: 1px solid var(--border); padding: 7px 9px; text-align: l
 th { background: var(--bg); font-weight: 700; }
 .input-box, select, textarea { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 0.83rem; margin-top: 5px; font-family: inherit; }
 pre.code-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px; font-size: 0.78rem; overflow-x: auto; margin: 6px 0; }
+code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere; word-break:break-word; display:block; min-width:100px; max-width:500px; }
+.drill-controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:10px 0; }
+.drill-controls .input-box { width:180px; }
+.dual-pane > *, .bento-2x2 > * { min-width:0; }
+.card { min-width:0; overflow-wrap:anywhere; }
+.card > table { display:block; overflow-x:auto; }
+.input-box { min-width:0; }
+.account-reset-controls { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto; gap:8px; align-items:center; }
+/* Narrow screens must scroll the expanded navigation away from table controls. */
+@media(max-width:960px) { .topbar { position:static; } }
+@media(max-width:640px) { .drill-controls label,.drill-controls .input-box { width:100%; } .account-reset-controls { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -100,8 +117,9 @@ pre.code-block { background: var(--bg); border: 1px solid var(--border); border-
     <div id="guestLoginControls" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
       <input id="scholarUserInput" class="input-box" style="width:140px;margin:0;padding:5px 9px;" value="" placeholder="账号 (学籍/管理员)" autocomplete="off" data-lpignore="true">
       <input id="scholarKeyInput" type="password" class="input-box" style="width:130px;margin:0;padding:5px 9px;" value="" placeholder="掩码密码 (••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
-      <button class="btn active" onclick="loginWithCredentials()">🔑 登录并恢复进度</button>
+      <button id="loginSubmitBtn" class="btn active" onclick="loginWithCredentials()">🔑 登录并恢复进度</button>
     </div>
+    <div id="loginStatus" role="status" aria-live="polite"></div>
     <div id="postLoginControls" style="display:none;gap:8px;align-items:center;flex-wrap:wrap;">
       <button class="btn active" onclick="switchTab(6)">🔐 进入账号与RBAC管理中心</button>
       <button class="btn" onclick="toggleScholarAuth()">🚪 安全退出登录</button>
@@ -308,13 +326,13 @@ As is vividly depicted in the drawing above,
     <div id="tab6ScholarContent">
       <div class="card">
         <h2>
-          <span>🛡️ 登录后专题：账号安全与五表 RBAC 权限管理中心 (Role-Based Access Control v3.4)</span>
+          <span>🛡️ 登录后专题：账号安全、五表 RBAC 与全库五层按需下钻管理中心 (RBAC &amp; 5-Layer DB Drill-Down v3.5)</span>
           <span class="badge bg-purple" id="rbacCurRoleBadge">当前身份校验中</span>
         </h2>
         <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:0.83rem;margin-bottom:8px;">
           <span>👤 当前登录账号：<strong id="rbacCurUser">-</strong></span>
           <span>🔐 密码保护策略：<span class="badge bg-green">PBKDF2-HMAC-SHA256 (10,000次加盐哈希) · 默认掩码 · 页面零记忆留存</span></span>
-          <span>🗄️ RBAC 受治表：<span class="badge bg-blue">5 张核心权限表 (14 表双擎实时同步)</span></span>
+          <span>🗄️ 全库字段覆盖：<span class="badge bg-blue" id="adminDbCoverageBadge">等待数据库统计 (Waiting for live schema)</span></span>
         </div>
         <div style="font-size:0.79rem;color:var(--muted);">当前角色已授予原子权限点 (<code>sys_role_permissions</code>)：<span id="rbacCurPermsList"></span></div>
       </div>
@@ -371,7 +389,8 @@ As is vividly depicted in the drawing above,
             </ul>
           </div>
 
-          <div id="adminRbacWorkspace" style="display:none;">
+          <div id="adminAccountsStatus" role="status"></div>
+            <div id="adminRbacWorkspace" style="display:none;">
             <div class="card">
               <h2>
                 <span>➕ 2A. 管理员：手工添加新账号 (支持创建普通用户 SCHOLAR 或管理员 ADMIN)</span>
@@ -397,7 +416,7 @@ As is vividly depicted in the drawing above,
                 <span>🔄 2B. 管理员：强制重置指定账号密码 (无需原密码 · 掩码输入)</span>
                 <span class="badge bg-amber">Perm: admin:user:password_reset</span>
               </h2>
-              <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center;">
+              <div class="account-reset-controls">
                 <input id="adminResetTarget" class="input-box" style="margin-top:0;" value="" placeholder="目标账号ID (可点下方列表带入)" autocomplete="off">
                 <input id="adminResetPwd" type="password" class="input-box" style="margin-top:0;" value="" placeholder="重置后的新掩码密码 (≥4位)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
                 <button class="btn active" onclick="submitAdminResetPassword()">🔄 确认重置密码</button>
@@ -407,24 +426,149 @@ As is vividly depicted in the drawing above,
 
             <div class="card">
               <h2>
-                <span>👥 2C. 全量注册账号台账与角色/启停管控 (密码全掩码不可逆)</span>
-                <button class="btn" onclick="loadAdminRbacData()">🔄 刷新台账与审计日志</button>
+                <span>👥 2C. 全量注册账号 13 字段完整台账与角色/启停/下钻管控 (<code>sys_users</code> 13/13 列 100% 展示 · 凭据掩码脱敏)</span>
+                <button class="btn" onclick="loadAdminRbacData()">🔄 刷新台账与全库下钻</button>
               </h2>
-              <table>
-                <thead><tr><th>账号 (<code>user_id</code>)</th><th>显示名称</th><th>RBAC 角色</th><th>状态</th><th>密码存储掩码</th><th>最近登录 / 改密</th><th>管理员操作</th></tr></thead>
-                <tbody id="adminUsersTableBody"></tbody>
-              </table>
+              <div style="overflow-x:auto;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th><code>user_id</code> / <code>username</code></th>
+                      <th><code>display_name</code></th>
+                      <th><code>role</code> / <code>account_status</code></th>
+                      <th><code>passcode_hash</code> / <code>passcode_salt</code> / <code>token_secret</code> (掩码指纹)</th>
+                      <th><code>failed_login_count</code> / <code>created_by</code></th>
+                      <th><code>created_at</code> / <code>last_login_at</code> / <code>password_updated_at</code></th>
+                      <th>管理员操作 &amp; 跨表级联下钻</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminUsersTableBody"></tbody>
+                </table>
+              </div>
             </div>
 
             <div class="card">
               <h2>
-                <span>📜 2D. RBAC 安全审计流水 (<code>sys_rbac_audit_log</code> 最近事件)</span>
+                <span>📜 2D. 安全审计摘要 · 全部记录请在下方审计表分页查看 (Audit preview · full history below)</span>
                 <span class="badge bg-purple">Perm: admin:rbac:audit</span>
               </h2>
-              <table>
-                <thead><tr><th>审计ID</th><th>操作人 (角色)</th><th>目标对象</th><th>安全事件类型</th><th>脱敏详情</th><th>时间</th></tr></thead>
-                <tbody id="adminAuditTableBody"></tbody>
-              </table>
+              <div style="overflow-x:auto;">
+                <table>
+                  <thead><tr><th><code>audit_id</code></th><th><code>actor_user_id</code> / <code>actor_role</code></th><th><code>target_user_id</code></th><th><code>action</code></th><th><code>detail_json</code></th><th><code>client_ip</code></th><th><code>created_at</code></th></tr></thead>
+                  <tbody id="adminAuditTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card" id="admin5LayerDrilldownCard">
+              <h2>
+                <span>🔬 2E. 管理员全库五层按需下钻探针台 (L1业务域 ➔ L2物理表/账号级联 ➔ L3全字段数据行 ➔ L4字段元数据显微镜 ➔ L5 JSON树&amp;外键跳转)</span>
+                <span class="badge bg-green" id="adminDrillSummaryBadge">等待数据库统计 (Waiting for live schema)</span>
+              </h2>
+              <div style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;">
+                从<strong>业务域 (L1)</strong>进入<strong>实际库表或账号关联 (L2)</strong>，分页查看<strong>全部字段的数据记录 (L3)</strong>，打开<strong>单行字段类型、约束与完整值 (L4)</strong>，再展开<strong>JSON或精确外键关联 (L5)</strong>。表数、字段数和关联范围均取自当前数据库；凭据值脱敏显示。<br>Domains → tables or account relations → paginated records → all fields → JSON or exact related records.
+              </div>
+
+              <!-- Layer 1: Domain Cluster Bar -->
+              <div style="margin-bottom:10px;">
+                <div style="font-size:0.78rem;font-weight:700;color:var(--primary);margin-bottom:4px;">【L1 · 第一层】按实际数据库归类的业务与服务域 (Live database domains)：</div>
+                <div id="adminDrillDomainBar" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+              </div>
+
+              <!-- Layer 2: Physical Table Selector & User Cross-Table Cascade -->
+              <div style="margin-bottom:10px;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+                  <span style="font-size:0.78rem;font-weight:700;color:var(--primary);">【L2 · 第二层】实际库表选择与账号关联下钻 (Tables and account relations)：</span>
+                  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                    <label for="adminDrillUserSelect" style="font-size:0.76rem;color:var(--muted);">👤 账号跨表全链路下钻：</label>
+                    <select id="adminDrillUserSelect" class="input-box" style="width:auto;margin-top:0;padding:3px 8px;font-size:0.76rem;" onchange="selectDrillUserCascade(this.value)">
+                      <option value="">-- 全部账号 (不按用户过滤) --</option>
+                      <option value="admin">admin (系统管理员 L100)</option>
+                      <option value="commander">commander (统帅管理员 L100)</option>
+                      <option value="colleague_a">colleague_a (研友学籍 L50)</option>
+                      <option value="scholar_b">scholar_b (研友学籍 B L50)</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="adminDrillTableBar" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+                <div id="adminUserCascadeSummary" style="margin-top:6px;font-size:0.76rem;color:var(--emerald);display:none;"></div>
+              </div>
+
+              <!-- Layer 3: 100% Column Row Matrix for Selected Table -->
+              <div style="margin-bottom:10px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:4px;">
+                  <span style="font-size:0.78rem;font-weight:700;color:var(--primary);">【L3 · 第三层】选中表 100% 全字段真实数据宽表层 (<code id="adminDrillActiveTableLabel">sys_users</code> · 点击任意行下钻至 L4/L5 字段显微镜)：</span>
+                  <span class="badge bg-blue" id="adminDrillTableColBadge">13/13 字段 (100%)</span>
+                </div>
+                <div style="overflow-x:auto;max-height:290px;border:1px solid var(--border);border-radius:8px;">
+                  <table>
+                    <thead id="adminDrillRowTableHead"></thead>
+                    <tbody id="adminDrillRowTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div id="adminDrillStatus" role="status" aria-live="polite"></div>
+              <div class="drill-controls">
+                <button id="adminPrevPage" class="btn" onclick="pageAdminDrill(-1)">上一页 (Previous)</button>
+                <span id="adminPageInfo"></span>
+                <button id="adminNextPage" class="btn" onclick="pageAdminDrill(1)">下一页 (Next)</button>
+                <label>精确字段 (Field) <select id="adminFilterColumn" class="input-box"></select></label>
+                <label>匹配值 (Value) <input id="adminFilterValue" class="input-box"></label>
+                <button class="btn" onclick="applyDrillFilter()">筛选 (Filter)</button>
+                <button class="btn" onclick="loadAdminDbDrilldown()">刷新 (Refresh)</button>
+              </div>
+              <!-- Layer 4 & Layer 5: Single-Row 100% Field Metadata & Value Microscope + JSON Tree & FK Jump -->
+              <div id="adminFieldInspectorBox" style="padding:10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);">
+                <div style="font-size:0.78rem;font-weight:700;color:var(--primary);margin-bottom:6px;">
+                  【L4 &amp; L5 · 第四/五层】单行记录 100% 库表字段元数据显微镜 &amp; 复合 JSON 树展开 / 外键跨表一键下钻 (<span id="adminInspectorRowTitle">请点击上方 L3 表格中的任意数据行</span>)：
+                </div>
+                <div style="overflow-x:auto;">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>列序号 (<code>cid</code>)</th>
+                        <th>库表字段名 (<code>column_name</code>)</th>
+                        <th>物理类型 (<code>data_type</code>)</th>
+                        <th>主键/非空/默认值 (<code>PK/NOT NULL/DEFAULT</code>)</th>
+                        <th>字段业务语义</th>
+                        <th>当前记录真实物理值 (凭据列已掩码)</th>
+                        <th>L5 · JSON展开 / 外键跨表下钻</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminInspectorTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" id="adminFullFieldPanoramaCard">
+              <h2>
+                <span>📋 2F. 实际数据库完整字段字典 (Complete live database catalog)</span>
+                <span class="badge bg-purple" id="adminFullCatalogCountBadge">等待实际字段 (Waiting for fields)</span>
+              </h2>
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
+                <input id="adminFieldSearchInput" class="input-box" style="max-width:360px;margin-top:0;" placeholder="🔍 检索表名、字段名、数据类型或业务语义 (如 passcode_hash / user_id / JSON)..." oninput="filterFullFieldCatalog()">
+                <button class="btn" onclick="document.getElementById('adminFieldSearchInput').value='';filterFullFieldCatalog();">重置筛选 (显示 100% 全部字段)</button>
+              </div>
+              <div style="overflow-x:auto;max-height:360px;border:1px solid var(--border);border-radius:8px;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>序号</th>
+                      <th>所属业务域 (L1)</th>
+                      <th>物理表名 (L2 <code>table_name</code>)</th>
+                      <th>列序号 (<code>cid</code>)</th>
+                      <th>库表字段名 (<code>column_name</code>)</th>
+                      <th>数据类型 (<code>data_type</code>)</th>
+                      <th>约束与外键 (<code>PK / NOT NULL / FK</code>)</th>
+                      <th>字段业务职责说明</th>
+                      <th>一键下钻</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminFullFieldCatalogBody"></tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -569,6 +713,8 @@ function updateRbacTabUI() {
 function updateAuthUI() {
   const b = document.getElementById('authBadge'), q = document.getElementById('quotaBadge'), t = document.getElementById('anchorStatusText'), btn = document.getElementById('loginToggleBtn');
   const loggedIn = isLoggedIn();
+  document.getElementById("guestLoginControls").style.display = loggedIn ? "none" : "flex";
+  document.getElementById("postLoginControls").style.display = loggedIn ? "flex" : "none";
   ['tab0', 'tab1', 'tab5', 'tab6'].forEach(tid => {
     const gate = document.getElementById(tid + 'GuestGate');
     const content = document.getElementById(tid + 'ScholarContent');
@@ -610,7 +756,7 @@ function updateAuthUI() {
     const roleLabel = isAdmin() ? '🛡️ 管理员 ADMIN' : '🎓 学籍 SCHOLAR';
     b.className = isAdmin() ? 'badge bg-purple' : 'badge bg-green';
     b.textContent = `🟢 已认证 [${roleLabel}]: ${authState.userId} (Para ${authState.lastPara} · 100% 全量解锁)`;
-    if (q) { q.className = 'badge bg-green'; q.textContent = '🔓 已解除访客糊化 · 14表 RBAC 双擎实时同步'; }
+    if (q) { q.className = 'badge bg-green'; q.textContent = '🔓 已登录 · 账号权限已验证 (Account verified)'; }
     t.innerHTML = `当前登录身份：<strong>${authState.userId}</strong> (<span class="badge ${isAdmin() ? 'bg-purple' : 'bg-green'}">${authState.role}</span>) · 密码采用 <code>PBKDF2-HMAC-SHA256</code> 掩码零留存保护。<a href="javascript:void(0)" onclick="switchTab(6)" style="color:var(--primary);font-weight:700;margin-left:6px;">👉 进入『账号与RBAC管理中心』</a>`;
     btn.textContent = '🔒 安全退出 (清空会话与密码框)';
     btn.onclick = toggleScholarAuth;
@@ -635,95 +781,6 @@ function updateAuthUI() {
   }
   updateRbacTabUI();
   renderPassageCanvas(); renderNotes(); renderVocab(); renderEssayCorpus();
-}
-
-async function loginWithCredentials() {
-  const uInput = document.getElementById('scholarUserInput');
-  const kInput = document.getElementById('scholarKeyInput');
-  const u = (uInput ? uInput.value : '').trim();
-  const k = (kInput ? kInput.value : '').trim();
-  if (!u || !k) {
-    alert('🔑 请输入登录账号与密码（支持普通用户 SCHOLAR 与系统管理员 ADMIN 账号；密码全程掩码且不在页面留存）');
-    if (!u && uInput) uInput.focus();
-    else if (kInput) kInput.focus();
-    return;
-  }
-  // Zero-memory guarantee: wipe password DOM field immediately after reading into local scope
-  if (kInput) kInput.value = '';
-  if (location.protocol !== 'file:') {
-    try {
-      const r = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, passcode: k })
-      });
-      const d = await r.json();
-      if (!r.ok) {
-        clearAllPasswordInputs();
-        alert('❌ ' + (d.message || '账号或密码校验失败，请确认后重试'));
-        return;
-      }
-      const role = d.role || 'SCHOLAR';
-      authState = {
-        role,
-        userId: d.user_id || u,
-        displayName: d.display_name || u,
-        token: d.token || '',
-        lastPara: (d.anchor && d.anchor.last_para_idx) || 2,
-        streakDays: (d.anchor && d.anchor.streak_days) || 12,
-        permissions: d.permissions || RBAC_PERMS_BY_ROLE[role] || RBAC_PERMS_BY_ROLE.SCHOLAR
-      };
-    } catch (e) {
-      clearAllPasswordInputs();
-      alert('❌ 登录请求异常，请检查网络连接');
-      return;
-    }
-  } else {
-    const role = (u === 'admin' || u === 'commander') ? 'ADMIN' : 'SCHOLAR';
-    authState = {
-      role,
-      userId: u,
-      displayName: u,
-      token: 'local-sandbox-token-' + u,
-      lastPara: 2,
-      streakDays: 12,
-      permissions: RBAC_PERMS_BY_ROLE[role]
-    };
-  }
-  clearAllPasswordInputs();
-  notesData = FULL_SCHOLAR_NOTES.slice();
-  vocabData = REPORT_DATA.msu_contracts.vocab_simulation_samples.slice();
-  essayCorpus = FULL_SCHOLAR_ESSAYS.slice();
-  try {
-    localStorage.setItem('kaoyan_auth', JSON.stringify({
-      role: authState.role,
-      userId: authState.userId,
-      displayName: authState.displayName,
-      token: authState.token,
-      lastPara: authState.lastPara,
-      streakDays: authState.streakDays,
-      permissions: authState.permissions
-    }));
-  } catch (e) {}
-  updateAuthUI();
-  syncFromServer();
-}
-
-function toggleScholarAuth() {
-  if (isLoggedIn()) {
-    authState = { role: 'GUEST', userId: 'guest', displayName: '未登录访客', token: '', lastPara: 1, streakDays: 0, permissions: RBAC_PERMS_BY_ROLE.GUEST };
-    notesData = GUEST_TEASER_NOTES.slice();
-    vocabData = GUEST_TEASER_VOCAB.slice();
-    essayCorpus = GUEST_TEASER_ESSAYS.slice();
-    try { localStorage.removeItem('kaoyan_auth'); } catch (e) {}
-    const uInput = document.getElementById('scholarUserInput');
-    if (uInput) uInput.value = '';
-    clearAllPasswordInputs();
-    updateAuthUI();
-    switchTab(defaultGuestTab);
-  } else {
-    focusLoginBox();
-  }
 }
 
 async function submitSelfPasswordChange() {
@@ -881,50 +938,295 @@ async function toggleUserRoleStatus(targetUserId, newRole, newStatus) {
   } catch (e) {}
 }
 
-async function loadAdminRbacData() {
-  if (!isAdmin() || location.protocol === 'file:') return;
-  try {
-    const r = await fetch('/api/admin/users', { headers: authHeaders() });
-    if (r.ok) {
-      const d = await r.json();
-      const tbody = document.getElementById('adminUsersTableBody');
-      if (tbody && d.users) {
-        tbody.innerHTML = d.users.map(u => {
-          const isSelf = u.user_id === authState.userId;
-          const nextRole = u.role === 'ADMIN' ? 'SCHOLAR' : 'ADMIN';
-          const nextStatus = u.account_status === 'ACTIVE' ? 'DISABLED' : 'ACTIVE';
-          return `<tr>
-            <td><strong><code>${u.user_id}</code></strong>${isSelf ? ' <span class="badge bg-blue">当前本人</span>' : ''}</td>
-            <td>${u.display_name || u.user_id}</td>
-            <td><span class="badge ${u.role === 'ADMIN' ? 'bg-purple' : 'bg-green'}">${u.role}</span></td>
-            <td><span class="badge ${u.account_status === 'ACTIVE' ? 'bg-green' : 'bg-rose'}">${u.account_status}</span></td>
-            <td><code>${u.password_masked || '••••••••'}</code> <span style="color:var(--muted);font-size:0.72rem;">(${u.kdf_algo || 'PBKDF2'})</span></td>
-            <td style="font-size:0.75rem;color:var(--muted);">登录: ${(u.last_login_at || '-').slice(0,19)}<br>改密: ${(u.password_updated_at || '-').slice(0,19)}</td>
-            <td style="white-space:nowrap;">
-              <button class="btn" style="padding:2px 7px;font-size:0.72rem;" onclick="document.getElementById('adminResetTarget').value='${u.user_id}';document.getElementById('adminResetPwd').focus();">🔑选定重置密码</button>
-              ${isSelf ? '' : `<button class="btn" style="padding:2px 7px;font-size:0.72rem;" onclick="toggleUserRoleStatus('${u.user_id}','${nextRole}','${u.account_status}')">⇄切为${nextRole}</button>
-              <button class="btn" style="padding:2px 7px;font-size:0.72rem;" onclick="toggleUserRoleStatus('${u.user_id}','${u.role}','${nextStatus}')">${u.account_status === 'ACTIVE' ? '🚫禁用' : '✅启用'}</button>`}
-            </td>
-          </tr>`;
-        }).join('');
-      }
-    }
-    const ra = await fetch('/api/admin/rbac/audit', { headers: authHeaders() });
-    if (ra.ok) {
-      const da = await ra.json();
-      const atbody = document.getElementById('adminAuditTableBody');
-      if (atbody && da.audit_logs) {
-        atbody.innerHTML = da.audit_logs.slice(0, 12).map(lg => `<tr>
-          <td><code>${lg.audit_id}</code></td>
-          <td><strong>${lg.actor_user_id}</strong> <span class="badge bg-blue">${lg.actor_role}</span></td>
-          <td><code>${lg.target_user_id}</code></td>
-          <td><span class="badge ${String(lg.action).includes('FAIL') || String(lg.action).includes('DENY') ? 'bg-rose' : 'bg-green'}">${lg.action}</span></td>
-          <td style="font-size:0.75rem;color:var(--muted);"><code>${lg.detail_json || '{}'}</code></td>
-          <td style="font-size:0.75rem;color:var(--muted);">${(lg.created_at || '').slice(0,19)}</td>
-        </tr>`).join('');
-      }
-    }
-  } catch (e) {}
+const ADMIN_DB_DOMAINS = [
+  { domain_id: 'ALL', name: '🌐 全库 18 表总览 (146列 100%)', badge: 'bg-purple' },
+  { domain_id: 'DOM_01_RBAC_AUTH', name: '🛡️ L1-D1 · RBAC权限与安全审计域 (5表36列)', badge: 'bg-purple' },
+  { domain_id: 'DOM_02_CORE_CONTENT', name: '📚 L1-D2 · 真题篇章与5500大纲底座域 (2表20列)', badge: 'bg-blue' },
+  { domain_id: 'DOM_03_SCHOLAR_STUDY', name: '🎓 L1-D3 · 研友五维学习资产域 (4表46列)', badge: 'bg-green' },
+  { domain_id: 'DOM_04_HA_INFRA', name: '⚡ L1-D4 · 双擎高可用与幂等迁移域 (3表20列)', badge: 'bg-amber' },
+  { domain_id: 'DOM_05_CLUSTER_ROAMING', name: '🌐 L1-D5 · 跨机三副本协调与漫游域 (4表24列)', badge: 'bg-blue' }
+];
+
+const ADMIN_DB_CATALOG_18T_146C = [
+  {
+    table_no: 'T01', domain_id: 'DOM_01_RBAC_AUTH', table_name: 'sys_users', pk_uk: 'PK(user_id), UK(username)',
+    purpose: 'RBAC多租户账号主表（区分ADMIN与SCHOLAR，PBKDF2加盐哈希零明文）',
+    columns: [
+      ['user_id', 'VARCHAR(64)', 'PK NOT NULL', '账号唯一主键ID', 'sys_users.user_id'],
+      ['username', 'VARCHAR(64)', 'UK NOT NULL', '登录用户名', ''],
+      ['display_name', 'VARCHAR(128)', 'NOT NULL', '界面显示名称', ''],
+      ['role', 'VARCHAR(32)', "NOT NULL DEFAULT 'SCHOLAR'", 'RBAC角色编码 (ADMIN/SCHOLAR)', 'sys_roles.role_code'],
+      ['passcode_hash', 'VARCHAR(128)', 'NOT NULL [MASKED]', 'PBKDF2-HMAC-SHA256密码哈希 (掩码指纹展示)', ''],
+      ['token_secret', 'VARCHAR(128)', 'NOT NULL [MASKED]', '会话令牌独立签名密钥 (掩码指纹展示)', ''],
+      ['created_at', 'VARCHAR(64)', 'NOT NULL', '账号创建时间 (ISO-8601)', ''],
+      ['account_status', 'TEXT', "NOT NULL DEFAULT 'ACTIVE'", '账号状态 (ACTIVE/DISABLED)', ''],
+      ['passcode_salt', 'TEXT', "NOT NULL DEFAULT 'kaoyan_salt_2026' [MASKED]", '密码学独立随机盐值 (掩码指纹展示)', ''],
+      ['failed_login_count', 'INTEGER', 'NOT NULL DEFAULT 0', '连续登录失败计数', ''],
+      ['last_login_at', 'TEXT', "NOT NULL DEFAULT ''", '最近成功登录时间', ''],
+      ['password_updated_at', 'TEXT', "NOT NULL DEFAULT ''", '最近密码修改/重置时间', ''],
+      ['created_by', 'TEXT', "NOT NULL DEFAULT 'system'", '创建人账号ID', '']
+    ]
+  },
+  {
+    table_no: 'T02', domain_id: 'DOM_01_RBAC_AUTH', table_name: 'sys_roles', pk_uk: 'PK(role_code)',
+    purpose: '三级RBAC角色层级定义表 (ADMIN=100 / SCHOLAR=50 / GUEST=10)',
+    columns: [
+      ['role_code', 'TEXT', 'PK NOT NULL', '角色唯一编码', ''],
+      ['role_name', 'TEXT', 'NOT NULL', '角色中文名称', ''],
+      ['role_level', 'INTEGER', 'NOT NULL DEFAULT 50', '权限等级权重 (100/50/10)', ''],
+      ['is_system', 'INTEGER', 'NOT NULL DEFAULT 1', '是否系统内置不可删角色', ''],
+      ['description', 'TEXT', "NOT NULL DEFAULT ''", '角色职责边界描述', ''],
+      ['created_at', 'TEXT', 'NOT NULL', '角色创建时间', '']
+    ]
+  },
+  {
+    table_no: 'T03', domain_id: 'DOM_01_RBAC_AUTH', table_name: 'sys_permissions', pk_uk: 'PK(perm_code)',
+    purpose: '11项原子权限点注册表（阅读/词库/作文/导入/改密/后台管理）',
+    columns: [
+      ['perm_code', 'TEXT', 'PK NOT NULL', '原子权限唯一编码', ''],
+      ['perm_name', 'TEXT', 'NOT NULL', '原子权限中文名称', ''],
+      ['resource_domain', 'TEXT', 'NOT NULL', '所属资源域 (PASSAGE/VOCAB/ESSAY/INGEST/ACCOUNT/ADMIN)', ''],
+      ['action_type', 'TEXT', 'NOT NULL', '动作类型 (READ/WRITE/MANAGE)', ''],
+      ['description', 'TEXT', "NOT NULL DEFAULT ''", '权限校验规则说明', '']
+    ]
+  },
+  {
+    table_no: 'T04', domain_id: 'DOM_01_RBAC_AUTH', table_name: 'sys_role_permissions', pk_uk: 'PK(role_code, perm_code)',
+    purpose: '角色与原子权限点多对多授权映射表',
+    columns: [
+      ['role_code', 'TEXT', 'PK NOT NULL', '关联角色编码', 'sys_roles.role_code'],
+      ['perm_code', 'TEXT', 'PK NOT NULL', '关联原子权限编码', 'sys_permissions.perm_code'],
+      ['granted_at', 'TEXT', 'NOT NULL', '授权时间戳', ''],
+      ['granted_by', 'TEXT', "NOT NULL DEFAULT 'system'", '授权执行人', '']
+    ]
+  },
+  {
+    table_no: 'T05', domain_id: 'DOM_01_RBAC_AUTH', table_name: 'sys_rbac_audit_log', pk_uk: 'PK(audit_id)',
+    purpose: 'RBAC安全审计全流水表（登录/改密/建号/重置密码/角色切换/越权拦截）',
+    columns: [
+      ['audit_id', 'TEXT', 'PK NOT NULL', '审计事件唯一ID', ''],
+      ['actor_user_id', 'TEXT', 'NOT NULL', '操作发起人账号ID', 'sys_users.user_id'],
+      ['actor_role', 'TEXT', 'NOT NULL', '操作发起人当时角色', 'sys_roles.role_code'],
+      ['target_user_id', 'TEXT', 'NOT NULL', '被操作目标账号ID', 'sys_users.user_id'],
+      ['action', 'TEXT', 'NOT NULL', '安全事件类型编码', ''],
+      ['detail_json', 'TEXT (JSON)', "NOT NULL DEFAULT '{}'", '事件结构化脱敏详情JSON', 'JSON'],
+      ['client_ip', 'TEXT', "NOT NULL DEFAULT '127.0.0.1'", '客户端来源IP', ''],
+      ['created_at', 'TEXT', 'NOT NULL', '审计记录生成时间', '']
+    ]
+  },
+  {
+    table_no: 'T06', domain_id: 'DOM_02_CORE_CONTENT', table_name: 'syllabus_5500_lexicon', pk_uk: 'PK(lemma)',
+    purpose: '考研5500大纲词汇与熟词僻义只读底座表 (含V005核心6列+生产扩展4列)',
+    columns: [
+      ['lemma', 'VARCHAR(64)', 'PK NOT NULL', '词根/还原后标准词形', ''],
+      ['pos', 'VARCHAR(32)', 'NOT NULL', '词性标注 (n./v./adj./adv.)', ''],
+      ['cn_meaning', 'TEXT', 'NOT NULL', '核心中文释义', ''],
+      ['syllabus_tier', 'VARCHAR(32)', 'NOT NULL', '考纲分层 (POLYSEMY_TRAP/CORE_1800/MID_2200/EXT_HYPER)', ''],
+      ['polysemy_trap_note', 'TEXT', "DEFAULT ''", '考研高频熟词僻义命题陷阱解析', ''],
+      ['exam_freq', 'INTEGER', 'NOT NULL DEFAULT 1', '历年真题出现总频次', ''],
+      ['phonetic', 'VARCHAR(64)', "DEFAULT ''", '音标标注 (生产扩展列)', ''],
+      ['exam_source_sample', 'VARCHAR(128)', "DEFAULT ''", '典型真题出处样本 (生产扩展列)', ''],
+      ['collocations_json', 'TEXT (JSON)', "DEFAULT '[]'", '高频真题搭配JSON (生产扩展列)', 'JSON'],
+      ['updated_at', 'VARCHAR(64)', "DEFAULT ''", '词条更新时间 (生产扩展列)', '']
+    ]
+  },
+  {
+    table_no: 'T07', domain_id: 'DOM_02_CORE_CONTENT', table_name: 'exam_passages', pk_uk: 'PK(passage_id), IDX(sha256_hash)',
+    purpose: '历年考研真题篇章与Standoff自然段偏移坐标表',
+    columns: [
+      ['passage_id', 'VARCHAR(64)', 'PK NOT NULL', '真题篇章唯一主键ID', ''],
+      ['owner_user_id', 'VARCHAR(64)', 'NOT NULL', '导入所属账号ID', 'sys_users.user_id'],
+      ['year', 'INTEGER', 'NOT NULL', '真题年份 (如 2024)', ''],
+      ['exam_type', 'VARCHAR(32)', 'NOT NULL', '试卷类型 (英语一/英语二)', ''],
+      ['text_no', 'VARCHAR(32)', 'NOT NULL', '篇章题号 (Text 1..4)', ''],
+      ['title', 'VARCHAR(256)', 'NOT NULL', '篇章标题与导读', ''],
+      ['paragraphs_json', 'TEXT (JSON)', 'NOT NULL', '自然段切分与字符偏移坐标JSON数组', 'JSON'],
+      ['syllabus_hits_json', 'TEXT (JSON)', "NOT NULL DEFAULT '[]'", '命中考纲词列表JSON', 'JSON'],
+      ['sha256_hash', 'VARCHAR(64)', 'NOT NULL', '原文正文SHA-256防重指纹', ''],
+      ['created_at', 'VARCHAR(64)', 'NOT NULL', '篇章入库时间', '']
+    ]
+  },
+  {
+    table_no: 'T08', domain_id: 'DOM_03_SCHOLAR_STUDY', table_name: 'user_progress_anchors', pk_uk: 'PK(user_id)',
+    purpose: '研友五维个人学习进度断点锚点表（登录后秒回续读位置）',
+    columns: [
+      ['user_id', 'VARCHAR(64)', 'PK NOT NULL', '绑定学籍账号ID', 'sys_users.user_id'],
+      ['last_passage_id', 'VARCHAR(64)', "NOT NULL DEFAULT 'P2024_EN1_T1'", '上次精读篇章ID', 'exam_passages.passage_id'],
+      ['last_para_idx', 'INTEGER', 'NOT NULL DEFAULT 2', '上次精读自然段序号 (Para 1..N)', ''],
+      ['last_span_id', 'VARCHAR(64)', "NOT NULL DEFAULT 'sp-sent-2'", '上次聚焦精读卡片ID', 'annotation_spans.span_id'],
+      ['last_tab_idx', 'INTEGER', 'NOT NULL DEFAULT 2', '上次停留功能Tab序号', ''],
+      ['essay_draft_md', 'TEXT', "NOT NULL DEFAULT ''", '个人大作文三段式云端草稿全文', ''],
+      ['streak_days', 'INTEGER', 'NOT NULL DEFAULT 12', '连续精读打卡天数', ''],
+      ['rev_no', 'INTEGER', 'NOT NULL DEFAULT 1', '乐观锁递增版本号', ''],
+      ['updated_at', 'VARCHAR(64)', 'NOT NULL', '进度锚点最后同步时间', '']
+    ]
+  },
+  {
+    table_no: 'T09', domain_id: 'DOM_03_SCHOLAR_STUDY', table_name: 'annotation_spans', pk_uk: 'PK(span_id), IDX(user_id, passage_id, para_idx)',
+    purpose: '左文右卡 Standoff 字符偏移精读笔记表 (15列全量语义)',
+    columns: [
+      ['span_id', 'VARCHAR(64)', 'PK NOT NULL', '精读笔记卡唯一ID', ''],
+      ['user_id', 'VARCHAR(64)', 'NOT NULL', '所属学籍账号ID', 'sys_users.user_id'],
+      ['passage_id', 'VARCHAR(64)', 'NOT NULL', '关联真题篇章ID', 'exam_passages.passage_id'],
+      ['granularity', 'VARCHAR(32)', 'NOT NULL', '抽取粒度 (WORD/SENTENCE/PARAGRAPH)', ''],
+      ['para_idx', 'INTEGER', 'NOT NULL DEFAULT 1', '所属自然段序号', ''],
+      ['start_offset', 'INTEGER', 'NOT NULL DEFAULT 0', '段内起始字符偏移量', ''],
+      ['end_offset', 'INTEGER', 'NOT NULL DEFAULT 0', '段内结束字符偏移量', ''],
+      ['selected_text', 'TEXT', 'NOT NULL', '划选原文片段', ''],
+      ['prefix_quote', 'VARCHAR(64)', "NOT NULL DEFAULT ''", '前文锚定上下文快照', ''],
+      ['suffix_quote', 'VARCHAR(64)', "NOT NULL DEFAULT ''", '后文锚定上下文快照', ''],
+      ['syntax_breakdown', 'TEXT', "NOT NULL DEFAULT ''", '长难句主干与从句切分解析', ''],
+      ['user_comment', 'TEXT', "NOT NULL DEFAULT ''", '个人精读批注与命题陷阱笔记', ''],
+      ['promoted_snippet_id', 'VARCHAR(64)', "NOT NULL DEFAULT ''", '一键升格后的作文语料ID', 'essay_corpus_snippets.snippet_id'],
+      ['version', 'INTEGER', 'NOT NULL DEFAULT 1', '卡片修订版本号', ''],
+      ['created_at', 'VARCHAR(64)', 'NOT NULL', '笔记创建时间', '']
+    ]
+  },
+  {
+    table_no: 'T10', domain_id: 'DOM_03_SCHOLAR_STUDY', table_name: 'user_vocab_ledger', pk_uk: 'PK(vocab_id), UK(user_id, lemma)',
+    purpose: '个人高频生词与艾宾浩斯紧迫度账本表 (11列)',
+    columns: [
+      ['vocab_id', 'INTEGER', 'PK AUTOINCREMENT', '生词账本自增主键', ''],
+      ['user_id', 'TEXT', 'NOT NULL', '所属学籍账号ID', 'sys_users.user_id'],
+      ['lemma', 'TEXT', 'NOT NULL', '关联考纲词根Lemma', 'syllabus_5500_lexicon.lemma'],
+      ['syllabus_tier', 'TEXT', "NOT NULL DEFAULT 'CORE_1800'", '考纲分层标签', ''],
+      ['lookup_count', 'INTEGER', 'NOT NULL DEFAULT 1', '个人累计划词查询次数', ''],
+      ['last_seen_at', 'TEXT', 'NOT NULL', '最近一次在真题中遇到时间', ''],
+      ['days_since_seen', 'REAL', 'NOT NULL DEFAULT 0.0', '距离上次遇到间隔天数', ''],
+      ['urgency_score', 'REAL', 'NOT NULL DEFAULT 0.50', '艾宾浩斯复习紧迫度算子得分', ''],
+      ['exam_source', 'TEXT', "NOT NULL DEFAULT ''", '命中的真题篇章段落来源', ''],
+      ['contextual_meaning', 'TEXT', "NOT NULL DEFAULT ''", '真题语境义与熟词僻义笔记', ''],
+      ['mastery_state', 'TEXT', "NOT NULL DEFAULT 'LEARNING'", '掌握状态 (LEARNING/FAMILIAR/MASTERED)', '']
+    ]
+  },
+  {
+    table_no: 'T11', domain_id: 'DOM_03_SCHOLAR_STUDY', table_name: 'essay_corpus_snippets', pk_uk: 'PK(snippet_id), IDX(user_id, theme_tag, func_slot)',
+    purpose: '考研大作文三维语料库与挖空默写模板表 (11列)',
+    columns: [
+      ['snippet_id', 'VARCHAR(64)', 'PK NOT NULL', '作文语料卡片唯一ID', ''],
+      ['user_id', 'VARCHAR(64)', 'NOT NULL', '所属学籍账号ID', 'sys_users.user_id'],
+      ['theme_tag', 'VARCHAR(64)', 'NOT NULL', '母题维度 (科技创新/教育文化/生态环保等)', ''],
+      ['func_slot', 'VARCHAR(64)', 'NOT NULL', '段落功能槽位 (第一段描述/第二段论证/第三段建议)', ''],
+      ['granularity', 'VARCHAR(32)', 'NOT NULL', '语料粒度 (模板骨架/长难句式/范文语段)', ''],
+      ['content_en', 'TEXT', 'NOT NULL', '英文高分佳句/范文原文', ''],
+      ['cloze_pattern', 'TEXT', 'NOT NULL', '带 [___] 挖空标记的默写模板', ''],
+      ['translation_zh', 'TEXT', 'NOT NULL', '精准中文译文与亮点解析', ''],
+      ['source_ref', 'VARCHAR(128)', 'NOT NULL', '语料来源 (真题阅读升格/范文库)', ''],
+      ['usage_count', 'INTEGER', 'NOT NULL DEFAULT 0', '插入大作文草稿累计使用次数', ''],
+      ['created_at', 'VARCHAR(64)', 'NOT NULL', '语料入库时间', '']
+    ]
+  },
+  {
+    table_no: 'T12', domain_id: 'DOM_04_HA_INFRA', table_name: 'schema_migrations', pk_uk: 'PK(version_id)',
+    purpose: 'DDL版本迁移与SHA-256校验账本表',
+    columns: [
+      ['version_id', 'VARCHAR(32)', 'PK NOT NULL', '迁移版本号 (如 V005)', ''],
+      ['script_name', 'VARCHAR(128)', 'NOT NULL', 'SQL迁移脚本文件名', ''],
+      ['checksum_sha256', 'VARCHAR(64)', 'NOT NULL', '脚本内容SHA-256校验值', ''],
+      ['engine_target', 'VARCHAR(32)', "NOT NULL DEFAULT 'DUAL_PG_SQLITE'", '目标存储引擎标识', ''],
+      ['applied_at', 'VARCHAR(64)', 'NOT NULL', '迁移执行完成时间', '']
+    ]
+  },
+  {
+    table_no: 'T13', domain_id: 'DOM_04_HA_INFRA', table_name: 'ha_sync_wal_journal', pk_uk: 'PK(tx_uuid)',
+    purpose: 'PG18主库与SQLite热备双写事务WAL流水表',
+    columns: [
+      ['tx_uuid', 'VARCHAR(64)', 'PK NOT NULL', '双写事务全局唯一UUID', ''],
+      ['op_type', 'VARCHAR(32)', 'NOT NULL', '操作类型 (INSERT/UPDATE/UPSERT)', ''],
+      ['target_table', 'VARCHAR(64)', 'NOT NULL', '写入目标物理表名', ''],
+      ['record_pk', 'VARCHAR(128)', 'NOT NULL', '目标记录主键值', ''],
+      ['payload_json', 'TEXT (JSON)', 'NOT NULL', '事务写入载荷JSON', 'JSON'],
+      ['pg_status', 'VARCHAR(16)', 'NOT NULL', 'PostgreSQL主库提交状态', ''],
+      ['sqlite_status', 'VARCHAR(16)', 'NOT NULL', 'SQLite WAL热备提交状态', ''],
+      ['created_at', 'VARCHAR(64)', 'NOT NULL', '事务发生时间', '']
+    ]
+  },
+  {
+    table_no: 'T14', domain_id: 'DOM_04_HA_INFRA', table_name: 'api_idempotency_keys', pk_uk: 'PK(idempotency_key)',
+    purpose: '写接口防重放与网络抖动幂等回放表',
+    columns: [
+      ['idempotency_key', 'VARCHAR(128)', 'PK NOT NULL', '客户端幂等请求键', ''],
+      ['user_id', 'VARCHAR(64)', 'NOT NULL', '发起请求账号ID', 'sys_users.user_id'],
+      ['endpoint', 'VARCHAR(128)', 'NOT NULL', 'API接口路径', ''],
+      ['req_hash', 'VARCHAR(64)', 'NOT NULL', '请求体SHA-256摘要', ''],
+      ['resp_code', 'INTEGER', 'NOT NULL', '首次执行HTTP状态码', ''],
+      ['resp_body_json', 'TEXT (JSON)', 'NOT NULL', '首次响应JSON快照', 'JSON'],
+      ['created_at', 'VARCHAR(64)', 'NOT NULL', '幂等记录创建时间', '']
+    ]
+  },
+  {
+    table_no: 'T15', domain_id: 'DOM_05_CLUSTER_ROAMING', table_name: 'ha_cluster_meta', pk_uk: 'PK(id)',
+    purpose: '三节点便携集群单调递增数据版本与最后事务锚点表',
+    columns: [
+      ['id', 'INTEGER', 'PK CHECK(id=1)', '集群元数据单例主键 (恒为1)', ''],
+      ['version', 'INTEGER', 'NOT NULL', '集群全局单调递增数据版本号', ''],
+      ['last_tx_id', 'TEXT', 'NOT NULL', '最近一次成功写事务ID', ''],
+      ['updated_at', 'TEXT', 'NOT NULL', '集群版本最后更新时间', '']
+    ]
+  },
+  {
+    table_no: 'T16', domain_id: 'DOM_05_CLUSTER_ROAMING', table_name: 'ha_request_receipts', pk_uk: 'PK(tx_id)',
+    purpose: '跨节点写事务协调回执与响应重放表',
+    columns: [
+      ['tx_id', 'TEXT', 'PK NOT NULL', '集群写事务唯一回执ID', ''],
+      ['version', 'INTEGER', 'NOT NULL', '对应提交后的集群版本号', ''],
+      ['status', 'INTEGER', 'NOT NULL', 'HTTP响应状态码', ''],
+      ['response', 'TEXT (JSON)', 'NOT NULL', '完整响应JSON负载', 'JSON'],
+      ['updated_at', 'TEXT', 'NOT NULL', '回执记录更新时间', '']
+    ]
+  },
+  {
+    table_no: 'T17', domain_id: 'DOM_05_CLUSTER_ROAMING', table_name: 'ha_cluster_roaming_state', pk_uk: 'PK(cluster_id)',
+    purpose: '跨主机三节点 (HP/W1/S1) 故障漫游与Fencing租约状态表',
+    columns: [
+      ['cluster_id', 'VARCHAR(64)', 'PK NOT NULL', '高可用集群唯一标识', ''],
+      ['active_leader_node', 'VARCHAR(64)', 'NOT NULL', '当前主写Leader节点代号', ''],
+      ['active_leader_ip', 'VARCHAR(64)', 'NOT NULL', '当前Leader服务端点标识', ''],
+      ['standby_nodes_json', 'TEXT (JSON)', 'NOT NULL', '热备Follower节点列表JSON', 'JSON'],
+      ['fencing_epoch', 'INTEGER', 'NOT NULL DEFAULT 1', '防脑裂Fencing纪元号', ''],
+      ['wal_lsn_seq', 'INTEGER', 'NOT NULL DEFAULT 1', '当前WAL日志序列号LSN', ''],
+      ['rpo_lag_ms', 'INTEGER', 'NOT NULL DEFAULT 0', '恢复点目标RPO复制延迟(ms)', ''],
+      ['rto_budget_ms', 'INTEGER', 'NOT NULL DEFAULT 5000', '恢复时间目标RTO预算(ms)', ''],
+      ['lease_expires_at', 'VARCHAR(64)', 'NOT NULL', 'Leader租约到期时间', ''],
+      ['health_status', 'VARCHAR(32)', "NOT NULL DEFAULT 'HEALTHY'", '集群整体健康度状态', ''],
+      ['updated_at', 'VARCHAR(64)', 'NOT NULL', '漫游状态最后心跳时间', '']
+    ]
+  },
+  {
+    table_no: 'T18', domain_id: 'DOM_05_CLUSTER_ROAMING', table_name: 'ha_roaming_wal_stream', pk_uk: 'PK(lsn_seq)',
+    purpose: '跨节点WAL增量复制流与SHA-256指纹校验表',
+    columns: [
+      ['lsn_seq', 'INTEGER', 'PK AUTOINCREMENT', 'WAL全局递增日志序列号', ''],
+      ['fencing_epoch', 'INTEGER', 'NOT NULL', '所属Fencing纪元号', ''],
+      ['source_node', 'VARCHAR(64)', 'NOT NULL', '产生写事务的源节点', ''],
+      ['tx_uuid', 'VARCHAR(64)', 'NOT NULL', '关联双写事务UUID', 'ha_sync_wal_journal.tx_uuid'],
+      ['op_type', 'VARCHAR(32)', 'NOT NULL', 'DDL/DML操作类型', ''],
+      ['sql_fingerprint', 'TEXT', 'NOT NULL', '脱敏SQL操作指纹描述', ''],
+      ['checksum_sha256', 'VARCHAR(64)', 'NOT NULL', 'WAL帧SHA-256完整性校验和', ''],
+      ['replicated_at', 'VARCHAR(64)', 'NOT NULL', '跨节点复制确认时间', '']
+    ]
+  }
+];
+
+let adminDrillState = {
+  selectedDomain: 'ALL',
+  selectedTable: 'sys_users',
+  selectedUser: '',
+  selectedRowIdx: 0,
+  offset: 0, limit: 25, filterColumn: "", filterValue: "", catalog: null, loading: false, error: "",
+  livePayload: null
+};
+
+function escapeHtmlStr(v) {
+  return String(v === null || v === undefined ? '' : v)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function filterFullFieldCatalog() {
+  renderFullFieldCatalog();
 }
 
 async function anchorParagraph(paraIdx, noteId) {
@@ -941,9 +1243,11 @@ async function anchorParagraph(paraIdx, noteId) {
 
 async function syncFromServer() {
   if (location.protocol === 'file:') return;
+  const sessionToken = authState.token;
   try {
     const r = await fetch('/api/state?user_id=' + encodeURIComponent(authState.userId), { headers: authHeaders() }); if (!r.ok) return;
     const st = await r.json();
+    if (sessionToken !== authState.token) return;
     if (st.auth_tier === 'GUEST_TEASER' && !isLoggedIn()) {
       if (st.vocab && st.vocab.length) vocabData = st.vocab;
       if (st.annotations && st.annotations.length) notesData = st.annotations;
@@ -951,8 +1255,8 @@ async function syncFromServer() {
       renderNotes(); renderVocab(); renderEssayCorpus();
       return;
     }
-    if (st.vocab && st.vocab.length) { vocabData = st.vocab; renderVocab(); }
-    if (st.annotations && st.annotations.length) {
+    if (st.vocab) { vocabData = st.vocab; renderVocab(); }
+    if (st.annotations) {
       notesData = st.annotations.map(a => ({
         id: a.span_id || a.id,
         granularity: a.granularity || 'SENTENCE',
@@ -964,7 +1268,7 @@ async function syncFromServer() {
       }));
       renderNotes();
     }
-    if (st.essays && st.essays.length) {
+    if (st.essays) {
       essayCorpus = st.essays.map(c => ({
         id: c.snippet_id || c.id,
         theme: c.theme_tag || c.theme,
@@ -979,7 +1283,11 @@ async function syncFromServer() {
       renderEssayCorpus();
     }
     if (st.passage_count) { passageCount = st.passage_count; if (isLoggedIn()) document.getElementById('kpiPassages').textContent = passageCount + ' 篇 (全文已解锁)'; }
-    if (isLoggedIn() && st.anchor && st.anchor.last_para_idx) anchorParagraph(st.anchor.last_para_idx);
+    if (isLoggedIn() && st.anchor) {
+      authState.lastPara = st.anchor.last_para_idx || 1;
+      renderPassageCanvas();
+      document.getElementById("paraAnchorBadge").textContent = "当前锚定: Para " + authState.lastPara;
+    }
   } catch (e) {}
 }
 
@@ -1003,10 +1311,10 @@ function renderTables() {
     `<tr><td><strong>${b.dim}</strong></td><td>${b.benchmark}</td><td>${b.insight}</td></tr>`).join('');
   document.getElementById('tracksTableBody').innerHTML = REPORT_DATA.ingestion_and_deployment.question_1_ingestion_hub.tracks.map(t =>
     `<tr><td><span class="badge bg-blue">${t.track_id}</span></td><td><strong>${t.name}</strong></td><td>${t.input_formats}</td><td>${t.pipeline}</td><td><span class="badge bg-green">${t.sla}</span></td></tr>`).join('');
-  document.getElementById('dbSchemaTableBody').innerHTML = REPORT_DATA.ingestion_and_deployment.question_4_database_schema_and_docker_persistence.tables.map(tb =>
-    `<tr><td><span class="badge bg-purple">${tb.table_no}</span></td><td><strong><code>${tb.table_name}</code></strong></td><td><code>${tb.pk_uk}</code></td><td><code>${tb.core_columns}</code></td><td>${tb.purpose}</td></tr>`).join('');
+  renderRuntimeSchema();
   document.getElementById('authLayersTableBody').innerHTML = REPORT_DATA.ingestion_and_deployment.question_3_auth_and_progress_anchor.layers.map(ly =>
     `<tr><td><span class="badge bg-amber">${ly.layer_id}</span></td><td><strong>${ly.name}</strong></td><td>${ly.mechanism}</td></tr>`).join('');
+  renderFullFieldCatalog();
 }
 function updateKpiVocab() {
   if (isLoggedIn()) document.getElementById('kpiVocab').textContent = `5,500 + ${vocabData.length} 词`;
@@ -1168,75 +1476,16 @@ try {
   clearAllPasswordInputs();
   const savedTheme = localStorage.getItem('kaoyan_hub_theme') || localStorage.getItem('app_theme_mode') || 'daylight';
   setTheme(savedTheme);
-  const savedAuth = JSON.parse(localStorage.getItem('kaoyan_auth') || 'null');
-  if (savedAuth && (savedAuth.role === 'SCHOLAR' || savedAuth.role === 'ADMIN') && savedAuth.token) {
-    authState = savedAuth;
-    notesData = FULL_SCHOLAR_NOTES.slice();
-    vocabData = REPORT_DATA.msu_contracts.vocab_simulation_samples.slice();
-    essayCorpus = FULL_SCHOLAR_ESSAYS.slice();
-  }
 } catch(e){}
-renderTables(); updateDraftCount(); updateAuthUI(); switchTab(isLoggedIn() ? 2 : defaultGuestTab); syncFromServer();
+renderTables(); updateDraftCount(); updateAuthUI(); switchTab(defaultGuestTab); initializeSession();
 </script>
 
-<!-- [V3.4 PG18 + SQLite WAL Dual-Engine HA & RBAC Reactive Composable Store] -->
+<!-- Live storage status: populated only from a successful health response. -->
 <script>
-(function(){
-  function createReactiveState(initial, onChange) {
-    return new Proxy(initial, {
-      set(target, prop, value) {
-        target[prop] = value;
-        if (typeof onChange === 'function') onChange(prop, value, target);
-        return true;
-      }
-    });
-  }
-  window.KaoyanReactiveStore = createReactiveState({
-    activeEngine: 'postgresql_18_primary',
-    haMode: 'ACTIVE_ACTIVE_DUAL_WRITE',
-    pgOnline: true,
-    sqliteOnline: true,
-    inSync: true,
-    tablesCount: 14,
-    probeLatencyMs: 0,
-    lastRequestId: ''
-  }, function(prop, val, st) {
-    var pill = document.getElementById('pgHaLiveBanner');
-    if (!pill) return;
-    var dotColor = (st.pgOnline && st.sqliteOnline && st.inSync) ? '#10b981' : '#f59e0b';
-    pill.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + dotColor + ';margin-right:6px;"></span>' +
-      '<strong>DB 高可用双擎:</strong> PG18 主库 (' + (st.pgOnline ? 'ONLINE' : 'STANDBY') + ') + SQLite WAL 热备 (' + (st.sqliteOnline ? 'ONLINE' : 'OFF') + ') · ' +
-      (st.tablesCount || 14) + ' 表同步: <strong>' + (st.inSync ? '100% ALIGNED' : 'SYNCING') + '</strong> · 探针: ' + st.probeLatencyMs + 'ms';
-  });
-
-  window.refreshHaTelemetry = function() {
-    if (location.protocol === 'file:') return;
-    fetch('/api/ha/status').then(function(r){ return r.json(); }).then(function(d){
-      if (d && d.status === 'ok') {
-        window.KaoyanReactiveStore.activeEngine = d.active_engine;
-        window.KaoyanReactiveStore.haMode = d.ha_mode;
-        window.KaoyanReactiveStore.pgOnline = !!d.pg_primary_online;
-        window.KaoyanReactiveStore.sqliteOnline = !!d.sqlite_standby_online;
-        window.KaoyanReactiveStore.inSync = !!d.in_sync;
-        window.KaoyanReactiveStore.tablesCount = d.tables_count || 14;
-        window.KaoyanReactiveStore.probeLatencyMs = d.probe_latency_ms || 1.2;
-      }
-    }).catch(function(){});
-  };
-
-  window.addEventListener('DOMContentLoaded', function(){
-    clearAllPasswordInputs();
-    var nav = document.querySelector('.top-nav') || document.body;
-    if (!document.getElementById('pgHaLiveBanner')) {
-      var bar = document.createElement('div');
-      bar.id = 'pgHaLiveBanner';
-      bar.style.cssText = 'background:rgba(16,185,129,0.10);border:1px solid rgba(16,185,129,0.35);color:var(--text,#0f172a);padding:4px 12px;border-radius:999px;font-size:0.75rem;margin-top:6px;display:' + (isLoggedIn() ? 'inline-flex' : 'none') + ';align-items:center;';
-      bar.innerHTML = '<strong>DB 高可用双擎:</strong> PG18 主库 + SQLite WAL 热备 · 14 表实时双写就绪';
-      nav.appendChild(bar);
-    }
-    window.refreshHaTelemetry();
-  });
-})();
+window.addEventListener('DOMContentLoaded', function () {
+  clearAllPasswordInputs();
+  if (window.refreshHaTelemetry) window.refreshHaTelemetry();
+});
 </script>
 
 </body>

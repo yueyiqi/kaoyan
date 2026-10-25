@@ -2,7 +2,7 @@
 from __future__ import annotations
 from kaoyan_runtime import CORE_TABLES, HTML_PATH, RBAC_ROLE_PERMS_MAP, annotations, json, parse_qs, psycopg2, time, urlparse, uuid
 from kaoyan_repository import REPO
-from kaoyan_auth import get_role_permissions, get_session_user, require_admin, verify_bearer
+from kaoyan_auth import build_admin_db_drilldown_payload, get_role_permissions, get_session_user, mask_sensitive_row_fields, require_admin, verify_bearer
 
 class ReadHandlerMixin:
     def log_message(self, format, *args):
@@ -344,10 +344,11 @@ class ReadHandlerMixin:
                 engine_hdr=engine_used,
             )
 
-        if parsed.path in ("/", "/index.html"):
-            html = HTML_PATH.read_bytes()
+        if parsed.path in ("/", "/index.html", "/kaoyan_network.js", "/kaoyan_admin_view.js", "/kaoyan_admin.js", "/kaoyan_admin_accounts.js", "/kaoyan_login.js"):
+            is_script = parsed.path.endswith(".js")
+            html = (HTML_PATH.with_name(parsed.path.lstrip("/")) if is_script else HTML_PATH).read_bytes()
             self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Type", "application/javascript; charset=utf-8" if is_script else "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(html)))
             self.send_header("X-Content-Type-Options", "nosniff")
             self.end_headers()
@@ -380,7 +381,7 @@ class ReadHandlerMixin:
                 return self._send_json(code, {"status": "rbac_forbidden" if code == 403 else "unauthorized", "message": msg}, req_id=req_id, t0=t0)
             sconn = REPO.get_sqlite_conn()
             u_rows = sconn.execute(
-                "SELECT user_id, username, display_name, role, account_status, failed_login_count, last_login_at, password_updated_at, created_by, created_at FROM sys_users ORDER BY CASE WHEN role='ADMIN' THEN 0 ELSE 1 END, created_at ASC"
+                "SELECT user_id, username, display_name, role, account_status, passcode_hash, passcode_salt, token_secret, failed_login_count, last_login_at, password_updated_at, created_by, created_at FROM sys_users ORDER BY CASE WHEN role='ADMIN' THEN 0 ELSE 1 END, created_at ASC"
             ).fetchall()
             r_rows = sconn.execute("SELECT role_code, role_name, role_level, is_system, description, created_at FROM sys_roles ORDER BY role_level DESC").fetchall()
             p_rows = sconn.execute("SELECT perm_code, perm_name, resource_domain, action_type, description FROM sys_permissions ORDER BY resource_domain ASC, perm_code ASC").fetchall()
@@ -389,7 +390,7 @@ class ReadHandlerMixin:
             sconn.close()
             users_list = []
             for r in u_rows:
-                d = dict(r)
+                d = mask_sensitive_row_fields("sys_users", dict(r))
                 d["passcode_mask"] = "PBKDF2-HMAC-SHA256 (••••••••)"
                 d["password_masked"] = "••••••••"
                 d["kdf_algo"] = "PBKDF2-HMAC-SHA256"
@@ -405,10 +406,24 @@ class ReadHandlerMixin:
                     "permissions": [dict(r) for r in p_rows],
                     "role_permissions": [dict(r) for r in rp_rows],
                     "role_permission_matrix": RBAC_ROLE_PERMS_MAP,
-                    "audit_logs": [dict(r) for r in a_rows],
+                    "audit_logs": [mask_sensitive_row_fields("sys_rbac_audit_log", dict(r)) for r in a_rows],
                 },
                 req_id=req_id,
                 t0=t0,
             )
+
+        if parsed.path in ("/api/admin/db/drilldown", "/api/admin/schema/full"):
+            client_ip = self.headers.get("X-Forwarded-For", self.client_address[0] if self.client_address else "127.0.0.1")
+            admin_ctx, code, msg = require_admin(self.headers, client_ip=client_ip, endpoint=parsed.path, simulate_pg_down=sim_down)
+            if admin_ctx is None:
+                return self._send_json(code, {"status": "rbac_forbidden" if code == 403 else "unauthorized", "message": msg}, req_id=req_id, t0=t0)
+            sconn = REPO.get_sqlite_conn()
+            try:
+                payload = build_admin_db_drilldown_payload(sconn, parse_qs(parsed.query, keep_blank_values=True), admin_ctx["user_id"])
+            except ValueError as exc:
+                return self._send_json(400, {"status": "invalid_filter", "message": str(exc)}, req_id=req_id, t0=t0)
+            finally:
+                sconn.close()
+            return self._send_json(200, payload, req_id=req_id, t0=t0)
 
         self._send_json(404, {"status": "not_found", "message": "Endpoint not found"}, req_id=req_id, t0=t0)

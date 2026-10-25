@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="daylight">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考研英语精读平台 (KaoyanEnglish Hub v3.5) W1容器与边缘前端八层架构验收报告 (#30)</title>
+  <script>(function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('kaoyan30_theme')||'daylight');})();</script>
+  <style>
+    :root[data-theme="daylight"] { --bg:#F8FAFC; --card:#FFFFFF; --text:#0F172A; --muted:#475569; --accent:#2563EB; --border:#E2E8F0; }
+    :root[data-theme="midnight"] { --bg:#0F172A; --card:#1E293B; --text:#F8FAFC; --muted:#94A3B8; --accent:#60A5FA; --border:#334155; }
+    :root[data-theme="eyecare"]  { --bg:#F4F1EA; --card:#FAF8F5; --text:#1F2937; --muted:#4B5563; --accent:#059669; --border:#D6D3CD; }
+    body { margin:0; font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); padding:24px; line-height:1.6; }
+    .header { display:flex; justify-content:space-between; align-items:center; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px 28px; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(460px,1fr)); gap:20px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px; }
+    h1 { margin:0 0 8px 0; font-size:22px; } h2 { margin:0 0 12px 0; font-size:18px; color:var(--accent); }
+    ul { padding-left:20px; margin:0; } button { cursor:pointer; padding:8px 14px; border-radius:8px; border:1px solid var(--border); background:var(--card); color:var(--text); margin-left:6px; font-weight:600; }
+    .badge { display:inline-block; padding:4px 10px; border-radius:6px; background:#DCFCE7; color:#166534; font-weight:700; font-size:13px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div><h1>考研英语精读平台 (KaoyanEnglish Hub v3.5) W1容器与边缘前端八层架构验收报告 (#30)</h1><div><span class="badge">VERIFIED · P0–P7 八阶段全绿 · 46/46 公网断言 PASS</span> · L0–L7 + 4A 深度架构 · 切主提速 45.6x (149.55ms)</div></div>
+    <div><button onclick="setTheme('daylight')">☀️ Daylight</button><button onclick="setTheme('midnight')">🌙 Midnight</button><button onclick="setTheme('eyecare')">🍵 Eyecare</button></div>
+  </div>
+  <div class="grid">
+    <div class="card"><h2>① L0–L7 八层底层架构与边缘静态分离</h2><ul>
+      <li><b>L6 边缘白名单静态分发</b>：Elena ECS Caddy 托管 6 个静态文件 (153,169 B)，<code>X-Kaoyan-Frontend: ecs-static</code>，<code>MAX_RELEASES=5</code> 自动 LRU。</li>
+      <li><b>L1/L2 W1 WSL2 容器主权</b>：<code>kaoyan-w1-gateway</code> + <code>kaoyan-w1-worker</code>，只读根文件系统、非特权用户 <code>1000:1000</code>、WSL2 原生 <code>ext4</code> 卷。</li>
+      <li><b>L3/DA 18表146字段与三主机金库</b>：W1+HP+S1 三副本 SHA-256 100% 一致；三主机冷备金库 + T2 离线队列。</li>
+    </ul></div>
+    <div class="card"><h2>② 两阶段元数据同步、22 项修复与 P0–P7 终验</h2><ul>
+      <li><b>协议级飞跃 (-99.56% 载荷)</b>：<code>meta_snap</code> (1.8 KB) 替代 410 KB 全库广播；在线切主从 6835ms 降至 149.55ms (45.6x 提速)。</li>
+      <li><b>协调器 Epoch 围栏容灾演练</b>：W1 停机 -> HP 15.68s 接管 (epoch=23) -> W1 恢复回切 (epoch=24, 169.81ms)。</li>
+      <li><b>22 项问题闭环</b>：B01–B12 + D01–D10 全部 VERIFIED (<code>ev:ev-0040</code> / <code>ev:ev-0022</code>)。</li>
+    </ul></div>
+  </div>
+  <script>function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.getItem('kaoyan30_theme',t);}</script>
+</body></html>

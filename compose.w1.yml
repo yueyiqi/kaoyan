@@ -1,0 +1,37 @@
+# Linux Docker Engine in W1 WSL2. SQLite files stay on its local Linux filesystem.
+# Loopback-only services share the managed SSH tunnel namespace.
+x-runtime: &runtime
+  image: ${KAOYAN_IMAGE:?Set the verified release image}
+  restart: unless-stopped
+  network_mode: host
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  pids_limit: 128
+  cpus: 1.0
+  tmpfs: ["/tmp:size=256m,mode=1777"]
+  logging:
+    driver: json-file
+    options: {max-size: 10m, max-file: "3"}
+  healthcheck:
+    test: [CMD, python3, /app/kaoyan_container_health.py, /config/runtime.json]
+    interval: 30s
+    timeout: 10s
+    start_period: 20s
+    retries: 3
+
+services:
+  worker:
+    <<: *runtime
+    container_name: kaoyan-w1-worker
+    mem_limit: 256m
+    volumes:
+      - ${KAOYAN_DEPLOY_ROOT:?Set a Linux filesystem path}/config/worker.json:/config/runtime.json:ro
+      - ${KAOYAN_DEPLOY_ROOT}/worker:/data:rw
+  gateway:
+    <<: *runtime
+    container_name: kaoyan-w1-gateway
+    mem_limit: 512m
+    volumes:
+      - ${KAOYAN_DEPLOY_ROOT:?Set a Linux filesystem path}/config/gateway.json:/config/runtime.json:ro
+      - ${KAOYAN_DEPLOY_ROOT}/gateway:/data:rw

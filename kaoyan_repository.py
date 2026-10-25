@@ -1,6 +1,10 @@
 """Database bootstrap, health, and write journal; canonical shared repository."""
 from __future__ import annotations
+from threading import local
 from kaoyan_runtime import BACKUP_DIR, CORE_TABLES, HAS_PG, LOCAL_SQLITE_PATH, PG_DSN, Path, RBAC_PERMS_SEED, RBAC_ROLES_SEED, RBAC_ROLE_PERMS_MAP, SEED_USERS, ensure_pg_schema, ensure_schema, hashlib, inspect_schema, json, now_str, psycopg2, sqlite3, time, uuid
+
+REQUEST_TRANSACTION = local()
+
 
 class DualEngineHARepository:
     # Manages Dual-Write and Automatic Failover between PostgreSQL 18 (Primary) and SQLite WAL (Hot Standby).
@@ -12,6 +16,8 @@ class DualEngineHARepository:
         BACKUP_DIR.mkdir(parents=True, exist_ok=True)
 
     def get_sqlite_conn(self) -> sqlite3.Connection:
+        if getattr(REQUEST_TRANSACTION, "connection", None) is not None:
+            return REQUEST_TRANSACTION.connection
         conn = sqlite3.connect(str(self.sqlite_path), timeout=10.0)
         conn.row_factory = sqlite3.Row
         conn.execute("PRAGMA journal_mode=WAL;")
@@ -38,24 +44,24 @@ class DualEngineHARepository:
             raise
         ts_seed = now_str()
         sconn.execute(
-            "INSERT OR REPLACE INTO schema_migrations (version_id, script_name, checksum_sha256, engine_target, applied_at) VALUES (?, ?, ?, ?, ?)",
+            "INSERT OR IGNORE INTO schema_migrations (version_id, script_name, checksum_sha256, engine_target, applied_at) VALUES (?, ?, ?, ?, ?)",
             ("V003", "V003__rbac_5tables_and_pbkdf2_security.sql", hashlib.sha256(b"V003_RBAC_5TABLES").hexdigest(), "DUAL_PG_SQLITE", ts_seed),
         )
         # Seed RBAC roles, permissions, role_permissions
         for rc, rn, rl, is_sys, rdesc in RBAC_ROLES_SEED:
             sconn.execute(
-                "INSERT OR REPLACE INTO sys_roles (role_code, role_name, role_level, is_system, description, created_at) VALUES (?,?,?,?,?,?)",
+                "INSERT OR IGNORE INTO sys_roles (role_code, role_name, role_level, is_system, description, created_at) VALUES (?,?,?,?,?,?)",
                 (rc, rn, rl, is_sys, rdesc, ts_seed),
             )
         for pc, pn, dom, act, pdesc in RBAC_PERMS_SEED:
             sconn.execute(
-                "INSERT OR REPLACE INTO sys_permissions (perm_code, perm_name, resource_domain, action_type, description) VALUES (?,?,?,?,?)",
+                "INSERT OR IGNORE INTO sys_permissions (perm_code, perm_name, resource_domain, action_type, description) VALUES (?,?,?,?,?)",
                 (pc, pn, dom, act, pdesc),
             )
         for rc, plist in RBAC_ROLE_PERMS_MAP.items():
             for pc in plist:
                 sconn.execute(
-                    "INSERT OR REPLACE INTO sys_role_permissions (role_code, perm_code, granted_at, granted_by) VALUES (?,?,?,?)",
+                    "INSERT OR IGNORE INTO sys_role_permissions (role_code, perm_code, granted_at, granted_by) VALUES (?,?,?,?)",
                     (rc, pc, ts_seed, "system"),
                 )
         # Seed or upgrade default ADMIN and SCHOLAR accounts with PBKDF2 hashes
@@ -65,12 +71,6 @@ class DualEngineHARepository:
                 sconn.execute(
                     "INSERT INTO sys_users (user_id, username, display_name, role, account_status, passcode_hash, passcode_salt, token_secret, failed_login_count, last_login_at, password_updated_at, created_by, created_at) VALUES (?,?,?,?,?,?,?,?,0,'',?,'system',?)",
                     (uid_s, uid_s, disp_s, role_s, stat_s, hash_s, salt_s, tok_s, ts_seed, ts_seed),
-                )
-            elif len(str(existing_u["passcode_hash"] or "")) != 64:
-                # Upgrade legacy pre-v3.4 non-PBKDF2 seed rows while preserving any 64-hex operator PBKDF2 changes
-                sconn.execute(
-                    "UPDATE sys_users SET passcode_hash = ?, passcode_salt = ? WHERE user_id = ?",
-                    (hash_s, salt_s, uid_s),
                 )
             # Existing account credentials, role and status belong to the operator.
             # Schema repair must never reset accounts or promote seed usernames.

@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2664 2490" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <style>
+    .font-main { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  </style>
+</defs>
+<rect x="0" y="0" width="2664" height="2490" fill="#F1F5F9"/>
+<rect x="0" y="0" width="2664" height="86" fill="#0F172A"/>
+<text x="36" y="38" class="font-main" font-size="24" font-weight="bold" fill="#FFFFFF">📊 PPTX 全页 1:1 矢量分镜预览图 (6 页幻灯片 · 116 原生图元 · 零乱码直览)</text>
+<text x="36" y="66" class="font-main" font-size="15" fill="#94A3B8">源文件: 01_kaoyanWebSrsPrd_考研网站语义单与PRD.pptx | 右侧窗格可直接滚轮无损缩放查看每页细节；Keynote/Office 编辑请使用终端 open 命令打开原件</text>
+<text x="40" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 1 / 6 — KAOYAN ENGLISH PRD v2.3 · DOCKER &amp; RBAC</text>
+<clipPath id="slide_clip_1"><rect x="36" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_1)">
+  <rect x="36" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="36.0" y="150.0" width="1280.0" height="5.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <rect x="84.0" y="203.3" width="355.3" height="29.3" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="261.7" y="222.1" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">KAOYAN ENGLISH PRD v2.3 · DOCKER &amp; RBAC</text>
+  <text x="90.0" y="298.0" text-anchor="start" class="font-main" font-size="35.4" font-weight="bold" fill="#0F172A">研词真源：考研英语一体化网站 PRD 与容器化部署</text>
+  <text x="90.0" y="343.0" text-anchor="start" class="font-main" font-size="15.9" font-weight="normal" fill="#475569">全量闭环：四轨导入 + 左文右卡精读 + 5500词库 + 三维作文 + RBAC进度锚 + Docker 8表落盘</text>
+  <text x="90.0" y="381.9" text-anchor="start" class="font-main" font-size="12.4" font-weight="bold" fill="#2563EB">主讲团队: 实验室科研算力工作组   ｜   发布周期: 2026-10   ｜   参会范围: 全体教职工与科研骨干</text>
+  <rect x="84.0" y="412.3" width="384.0" height="409.7" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="85.3" y="412.3" width="381.3" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="106.0" y="472.3" text-anchor="start" class="font-main" font-size="30.7" font-weight="bold" fill="#2563EB">4 轨导入</text>
+  <text x="106.0" y="504.0" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">MOD-00 零摩擦冷启动入口</text>
+  <text x="106.0" y="530.8" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">5500考纲预置 + 真题一键粘贴切段</text>
+  <rect x="484.0" y="412.3" width="384.0" height="409.7" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="485.3" y="412.3" width="381.3" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="506.0" y="472.3" text-anchor="start" class="font-main" font-size="30.7" font-weight="bold" fill="#2563EB">RBAC 锚点</text>
+  <text x="506.0" y="504.0" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">MOD-04 防乱点与五维进度锚</text>
+  <text x="506.0" y="530.8" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">游客只读沙箱 + 学籍跨端续读 Para K</text>
+  <rect x="884.0" y="412.3" width="384.0" height="409.7" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="885.3" y="412.3" width="381.3" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="906.0" y="472.3" text-anchor="start" class="font-main" font-size="30.7" font-weight="bold" fill="#2563EB">Docker 8表</text>
+  <text x="906.0" y="504.0" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">MOD-05 容器卷持久化与上线</text>
+  <text x="906.0" y="530.8" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">kaoyan.liuzengyu.top -&gt; HP:60231</text>
+  <rect x="84.0" y="832.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="90.0" y="858.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE DECK · 战略与科研决策专呈</text>
+  <text x="1262.0" y="857.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">01 / 06</text>
+</g>
+<rect x="36" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 2 / 6 — QUESTION 1 · MOD-00 INGESTION HUB</text>
+<clipPath id="slide_clip_2"><rect x="1348" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_2)">
+  <rect x="1348" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1396.0" y="182.0" width="301.7" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="1546.9" y="197.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">QUESTION 1 · MOD-00 INGESTION HUB</text>
+  <text x="1402.0" y="255.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">专项突破一：真题与词汇「四轨零摩擦导入入口」方案</text>
+  <rect x="1396.0" y="270.5" width="443.8" height="554.1" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.6"/>
+  <rect x="1397.3" y="270.5" width="441.2" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1418.0" y="333.1" text-anchor="start" class="font-main" font-size="33.0" font-weight="bold" fill="#2563EB">&lt;= 25 ms</text>
+  <text x="1418.0" y="371.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">轨 1 &amp; 轨 2：5500 考纲预置 + 真题智能粘贴切段</text>
+  <text x="1418.0" y="402.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 破除冷启动死穴：拒绝『逐题填空+逐词手敲』高摩擦表单，开</text>
+  <text x="1418.0" y="416.4" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">箱自带 5,500 大纲词根底座</text>
+  <text x="1418.0" y="433.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 轨 1 (批量词表)：支持拖拽导入 CSV / TXT / Anki / 墨墨 /</text>
+  <text x="1418.0" y="448.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B"> 欧路生词本，自动执行 Lemma 词根归并去重</text>
+  <text x="1418.0" y="465.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 轨 2 (真题切段)：直接粘贴整篇真题文本或上传 .md/.docx，0</text>
+  <text x="1418.0" y="479.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">-Token 自动提取年份题号并切分自然段</text>
+  <text x="1418.0" y="496.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 自动建系与预高亮：入库瞬间生成 [0..N) 字符偏移坐标系，并</text>
+  <text x="1418.0" y="511.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">自动高亮文中命中的 5500 核心词与熟词僻义</text>
+  <rect x="1855.8" y="270.5" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="270.5" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="311.5" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">轨 3：纸质卷 / PDF 截图 OCR 导入</text>
+  <text x="1877.8" y="338.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 支持粘贴纸质黄皮书拍照或 PDF 截图</text>
+  <text x="1877.8" y="354.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 自动识别英文段落并消除跨行连字符断词</text>
+  <text x="1877.8" y="371.5" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 双栏快速预览校对后一键转入标准真题库</text>
+  <rect x="1855.8" y="555.6" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="555.6" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="596.6" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">轨 4：研友共享全站知识包互导</text>
+  <text x="1877.8" y="623.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 一键打包『真题+偏移笔记+词库+作文模板』</text>
+  <text x="1877.8" y="640.0" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 支持研友间直接导入成套历年真题精读包</text>
+  <text x="1877.8" y="656.6" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 自带 SHA-256 校验与版本幂等合并保护</text>
+  <rect x="1396.0" y="832.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="1402.0" y="858.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="2574.0" y="857.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">02 / 06</text>
+</g>
+<rect x="1348" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 3 / 6 — FIRST-PRINCIPLES CRITIQUE</text>
+<clipPath id="slide_clip_3"><rect x="36" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_3)">
+  <rect x="36" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="84.0" y="974.0" width="232.9" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="200.4" y="989.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">FIRST-PRINCIPLES CRITIQUE</text>
+  <text x="90.0" y="1047.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">第一性深入分析：同事 A 字面诉求 vs 外专升维架构</text>
+  <rect x="84.0" y="1062.5" width="580.0" height="554.1" rx="10" fill="#FFF8F8" stroke="#FECACA" stroke-width="1.3"/>
+  <rect x="85.3" y="1062.5" width="577.3" height="4.7" rx="4" fill="#EF4444" stroke="none" stroke-width="0.0"/>
+  <rect x="100.0" y="1081.2" width="170.0" height="24.0" rx="10" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1.1"/>
+  <text x="185.0" y="1096.6" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#B91C1C">LITERAL ASK TRAPS</text>
+  <text x="106.0" y="1139.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#991B1B">原始字面思路的四大工程与认知陷阱</text>
+  <text x="106.0" y="1170.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 冷启动陷阱：若无批量导入与大纲预置，手工录入第一篇真题就会导致用户弃坑</text>
+  <text x="106.0" y="1187.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 阅读陷阱：左右放两份相同原文浪费 50% 视口，且跨句重叠选区破坏 HTML DOM</text>
+  <text x="106.0" y="1204.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 词汇陷阱：单按最近时间排序导致刚查 1 次的新词淹没 7 天前查过 5 次的死穴词</text>
+  <text x="106.0" y="1222.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 熟词僻义脱节：词库若脱离触发查词的那句真题原文，背默认词义上考场必丢分</text>
+  <text x="106.0" y="1239.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 作文陷阱：单维树状分类无法应对『科技+文化』双主题交叉，静态收藏易吃灰</text>
+  <rect x="688.0" y="1062.5" width="580.0" height="554.1" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.6"/>
+  <rect x="689.3" y="1062.5" width="577.3" height="4.7" rx="4" fill="#10B981" stroke="none" stroke-width="0.0"/>
+  <rect x="704.0" y="1081.2" width="225.3" height="24.0" rx="10" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1.1"/>
+  <text x="816.6" y="1096.6" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#15803D">REFRAMED ARCHITECTURE</text>
+  <text x="710.0" y="1139.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#14532D">前置限幅外专升维后的工业级方案</text>
+  <text x="710.0" y="1170.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ 四轨导入中枢：5500底座预置 + 真题粘贴自动切段 + CSV词表批量归并 + 知识包互导</text>
+  <text x="710.0" y="1187.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ 左文右卡锚定：左栏唯一真题画布(净读/高亮双态) + 右栏 (para_idx, start, end) </text>
+  <text x="710.0" y="1201.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">卡片流</text>
+  <text x="710.0" y="1219.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ 语境动态词库：Lemma 词根归并 + 强制挂载真题原句切片 + S_urg 抗遗忘紧迫度算子</text>
+  <text x="710.0" y="1236.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ 三视图自由切：支持切换『智能紧迫度 / 查询次数降序 / 最近遇到时间』+ 5500进度盘</text>
+  <text x="710.0" y="1253.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ 三维语料组装：6大母题 × 5段功能槽位 × 3粒度检索 + 阅读一键升格 + 挖空默写台</text>
+  <rect x="84.0" y="1624.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="90.0" y="1650.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="1262.0" y="1649.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">03 / 06</text>
+</g>
+<rect x="36" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 4 / 6 — MOD-01 &amp; MOD-02 · READING &amp; VOCAB</text>
+<clipPath id="slide_clip_4"><rect x="1348" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_4)">
+  <rect x="1348" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1396.0" y="974.0" width="302.5" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="1547.3" y="989.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">MOD-01 &amp; MOD-02 · READING &amp; VOCAB</text>
+  <text x="1402.0" y="1047.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">模块一 &amp; 二：左文右卡精读工作台与 5500 考纲词库引擎</text>
+  <rect x="1396.0" y="1062.5" width="443.8" height="554.1" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.6"/>
+  <rect x="1397.3" y="1062.5" width="441.2" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1418.0" y="1125.2" text-anchor="start" class="font-main" font-size="33.0" font-weight="bold" fill="#2563EB">[start, end)</text>
+  <text x="1418.0" y="1163.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">Standoff 外部偏移锚定 + 词库三模排序联动</text>
+  <text x="1418.0" y="1194.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 左栏保持单一不可变真题段落 DOM，支持生词(黄)/长难句(蓝)/</text>
+  <text x="1418.0" y="1208.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">段落(紫)三色嵌套高亮</text>
+  <text x="1418.0" y="1225.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 右栏按 (para_idx, start_offset) 严格排序长难句语法树切</text>
+  <text x="1418.0" y="1240.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">分卡，左点右闪、右点左居中 (&lt;30ms)</text>
+  <text x="1418.0" y="1257.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 划选生词自动还原词根 (accommodating -&gt; accommodate)，lo</text>
+  <text x="1418.0" y="1271.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">okup_count+1 并绑定当前真题原句</text>
+  <text x="1418.0" y="1288.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 内置 S_urg = 0.45*ln(1+N) + 0.35*(1-exp(-t/tau)) + 0.2</text>
+  <text x="1418.0" y="1303.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">0*W_tier 彻底根除近因偏差</text>
+  <rect x="1855.8" y="1062.5" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="1062.5" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="1103.5" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">考研大纲四级精准分层</text>
+  <text x="1877.8" y="1130.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 核心高频 1800 词 · 熟词僻义高危词 240 词</text>
+  <text x="1877.8" y="1146.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 基础大纲 3700 词 · 真题超纲背景词</text>
+  <text x="1877.8" y="1163.5" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 实时统计大纲覆盖率与个人顽固盲点词榜</text>
+  <rect x="1855.8" y="1347.6" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="1347.6" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="1388.6" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">阅读 -&gt; 词汇/作文单源飞轮</text>
+  <text x="1877.8" y="1415.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 阅读划词即刻充实个人高频词库</text>
+  <text x="1877.8" y="1432.0" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 阅读精选长难句一键升格入作文语料库</text>
+  <text x="1877.8" y="1448.6" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 一次真题精读同时收获阅读、词汇、写作三份资产</text>
+  <rect x="1396.0" y="1624.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="1402.0" y="1650.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="2574.0" y="1649.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">04 / 06</text>
+</g>
+<rect x="1348" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="1726" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 5 / 6 — MOD-03 · ESSAY CORPUS</text>
+<clipPath id="slide_clip_5"><rect x="36" y="1734" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_5)">
+  <rect x="36" y="1734" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="1734.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="84.0" y="1766.0" width="208.5" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="188.2" y="1781.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">MOD-03 · ESSAY CORPUS</text>
+  <text x="90.0" y="1839.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">模块三：考研作文三维语料库与挖空仿写组装台</text>
+  <rect x="84.0" y="1854.5" width="443.8" height="554.1" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.6"/>
+  <rect x="85.3" y="1854.5" width="441.2" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="106.0" y="1917.2" text-anchor="start" class="font-main" font-size="33.0" font-weight="bold" fill="#2563EB">6 × 5 × 3</text>
+  <text x="106.0" y="1955.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">主题 × 段落功能槽位 × 粒度三维正交检索</text>
+  <text x="106.0" y="1986.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 6大考研母题：环保生态 / 教育文化 / 科技创新 / 传统文化 /</text>
+  <text x="106.0" y="2000.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B"> 社会治理 / 青年品质</text>
+  <text x="106.0" y="2017.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 5大功能槽位：图画图表描述 / 核心立意引出 / 正反对比论证 </text>
+  <text x="106.0" y="2032.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">/ 原因分析 / 结尾建议</text>
+  <text x="106.0" y="2049.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 3级语料粒度：闪光词组 (Phrase) · 骨架句式模板 (Template</text>
+  <text x="106.0" y="2063.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">) · 范文段落 (Paragraph)</text>
+  <text x="106.0" y="2080.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 支持『科技创新 × 传统文化 × 第二段原因分析』多维交集毫</text>
+  <text x="106.0" y="2095.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">秒级检索 (&lt; 20ms)</text>
+  <rect x="543.8" y="1854.5" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="545.2" y="1854.5" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="565.8" y="1895.5" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">Cloze 挖空默写主动回忆</text>
+  <text x="565.8" y="1922.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 一键将倒装/强调/让步从句骨架词变为填空</text>
+  <text x="565.8" y="1938.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 消灭『收藏夹看懂了但考场写不出』假性掌握</text>
+  <text x="565.8" y="1955.5" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 支持阅读模块精选长难句一键升格转入本库</text>
+  <rect x="543.8" y="2139.6" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="545.2" y="2139.6" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="565.8" y="2180.6" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">左查右写三段式草稿组装台</text>
+  <text x="565.8" y="2207.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 左栏检索语料点击『+ 插入草稿』拼入右栏</text>
+  <text x="565.8" y="2224.0" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 内置第一段描述/第二段论证/第三段建议框架</text>
+  <text x="565.8" y="2240.6" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 实时统计英文词数，严守加尔法则不做黑盒批改</text>
+  <rect x="84.0" y="2416.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="90.0" y="2442.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="1262.0" y="2441.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">05 / 06</text>
+</g>
+<rect x="36" y="1734" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="1726" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 6 / 6 — QUESTION 2/3/4 · RBAC, DOCKER 8-TABLE DB &amp; DEPLOY</text>
+<clipPath id="slide_clip_6"><rect x="1348" y="1734" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_6)">
+  <rect x="1348" y="1734" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="1734.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1396.0" y="1766.0" width="428.1" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="1610.0" y="1781.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">QUESTION 2/3/4 · RBAC, DOCKER 8-TABLE DB &amp; DEPLOY</text>
+  <text x="1402.0" y="1839.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">专项突破二/三/四：RBAC进度锚、Docker 8表落盘与 HP+CVM 上线</text>
+  <rect x="1396.0" y="1854.5" width="443.8" height="554.1" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.6"/>
+  <rect x="1397.3" y="1854.5" width="441.2" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1418.0" y="1917.2" text-anchor="start" class="font-main" font-size="33.0" font-weight="bold" fill="#2563EB">8 Tables + RBAC</text>
+  <text x="1418.0" y="1955.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">前端零信任鉴权进度锚 (MOD-04) + 后端 8 表 Docker </text>
+  <text x="1418.0" y="1973.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">卷落盘 (MOD-05)</text>
+  <text x="1418.0" y="2009.6" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 防乱点保护 (MOD-04)：访客默认锁定本地沙箱(写接口401拦截)</text>
+  <text x="1418.0" y="2023.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">；学籍登录按 user_id 锚定五维进度(Para K/词频/笔记)</text>
+  <text x="1418.0" y="2041.1" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 8张受治关系表 (MOD-05)：T01迁移账本/T02学籍/T03进度锚点/</text>
+  <text x="1418.0" y="2055.4" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">T04大纲词/T05真题/T06偏移笔记/T07个人词频/T08作文库</text>
+  <text x="1418.0" y="2072.6" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• Docker 容器化封装：/home/hp/kaoyan_english_hub/docker-c</text>
+  <text x="1418.0" y="2086.9" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">ompose.yml 挂载 ./db_volume:/data/db (WAL 事务模式)</text>
+  <text x="1418.0" y="2104.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 一键迁移升级：容器启动自动跑 V001__init_8tables.sql；打</text>
+  <text x="1418.0" y="2118.4" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">包 db_volume 即可 10 秒跨机迁移或升级 PostgreSQL</text>
+  <rect x="1855.8" y="1854.5" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="1854.5" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="1895.5" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">Tier 2 HP Docker 容器宿主</text>
+  <text x="1877.8" y="1922.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 容器 kaoyan-english-hub:2.3 监听 127.0.0.1:60231</text>
+  <text x="1877.8" y="1938.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 遵循 CVM 防倒反天罡律：不在 CVM 裸跑业务容器</text>
+  <text x="1877.8" y="1955.5" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 每日自动导出 .sql 与 .kaoyan.json 冷备至节点 T2</text>
+  <rect x="1855.8" y="2139.6" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="2139.6" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="2180.6" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">Tier 1 kaoyan.liuzengyu.top</text>
+  <text x="1877.8" y="2207.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 首选 .top 付费版(避开 .vip 93%极危红线)，已绑定生效</text>
+  <text x="1877.8" y="2224.0" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• HP 经 frpc_cvm166_bulk 映射本地 60231 -&gt; 40131</text>
+  <text x="1877.8" y="2240.6" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• CVM caddy-proxy 反代 :40131 并注入 Host 127.0.0.1</text>
+  <rect x="1396.0" y="2416.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="1402.0" y="2442.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="2574.0" y="2441.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">06 / 06</text>
+</g>
+<rect x="1348" y="1734" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+</svg>

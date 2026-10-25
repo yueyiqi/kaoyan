@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="daylight">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>31 · 沙箱零孤儿不变量与外部 .bz 自动立项及主动语义归类元方案</title>
+  <script>(function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('bz31_theme')||'daylight');})();</script>
+  <style>
+    :root[data-theme="daylight"]{--bg:#F8FAFC;--card:#FFFFFF;--text:#0F172A;--muted:#475569;--accent:#2563EB;--border:#E2E8F0;}
+    :root[data-theme="midnight"]{--bg:#0F172A;--card:#1E293B;--text:#F8FAFC;--muted:#94A3B8;--accent:#60A5FA;--border:#334155;}
+    :root[data-theme="eyecare"]{--bg:#F4F1EA;--card:#FAF8F5;--text:#1F2937;--muted:#4B5563;--accent:#059669;--border:#D6D3CD;}
+    body{margin:0;font-family:-apple-system,"PingFang SC",sans-serif;background:var(--bg);color:var(--text);padding:24px;line-height:1.6;}
+    .hdr{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 28px;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:20px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;}
+    h1{margin:0 0 6px 0;font-size:22px;} h2{margin:0 0 12px 0;font-size:18px;color:var(--accent);}
+    button{cursor:pointer;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);margin-left:6px;font-weight:600;}
+  </style>
+</head>
+<body>
+  <div class="hdr">
+    <div><h1>31 · 沙箱零孤儿不变量与外部 .bz 自动立项及主动语义归类元方案</h1><div>Sandbox Zero-Orphan Invariant & Proactive .bz Semantic Routing Meta-Architecture (ADR-0716)</div></div>
+    <div><button onclick="setTheme('daylight')">☀️ Daylight</button><button onclick="setTheme('midnight')">🌙 Midnight</button><button onclick="setTheme('eyecare')">🍵 Eyecare</button></div>
+  </div>
+  <div class="grid">
+    <div class="card"><h2>① ADR-0716 与 0-Token 路由外专</h2><p>确立『五槽位留沙箱，一切实质资产归 .bz/』公理；全仓 375 个 EB 中 244 个含非槽位资产已纳入三态自动语义路由。</p></div>
+    <div class="card"><h2>② .bz/95_kaoyan_考研 独立入口与 261 项归仓</h2><p>建立顶层 .bz/95_kaoyan_考研 软链入口，12 个核心运维脚本晋升 Git 纳管，8 个 EB 共 261 项非槽位文件 100% 归仓，四槽同步。</p></div>
+    <div class="card"><h2>③ 入口自动绑定与自动立项 (new_eb.sh)</h2><p>new_eb.sh 自动调用 --mode bind-eb 注入 Cogni-Target-BZ；遇到全新业务主题自动触发 new_bz.sh 立项，无需人工提醒。</p></div>
+    <div class="card"><h2>④ 出口门禁哨兵 (gate_0522 v3.0 &amp; Skill 42 v6)</h2><p>新增 SANDBOX_ONLY_ORPHAN_GUARD 与 Skill 42 G13 规约，从制度与代码双层阻断沙箱孤儿资产逃逸。</p></div>
+  </div>
+  <script>function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('bz31_theme',t);}</script>
+</body></html>

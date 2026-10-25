@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="100%" preserveAspectRatio="xMidYMid meet">
+  <rect width="1600" height="960" fill="#F8FAFC"/>
+  <rect x="36" y="28" width="1528" height="96" rx="16" fill="#0F172A"/>
+  <text x="68" y="72" fill="#F8FAFC" font-family="PingFang SC, sans-serif" font-size="24" font-weight="bold">31 · 沙箱零孤儿不变量与外部 .bz 自动立项及主动语义归类元方案</text>
+  <text x="68" y="106" fill="#94A3B8" font-family="PingFang SC, sans-serif" font-size="16">Sandbox Zero-Orphan Invariant &amp; Proactive .bz Semantic Routing Meta-Architecture (ADR-0716)</text>
+  <rect x="36" y="148" width="748" height="372" rx="14" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.5"/>
+  <rect x="36" y="148" width="748" height="48" rx="14" fill="#DBEAFE"/>
+  <text x="60" y="180" fill="#1E40AF" font-family="PingFang SC, sans-serif" font-size="19" font-weight="bold">① 一揽子方案 1-2：ADR-0716 与 0-Token 语义路由外专</text>
+  <text x="60" y="230" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• ADR-0716 全局架构裁决</text>
+  <text x="78" y="256" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">确立『五槽位过程账本留沙箱，一切实质资产归 .bz/』第一性公理。</text>
+  <text x="60" y="304" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• sandbox_to_bz_semantic_router_shunt.py</text>
+  <text x="78" y="330" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">支撑 census / route / bind-eb / consolidate-kaoyan / verify 五大算子。</text>
+  <text x="60" y="378" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 全仓 375 个 EB 定量普查</text>
+  <text x="78" y="404" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">识别 244 个 EB (65.07%) 共 2,940 项非槽位资产并建立路由矩阵。</text>
+  <rect x="60" y="460" width="700" height="42" rx="8" fill="#DBEAFE" stroke="#2563EB"/>
+  <text x="78" y="487" fill="#1E40AF" font-family="PingFang SC, sans-serif" font-size="14" font-weight="bold">架构定谳: 彻底终结『资产困在沙箱』与『人工提醒建目录』</text>
+  <rect x="816" y="148" width="748" height="372" rx="14" fill="#FFFFFF" stroke="#059669" stroke-width="2.5"/>
+  <rect x="816" y="148" width="748" height="48" rx="14" fill="#D1FAE5"/>
+  <text x="840" y="180" fill="#065F46" font-family="PingFang SC, sans-serif" font-size="19" font-weight="bold">② 一揽子方案 3-4：.bz/95_kaoyan_考研 与 261 项资产归仓</text>
+  <text x="840" y="230" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 顶层直达入口 .bz/95_kaoyan_考研</text>
+  <text x="858" y="256" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">符合 ADR-0701 v2.0 双数字+驼峰+中文正则，直通 01..32 核心大典。</text>
+  <text x="840" y="304" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 12 个核心运维脚本晋升 Git 纳管</text>
+  <text x="858" y="330" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">落盘 ops_cluster_ha_集群高可用运维/ 并附 SHA-256 机器总账本。</text>
+  <text x="840" y="378" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 7+1 考研 EB 261 项非槽位文件全量镜像</text>
+  <text x="858" y="404" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">1:1 归仓 _workspace_eb_campaigns_沙箱全量归仓/，孤儿残留 = 0。</text>
+  <rect x="840" y="460" width="700" height="42" rx="8" fill="#D1FAE5" stroke="#059669"/>
+  <text x="858" y="487" fill="#065F46" font-family="PingFang SC, sans-serif" font-size="14" font-weight="bold">跨槽对齐: srbg10 / srbg0 / idea0 / cfzy0 四大工作树 100% 同步</text>
+  <rect x="36" y="544" width="748" height="372" rx="14" fill="#FFFFFF" stroke="#EF4444" stroke-width="2.5"/>
+  <rect x="36" y="544" width="748" height="48" rx="14" fill="#FEE2E2"/>
+  <text x="60" y="576" fill="#991B1B" font-family="PingFang SC, sans-serif" font-size="19" font-weight="bold">③ 一揽子方案 5：入口自动立项与绑定 (new_eb.sh)</text>
+  <text x="60" y="626" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 状态 1 (Score&gt;=0.65): 自动绑定存量 .bz</text>
+  <text x="78" y="652" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">命中 kaoyan/考研 等特征词自动写入 Cogni-Target-BZ: .bz/95_kaoyan_考研。</text>
+  <text x="60" y="700" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 状态 2 (0.35&lt;=Score&lt;0.65): 路由治理域</text>
+  <text x="78" y="726" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">命中 skill/gate/adr/rrsi 自动归入 .adr / .agents/skills / scripts。</text>
+  <text x="60" y="774" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 状态 3 (Score&lt;0.35): 自动触发 new_bz.sh</text>
+  <text x="78" y="800" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">全新业务/探索课题自动发号建立外部 .bz 项目目录，零冗余追问。</text>
+  <rect x="60" y="856" width="700" height="42" rx="8" fill="#FEE2E2" stroke="#EF4444"/>
+  <text x="78" y="883" fill="#991B1B" font-family="PingFang SC, sans-serif" font-size="14" font-weight="bold">前置赋能: 会话创建即完成外部 .bz 目标目录绑定</text>
+  <rect x="816" y="544" width="748" height="372" rx="14" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2.5"/>
+  <rect x="816" y="544" width="748" height="48" rx="14" fill="#EDE9FE"/>
+  <text x="840" y="576" fill="#5B21B6" font-family="PingFang SC, sans-serif" font-size="19" font-weight="bold">④ 一揽子方案 6：出口门禁哨兵 (gate_0522 v3.0 &amp; Skill 42)</text>
+  <text x="840" y="626" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• gate_0522 v3.0 Section 0.5 守卫</text>
+  <text x="858" y="652" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">SANDBOX_ONLY_ORPHAN_GUARD 自动扫描暂存区 EB 非五槽位实质文件。</text>
+  <text x="840" y="700" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• Skill 42 (slot-artifact-persistence v6)</text>
+  <text x="858" y="726" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">固化 G13 零沙箱孤儿铁律与自动 .bz 语义归类标准作业程序。</text>
+  <text x="840" y="774" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 真机实测与哈希链证据入账</text>
+  <text x="858" y="800" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">verify 模式实测 sandbox_only_orphan_count = 0 (ev:ev-0002)。</text>
+  <rect x="840" y="856" width="700" height="42" rx="8" fill="#EDE9FE" stroke="#7C3AED"/>
+  <text x="858" y="883" fill="#5B21B6" font-family="PingFang SC, sans-serif" font-size="14" font-weight="bold">门禁闭环: Rule + ADR-0716 + Skill 42 v6 + Gate 0522 v3.0</text>
+</svg>

@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2664 2490" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <style>
+    .font-main { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  </style>
+</defs>
+<rect x="0" y="0" width="2664" height="2490" fill="#F1F5F9"/>
+<rect x="0" y="0" width="2664" height="86" fill="#0F172A"/>
+<text x="36" y="38" class="font-main" font-size="24" font-weight="bold" fill="#FFFFFF">📊 PPTX 全页 1:1 矢量分镜预览图 (6 页幻灯片 · 113 原生图元 · 零乱码直览)</text>
+<text x="36" y="66" class="font-main" font-size="15" fill="#94A3B8">源文件: 13_windowsKaoyanHttpsSummary_Win视角发布总结.pptx | 右侧窗格可直接滚轮无损缩放查看每页细节；Keynote/Office 编辑请使用终端 open 命令打开原件</text>
+<text x="40" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 1 / 6 — WINDOWS-TO-HTTPS PUBLISHING SUMMARY · 纯 Windows 视角发布总结</text>
+<clipPath id="slide_clip_1"><rect x="36" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_1)">
+  <rect x="36" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="36.0" y="150.0" width="1280.0" height="5.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <rect x="84.0" y="203.3" width="523.1" height="29.3" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="345.5" y="222.1" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">WINDOWS-TO-HTTPS PUBLISHING SUMMARY · 纯 Windows 视角发布总结</text>
+  <text x="90.0" y="298.0" text-anchor="start" class="font-main" font-size="35.4" font-weight="bold" fill="#0F172A">Windows 视角发布考研英语 HTTPS 站点全链路总结</text>
+  <text x="90.0" y="343.0" text-anchor="start" class="font-main" font-size="15.9" font-weight="normal" fill="#475569">从 Windows 本地 VS Code 改码、双门禁免密认证、阿里云非 Root 生产宿主，到双通道 Let's Encrypt HTTPS 站点发布</text>
+  <text x="90.0" y="381.9" text-anchor="start" class="font-main" font-size="12.4" font-weight="bold" fill="#2563EB">主讲团队: 实验室科研算力工作组   ｜   发布周期: 2026-10   ｜   参会范围: 全体教职工与科研骨干</text>
+  <rect x="84.0" y="412.3" width="384.0" height="409.7" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="85.3" y="412.3" width="381.3" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="106.0" y="472.3" text-anchor="start" class="font-main" font-size="30.7" font-weight="bold" fill="#2563EB">4 大里程碑</text>
+  <text x="106.0" y="504.0" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">Windows -&gt; GitHub -&gt; 阿里云 -&gt; HTTPS</text>
+  <text x="106.0" y="530.8" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">打通本地研发、双端免密、非 Root 部署与受信任 HTTPS 证</text>
+  <text x="106.0" y="544.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">书签发全闭环</text>
+  <rect x="484.0" y="412.3" width="384.0" height="409.7" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="485.3" y="412.3" width="381.3" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="506.0" y="472.3" text-anchor="start" class="font-main" font-size="30.7" font-weight="bold" fill="#2563EB">&lt;= 3.0 秒</text>
+  <text x="506.0" y="504.0" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">VS Code 改码一键自动上线</text>
+  <text x="506.0" y="530.8" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">支持 git push origin main + ssh elena deploy-kaoyan </text>
+  <text x="506.0" y="544.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">或直推钩子秒级生效</text>
+  <rect x="884.0" y="412.3" width="384.0" height="409.7" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="885.3" y="412.3" width="381.3" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="906.0" y="472.3" text-anchor="start" class="font-main" font-size="30.7" font-weight="bold" fill="#2563EB">0.145s 首包</text>
+  <text x="906.0" y="504.0" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">双轨 Let's Encrypt HTTPS 入口</text>
+  <text x="906.0" y="530.8" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">广州直连 TLS-ALPN-01 极速通道 + 香港免备案边缘网关隐</text>
+  <text x="906.0" y="544.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">身回源通道</text>
+  <rect x="84.0" y="832.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="90.0" y="858.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE DECK · 战略与科研决策专呈</text>
+  <text x="1262.0" y="857.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">01 / 06</text>
+</g>
+<rect x="36" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 2 / 6 — STAGE 1 · WINDOWS PASSWORDLESS FOUNDATION</text>
+<clipPath id="slide_clip_2"><rect x="1348" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_2)">
+  <rect x="1348" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1396.0" y="182.0" width="401.9" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="1597.0" y="197.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">STAGE 1 · WINDOWS PASSWORDLESS FOUNDATION</text>
+  <text x="1402.0" y="255.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">阶段一：Windows 本地环境与「2 把钥匙 vs 2 道门禁」免密基座</text>
+  <rect x="1396.0" y="270.5" width="443.8" height="554.1" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.6"/>
+  <rect x="1397.3" y="270.5" width="441.2" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1418.0" y="333.1" text-anchor="start" class="font-main" font-size="33.0" font-weight="bold" fill="#2563EB">2 钥 × 2 锁</text>
+  <text x="1418.0" y="371.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">消除一切密码弹窗与 Permission denied (publickey)</text>
+  <text x="1418.0" y="389.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A"> 的核心防混淆架构</text>
+  <text x="1418.0" y="425.6" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 1. 【钥匙 #1：Windows 本地私钥】C:\Users\Lenovo\.ssh\id</text>
+  <text x="1418.0" y="439.9" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">_ed25519_codeup (注释 cl-715-codeup，指纹 SHA256:OFeU8L1B.</text>
+  <text x="1418.0" y="454.1" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">..)</text>
+  <text x="1418.0" y="471.4" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 2. 【Windows ~/.ssh/config 路由表】统一声明 Host elena </text>
+  <text x="1418.0" y="485.6" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">(8.163.29.42) 与 Host github.com 自动挂载钥匙 #1</text>
+  <text x="1418.0" y="502.9" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 3. 【门禁 A：阿里云 authorized_keys】/home/elena/.ssh/a</text>
+  <text x="1418.0" y="517.1" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">uthorized_keys (权限 700/600) 放行 Windows 免密登录</text>
+  <text x="1418.0" y="534.4" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• 4. 【门禁 B：GitHub settings/keys】同时录入 Windows 公</text>
+  <text x="1418.0" y="548.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">钥 #1 与阿里云公钥 #2 (/home/elena/.ssh/id_ed25519.pub)</text>
+  <rect x="1855.8" y="270.5" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="270.5" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="311.5" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">Windows 私钥权限收敛</text>
+  <text x="1877.8" y="338.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 消除 UNPROTECTED PRIVATE KEY 报错</text>
+  <text x="1877.8" y="354.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• icacls /inheritance:r 移除继承权限</text>
+  <text x="1877.8" y="371.5" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 仅保留当前 Windows 登录用户 (R) 只读</text>
+  <rect x="1855.8" y="555.6" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="555.6" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="596.6" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">一行命令秒进阿里云</text>
+  <text x="1877.8" y="623.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• PowerShell 与 Git Bash 配置完全共享</text>
+  <text x="1877.8" y="640.0" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 直接登录普通管理账号 elena (uid=1000)</text>
+  <text x="1877.8" y="656.6" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 自带免密 sudo，兼顾安全性与运维效率</text>
+  <rect x="1396.0" y="832.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="1402.0" y="858.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="2574.0" y="857.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">02 / 06</text>
+</g>
+<rect x="1348" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 3 / 6 — STAGE 2 · VS CODE CODING &amp; 3-SECOND AUTO-DEPLOY</text>
+<clipPath id="slide_clip_3"><rect x="36" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_3)">
+  <rect x="36" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="84.0" y="974.0" width="431.4" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="299.7" y="989.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">STAGE 2 · VS CODE CODING &amp; 3-SECOND AUTO-DEPLOY</text>
+  <text x="90.0" y="1047.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">阶段二：Windows VS Code 改码与双通道一键自动上线流</text>
+  <rect x="84.0" y="1062.5" width="443.8" height="554.1" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.6"/>
+  <rect x="85.3" y="1062.5" width="441.2" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="106.0" y="1125.2" text-anchor="start" class="font-main" font-size="33.0" font-weight="bold" fill="#2563EB">双通道发布</text>
+  <text x="106.0" y="1163.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">在 D:\kaoyanEnglish 修改前后端代码后的 3 步标准上</text>
+  <text x="106.0" y="1181.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">线流程 (SOP)</text>
+  <text x="106.0" y="1217.6" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• Step 1 (本地改码)：在 VS Code 中修改 frontend/index.htm</text>
+  <text x="106.0" y="1231.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">l 或 backend/kaoyan_hub_server.py 并本地保存</text>
+  <text x="106.0" y="1249.1" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• Step 2 (推送 GitHub)：执行 git add -A &amp;&amp; git commit -m </text>
+  <text x="106.0" y="1263.4" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">'feat: update' &amp;&amp; git push origin main</text>
+  <text x="106.0" y="1280.6" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• Step 3 (触发阿里云上线)：执行 ssh elena "deploy-kaoyan"</text>
+  <text x="106.0" y="1294.9" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B"> (或直接 git push elena main)</text>
+  <text x="106.0" y="1312.1" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• Step 4 (自动同步与探活)：服务端自动双向对齐目录、重启 ka</text>
+  <text x="106.0" y="1326.4" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">oyan-english-hub 并验证 :60231/api/health 返回 200</text>
+  <rect x="543.8" y="1062.5" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="545.2" y="1062.5" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="565.8" y="1103.5" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">通道 A：GitHub 标准协同流</text>
+  <text x="565.8" y="1130.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 先推 GitHub 留存完整版本历史</text>
+  <text x="565.8" y="1146.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 再敲 ssh elena deploy-kaoyan 拉取</text>
+  <text x="565.8" y="1163.5" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 自动同步根目录与子目录入口文件</text>
+  <rect x="543.8" y="1347.6" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="545.2" y="1347.6" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="565.8" y="1388.6" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">通道 B：Git 钩子直推流</text>
+  <text x="565.8" y="1415.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 绑定 elena:/home/elena/kaoyan_english_hub</text>
+  <text x="565.8" y="1432.0" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 执行 git push elena main 一步到位</text>
+  <text x="565.8" y="1448.6" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 服务端 post-receive 钩子自动重启服务</text>
+  <rect x="84.0" y="1624.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="90.0" y="1650.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="1262.0" y="1649.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">03 / 06</text>
+</g>
+<rect x="36" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 4 / 6 — STAGE 3 · NON-ROOT RUNTIME &amp; DATA PROTECTION</text>
+<clipPath id="slide_clip_4"><rect x="1348" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_4)">
+  <rect x="1348" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1396.0" y="974.0" width="407.7" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="1599.9" y="989.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">STAGE 3 · NON-ROOT RUNTIME &amp; DATA PROTECTION</text>
+  <text x="1402.0" y="1047.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">阶段三：阿里云 elena (8.163.29.42) 非 Root 生产底座与数据防丢架构</text>
+  <rect x="1396.0" y="1062.5" width="580.0" height="554.1" rx="10" fill="#FFF8F8" stroke="#FECACA" stroke-width="1.3"/>
+  <rect x="1397.3" y="1062.5" width="577.3" height="4.7" rx="4" fill="#EF4444" stroke="none" stroke-width="0.0"/>
+  <rect x="1412.0" y="1081.2" width="345.7" height="24.0" rx="10" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1.1"/>
+  <text x="1584.8" y="1096.6" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#B91C1C">NON-ROOT SERVICE · 最小权限与双目录自动对齐</text>
+  <text x="1418.0" y="1139.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#991B1B">左半平面：普通账号 User=elena 守护进程与 Git 工作区</text>
+  <text x="1418.0" y="1170.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 1. 【非 Root 运行身份】：kaoyan-english-hub.service 显式锁定 User=elena (uid</text>
+  <text x="1418.0" y="1184.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">=1000)，监听 127.0.0.1:60231</text>
+  <text x="1418.0" y="1201.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 2. 【SSH 硬化防暴力破解】：/etc/ssh/sshd_config 关闭密码登录与 root 密码登录</text>
+  <text x="1418.0" y="1216.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">，仅放行 ED25519 公钥</text>
+  <text x="1418.0" y="1233.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 3. 【前后端双目录自动对齐】：解决仓库同时存在 frontend/index.html 与根 index.</text>
+  <text x="1418.0" y="1247.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">html 的历史痛点，改任意一处均自动同步</text>
+  <text x="1418.0" y="1264.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 4. 【本机 Caddy 双协议守卫】：同时监听 :443 (直连 nip.io HTTPS) 与 :80/:3389 </text>
+  <text x="1418.0" y="1279.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">(接收香港边缘回源)</text>
+  <rect x="2000.0" y="1062.5" width="580.0" height="554.1" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.6"/>
+  <rect x="2001.3" y="1062.5" width="577.3" height="4.7" rx="4" fill="#10B981" stroke="none" stroke-width="0.0"/>
+  <rect x="2016.0" y="1081.2" width="385.9" height="24.0" rx="10" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1.1"/>
+  <text x="2209.0" y="1096.6" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#15803D">DATA ISOLATION · 8 表 SQLite WAL 与 40GB 云盘防爆</text>
+  <text x="2022.0" y="1139.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#14532D">右半平面：代码与数据库物理隔离（git reset 绝不丢数据）</text>
+  <text x="2022.0" y="1170.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ A. 【8 表 SQLite WAL 独立热库】：存放于 /home/elena/kaoyan_storage/hot_db/ka</text>
+  <text x="2022.0" y="1184.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">oyan_hub.sqlite3 (独立于代码目录之外)</text>
+  <text x="2022.0" y="1201.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ B. 【Git 排除保护锁】：.git/info/exclude 显式排除 db_backups/、db_volume/ 与</text>
+  <text x="2022.0" y="1216.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534"> *.sqlite3*，代码重置 0 数据丢失</text>
+  <text x="2022.0" y="1233.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ C. 【8 张核心业务表在线】：涵盖真题篇章、5500考纲词、精读批注、生词本、作文语</text>
+  <text x="2022.0" y="1247.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">料、五维阅读锚点等</text>
+  <text x="2022.0" y="1264.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ D. 【40GB 云盘冷热分层】：热库 (&lt;=4GB) + 温快照 (&lt;=2GB, 7天) + 每日 03:30 自</text>
+  <text x="2022.0" y="1279.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">动压缩归档，磁盘仅占 8%</text>
+  <rect x="1396.0" y="1624.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="1402.0" y="1650.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="2574.0" y="1649.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">04 / 06</text>
+</g>
+<rect x="1348" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="1726" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 5 / 6 — STAGE 4 · DUAL-PATH HTTPS &amp; DOMAIN MATRIX</text>
+<clipPath id="slide_clip_5"><rect x="36" y="1734" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_5)">
+  <rect x="36" y="1734" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="1734.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="84.0" y="1766.0" width="370.9" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="269.4" y="1781.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">STAGE 4 · DUAL-PATH HTTPS &amp; DOMAIN MATRIX</text>
+  <text x="90.0" y="1839.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">阶段四：双通道 Let's Encrypt HTTPS 签发机制与四大公网入口对比</text>
+  <rect x="84.0" y="1854.5" width="580.0" height="554.1" rx="10" fill="#FFF8F8" stroke="#FECACA" stroke-width="1.3"/>
+  <rect x="85.3" y="1854.5" width="577.3" height="4.7" rx="4" fill="#EF4444" stroke="none" stroke-width="0.0"/>
+  <rect x="100.0" y="1873.2" width="352.6" height="24.0" rx="10" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1.1"/>
+  <text x="276.3" y="1888.6" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#B91C1C">ROUTE 1 · 广州直连极速 HTTPS 通道 (0.145s 首选)</text>
+  <text x="106.0" y="1931.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#991B1B">通道一：https://kaoyan.8.163.29.42.nip.io (TLS-ALPN-01 直签)</text>
+  <text x="106.0" y="1962.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 1. 【路由拓扑】：Windows 浏览器 -&gt; 广州 elena (8.163.29.42:443) -&gt; 127.0.0.1</text>
+  <text x="106.0" y="1976.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">:60231</text>
+  <text x="106.0" y="1993.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 2. 【为什么能绕开 80 端口拦截？】：Caddy 配置 disable_http_challenge，仅使用 </text>
+  <text x="106.0" y="2008.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">443 端口 TLS-ALPN-01 完成证书验证</text>
+  <text x="106.0" y="2025.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 3. 【实测性能指标】：HTTP 200 OK · Let's Encrypt 证书校验通过 (SSL_VERIFY=0)</text>
+  <text x="106.0" y="2039.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D"> · 首包响应仅 0.145 秒</text>
+  <text x="106.0" y="2056.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">❌ 4. 【推荐使用场景】：Windows 日常刷题、精读批注、查词入账以及 VS Code 改码后的</text>
+  <text x="106.0" y="2071.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#7F1D1D">第一时间真机预览</text>
+  <rect x="688.0" y="1854.5" width="580.0" height="554.1" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.6"/>
+  <rect x="689.3" y="1854.5" width="577.3" height="4.7" rx="4" fill="#10B981" stroke="none" stroke-width="0.0"/>
+  <rect x="704.0" y="1873.2" width="354.8" height="24.0" rx="10" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1.1"/>
+  <text x="881.4" y="1888.6" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#15803D">ROUTE 2 · 香港免备案边缘回源通道 (自定义域名必选)</text>
+  <text x="710.0" y="1931.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#14532D">通道二：香港网关 (43.160.227.166:443) -&gt; 广州 elena:3389</text>
+  <text x="710.0" y="1962.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ A. 【为什么自定义域名必走香港？】：广州机房对未备案域名在 :80 返 403、在 :443 </text>
+  <text x="710.0" y="1976.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">按 SNI 注入 TCP RST 阻断</text>
+  <text x="710.0" y="1993.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ B. 【隐身回源机制】：DNS A 记录指香港 43.160.227.166 签发证书，再以 Host: 127</text>
+  <text x="710.0" y="2008.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">.0.0.1 回源 8.163.29.42:3389</text>
+  <text x="710.0" y="2025.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ C. 【已上线香港入口】：https://kaoyan.43.160.227.166.nip.io 与 https://kaoya</text>
+  <text x="710.0" y="2039.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">n.liuzengyu.top (均 HTTP 200)</text>
+  <text x="710.0" y="2056.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">✅ D. 【kaoyan.elenalyl.top 收口】：阿里云【域名控制台 -&gt; 快速过户】勾选已实名模</text>
+  <text x="710.0" y="2071.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#166534">板 25324778 提交后即刻自动签发</text>
+  <rect x="84.0" y="2416.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="90.0" y="2442.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="1262.0" y="2441.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">05 / 06</text>
+</g>
+<rect x="36" y="1734" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="1726" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 6 / 6 — SUMMARY · WINDOWS DEVELOPER QUICK CHEATSHEET</text>
+<clipPath id="slide_clip_6"><rect x="1348" y="1734" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_6)">
+  <rect x="1348" y="1734" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="1734.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1396.0" y="1766.0" width="433.6" height="24.0" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.1"/>
+  <text x="1612.8" y="1781.4" text-anchor="middle" class="font-main" font-size="11.8" font-weight="bold" fill="#1D4ED8">SUMMARY · WINDOWS DEVELOPER QUICK CHEATSHEET</text>
+  <text x="1402.0" y="1839.2" text-anchor="start" class="font-main" font-size="28.3" font-weight="bold" fill="#0F172A">Windows 端考研英语 HTTPS 站点日常发布与运维速查卡</text>
+  <rect x="1396.0" y="1854.5" width="443.8" height="554.1" rx="10" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.6"/>
+  <rect x="1397.3" y="1854.5" width="441.2" height="4.7" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1418.0" y="1917.2" text-anchor="start" class="font-main" font-size="33.0" font-weight="bold" fill="#2563EB">3 行核心指令</text>
+  <text x="1418.0" y="1955.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="bold" fill="#0F172A">Windows 开发者每天最高频使用的 3 条黄金命令</text>
+  <text x="1418.0" y="1986.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• ① 【免密登录阿里云生产服】：ssh elena (直接进入 elena@8</text>
+  <text x="1418.0" y="2000.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">.163.29.42，自带免密 sudo)</text>
+  <text x="1418.0" y="2017.7" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• ② 【VS Code 改码后一键发布】：cd /d/kaoyanEnglish &amp;&amp; g</text>
+  <text x="1418.0" y="2032.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">it add -A &amp;&amp; git commit -m 'update' &amp;&amp; git push origin ma</text>
+  <text x="1418.0" y="2046.2" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">in &amp;&amp; ssh elena "deploy-kaoyan"</text>
+  <text x="1418.0" y="2063.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• ③ 【Windows 终端健康探针】：curl.exe -I https://kaoyan</text>
+  <text x="1418.0" y="2077.8" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">.8.163.29.42.nip.io/api/health (浏览器按 Ctrl+F5 强刷)</text>
+  <text x="1418.0" y="2095.0" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">• ④ 【线上首选 HTTPS 网址】：https://kaoyan.8.163.29.42.</text>
+  <text x="1418.0" y="2109.3" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">nip.io (极速直连) / https://kaoyan.liuzengyu.top (边缘回源</text>
+  <text x="1418.0" y="2123.5" text-anchor="start" class="font-main" font-size="12.4" font-weight="normal" fill="#1E293B">)</text>
+  <rect x="1855.8" y="1854.5" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="1854.5" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="1895.5" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">前端改码生效确认</text>
+  <text x="1877.8" y="1922.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• deploy-kaoyan 会自动重启后端服务</text>
+  <text x="1877.8" y="1938.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• Caddy 已配 Cache-Control: no-cache</text>
+  <text x="1877.8" y="1955.5" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 浏览器按 Ctrl+F5 即可看到最新界面</text>
+  <rect x="1855.8" y="2139.6" width="724.2" height="269.1" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.3"/>
+  <rect x="1857.2" y="2139.6" width="721.5" height="4.3" rx="4" fill="#2563EB" stroke="none" stroke-width="0.0"/>
+  <text x="1877.8" y="2180.6" text-anchor="start" class="font-main" font-size="14.2" font-weight="bold" fill="#0F172A">elenalyl.top 激活步骤</text>
+  <text x="1877.8" y="2207.4" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 进入阿里云域名控制台【快速过户】</text>
+  <text x="1877.8" y="2224.0" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 勾选已实名成功的模板 25324778</text>
+  <text x="1877.8" y="2240.6" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#1E293B">• 解除 clientHold 后证书全自动签发</text>
+  <rect x="1396.0" y="2416.7" width="1184.0" height="2.0" rx="4" fill="#E2E8F0" stroke="none" stroke-width="0.0"/>
+  <text x="1402.0" y="2442.9" text-anchor="start" class="font-main" font-size="11.8" font-weight="normal" fill="#475569">EXECUTIVE BRIEFING · 战略与科研决策专呈</text>
+  <text x="2574.0" y="2441.5" text-anchor="end" class="font-main" font-size="10.6" font-weight="bold" fill="#475569">06 / 06</text>
+</g>
+<rect x="1348" y="1734" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+</svg>

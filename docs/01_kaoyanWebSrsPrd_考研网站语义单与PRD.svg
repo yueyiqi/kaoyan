@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="softCardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <style>
+      .t-page-cn { font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif; font-size:28px; font-weight:800; fill:#0f172a; letter-spacing:-0.5px; }
+      .t-page-en { font-family:"SF Pro Text","Helvetica Neue",Arial,sans-serif; font-size:13.5px; font-weight:500; fill:#94a3b8; }
+      .c-title    { font-family:"PingFang SC",sans-serif; font-size:17px; font-weight:800; fill:#0f172a; }
+      .c-subtitle { font-family:"SF Pro Text",Arial,sans-serif; font-size:11.5px; font-weight:500; fill:#475569; }
+      .badge-t    { font-family:"PingFang SC",sans-serif; font-size:11.5px; font-weight:700; }
+      .m-lbl      { font-family:"PingFang SC",sans-serif; font-size:11.5px; font-weight:500; fill:#475569; }
+      .m-val      { font-family:"PingFang SC","SF Pro Display",sans-serif; font-size:18px; font-weight:800; }
+      .i-pfx      { font-family:"PingFang SC",sans-serif; font-size:13px; font-weight:700; fill:#0f172a; }
+      .i-desc     { font-family:"PingFang SC",sans-serif; font-size:12.5px; font-weight:400; fill:#475569; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <rect x="24" y="24" width="1552" height="912" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <!-- 页面主标题栏 -->
+  <g transform="translate(60, 68)">
+    <text x="0" y="0" class="t-page-cn">研词真源 (KaoyanEnglish Hub v2.1) — 四轨导入、三模块语义单与 HP+CVM 真机部署大典</text>
+    <text x="0" y="32" class="t-page-en">4-Track Ingestion Hub, Anchored Reader, 5500 Vocab, 3D Essay &amp; kaoyan.liuzengyu.top (HP:60231 -&gt; CVM:40131)</text>
+    <line x1="0" y1="52" x2="1480" y2="52" stroke="#e2e8f0" stroke-width="1.5"/>
+  </g>
+  <!-- Card: 追问一：真题与词汇四轨零摩擦导入 (MOD-00) -->
+  <g transform="translate(60, 130)">
+    <rect width="726" height="371" rx="12" fill="#ffffff" stroke="#059669" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 714 0 Q 726 0 726 12 L 726 62 L 0 62 Z" fill="#f2f9f7"/>
+    <line x1="0" y1="62" x2="726" y2="62" stroke="#059669" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">追问一：真题与词汇四轨零摩擦导入 (MOD-00)</text>
+    <text x="24" y="47" class="c-subtitle">4-Track Cold-Start &amp; Bulk Data Intake Pipeline</text>
+    <rect x="562" y="17" width="144" height="26" rx="13" fill="#e1f2ed"/>
+    <text x="634" y="34" text-anchor="middle" class="badge-t" fill="#036949">解决无题无词痛点</text>
+    <rect x="20" y="74" width="686" height="62" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="36" y="92" class="m-lbl">预置考纲词库底座</text>
+    <text x="36" y="118" class="m-val" fill="#059669">5,500 词 + CSV批量导入</text>
+    <line x1="363" y1="82" x2="363" y2="128" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="379" y="92" class="m-lbl">单篇真题智能切段</text>
+    <text x="379" y="118" class="m-val" fill="#059669">&lt;= 25 ms (粘贴即成卷)</text>
+    <circle cx="32" cy="152" r="4" fill="#059669"/>
+    <text x="46" y="156"><tspan class="i-pfx">拒绝手填: </tspan><tspan class="i-desc">严禁逐题手敲表单；提供四轨批量摄入，彻底消除冷启动录入摩擦</tspan></text>
+    <circle cx="32" cy="198" r="4" fill="#059669"/>
+    <text x="46" y="202"><tspan class="i-pfx">轨1 词表: </tspan><tspan class="i-desc">出厂内置5500考纲词 + 支持拖拽 CSV/TXT/墨墨/Anki 生词表 Lemma 去重</tspan></text>
+    <circle cx="32" cy="244" r="4" fill="#059669"/>
+    <text x="46" y="248"><tspan class="i-pfx">轨2 真题: </tspan><tspan class="i-desc">整篇真题文本/Markdown/Word 一键粘贴，自动切段、算偏移、预高亮考纲词</tspan></text>
+    <circle cx="32" cy="290" r="4" fill="#059669"/>
+    <text x="46" y="294"><tspan class="i-pfx">轨3 &amp; 轨4: </tspan><tspan class="i-desc">支持纸质黄皮书截图 Ctrl+V OCR 识别 + .kaoyan.json 研友知识包一键互导</tspan></text>
+  </g>
+  <!-- Card: 模块一：真题左文右卡双向锚定精读 (MOD-01) -->
+  <g transform="translate(814, 130)">
+    <rect width="726" height="371" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 714 0 Q 726 0 726 12 L 726 62 L 0 62 Z" fill="#f4f7fe"/>
+    <line x1="0" y1="62" x2="726" y2="62" stroke="#2563eb" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">模块一：真题左文右卡双向锚定精读 (MOD-01)</text>
+    <text x="24" y="47" class="c-subtitle">Standoff Character-Offset Annotation [start, end)</text>
+    <rect x="562" y="17" width="144" height="26" rx="13" fill="#e4ecfc"/>
+    <text x="634" y="34" text-anchor="middle" class="badge-t" fill="#1945a4">纠偏双栏重复原文</text>
+    <rect x="20" y="74" width="686" height="62" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="36" y="92" class="m-lbl">三级摘录粒度</text>
+    <text x="36" y="118" class="m-val" fill="#2563eb">生词 / 长难句 / 段落</text>
+    <line x1="363" y1="82" x2="363" y2="128" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="379" y="92" class="m-lbl">左右双向联动延迟</text>
+    <text x="379" y="118" class="m-val" fill="#2563eb">&lt; 30 ms (零重影)</text>
+    <circle cx="32" cy="152" r="4" fill="#2563eb"/>
+    <text x="46" y="156"><tspan class="i-pfx">字面陷阱: </tspan><tspan class="i-desc">左右放两份相同原文浪费50%视口、引发视觉重影与跨句重叠DOM崩塌</tspan></text>
+    <circle cx="32" cy="198" r="4" fill="#2563eb"/>
+    <text x="46" y="202"><tspan class="i-pfx">左栏真源: </tspan><tspan class="i-desc">唯一不可变真题画布，支持『考场净读模式』与『三色高亮精读模式』</tspan></text>
+    <circle cx="32" cy="244" r="4" fill="#2563eb"/>
+    <text x="46" y="248"><tspan class="i-pfx">右栏卡片: </tspan><tspan class="i-desc">按 (para_idx, start_offset) 自动对齐长难句语法树切分卡与批注</tspan></text>
+    <circle cx="32" cy="290" r="4" fill="#2563eb"/>
+    <text x="46" y="294"><tspan class="i-pfx">飞轮出口: </tspan><tspan class="i-desc">笔记卡一键『记入生词库(+1)』或『升格至作文语料库』</tspan></text>
+  </g>
+  <!-- Card: 模块二 &amp; 三：5500动态词库与三维作文台 (MOD-02/03) -->
+  <g transform="translate(60, 529)">
+    <rect width="726" height="371" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 714 0 Q 726 0 726 12 L 726 70 L 0 70 Z" fill="#f8f5fe"/>
+    <line x1="0" y1="70" x2="726" y2="70" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">模块二 &amp; 三：5500动态词库与三维作文台 (MOD-02/03)</text>
+    <text x="24" y="50" class="c-subtitle">Vocab Urgency S_urg + 6x5x3 Essay Slot Composer</text>
+    <rect x="540" y="20" width="166" height="26" rx="13" fill="#efe7fc"/>
+    <text x="623" y="37" text-anchor="middle" class="badge-t" fill="#5628a5">词根归一 + 挖空默写</text>
+    <rect x="20" y="82" width="686" height="62" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="36" y="100" class="m-lbl">词库三模排序视图</text>
+    <text x="36" y="126" class="m-val" fill="#7c3aed">紧迫度 / 次数 / 时间</text>
+    <line x1="363" y1="90" x2="363" y2="136" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="379" y="100" class="m-lbl">作文正交检索维度</text>
+    <text x="379" y="126" class="m-val" fill="#7c3aed">6母题 × 5段落槽位</text>
+    <circle cx="32" cy="160" r="4" fill="#7c3aed"/>
+    <text x="46" y="164"><tspan class="i-pfx">词库引擎: </tspan><tspan class="i-desc">Lemma 自动还原累加查询次数，强制挂载真题原句切片防背错熟词僻义</tspan></text>
+    <circle cx="32" cy="206" r="4" fill="#7c3aed"/>
+    <text x="46" y="210"><tspan class="i-pfx">防近因偏: </tspan><tspan class="i-desc">S_urg 融合查词次数对数、遗忘衰减与大纲权重，防新查低频词挤掉死穴词</tspan></text>
+    <circle cx="32" cy="252" r="4" fill="#7c3aed"/>
+    <text x="46" y="256"><tspan class="i-pfx">三维语料: </tspan><tspan class="i-desc">环保/教育/科技/文化/社会/品质 × 图画描述/立意/论证/原因/建议</tspan></text>
+    <circle cx="32" cy="298" r="4" fill="#7c3aed"/>
+    <text x="46" y="302"><tspan class="i-pfx">主动输出: </tspan><tspan class="i-desc">阅读好句一键升格入作文库，支持 [___] 挖空默写与右栏三段草稿拼装</tspan></text>
+  </g>
+  <!-- Card: 追问二/三/四：RBAC进度锚·Docker 8表与部署 -->
+  <g transform="translate(814, 529)">
+    <rect width="726" height="371" rx="12" fill="#ffffff" stroke="#ea580c" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 714 0 Q 726 0 726 12 L 726 70 L 0 70 Z" fill="#fdf6f2"/>
+    <line x1="0" y1="70" x2="726" y2="70" stroke="#ea580c" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">追问二/三/四：RBAC进度锚·Docker 8表与部署</text>
+    <text x="24" y="50" class="c-subtitle">RBAC Progress Anchor + Dockerized 8-Table DB + HP/CVM</text>
+    <rect x="516" y="20" width="190" height="26" rx="13" fill="#fceae1"/>
+    <text x="611" y="37" text-anchor="middle" class="badge-t" fill="#a33d08">Docker 8表 + 鉴权锚点</text>
+    <rect x="20" y="82" width="686" height="62" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="36" y="100" class="m-lbl">受治库表与挂载卷</text>
+    <text x="36" y="126" class="m-val" fill="#ea580c">8 张表 · Docker /data/db</text>
+    <line x1="363" y1="90" x2="363" y2="136" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="379" y="100" class="m-lbl">生产在线三层链路</text>
+    <text x="379" y="126" class="m-val" fill="#ea580c">kaoyan.liuzengyu.top</text>
+    <circle cx="32" cy="160" r="4" fill="#ea580c"/>
+    <text x="46" y="164"><tspan class="i-pfx">前端鉴权: </tspan><tspan class="i-desc">Rule LVIII 游客只读沙箱(写接口401拦截) + 学籍登录五维进度断点锚定</tspan></text>
+    <circle cx="32" cy="206" r="4" fill="#ea580c"/>
+    <text x="46" y="210"><tspan class="i-pfx">后端8表: </tspan><tspan class="i-desc">T01迁移账本/T02学籍/T03进度锚/T04考纲/T05真题/T06笔记/T07词账本/T08作文</tspan></text>
+    <circle cx="32" cy="252" r="4" fill="#ea580c"/>
+    <text x="46" y="256"><tspan class="i-pfx">Docker卷: </tspan><tspan class="i-desc">封装于 HP 容器 kaoyan-english-hub:2.3，挂载 db_volume 支持一键迁移升级</tspan></text>
+    <circle cx="32" cy="298" r="4" fill="#ea580c"/>
+    <text x="46" y="302"><tspan class="i-pfx">CVM 网关: </tspan><tspan class="i-desc">kaoyan.liuzengyu.top 经 CVM:40131 反代至 HP:60231，避开 .vip 93%红线</tspan></text>
+  </g>
+</svg>

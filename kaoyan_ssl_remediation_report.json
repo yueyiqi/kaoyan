@@ -1,0 +1,9 @@
+{
+  "domain": "https://kaoyan.liuzengyu.top",
+  "backup_domain": "https://kaoyan.43.160.227.166.nip.io",
+  "root_causes_fixed": [
+    "RC1: Added kaoyan.liuzengyu.top & kaoyan.43.160.227.166.nip.io block to CVM /opt/ihg_hotel/10_deploy/Caddyfile and finalized ACME HTTP-01 TLS cert",
+    "RC2: Added hp-kaoyan-english-cvm166-40131 (HP 127.0.0.1:60231 -> CVM :40131) to HP /home/hp/frpc/frpc_cvm166_bulk.toml",
+    "RC3: Upgraded HP Docker container kaoyan-english-hub with V002 schema migration and v2 Tri-State UX optimizations"
+  ]
+}

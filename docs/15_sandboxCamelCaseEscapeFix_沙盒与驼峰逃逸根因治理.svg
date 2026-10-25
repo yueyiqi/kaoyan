@@ -20,7 +20,7 @@ text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft
 <text x="235" y="264" font-size="12.5" font-weight="600" fill="#1E293B">编译脚本将 ART_DIR 设为 Markdown 主链接，违背 Skill 42 G10 单向原则</text>
 <rect x="46" y="288" width="723" height="40" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
 <text x="58" y="310" font-size="13" font-weight="800" fill="#9F1239">漏洞 V3 (立项缺失)</text>
-<text x="235" y="310" font-size="12.5" font-weight="600" fill="#1E293B">srbg10 稀疏检出仅含 86_，未调用 new_bz.sh 创立 95_kaoyanEnglishHub_...</text>
+<text x="235" y="310" font-size="12.5" font-weight="600" fill="#1E293B">srbg10 稀疏检出仅含 86_，未调用 new_bz.sh 创立 95_kaoyanEnglishHub_</text>
 <rect x="46" y="334" width="723" height="40" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
 <text x="58" y="356" font-size="13" font-weight="800" fill="#9F1239">漏洞 V4 (门禁盲区)</text>
 <text x="235" y="356" font-size="12.5" font-weight="600" fill="#1E293B">GATE-0522 仅在暂存 .bz/ 时触发；pptx_preview_shunt 缺 Rule-B3 沙盒拦截</text>

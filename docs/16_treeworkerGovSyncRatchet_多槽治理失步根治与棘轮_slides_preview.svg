@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2664 1698" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <style>
+    .font-main { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  </style>
+</defs>
+<rect x="0" y="0" width="2664" height="1698" fill="#F1F5F9"/>
+<rect x="0" y="0" width="2664" height="86" fill="#0F172A"/>
+<text x="36" y="38" class="font-main" font-size="24" font-weight="bold" fill="#FFFFFF">📊 PPTX 全页 1:1 矢量分镜预览图 (4 页幻灯片 · 24 原生图元 · 零乱码直览)</text>
+<text x="36" y="66" class="font-main" font-size="15" fill="#94A3B8">源文件: 16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.pptx | 右侧窗格可直接滚轮无损缩放查看每页细节；Keynote/Office 编辑请使用终端 open 命令打开原件</text>
+<text x="40" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 1 / 4 — Slide 1 · 问题域与五层物理失步根因穿透 (G-RC1 ~ G-RC5)</text>
+<clipPath id="slide_clip_1"><rect x="36" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_1)">
+  <rect x="36" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="74.4" y="178.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="676.0" y="214.7" text-anchor="middle" class="font-main" font-size="26.0" font-weight="bold" fill="#F8FAFC">Slide 1 · 问题域与五层物理失步根因穿透 (G-RC1 ~ G-RC5)</text>
+  <text x="80.4" y="235.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">为什么 cfzy0 提交 ADR-0701 后未合流 master (caaac6d352) 且未同步至 srbg10 (3507a547e4)？</text>
+  <rect x="74.4" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="336.1" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">G-RC1: hp_commit_wrap.sh L209-214 R03 默认早退</text>
+  <text x="80.4" y="356.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">未显式设置 HP_PUSH=1 时在第 213 行直接 exit 0，跳过 master 更新与跨槽</text>
+  <text x="80.4" y="374.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">同步，形成单槽治理孤岛。</text>
+  <rect x="688.8" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="336.1" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">G-RC2: hp_commit_wrap.sh L259-261 幽灵脚本调用</text>
+  <text x="694.8" y="356.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">检查并调用不存在的 scripts/6_workspace_工作区运行时/tw_sync.py，条件恒</text>
+  <text x="694.8" y="374.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">为 False 静默空转。</text>
+  <rect x="74.4" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="604.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">G-RC3: tw_slice2 L224-230 硬编码 srbg0..srbg9 十槽盲视</text>
+  <text x="80.4" y="625.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">仅遍历 srbg0..9 软链，漏掉 srbg10..19 与 mjsp20..29 共 20 个真实物理槽</text>
+  <text x="80.4" y="643.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">位 (落后 19~26 提交)。</text>
+  <rect x="688.8" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="604.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">G-RC4 &amp; G-RC5: 治理/业务耦合 &amp; init_adr.py 单槽扫盘撞号</text>
+  <text x="694.8" y="625.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">缺非破坏性 P0 治理热投影；单槽扫盘引发 ADR-0701/0703/0705 跨槽撞号；会</text>
+  <text x="694.8" y="643.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">话启动无失步自愈。</text>
+</g>
+<rect x="36" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 2 / 4 — Slide 2 · 双平面正交热投影定理 (Two-Plane Orthogonal Overlay Sync)</text>
+<clipPath id="slide_clip_2"><rect x="1348" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_2)">
+  <rect x="1348" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1386.4" y="178.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="1988.0" y="214.7" text-anchor="middle" class="font-main" font-size="26.0" font-weight="bold" fill="#F8FAFC">Slide 2 · 双平面正交热投影定理 (Two-Plane Orthogonal Overlay Sync)</text>
+  <text x="1392.4" y="235.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">解耦全局 P0 治理平面与槽位 P1 业务平面，实现 30 物理槽位毫秒级非破坏性同步</text>
+  <rect x="1386.4" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="336.1" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">P0 治理平面 (Global Shared Governance Plane)</text>
+  <text x="1392.4" y="356.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">涵盖 AGENTS.md、.adr/、.agents/skills/、.skills/、scripts/3..7、.gove</text>
+  <text x="1392.4" y="374.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">rnance/ 核心治理真源。</text>
+  <rect x="2000.8" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="336.1" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">Non-Destructive Union-Latest 热投影算子</text>
+  <text x="2006.8" y="356.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">只增不删、新版本覆盖旧版本、skill_access_log.jsonl 跨 30 槽去重并集，</text>
+  <text x="2006.8" y="374.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">零破坏同步全集群。</text>
+  <rect x="1386.4" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="604.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">P1 业务与黑箱平面 (.bz/ &amp; _ephemeral_blackbox/)</text>
+  <text x="1392.4" y="625.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">各工作树在途未提交业务代码与黑箱证据严格受保护，绝不因治理同步被强制 re</text>
+  <text x="1392.4" y="643.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">set 或擦除。</text>
+  <rect x="2000.8" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="604.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">30 个真实物理工作树槽位动态发现</text>
+  <text x="2006.8" y="625.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">自动识别 cfzy0..9 (10) + srbg10..19 (10) + mjsp20..29 (10) = 30 物理</text>
+  <text x="2006.8" y="643.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">槽，跳过软链重复。</text>
+</g>
+<rect x="1348" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 3 / 4 — Slide 3 · 三时机自动收敛闭环与跨槽全局发号防撞锁</text>
+<clipPath id="slide_clip_3"><rect x="36" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_3)">
+  <rect x="36" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="74.4" y="970.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="676.0" y="1006.7" text-anchor="middle" class="font-main" font-size="26.0" font-weight="bold" fill="#F8FAFC">Slide 3 · 三时机自动收敛闭环与跨槽全局发号防撞锁</text>
+  <text x="80.4" y="1027.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">从『依赖人工手动合流』升维为『SessionStart + PreCommit + PostCommit』全自动棘轮</text>
+  <rect x="74.4" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="1128.1" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">时机 1: 会话启动自愈 (rrsi_ioc.py session-start)</text>
+  <text x="80.4" y="1148.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">每次新会话启动自动运行 treeworker_governance_sync_shunt_engine.py --mo</text>
+  <text x="80.4" y="1166.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">de check-gate --auto-heal。</text>
+  <rect x="688.8" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="1128.1" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">时机 2: 提交前门禁硬校验 (gate_0711 in 4_governance_gate</text>
+  <text x="983.1" y="1149.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">s.sh)</text>
+  <text x="694.8" y="1170.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">流水线 B [C59] 执行 gate_0711，硬核验 P0 治理平面完整性并预热广播暂存区</text>
+  <text x="694.8" y="1188.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">治理变更。</text>
+  <rect x="74.4" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="1396.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">时机 3: 提交后即时跨槽广播 (hp_commit_wrap.sh + tw_sync.</text>
+  <text x="368.6" y="1418.7" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">py)</text>
+  <text x="80.4" y="1439.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">凡 HEAD 含 P0 治理变更，无论是否设 HP_PUSH=1，立即调用 tw_sync.py 投影</text>
+  <text x="80.4" y="1456.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">至全部 30 物理槽位。</text>
+  <rect x="688.8" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="1396.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">全局发号防撞锁 (init_adr.py + --mode scan-sequences)</text>
+  <text x="694.8" y="1417.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">联立扫描 pool.git --all 与 30 物理槽位 .adr/，确保 ADR-0711 / Skill 25</text>
+  <text x="694.8" y="1435.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">3 全局单调递增零碰撞。</text>
+</g>
+<rect x="36" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 4 / 4 — Slide 4 · 五位一体实装清单与真机门禁验收报告 (ADR-0711)</text>
+<clipPath id="slide_clip_4"><rect x="1348" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_4)">
+  <rect x="1348" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1386.4" y="970.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="1988.0" y="1006.7" text-anchor="middle" class="font-main" font-size="26.0" font-weight="bold" fill="#F8FAFC">Slide 4 · 五位一体实装清单与真机门禁验收报告 (ADR-0711)</text>
+  <text x="1392.4" y="1027.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">Shunt 外专 + ADR-0711 + AGENTS.md Rule LXX-H + gate_0711 + Skill 253 全链路闭环</text>
+  <rect x="1386.4" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="1128.1" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">0-Token 外专引擎 &amp; tw_sync.py 实装</text>
+  <text x="1392.4" y="1148.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">treeworker_governance_sync_shunt_engine.py 实装四大模式，30/30 物理槽</text>
+  <text x="1392.4" y="1166.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">位 100% 对齐。</text>
+  <rect x="2000.8" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="1128.1" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">ADR-0711 &amp; Skill 253 (Tier1) 双轨落盘</text>
+  <text x="2006.8" y="1148.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">adr_0711_treeworkerGovSyncRatchet_... 与 skill_253_treeworkerGovSyncR</text>
+  <text x="2006.8" y="1166.3" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">atchet_... 全槽同步。</text>
+  <rect x="1386.4" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="1396.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">AGENTS.md Rule LXX-H &amp; P08 幻影清零</text>
+  <text x="1392.4" y="1417.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">新增 Rule LXX-H (248行 / 10,554 tokens &lt; WARN 阈值)，修复 LXXI-B 引用</text>
+  <text x="1392.4" y="1435.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">使 P08 升为 PASS。</text>
+  <rect x="2000.8" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="1396.9" text-anchor="middle" class="font-main" font-size="18.9" font-weight="bold" fill="#1E40AF">gate_0711 入册+接线 &amp; 单向棘轮全绿</text>
+  <text x="2006.8" y="1417.5" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">gate_0711 接入 4_governance_gates.sh 并入册 gate_registry.json (覆盖</text>
+  <text x="2006.8" y="1435.1" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">率 100%, 接线率 79.17%)。</text>
+</g>
+<rect x="1348" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+</svg>

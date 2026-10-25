@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2664 1698" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <style>
+    .font-main { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  </style>
+</defs>
+<rect x="0" y="0" width="2664" height="1698" fill="#F1F5F9"/>
+<rect x="0" y="0" width="2664" height="86" fill="#0F172A"/>
+<text x="36" y="38" class="font-main" font-size="24" font-weight="bold" fill="#FFFFFF">📊 PPTX 全页 1:1 矢量分镜预览图 (4 页幻灯片 · 24 原生图元 · 零乱码直览)</text>
+<text x="36" y="66" class="font-main" font-size="15" fill="#94A3B8">源文件: 17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.pptx | 右侧窗格可直接滚轮无损缩放查看每页细节；Keynote/Office 编辑请使用终端 open 命令打开原件</text>
+<text x="40" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 1 / 4 — Slide 1 · 截图 2 未登录现状诊断与四大病灶穿透 (RCA-U1 ~ RCA-U4)</text>
+<clipPath id="slide_clip_1"><rect x="36" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_1)">
+  <rect x="36" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="74.4" y="178.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="676.0" y="213.3" text-anchor="middle" class="font-main" font-size="24.8" font-weight="bold" fill="#F8FAFC">Slide 1 · 截图 2 未登录现状诊断与四大病灶穿透 (RCA-U1 ~ RCA-U4)</text>
+  <text x="80.4" y="233.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">为什么截图 2 在未登录前 100% 裸露既不安全、也不符合主流知识付费/EdTech 交互规范？</text>
+  <rect x="74.4" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="334.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">RCA-U1: 主人隐私进度与词频 100% 裸奔</text>
+  <text x="80.4" y="355.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">顶栏直接展示 colleague_a 的『Para 2 · 连续 12天』，后端 /api/state 无</text>
+  <text x="80.4" y="372.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155"> Token 时默认回退查询主人数据。</text>
+  <rect x="688.8" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="334.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">RCA-U2: 登录框硬编码明文密码 (value='kaoyan2026')</text>
+  <text x="694.8" y="355.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">HTML input 标签直接写死账号口令，公网任何访客点击按钮即可登入主人账号篡</text>
+  <text x="694.8" y="372.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">改数据。</text>
+  <rect x="74.4" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="603.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">RCA-U3: 首屏停留在工程架构表 Tab 0 且外泄内部端口</text>
+  <text x="80.4" y="624.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">首屏暴露 MOD-00~05 工程表及『HP:60231 -&gt; CVM:40131』『Rule LVIII』，违</text>
+  <text x="80.4" y="641.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">反 Rule LIV 脱敏律。</text>
+  <rect x="688.8" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="603.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">RCA-U4: 纯前端 CSS blur 伪糊化可被 F12 秒破</text>
+  <text x="694.8" y="624.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">知乎/CourseHero 教训：若后端下发全量敏感文本仅靠前端 filter:blur，F12 </text>
+  <text x="694.8" y="641.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">删除样式 1 秒扒光。</text>
+</g>
+<rect x="36" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="142" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 2 / 4 — Slide 2 · 问题一裁决：未登录前展示多少适合？(30% / 45% / 25% 黄金三阶配比)</text>
+<clipPath id="slide_clip_2"><rect x="1348" y="150" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_2)">
+  <rect x="1348" y="150" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="150.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1386.4" y="178.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="1988.0" y="213.3" text-anchor="middle" class="font-main" font-size="24.8" font-weight="bold" fill="#F8FAFC">Slide 2 · 问题一裁决：未登录前展示多少适合？(30% / 45% / 25% 黄金三阶配比)</text>
+  <text x="1392.4" y="233.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">对标 Baymard / NN/g / Readwise / Quizlet / 知乎盐选，兼顾『3秒体验惊艳感』与『零隐私泄露』</text>
+  <rect x="1386.4" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="334.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">第一阶：30% 明文可交互样章区 (Cleartext Value Proof)</text>
+  <text x="1392.4" y="355.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">默认首屏切至 Tab 2 精读器；开放 Para 1 原文划词、前 2 张精读卡、前 2 词</text>
+  <text x="1392.4" y="372.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">考纲释义、首条作文模板。</text>
+  <rect x="2000.8" y="308.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="334.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">第二阶：45% 服务端脱敏渐变毛玻璃预览区 (Earned Curiosity)</text>
+  <text x="2006.8" y="355.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">Para 2+ 原文、第 3~4 张笔记卡、个人词频/紧迫度列、第 2~4 条作文语料及草</text>
+  <text x="2006.8" y="372.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">稿箱脱敏糊化。</text>
+  <rect x="1386.4" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="603.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">第三阶：25% 刚性鉴权锁闭与零黑话隐藏区 (RBAC Hard Lock)</text>
+  <text x="1392.4" y="624.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">Tab 0 (架构矩阵)、Tab 1 (四轨导入与导出)、Tab 5 (库表与部署) 加锁折叠；</text>
+  <text x="1392.4" y="641.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">隐藏内部端口黑话。</text>
+  <rect x="2000.8" y="577.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="603.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">登录后状态：100% 满血恢复 (SCHOLAR_FULL)</text>
+  <text x="2006.8" y="624.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">输入学籍口令验证后，秒级解除全部毛玻璃与锁标，完整恢复 colleague_a 的 P</text>
+  <text x="2006.8" y="641.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">ara 2 断点与双擎数据。</text>
+</g>
+<rect x="1348" y="150" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="40" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 3 / 4 — Slide 3 · 问题二裁决：糊化还是怎么处理适合？(四轨混合防扒处理范式)</text>
+<clipPath id="slide_clip_3"><rect x="36" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_3)">
+  <rect x="36" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="36.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="74.4" y="970.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="676.0" y="1005.3" text-anchor="middle" class="font-main" font-size="24.8" font-weight="bold" fill="#F8FAFC">Slide 3 · 问题二裁决：糊化还是怎么处理适合？(四轨混合防扒处理范式)</text>
+  <text x="80.4" y="1025.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">摒弃『纯前端 CSS 假糊化』与『全屏死锁弹窗』，按内容形态实施四轨正交处理</text>
+  <rect x="74.4" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="1126.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">轨道 A [长文段落 Para 2+]：线性渐变消隐 + 轻毛玻璃</text>
+  <text x="80.4" y="1147.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">采用 mask-image: linear-gradient(180deg) + blur(4.2px) + 底部内联解锁</text>
+  <text x="80.4" y="1164.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">条，符合阅读连续性且无眼疲劳。</text>
+  <rect x="688.8" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="1126.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">轨道 B [词库表/笔记卡/KPI]：服务端脱敏占位 + 单元格毛玻璃</text>
+  <text x="694.8" y="1147.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">保留表头与公共词释义，个人词频列下发『██ 次 / 0.████』并叠加 blur</text>
+  <text x="694.8" y="1164.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">(4.8px) 激发好奇心。</text>
+  <rect x="74.4" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="368.6" y="1395.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">轨道 C [高敏导入导出与架构 Tab]：RBAC 权益锁卡折叠</text>
+  <text x="80.4" y="1416.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">Tab 0 / Tab 1 / Tab 5 在未登录态下不渲染底层 DDL 与导入表单，展示高颜</text>
+  <text x="80.4" y="1433.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">值学籍解锁引导卡。</text>
+  <rect x="688.8" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="983.1" y="1395.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">轨道 D [后端 /api/state 接口]：服务端 API 级硬截断</text>
+  <text x="694.8" y="1416.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">无 Bearer Token 时后端仅返回 GUEST_TEASER 切片，从架构根源杜绝 F12 审</text>
+  <text x="694.8" y="1433.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">查元素与网络抓包窃取。</text>
+</g>
+<rect x="36" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1352" y="934" class="font-main" font-size="16" font-weight="bold" fill="#1E293B">Slide 4 / 4 — Slide 4 · 全栈实装落盘与生产环境真机验证 (Deliverable #17)</text>
+<clipPath id="slide_clip_4"><rect x="1348" y="942" width="1280" height="720" rx="8"/></clipPath>
+<g clip-path="url(#slide_clip_4)">
+  <rect x="1348" y="942" width="1280" height="720" rx="8" fill="#F8FAFC"/>
+  <rect x="1348.0" y="942.0" width="1280.0" height="720.0" rx="4" fill="#F8FAFC" stroke="none" stroke-width="0.0"/>
+  <rect x="1386.4" y="970.8" width="1203.2" height="110.4" rx="4" fill="#0F172A" stroke="none" stroke-width="0.0"/>
+  <text x="1988.0" y="1005.3" text-anchor="middle" class="font-main" font-size="24.8" font-weight="bold" fill="#F8FAFC">Slide 4 · 全栈实装落盘与生产环境真机验证 (Deliverable #17)</text>
+  <text x="1392.4" y="1025.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#94A3B8">0-Token 外专 + 17 号四模态大典 + 前后端代码实装 + elena / hp 生产源站同步上线</text>
+  <rect x="1386.4" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="1126.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">0-Token 前置限幅外专 (8/8 PASS)</text>
+  <text x="1392.4" y="1147.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">kaoyan_unauth_preview_blur_shunt_engine.py 实装 8 项静态与接口合规探针</text>
+  <text x="1392.4" y="1164.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">，全量通过。</text>
+  <rect x="2000.8" y="1100.4" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="1126.8" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">后端 kaoyan_hub_server.py 双轨分流</text>
+  <text x="2006.8" y="1147.4" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">实装 GUEST_TEASER (未登录 30% 样章+脱敏占位) 与 SCHOLAR_FULL (登录后全</text>
+  <text x="2006.8" y="1164.9" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">量双擎数据) 硬隔离。</text>
+  <rect x="1386.4" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="1680.6" y="1395.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">前端 index.html (v3.1) 渐进披露体验</text>
+  <text x="1392.4" y="1416.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">清除预填密码，首屏直达 Tab 2，实装长文渐变毛玻璃、词频单元格糊化与 Tab </text>
+  <text x="1392.4" y="1433.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">0/1/5 权限锁。</text>
+  <rect x="2000.8" y="1369.2" width="588.5" height="244.8" rx="4" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.0"/>
+  <text x="2295.1" y="1395.6" text-anchor="middle" class="font-main" font-size="17.7" font-weight="bold" fill="#1E40AF">生产站点 https://kaoyan-elena.duckdns.org 实测</text>
+  <text x="2006.8" y="1416.2" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">已同步部署至 elena (8.163.29.42) 与 hp 容器，未登录/登录双态真机探针 1</text>
+  <text x="2006.8" y="1433.7" text-anchor="start" class="font-main" font-size="15.3" font-weight="normal" fill="#334155">00% 验收通过。</text>
+</g>
+<rect x="1348" y="942" width="1280" height="720" rx="8" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+</svg>

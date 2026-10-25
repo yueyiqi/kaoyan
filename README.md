@@ -1,51 +1,26 @@
-# 研词真源 (KaoyanEnglish Hub v2.4) — 考研英语真题精读·5500词库·三维作文一体化平台
+# 研词真源 / Kaoyan English Hub
+> [IoC_Skill_Telemetry] Status: VERIFIED（本轮范围） · Codex/OpenAI · 2026-10-24 · ev:ev-0038
+正式入口：[研词真源](https://kaoyan.liuzengyu.top)。当前生产主节点 HP，W1 Windows / S1 macOS 可在线切为执行主。
 
-> **Live Demo**: `https://kaoyan.elenalyl.top`
-> **Stack**: Zero-Dependency Python 3 HTTP/REST API + SQLite3 WAL (8 Core Tables) + Tri-Modal Single-Page Application (Daylight / Midnight / Eyecare) + Docker Compose + Hot/Warm/Cold Tiered Storage
+完整交付见 [在线验收报告](25_liveSwitchoverAcceptance_三机在线切主验收报告.md)；规格见 [语义单与 PRD](19_liveSwitchoverPrd_在线切主语义单与实施方案.md)。
+本次已在真实 W1 部署原生常驻后端与生产数据库，并实测丢表恢复、跨机切主、断链恢复、完整数据保留。
 
----
+生产架构：固定 HTTPS 入口 → HP 持久协调器 → HP/W1/S1 原生 SQLite 工作节点；成功响应要求至少两个节点确认。
+完整生产库共 18 表：14 张 V005 业务表、2 张原有扩展表、2 张事务/回执协议表。
+代码真源在本目录 kaoyan_*.py；backend/kaoyan_hub_server.py 仅兼容启动，旧复制模块不是发布真源。
+生产进程使用 kaoyan_cluster_launch.py 与各机私有配置；禁止启动旧服务器直写 production.sqlite3。
 
-## 1. 核心架构与六大业务模块 (6 Core Modules)
+运维（在本目录执行，无需复制令牌）：
+- 查看：`python3 kaoyan_cluster_admin.py --ssh hp status`
+- 切主：`python3 kaoyan_cluster_admin.py --ssh hp switch W1`（也支持 S1、HP）
+- 恢复：`python3 kaoyan_cluster_admin.py --ssh hp recover`
 
-| 模块代号 | 模块名称 | 核心能力 |
-| :--- | :--- | :--- |
-| **MOD-00** | **四轨内容注入工作台 (Ingestion Studio)** | 支持 JSON/Markdown 真题导入、文章精读实时预览、5500 大纲词入库、三维作文语料实时写库 |
-| **MOD-01** | **双栏深度精读器 (Dual-Pane Reader)** | 英文真题原文 + 四色语义高亮 (`vocab`/`grammar`/`discourse`/`translation`) + 段落译文抽屉 + v2 三态减负模式 (`Clean`/`Guided`/`Annotated`) |
-| **MOD-02** | **5500 考纲词库与紧急度引擎 (Vocab Engine)** | 紧迫度公式 $S_{\text{urg}} = 0.45 \cdot \ln(1 + F_{\text{exam}}) + 0.35 \cdot (1 - M_u) + 0.20 \cdot \min(1, \Delta t_u / 168)$ 实时重排，支持 SM-2 记忆调度与真题例句溯源 |
-| **MOD-03** | **三维作文语料库 (3D Essay Matrix)** | 话题维度 × 功能句型维度 × 逻辑衔接维度三轴正交检索，支持一键加入个人背诵槽与全文背诵遮罩自测 |
-| **MOD-04** | **账号鉴权与五维进度锚点 (Auth & Progress)** | 独立注册/登录 (`PBKDF2-HMAC-SHA256` 120,000 次迭代) + 五维断点恢复 (`article_id`, `paragraph_idx`, `scroll_ratio`, `active_tab`, `last_vocab_word`) |
-| **MOD-05** | **Docker 8表受治存储与冷热分层 (Tiered Storage)** | 8 张核心 SQLite3 WAL 业务表 + 热数据 (`hot_db`) / 温数据 (`warm_staging`) / 冷归档 (`cold_outbox` Zstandard 压缩异地归档) |
+发布回归：`python3 tests/verify_live_release.py`；三机原生证据见报告。
+离线维护：`python3 kaoyan_portable.py --help`；已有库 repair 会备份，restore 仅允许新目标。
+Docker Compose / kaoyan_hub_server.py 保留为独立开发与旧版兼容路径，不是当前在线复制入口。
 
----
-
-## 2. 快速启动 (Quick Start)
-
-### 方式 A：Docker Compose 一键启动（推荐生产环境）
-
-```bash
-docker compose up -d --build
-curl http://127.0.0.1:60231/api/health
-```
-
-### 方式 B：非 Root 普通账号 (`elena`) 宿主机直接运行
-
-```bash
-export KAOYAN_PORT=60231
-export KAOYAN_DB_PATH=./db_volume/kaoyan_hub.sqlite3
-export KAOYAN_MIGRATION_SQL=./db_migrations/V001__init_kaoyan_8tables.sql
-export KAOYAN_BACKUP_DIR=./db_backups
-python3 kaoyan_hub_server.py
-```
-
----
-
-## 3. 数据库 8 张核心表 (8 Core Tables in `V001__init_kaoyan_8tables.sql`)
-
-1. `schema_migrations`: 数据库版本演进账本
-2. `sys_users`: 用户账号与安全盐值哈希表
-3. `user_progress_anchors`: 用户五维学习进度断点表
-4. `exam_passages`: 历年考研英语真题原文与结构化段落表
-5. `annotation_spans`: 精读四色标注与主谓宾成分拆解表
-6. `syllabus_5500_lexicon`: 5500 考研大纲词频与熟词僻义表
-7. `user_vocab_ledger`: 用户生词掌握度 $M_u$、紧急度 $S_{\text{urg}}$ 与 SM-2 调度表
-8. `essay_corpus_snippets`: 大/小作文三维语料矩阵表
+边界：首次迁入冻结写入 24.79 秒，后续切主为秒级；HP 协调器仍是单点，少于两个副本时停止确认写入。
+W1 默认系统代理异常独立存在；内部 RPC 已隔离，直连 TLS 验收通过，未擅改全局网络设置。
+原 elena 进程停止并保留备份；旧业务入口已统一转发正式入口，回滚必须先迁回最新权威快照。
+旧 17/18 文档中的快照阶段记录保留为历史；本目录 25 报告与原 17 泳道图为当前实施结论。
+English: native Windows deployment, synchronous replication, fenced live switchover and scoped fault acceptance are implemented; see the report for measured limits.

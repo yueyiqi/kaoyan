@@ -1,0 +1,7 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY kaoyan_*.py kaoyan_*.js index.html /app/
+COPY db_migrations /app/db_migrations
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 KAOYAN_LOG_STDIO=1
+USER 1000:1000
+CMD ["python3", "/app/kaoyan_cluster_launch.py", "/config/runtime.json"]

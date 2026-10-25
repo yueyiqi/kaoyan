@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" width="100%" preserveAspectRatio="xMidYMid meet">
+  <rect width="1600" height="960" fill="#F8FAFC"/>
+  <rect x="36" y="28" width="1528" height="96" rx="16" fill="#0F172A"/>
+  <text x="68" y="72" fill="#F8FAFC" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="25" font-weight="bold">考研英语精读平台 (KaoyanEnglish Hub v3.5) W1容器主权与边缘前端八层架构验收报告 (#30)</text>
+  <text x="68" y="106" fill="#94A3B8" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16">L0–L7 八层底层架构 + 4A 映射 · 两阶段元数据同步 (-99.56% 载荷 / 45.6x 切主提速) · 22 项根因修复 · 8-Phase 真机验收</text>
+
+  <!-- Card 1: Top-Left -->
+  <rect x="36" y="148" width="748" height="370" rx="14" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.5"/>
+  <rect x="36" y="148" width="748" height="48" rx="14" fill="#DBEAFE"/>
+  <text x="60" y="180" fill="#1E40AF" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">① L0–L7 八层底层架构与边缘静态分离 (8-Layer Stack &amp; Edge Split)</text>
+  <text x="60" y="222" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• L6 边缘白名单静态分发 (Elena ECS Caddy):</text>
+  <text x="80" y="246" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">本地托管 6 个静态文件 (153,169 B)，X-Kaoyan-Frontend: ecs-static，MAX_RELEASES=5 自动 LRU。</text>
+  <text x="60" y="282" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• L1/L2 W1 WSL2 Linux Docker 容器主权:</text>
+  <text x="80" y="306" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">kaoyan-w1-gateway (512m) + kaoyan-w1-worker (256m)，readonly rootfs、1000:1000、ext4 VHDX 挂载。</text>
+  <text x="60" y="342" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• L3/DA 18 表 × 146 字段全量迁移与三主机冷备金库:</text>
+  <text x="80" y="366" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">W1(Leader)+HP(Replica)+S1(Replica) 100% 哈希一致；W1+HP+S1 三主机冷备金库 + T2 离线队列。</text>
+  <text x="60" y="402" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• L7 0-Token 前置限幅外专与实时巡检算子:</text>
+  <text x="80" y="426" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">kaoyan_w1_docker_edge_shunt_engine.py (v2.0) 脱水率 98.04%，支持 live-l0-l7-probe 实时验证。</text>
+  <rect x="60" y="452" width="700" height="44" rx="8" fill="#EFF6FF" stroke="#93C5FD"/>
+  <text x="80" y="480" fill="#1D4ED8" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">架构契约: ADR-0715 · 29 个受治文件跨三机 SHA-256 100% 精确一致</text>
+
+  <!-- Card 2: Top-Right -->
+  <rect x="816" y="148" width="748" height="370" rx="14" fill="#FFFFFF" stroke="#059669" stroke-width="2.5"/>
+  <rect x="816" y="148" width="748" height="48" rx="14" fill="#D1FAE5"/>
+  <text x="840" y="180" fill="#065F46" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">② L4 两阶段元数据同步与 45.6 倍切主提速 (Protocol Optimization)</text>
+  <text x="840" y="222" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 两阶段元数据优先同步 (Two-Phase Metadata-First Sync):</text>
+  <text x="860" y="246" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">稳态发送 1.8 KB meta_snap 替代 410 KB 全库 Base64，跨机网络同步载荷降低 99.56%。</text>
+  <text x="840" y="282" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• GET/HEAD 只读快路径与单遍表扫描:</text>
+  <text x="860" y="306" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">need_install=False 免除二次 18 表 SHA-256 扫描；只读请求跳过冗余 backup() 与二次同步。</text>
+  <text x="840" y="342" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 公网 HTTPS 延迟与在线切主飞跃:</text>
+  <text x="860" y="366" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">/api/health 3808ms ➔ 834ms (4.57x)；三节点切主 6835ms ➔ S1:149.55ms / HP:159.67ms / W1:238.40ms。</text>
+  <text x="840" y="402" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• HP 备用协调器 Epoch+1 围栏容灾演练:</text>
+  <text x="860" y="426" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">W1 容器停机 ➔ HP 15.684s 接管 (epoch=23, 2/3 仲裁) ➔ W1 恢复回切 (epoch=24, 169.81ms, 3/3)。</text>
+  <rect x="840" y="452" width="700" height="44" rx="8" fill="#ECFDF5" stroke="#6EE7B7"/>
+  <text x="860" y="480" fill="#047857" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">实测飞跃: 在线切主最高提速 45.6 倍 · 幂等重放提速 38.5 倍 (177ms)</text>
+
+  <!-- Card 3: Bottom-Left -->
+  <rect x="36" y="544" width="748" height="380" rx="14" fill="#FFFFFF" stroke="#EF4444" stroke-width="2.5"/>
+  <rect x="36" y="544" width="748" height="48" rx="14" fill="#FEE2E2"/>
+  <text x="60" y="576" fill="#991B1B" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">③ 22 项底层故障与系统瓶颈闭环 (B01–B12 &amp; D01–D10 Matrix)</text>
+  <text x="60" y="620" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 容器切入与跨内核边界修复 (B01–B12):</text>
+  <text x="80" y="644" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">涵盖缺失卷 Fail-Closed、compose tmpfs 引号、PowerShell Base64 保引号、Caddy @spa 302 等 12 项。</text>
+  <text x="60" y="684" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 协议、容灾、冷备与 WSL2 服务栈加固 (D01–D08):</text>
+  <text x="80" y="708" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">涵盖两阶段同步、SSH ControlMaster 退避重试、三机冷备金库、HP 备用协调器与 WSL2 整栈冷重启。</text>
+  <text x="60" y="748" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• 工作树单写僵尸租约溯源与无损清障 (D09):</text>
+  <text x="80" y="772" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">定位 Codex 01a16f50 派生的死进程 agy 子会话 e52c7517，清零 22 个脏文件并完成 VERIFIED 闭环。</text>
+  <text x="60" y="812" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">• L0–L7 实时巡检算子与 30 号四模态编译器 (D10):</text>
+  <text x="80" y="836" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">实装 --mode live-l0-l7-probe 跨 4 节点实时巡检与 30 号四模态 (.md/.svg/.png/.pptx/.html) 同源编译。</text>
+  <rect x="60" y="860" width="700" height="44" rx="8" fill="#FEF2F2" stroke="#FCA5A5"/>
+  <text x="80" y="888" fill="#B91C1C" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">故障清零: B01–B12 (12项) + D01–D10 (10项) = 22/22 全部 VERIFIED</text>
+
+  <!-- Card 4: Bottom-Right -->
+  <rect x="816" y="544" width="748" height="380" rx="14" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2.5"/>
+  <rect x="816" y="544" width="748" height="48" rx="14" fill="#EDE9FE"/>
+  <text x="840" y="576" fill="#5B21B6" font-family="PingFang SC, sans-serif" font-size="20" font-weight="bold">④ 八阶段 (P0–P7) 全链路验收与双 EB 证据链 (8-Phase Acceptance)</text>
+  <text x="840" y="620" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">1. [P0–P2 基线取证、契约围栏与容器热升级 PASS]:</text>
+  <text x="860" y="644" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">37 项单元/容器/集群测试 100% 通过；镜像 kaoyan-cluster:56a8353092a2 部署就绪。</text>
+  <text x="840" y="684" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">2. [P3–P4 协调器容灾演练、三主机金库与 WSL2 冷重启 PASS]:</text>
+  <text x="860" y="708" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">W1-&gt;HP-&gt;W1 演练零丢数；WSL2 隧道+双容器冷重启 17.80s/20.64s 自愈恢复。</text>
+  <text x="840" y="748" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">3. [P5 公网 HTTPS 46 项高可用终验 PASS]:</text>
+  <text x="860" y="772" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">验证默认 W1 主库、断链写入追平、S1/HP/W1 切主、幂等重放与 18 表 146 列全量一致。</text>
+  <text x="840" y="812" fill="#1E293B" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">4. [P6–P7 租约清障、L0–L7 实时探针与四模态收口 PASS]:</text>
+  <text x="860" y="836" fill="#475569" font-family="PingFang SC, sans-serif" font-size="14">live-l0-l7-probe 跨 4 节点 8 层全绿 (ev:ev-0040 / ev:ev-0022)，工作区 0 脏文件。</text>
+  <rect x="840" y="860" width="700" height="44" rx="8" fill="#F5F3FF" stroke="#C4B5FD"/>
+  <text x="860" y="888" fill="#6D28D9" font-family="PingFang SC, sans-serif" font-size="15" font-weight="bold">终验结论: P0–P7 八阶段全绿 · primary=W1, version=81, epoch=28, 3/3 副本在线</text>
+</svg>

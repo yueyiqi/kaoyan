@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="daylight">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 1 — 同源交互式幻灯片预览</title>
+<script>(function(){try{var t=localStorage.getItem('srbg_pptx_preview_theme')||'daylight';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root, [data-theme="daylight"] { --app-bg:#F1F5F9; --bar-bg:#FFFFFF; --bar-text:#0F172A; --bar-muted:#475569; --bar-border:#CBD5E1; --accent:#2563EB; --stage-shadow:0 10px 28px rgba(15,23,42,0.12); }
+[data-theme="midnight"] { --app-bg:#0F172A; --bar-bg:#1E293B; --bar-text:#F8FAFC; --bar-muted:#94A3B8; --bar-border:#334155; --accent:#3B82F6; --stage-shadow:0 12px 32px rgba(0,0,0,0.45); }
+[data-theme="eyecare"] { --app-bg:#F5F2E8; --bar-bg:#FAF7F0; --bar-text:#1E293B; --bar-muted:#57534E; --bar-border:#D6D3CD; --accent:#0D9488; --stage-shadow:0 8px 24px rgba(28,25,23,0.10); }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--app-bg); color:var(--bar-text); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; min-height:100vh; display:flex; flex-direction:column; }
+.topbar { background:var(--bar-bg); border-bottom:1px solid var(--bar-border); padding:10px 16px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; position:sticky; top:0; z-index:50; }
+.brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:14px; }
+.badge-ok { background:#DCFCE7; color:#166534; border:1px solid #86EFAC; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:600; }
+.controls { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+button.btn, button.pill { background:var(--bar-bg); color:var(--bar-text); border:1px solid var(--bar-border); padding:5px 10px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; }
+button.pill.active, button.btn.primary { background:var(--accent); color:#FFFFFF; border-color:var(--accent); }
+.deck-container { flex:1; padding:14px; display:flex; flex-direction:column; align-items:center; gap:18px; }
+.slide-wrap { display:none; width:100%; max-width:1280px; flex-direction:column; gap:6px; }
+.slide-wrap.active, body.grid-mode .slide-wrap { display:flex; }
+.slide-meta-bar { display:flex; justify-content:space-between; font-size:12px; font-weight:600; color:var(--bar-muted); padding:0 4px; }
+.stage-outer { width:100%; position:relative; overflow:hidden; border-radius:10px; box-shadow:var(--stage-shadow); border:1px solid var(--bar-border); background:#F8FAFC; }
+.stage-canvas { width:1280px; height:720px; position:relative; transform-origin:top left; background:#F8FAFC; overflow:hidden; }
+.sp { position:absolute; display:flex; flex-direction:column; justify-content:flex-start; padding:2px 4px; overflow:hidden; line-height:1.28; word-break:break-word; }
+.sp.has-bg { justify-content:center; align-items:center; }
+.sp-p { width:100%; margin-bottom:2px; }
+</style></head>
+<body>
+<header class="topbar">
+  <div class="brand"><span>📊 1:1 同源矢量演示预览器</span><span class="badge-ok">✅ 2页 · 2原生图元 · 0死图</span></div>
+  <div class="controls">
+    <button class="btn" onclick="prevSlide()">◀ 上一页</button><button class="pill active" onclick="goSlide(0)" title="Slide 1">P1</button><button class="pill " onclick="goSlide(1)" title="Slide 2">P2</button><button class="btn" onclick="nextSlide()">下一页 ▶</button>
+    <button class="btn primary" id="modeBtn" onclick="toggleGrid()">⊞ 全页总览</button>
+    <button class="btn" onclick="setTheme('daylight')">☀️ 日间</button><button class="btn" onclick="setTheme('midnight')">🌙 暗夜</button><button class="btn" onclick="setTheme('eyecare')">🌿 护眼</button>
+  </div>
+</header>
+<main class="deck-container" id="deckRoot"><section class="slide-wrap active" data-idx="0"><div class="slide-meta-bar"><span>第 1 / 2 页 · Slide 1</span><span>1 原生矢量图元</span></div><div class="stage-outer"><div class="stage-canvas"><div class="sp " style="left:0.0px;top:0.0px;width:1280.0px;height:720.0px"></div></div></div></section><section class="slide-wrap " data-idx="1"><div class="slide-meta-bar"><span>第 2 / 2 页 · Slide 2</span><span>1 原生矢量图元</span></div><div class="stage-outer"><div class="stage-canvas"><div class="sp " style="left:0.0px;top:0.0px;width:1280.0px;height:720.0px"></div></div></div></section></main>
+<script>
+var cur=0,total=2;
+function updateView(){var s=document.querySelectorAll('.slide-wrap'),p=document.querySelectorAll('.pill');for(var i=0;i<s.length;i++)s[i].classList.toggle('active',i===cur);for(var j=0;j<p.length;j++)p[j].classList.toggle('active',j===cur);fitStages();}
+function goSlide(n){cur=(n+total)%total;updateView();} function nextSlide(){goSlide(cur+1);} function prevSlide(){goSlide(cur-1);}
+function toggleGrid(){var b=document.body;b.classList.toggle('grid-mode');document.getElementById('modeBtn').textContent=b.classList.contains('grid-mode')?'▶ 单页放映':'⊞ 全页总览';fitStages();}
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('srbg_pptx_preview_theme',t);}catch(e){}}
+function fitStages(){var o=document.querySelectorAll('.stage-outer');for(var i=0;i<o.length;i++){var w=o[i].clientWidth;if(w<=0)continue;var sc=w/1280.0;o[i].style.height=Math.round(720*sc)+'px';var c=o[i].querySelector('.stage-canvas');if(c)c.style.transform='scale('+sc.toFixed(4)+')';}}
+window.addEventListener('resize',fitStages);window.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown')nextSlide();if(e.key==='ArrowLeft'||e.key==='PageUp')prevSlide();});
+fitStages();setTimeout(fitStages,80);
+</script></body></html>

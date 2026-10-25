@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1120" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="softCardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <style>
+      .t-page-cn { font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif; font-size:28px; font-weight:800; fill:#0f172a; letter-spacing:-0.5px; }
+      .t-page-en { font-family:"SF Pro Text","Helvetica Neue",Arial,sans-serif; font-size:13.5px; font-weight:500; fill:#94a3b8; }
+      .c-title    { font-family:"PingFang SC",sans-serif; font-size:17px; font-weight:800; fill:#0f172a; }
+      .c-subtitle { font-family:"SF Pro Text",Arial,sans-serif; font-size:11.5px; font-weight:500; fill:#475569; }
+      .badge-t    { font-family:"PingFang SC",sans-serif; font-size:11.5px; font-weight:700; }
+      .m-lbl      { font-family:"PingFang SC",sans-serif; font-size:11.5px; font-weight:500; fill:#475569; }
+      .m-val      { font-family:"PingFang SC","SF Pro Display",sans-serif; font-size:18px; font-weight:800; }
+      .i-pfx      { font-family:"PingFang SC",sans-serif; font-size:13px; font-weight:700; fill:#0f172a; }
+      .i-desc     { font-family:"PingFang SC",sans-serif; font-size:12.5px; font-weight:400; fill:#475569; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <rect x="24" y="24" width="1752" height="1072" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <!-- 页面主标题栏 -->
+  <g transform="translate(60, 68)">
+    <text x="0" y="0" class="t-page-cn">在线切主实机验收 (Live Switchover Acceptance)</text>
+    <text x="0" y="32" class="t-page-en">W1 Windows · HP Linux · S1 macOS · production evidence, 2026-10-24</text>
+    <line x1="0" y1="52" x2="1680" y2="52" stroke="#e2e8f0" stroke-width="1.5"/>
+  </g>
+  <!-- Card: Windows 原生落库 -->
+  <g transform="translate(60, 130)">
+    <rect width="826" height="451" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 814 0 Q 826 0 826 12 L 826 62 L 0 62 Z" fill="#f4f7fe"/>
+    <line x1="0" y1="62" x2="826" y2="62" stroke="#2563eb" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">Windows 原生落库</text>
+    <text x="24" y="47" class="c-subtitle">Native Windows database</text>
+    <rect x="654" y="17" width="152" height="26" rx="13" fill="#e4ecfc"/>
+    <text x="730" y="34" text-anchor="middle" class="badge-t" fill="#1945a4">已验收 VERIFIED</text>
+    <circle cx="32" cy="82" r="4" fill="#2563eb"/>
+    <text x="46" y="86"><tspan class="i-pfx">常驻服务</tspan><tspan class="i-desc">SYSTEM startup task; native CPython</tspan></text>
+    <circle cx="32" cy="128" r="4" fill="#2563eb"/>
+    <text x="46" y="132"><tspan class="i-pfx">生产库表</tspan><tspan class="i-desc">18 tables: 14 app + 2 legacy + 2 protocol</tspan></text>
+    <circle cx="32" cy="174" r="4" fill="#2563eb"/>
+    <text x="46" y="178"><tspan class="i-pfx">真实恢复</tspan><tspan class="i-desc">Dropped populated table; full data restored</tspan></text>
+  </g>
+  <!-- Card: 公网真实切主 -->
+  <g transform="translate(914, 130)">
+    <rect width="826" height="451" rx="12" fill="#ffffff" stroke="#059669" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 814 0 Q 826 0 826 12 L 826 62 L 0 62 Z" fill="#f2f9f7"/>
+    <line x1="0" y1="62" x2="826" y2="62" stroke="#059669" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">公网真实切主</text>
+    <text x="24" y="47" class="c-subtitle">Public production switchover</text>
+    <rect x="654" y="17" width="152" height="26" rx="13" fill="#e1f2ed"/>
+    <text x="730" y="34" text-anchor="middle" class="badge-t" fill="#036949">已验收 VERIFIED</text>
+    <circle cx="32" cy="82" r="4" fill="#059669"/>
+    <text x="46" y="86"><tspan class="i-pfx">执行路线</tspan><tspan class="i-desc">HP → W1 → S1 → HP</tspan></text>
+    <circle cx="32" cy="128" r="4" fill="#059669"/>
+    <text x="46" y="132"><tspan class="i-pfx">一致性</tspan><tspan class="i-desc">Historical rows and full DDL preserved</tspan></text>
+    <circle cx="32" cy="174" r="4" fill="#059669"/>
+    <text x="46" y="178"><tspan class="i-pfx">原始证据</tspan><tspan class="i-desc">Public HTTPS writes and replay receipts</tspan></text>
+  </g>
+  <!-- Card: 故障与修复 -->
+  <g transform="translate(60, 609)">
+    <rect width="826" height="451" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 814 0 Q 826 0 826 12 L 826 62 L 0 62 Z" fill="#f8f5fe"/>
+    <line x1="0" y1="62" x2="826" y2="62" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">故障与修复</text>
+    <text x="24" y="47" class="c-subtitle">Faults and repairs</text>
+    <rect x="654" y="17" width="152" height="26" rx="13" fill="#efe7fc"/>
+    <text x="730" y="34" text-anchor="middle" class="badge-t" fill="#5628a5">已复测 RETESTED</text>
+    <circle cx="32" cy="82" r="4" fill="#7c3aed"/>
+    <text x="46" y="86"><tspan class="i-pfx">隔离保护</tspan><tspan class="i-desc">Epoch fencing; two durable replica ACKs</tspan></text>
+    <circle cx="32" cy="128" r="4" fill="#7c3aed"/>
+    <text x="46" y="132"><tspan class="i-pfx">故障注入</tspan><tspan class="i-desc">Link loss, worker exit, missing Windows table</tspan></text>
+    <circle cx="32" cy="174" r="4" fill="#7c3aed"/>
+    <text x="46" y="178"><tspan class="i-pfx">修复闭环</tspan><tspan class="i-desc">Schema, ownership, bad input, status, proxy</tspan></text>
+  </g>
+  <!-- Card: 实测边界 -->
+  <g transform="translate(914, 609)">
+    <rect width="826" height="451" rx="12" fill="#ffffff" stroke="#b45309" stroke-width="1.5" filter="url(#softCardShadow)"/>
+    <path d="M 0 12 Q 0 0 12 0 L 814 0 Q 826 0 826 12 L 826 62 L 0 62 Z" fill="#fbf6f2"/>
+    <line x1="0" y1="62" x2="826" y2="62" stroke="#b45309" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="24" y="27" class="c-title">实测边界</text>
+    <text x="24" y="47" class="c-subtitle">Measured boundaries</text>
+    <rect x="642" y="17" width="164" height="26" rx="13" fill="#f6eae1"/>
+    <text x="724" y="34" text-anchor="middle" class="badge-t" fill="#7d3a06">如实披露 MEASURED</text>
+    <circle cx="32" cy="82" r="4" fill="#b45309"/>
+    <text x="46" y="86"><tspan class="i-pfx">首次迁入</tspan><tspan class="i-desc">24.79 seconds of initial write freeze</tspan></text>
+    <circle cx="32" cy="128" r="4" fill="#b45309"/>
+    <text x="46" y="132"><tspan class="i-pfx">切主耗时</tspan><tspan class="i-desc">Seconds, not the old 18ms paper claim</tspan></text>
+    <circle cx="32" cy="174" r="4" fill="#b45309"/>
+    <text x="46" y="178"><tspan class="i-pfx">可用性</tspan><tspan class="i-desc">One coordinator; no quorum means no ACK</tspan></text>
+  </g>
+</svg>
