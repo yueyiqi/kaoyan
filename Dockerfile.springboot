@@ -1,0 +1,17 @@
+# Multi-Stage Spring Boot 3 + Dual-Engine (PostgreSQL 18 + SQLite WAL) HA Container
+FROM maven:3.9.9-eclipse-temurin-17 AS builder
+WORKDIR /workspace
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:17-jre-jammy
+WORKDIR /app
+RUN mkdir -p /app/db_volume /app/db_backups /app/static
+COPY --from=builder /workspace/target/kaoyan-english-hub-6.0.0.jar /app/kaoyan-english-hub.jar
+COPY index.html kaoyan_*.js /app/static/
+COPY db_migrations /app/db_migrations
+EXPOSE 8199
+ENV SPRING_PROFILES_ACTIVE=prod
+ENV KAOYAN_CLUSTER_NODE=W1-DOCKER-PRIMARY
+ENTRYPOINT ["java", "-XX:+UseG1GC", "-XX:MaxRAMPercentage=75.0", "-jar", "/app/kaoyan-english-hub.jar"]

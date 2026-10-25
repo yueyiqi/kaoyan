@@ -8,6 +8,8 @@
 <script src="/kaoyan_admin.js"></script>
 <script src="/kaoyan_admin_accounts.js"></script>
 <script src="/kaoyan_login.js"></script>
+<script src="/kaoyan_eids_drilldown.js"></script>
+<script src="/kaoyan_vue3_composables.js"></script>
 
 <title>研词真源 · 考研英语真题左文右注精读与 5500 考纲词库工作台</title>
 <script>(function(){try{var s=localStorage.getItem('kaoyan_hub_theme')||'daylight';document.documentElement.setAttribute('data-theme',s);}catch(e){}})();</script>
@@ -31,7 +33,13 @@ body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
 .container { max-width: 1440px; margin: 0 auto; padding: 14px 20px; }
 .auth-banner { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.83rem; }
 .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; margin-bottom: 14px; }
-.kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px; }
+.kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px; cursor: pointer; transition: transform 0.14s, box-shadow 0.14s, border-color 0.14s; position: relative; }
+.kpi-card:hover { transform: translateY(-2px); border-color: var(--primary); box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12); }
+.kpi-drill-hint { font-size: 0.69rem; font-weight: 700; color: var(--primary); margin-top: 3px; display: inline-block; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.58); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 900; padding: 18px; }
+.modal-card { background: var(--card); color: var(--text); border: 1.5px solid var(--border); border-radius: 14px; width: min(1260px, 96vw); max-height: 88vh; overflow-y: auto; padding: 18px 20px; box-shadow: 0 24px 48px rgba(15, 23, 42, 0.28); }
+tbody tr.clickable-row { cursor: pointer; transition: background 0.12s; }
+tbody tr.clickable-row:hover { background: var(--primary-soft); }
 .kpi-val { font-size: 1.28rem; font-weight: 800; color: var(--primary); }
 .kpi-lbl { font-size: 0.76rem; color: var(--muted); }
 .panel { display: none; }
@@ -94,7 +102,9 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
     <button class="tab-btn" id="tabBtn6" style="display:none;" onclick="switchTab(6)">🔐 5. 账号与RBAC管理</button>
     <button class="tab-btn" id="tabBtn5" style="display:none;" onclick="switchTab(5)">🐳 6. 双擎库表</button>
   </div>
-  <div style="display:flex;gap:5px;align-items:center;">
+  <div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap;">
+    <button class="btn" onclick="openOdsSchemaModal()" title="借鉴 EIDS 全库 18表146列 Schema 与样本值曝光矩阵">🗄️ 18表146列矩阵</button>
+    <button class="btn" onclick="openLiveTableBrowser('exam_passages','paragraphs_json','')" title="借鉴 EIDS 实时 SQL 行数据浏览器">🔎 实时SQL下钻</button>
     <button class="btn active" id="loginToggleBtn" onclick="focusLoginBox()">🔑 账号登录</button>
     <button class="btn active" id="themeBtn-daylight" onclick="setTheme('daylight')" title="日间亮底">☀️</button>
     <button class="btn" id="themeBtn-midnight" onclick="setTheme('midnight')" title="深邃暗夜">🌙</button>
@@ -133,11 +143,11 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-val" id="kpiAnchor"><span class="guest-cell-blur">Para 2 · 连续 12天</span> 🔒</div><div class="kpi-lbl" id="kpiAnchorLbl">个人学籍续读断点 (登录即刻恢复上次段落)</div></div>
-    <div class="kpi-card"><div class="kpi-val" id="kpiPassages">2024 英语一 Text 1</div><div class="kpi-lbl" id="kpiPassagesLbl">当前试读真题篇章 (首段 30% 免费开放划词)</div></div>
-    <div class="kpi-card"><div class="kpi-val" id="kpiVocab">5,500 + <span class="guest-cell-blur">18 词</span> 🔒</div><div class="kpi-lbl" id="kpiVocabLbl">考研大纲底座 + 个人真题高频生词账本</div></div>
-    <div class="kpi-card"><div class="kpi-val" id="kpiQuota">30% 试读 / 45% 毛玻璃</div><div class="kpi-lbl" id="kpiQuotaLbl">长文线性渐隐 + 卡片毛玻璃 + 服务端防扒截断</div></div>
-    <div class="kpi-card"><div class="kpi-val" id="kpiDomain">🟢 访客试读已就绪</div><div class="kpi-lbl" id="kpiDomainLbl">点击下方高亮单词或长难句即可体验右栏精读联动</div></div>
+    <div class="kpi-card" style="border-top:3px solid var(--emerald);" onclick="openLiveTableBrowser('user_progress_anchors','last_para_idx','')"><div class="kpi-val" id="kpiAnchor"><span class="guest-cell-blur">Para 2 · 连续 12天</span> 🔒</div><div class="kpi-lbl" id="kpiAnchorLbl">个人学籍续读断点 (登录即刻恢复上次段落)</div><span class="kpi-drill-hint">🔎 点击下钻 user_progress_anchors ➔</span></div>
+    <div class="kpi-card" style="border-top:3px solid var(--primary);" onclick="openLiveTableBrowser('exam_passages','title','')"><div class="kpi-val" id="kpiPassages">2024 英语一 Text 1</div><div class="kpi-lbl" id="kpiPassagesLbl">当前试读真题篇章 (首段 30% 免费开放划词)</div><span class="kpi-drill-hint">🔎 点击下钻 exam_passages ➔</span></div>
+    <div class="kpi-card" style="border-top:3px solid var(--amber);" onclick="openLiveTableBrowser('user_vocab_ledger','urgency_score','')"><div class="kpi-val" id="kpiVocab">5,500 + <span class="guest-cell-blur">18 词</span> 🔒</div><div class="kpi-lbl" id="kpiVocabLbl">考研大纲底座 + 个人真题高频生词账本</div><span class="kpi-drill-hint">🔎 点击下钻 user_vocab_ledger ➔</span></div>
+    <div class="kpi-card" style="border-top:3px solid var(--purple);" onclick="openDomainDrilldownModal('DOM_01_RBAC_AUTH')"><div class="kpi-val" id="kpiQuota">30% 试读 / 45% 毛玻璃</div><div class="kpi-lbl" id="kpiQuotaLbl">长文线性渐隐 + 卡片毛玻璃 + 服务端防扒截断</div><span class="kpi-drill-hint">🔎 点击下钻 RBAC 五表权限域 ➔</span></div>
+    <div class="kpi-card" style="border-top:3px solid var(--emerald);" onclick="openOdsSchemaModal()"><div class="kpi-val" id="kpiDomain">🟢 访客试读已就绪</div><div class="kpi-lbl" id="kpiDomainLbl">点击下方高亮单词或长难句即可体验右栏精读联动</div><span class="kpi-drill-hint">🗄️ 点击下钻 18表146列 Schema 矩阵 ➔</span></div>
   </div>
 
   <!-- TAB 0 -->
@@ -149,12 +159,42 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
     </div>
     <div id="tab0ScholarContent">
       <div class="card">
-        <h2><span>🔍 六大业务与架构模块 (MOD-00 ~ MOD-05) 第一性解构与纠偏矩阵</span><span class="badge bg-purple">SRS-MSU v3.1</span></h2>
-        <table><thead><tr><th style="width:18%">模块域</th><th style="width:24%">原始高价值洞察</th><th style="width:27%">字面设计的交互/工程陷阱</th><th style="width:31%">外专升维后的工业级架构方案</th></tr></thead><tbody id="critiqueTableBody"></tbody></table>
+        <h2>
+          <span>📡 借鉴 EIDS 全域态势感知：五大受治业务域 × 18张物理表 × 146字段 环形分布与交互式下钻总枢</span>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn active" onclick="openDomainDrilldownModal('ALL')">📡 打开 5大业务域分面下钻舱</button>
+            <button class="btn" onclick="openOdsSchemaModal()">🗄️ 18表146列 100% 曝光矩阵</button>
+            <button class="btn" onclick="openLiveTableBrowser('sys_users','role','')">🔎 实时 SQL 行数据浏览器</button>
+          </div>
+        </h2>
+        <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:center;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:12px;">
+            <svg width="116" height="116" viewBox="0 0 112 112" style="overflow:visible;">
+              <circle cx="56" cy="56" r="42" fill="none" stroke="#7c3aed" stroke-width="15" stroke-dasharray="65.1 263.9" stroke-dashoffset="0" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_01_RBAC_AUTH')"><title>DOM_01_RBAC_AUTH: 5表 36列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="#2563eb" stroke-width="15" stroke-dasharray="36.2 263.9" stroke-dashoffset="-65.1" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_02_CORE_CONTENT')"><title>DOM_02_CORE_CONTENT: 2表 20列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="#059669" stroke-width="15" stroke-dasharray="83.2 263.9" stroke-dashoffset="-101.3" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_03_SCHOLAR_STUDY')"><title>DOM_03_SCHOLAR_STUDY: 4表 46列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="#d97706" stroke-width="15" stroke-dasharray="36.2 263.9" stroke-dashoffset="-184.5" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_04_HA_INFRA')"><title>DOM_04_HA_INFRA: 3表 20列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="#0d9488" stroke-width="15" stroke-dasharray="43.2 263.9" stroke-dashoffset="-220.7" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_05_CLUSTER_ROAMING')"><title>DOM_05_CLUSTER_ROAMING: 4表 24列 (点击下钻)</title></circle>
+              <text x="56" y="53" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">18表</text>
+              <text x="56" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="#059669">146列 100%</text>
+            </svg>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;">
+            <button class="btn" style="text-align:left;border-left:4px solid #7c3aed;" onclick="openDomainDrilldownModal('DOM_01_RBAC_AUTH')">🛡️ <strong>D1 RBAC权限与审计域</strong><br><span style="font-size:0.75rem;color:var(--muted);">5张物理表 · 36个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid #2563eb;" onclick="openDomainDrilldownModal('DOM_02_CORE_CONTENT')">📚 <strong>D2 真题篇章与5500考纲域</strong><br><span style="font-size:0.75rem;color:var(--muted);">2张物理表 · 20个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid #059669;" onclick="openDomainDrilldownModal('DOM_03_SCHOLAR_STUDY')">🎓 <strong>D3 研友五维学习资产域</strong><br><span style="font-size:0.75rem;color:var(--muted);">4张物理表 · 46个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid #d97706;" onclick="openDomainDrilldownModal('DOM_04_HA_INFRA')">⚡ <strong>D4 双擎高可用与幂等域</strong><br><span style="font-size:0.75rem;color:var(--muted);">3张物理表 · 20个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid #0d9488;" onclick="openDomainDrilldownModal('DOM_05_CLUSTER_ROAMING')">🌐 <strong>D5 跨机三副本协调漫游域</strong><br><span style="font-size:0.75rem;color:var(--muted);">4张物理表 · 24个字段 · 点击下钻 ➔</span></button>
+          </div>
+        </div>
       </div>
       <div class="card">
-        <h2><span>🏆 优秀同行九维对标表 (Readwise + 墨墨背单词 + Quizlet/Baymard 渐进披露)</span><span class="badge bg-blue">Peer Benchmark</span></h2>
-        <table><thead><tr><th style="width:18%">对标维度</th><th style="width:38%">行业标杆做法</th><th style="width:44%">本站落地超越方案</th></tr></thead><tbody id="benchTableBody"></tbody></table>
+        <h2><span>🔍 六大业务与架构模块 (MOD-00 ~ MOD-05) 第一性解构与库表血缘下钻矩阵 (点击任意行下钻物理表)</span><span class="badge bg-purple">SRS-MSU v3.6 · EIDS下钻</span></h2>
+        <table><thead><tr><th style="width:18%">模块域</th><th style="width:22%">原始高价值洞察</th><th style="width:24%">字面设计的交互/工程陷阱</th><th style="width:26%">外专升维后的工业级架构方案</th><th style="width:10%">库表血缘下钻</th></tr></thead><tbody id="critiqueTableBody"></tbody></table>
+      </div>
+      <div class="card">
+        <h2><span>🏆 优秀同行九维对标表 (Readwise + 墨墨背单词 + EIDS库表血缘下钻)</span><span class="badge bg-blue">Peer Benchmark</span></h2>
+        <table><thead><tr><th style="width:16%">对标维度</th><th style="width:34%">行业标杆做法</th><th style="width:40%">本站落地超越方案</th><th style="width:10%">血缘下钻</th></tr></thead><tbody id="benchTableBody"></tbody></table>
       </div>
     </div>
   </section>
@@ -168,8 +208,8 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
     </div>
     <div id="tab1ScholarContent">
       <div class="card">
-        <h2><span>📥 追问一解决方案：MOD-00 四轨零摩擦数据导入与冷启动中枢</span><span class="badge bg-green">解决『网站不会平白无故有题目和词库』</span></h2>
-        <table><thead><tr><th>轨道编号</th><th>导入轨道名称</th><th>支持格式</th><th>0-Token 自动化解析流水线</th><th>SLA 指标</th></tr></thead><tbody id="tracksTableBody"></tbody></table>
+        <h2><span>📥 追问一解决方案：MOD-00 四轨零摩擦数据导入与冷启动中枢 (点击任意轨道下钻目标库表)</span><span class="badge bg-green">解决『网站不会平白无故有题目和词库』</span></h2>
+        <table><thead><tr><th>轨道编号</th><th>导入轨道名称</th><th>支持格式</th><th>0-Token 自动化解析流水线</th><th>SLA 指标</th><th>库表血缘下钻</th></tr></thead><tbody id="tracksTableBody"></tbody></table>
       </div>
       <div class="dual-pane">
         <div class="card">
@@ -204,7 +244,13 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
   <section class="panel active" id="tab2">
     <div class="dual-pane">
       <div class="card">
-        <h2><span id="currentPassageTitle">📖 左栏：2024 考研英语一 Text 1 真题原文 (首段 30% 明文试读 · 次段渐变毛玻璃保护)</span><span class="badge bg-blue" id="paraAnchorBadge">访客试读: Para 1 开放</span></h2>
+        <h2>
+          <span id="currentPassageTitle">📖 左栏：2024 考研英语一 Text 1 真题原文 (首段 30% 明文试读 · 次段渐变毛玻璃保护)</span>
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+            <span class="badge bg-blue" id="paraAnchorBadge">访客试读: Para 1 开放</span>
+            <button class="btn" style="padding:3px 9px;font-size:0.76rem;" onclick="openDetailModal('PASSAGE','P2024_EN1_T1')">🔎 真题篇章库表血缘下钻</button>
+          </div>
+        </h2>
         <div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap;justify-content:space-between;">
           <div style="display:flex;gap:5px;flex-wrap:wrap;">
             <button class="btn" id="modeBtn1" onclick="setReadMode('CLEAN')">1️⃣ 裸读模考态(粉笔式)</button>
@@ -244,10 +290,11 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
     <div class="card">
       <h2>
         <span>🧠 考研 5500 大纲词库与个人生词本 (前 2 词公共释义开放 · 个人词频与死穴词毛玻璃脱敏)</span>
-        <div style="display:flex;gap:6px;">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
           <button class="btn active" onclick="sortVocab('urgency', this)">🔥 按紧迫度排序 (推荐)</button>
           <button class="btn" onclick="sortVocab('count', this)">🔢 按查询次数排序</button>
           <button class="btn" onclick="sortVocab('recent', this)">🕒 按最近遇到时间排序</button>
+          <button class="btn" onclick="openLiveTableBrowser('syllabus_5500_lexicon','lemma','')">🔎 5500底座表实时SQL下钻</button>
         </div>
       </h2>
       <table><thead><tr><th>单词 (Lemma)</th><th>考研 5500 大纲分级</th><th>个人查询次数</th><th>最近遇到时间</th><th>紧迫度 <code>S<sub>urg</sub></code></th><th>真题原句语境与熟词僻义注释</th><th>操作</th></tr></thead><tbody id="vocabTableBody"></tbody></table>
@@ -265,7 +312,13 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
   <section class="panel" id="tab4">
     <div class="dual-pane">
       <div class="card">
-        <h2><span>🗂️ 左栏：考研作文三维语料检索台 (首条样板开放 · 后续真题升格句毛玻璃脱敏)</span><button class="btn" id="clozeBtn" onclick="toggleCloze()">🎯 开启挖空默写</button></h2>
+        <h2>
+          <span>🗂️ 左栏：考研作文三维语料检索台 (首条样板开放 · 后续真题升格句毛玻璃脱敏)</span>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn" id="clozeBtn" onclick="toggleCloze()">🎯 开启挖空默写</button>
+            <button class="btn" onclick="openLiveTableBrowser('essay_corpus_snippets','theme_tag','')">🔎 语料表实时SQL下钻</button>
+          </div>
+        </h2>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
           <button class="btn active" onclick="setEssayTheme('ALL', this)">全部母题</button>
           <button class="btn" onclick="setEssayTheme('科技创新', this)">科技创新</button>
@@ -309,7 +362,13 @@ As is vividly depicted in the drawing above,
     </div>
     <div id="tab5ScholarContent">
       <div class="card">
-        <h2><span>🗄️ 追问四解决方案：后端受治关系库表设计 (<code>MOD-05</code> Schema &amp; DDL)</span><span class="badge bg-purple">双擎持久化存储</span></h2>
+        <h2>
+          <span>🗄️ 追问四解决方案：后端受治关系库表设计 (<code>MOD-05</code> Schema &amp; DDL · 点击任意表或字段直接下钻 EIDS 实时行浏览器)</span>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn active" onclick="openOdsSchemaModal()">🗄️ 18表146列 100% 曝光与样本值矩阵 (EIDS同款)</button>
+            <button class="btn" onclick="openLiveTableBrowser('sys_users','role','')">🔎 实时 SQL 行数据浏览器</button>
+          </div>
+        </h2>
         <table><thead><tr><th>表序号</th><th>物理表名 (<code>Table Name</code>)</th><th>主键与唯一索引 (<code>PK / UK / IDX</code>)</th><th>核心受治字段 (<code>Core Columns</code>)</th><th>业务职责与个人进度锚定作用</th></tr></thead><tbody id="dbSchemaTableBody"></tbody></table>
       </div>
       <div class="card"><h2><span>🔐 追问三解决方案：前端 RBAC 双态鉴权与五维学习进度锚定 (<code>MOD-04</code>)</span><span class="badge bg-amber">防匿名乱点污染</span></h2><table><thead><tr><th>防线层级</th><th>层级名称</th><th>核心机制与学习进度锚定契约</th></tr></thead><tbody id="authLayersTableBody"></tbody></table></div>
@@ -1306,11 +1365,11 @@ function switchTab(idx) {
 }
 function renderTables() {
   document.getElementById('critiqueTableBody').innerHTML = REPORT_DATA.intake_decoding.module_deep_critique.map(m =>
-    `<tr><td><strong>${m.name}</strong></td><td>${m.colleague_insight}</td><td style="color:var(--rose)">${m.literal_trap}</td><td style="color:var(--emerald)">${m.reframed_solution}</td></tr>`).join('');
+    `<tr class="clickable-row" onclick="openDetailModal('MODULE','${m.module_id}')"><td><strong>${m.name}</strong></td><td>${m.colleague_insight}</td><td style="color:var(--rose)">${m.literal_trap}</td><td style="color:var(--emerald)">${m.reframed_solution}</td><td><button class="btn" style="padding:2px 8px;font-size:0.75rem;" onclick="event.stopPropagation();openDetailModal('MODULE','${m.module_id}')">🔎 下钻库表</button></td></tr>`).join('');
   document.getElementById('benchTableBody').innerHTML = REPORT_DATA.benchmark_9d.map(b =>
-    `<tr><td><strong>${b.dim}</strong></td><td>${b.benchmark}</td><td>${b.insight}</td></tr>`).join('');
+    `<tr class="clickable-row" onclick="openDetailModal('BENCHMARK','${b.dim}')"><td><strong>${b.dim}</strong></td><td>${b.benchmark}</td><td>${b.insight}</td><td><button class="btn" style="padding:2px 8px;font-size:0.75rem;" onclick="event.stopPropagation();openDetailModal('BENCHMARK','${b.dim}')">🔎 查血缘</button></td></tr>`).join('');
   document.getElementById('tracksTableBody').innerHTML = REPORT_DATA.ingestion_and_deployment.question_1_ingestion_hub.tracks.map(t =>
-    `<tr><td><span class="badge bg-blue">${t.track_id}</span></td><td><strong>${t.name}</strong></td><td>${t.input_formats}</td><td>${t.pipeline}</td><td><span class="badge bg-green">${t.sla}</span></td></tr>`).join('');
+    `<tr class="clickable-row" onclick="openDetailModal('TRACK','${t.track_id}')"><td><span class="badge bg-blue">${t.track_id}</span></td><td><strong>${t.name}</strong></td><td>${t.input_formats}</td><td>${t.pipeline}</td><td><span class="badge bg-green">${t.sla}</span></td><td><button class="btn" style="padding:2px 8px;font-size:0.75rem;" onclick="event.stopPropagation();openDetailModal('TRACK','${t.track_id}')">🔎 目标库表</button></td></tr>`).join('');
   renderRuntimeSchema();
   document.getElementById('authLayersTableBody').innerHTML = REPORT_DATA.ingestion_and_deployment.question_3_auth_and_progress_anchor.layers.map(ly =>
     `<tr><td><span class="badge bg-amber">${ly.layer_id}</span></td><td><strong>${ly.name}</strong></td><td>${ly.mechanism}</td></tr>`).join('');
@@ -1373,9 +1432,9 @@ function renderNotes() {
   document.getElementById('notesContainer').innerHTML = list.map(n => {
     const isGuestBlur = (!isLoggedIn() && n.is_blurred);
     if (isGuestBlur) {
-      return `<div class="note-card" id="note-${n.id}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><span class="badge bg-amber">${n.tag}</span><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="focusLoginBox()">🔑 登录解锁</button></div><div class="guest-card-blur"><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div></div><div style="font-size:0.79rem;color:var(--amber);font-weight:600;margin-top:4px;">${n.comment}</div></div>`;
+      return `<div class="note-card" id="note-${n.id}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;"><span class="badge bg-amber">${n.tag}</span><div style="display:flex;gap:4px;"><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="openDetailModal('NOTE','${n.id}')">🔎 字段血缘</button><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="focusLoginBox()">🔑 登录解锁</button></div></div><div class="guest-card-blur"><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div></div><div style="font-size:0.79rem;color:var(--amber);font-weight:600;margin-top:4px;">${n.comment}</div></div>`;
     }
-    return `<div class="note-card" id="note-${n.id}" onmouseenter="document.getElementById('passageCanvas').classList.add('spotlight-on')" onmouseleave="if(readMode==='CLEAN')document.getElementById('passageCanvas').classList.remove('spotlight-on')"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><span class="badge bg-blue">${n.tag}</span><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="promoteToEssay('${n.id}')">🚀 升格入作文库</button></div><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.8rem;color:var(--emerald);font-weight:600;">💡 ${n.comment}</div></div>`;
+    return `<div class="note-card" id="note-${n.id}" onmouseenter="document.getElementById('passageCanvas').classList.add('spotlight-on')" onmouseleave="if(readMode==='CLEAN')document.getElementById('passageCanvas').classList.remove('spotlight-on')"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;"><span class="badge bg-blue">${n.tag}</span><div style="display:flex;gap:4px;"><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="openDetailModal('NOTE','${n.id}')">🔎 字段血缘</button><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="promoteToEssay('${n.id}')">🚀 升格入作文库</button></div></div><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.8rem;color:var(--emerald);font-weight:600;">💡 ${n.comment}</div></div>`;
   }).join('');
 }
 function filterNotes(g, btn) { currentNoteFilter = g; btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderNotes(); }
@@ -1438,12 +1497,12 @@ function renderVocab() {
     const isGuest = !isLoggedIn();
     const cntStr = String(v.lookup_count || '3').includes('次') ? v.lookup_count : `${v.lookup_count || 3} 次`;
     if (isGuest && v.is_blurred) {
-      return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${cntStr}</span> 🔒</td><td><span class="guest-cell-blur">${v.last_seen_at || '2026-10-18'}</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.7414'}</span> 🔒</td><td><span class="guest-card-blur">${v.contextual_meaning}</span> <span style="color:var(--amber);font-weight:600;">🔒 登录解锁</span></td><td><button class="btn" onclick="focusLoginBox()">🔑 解锁</button></td></tr>`;
+      return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${cntStr}</span> 🔒</td><td><span class="guest-cell-blur">${v.last_seen_at || '2026-10-18'}</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.7414'}</span> 🔒</td><td><span class="guest-card-blur">${v.contextual_meaning}</span> <span style="color:var(--amber);font-weight:600;">🔒 登录解锁</span></td><td style="white-space:nowrap;"><button class="btn" onclick="openDetailModal('VOCAB','${v.word}')">🔎 血缘</button> <button class="btn" onclick="focusLoginBox()">🔑 解锁</button></td></tr>`;
     }
     if (isGuest) {
-      return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${cntStr}</span> 🔒</td><td><span class="guest-cell-blur">${v.last_seen_at || '2026-10-20'}</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.8501'}</span> 🔒</td><td class="${mCls}" onclick="this.classList.toggle('revealed')"><strong>[${v.exam_source}]</strong> ${v.contextual_meaning}</td><td style="white-space:nowrap;"><button class="btn" onclick="lookupWord('${v.word}')">🔍试玩+1</button></td></tr>`;
+      return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="guest-cell-blur">${cntStr}</span> 🔒</td><td><span class="guest-cell-blur">${v.last_seen_at || '2026-10-20'}</span></td><td><span class="guest-cell-blur">${v.urgency_score || '0.8501'}</span> 🔒</td><td class="${mCls}" onclick="this.classList.toggle('revealed')"><strong>[${v.exam_source}]</strong> ${v.contextual_meaning}</td><td style="white-space:nowrap;"><button class="btn" onclick="openDetailModal('VOCAB','${v.word}')">🔎 血缘</button> <button class="btn" onclick="lookupWord('${v.word}')">🔍试玩+1</button></td></tr>`;
     }
-    return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="badge bg-amber">${cntStr}</span></td><td>${v.last_seen_at}</td><td><strong>${v.urgency_score}</strong></td><td class="${mCls}" onclick="this.classList.toggle('revealed')"><strong>[${v.exam_source}]</strong> ${v.contextual_meaning}</td><td style="white-space:nowrap;"><button class="btn" onclick="lookupWord('${v.word}')">🔍+1</button> <button class="btn" onclick="gradeVocab('${v.word}',-0.12)" title="熟记降权">✅</button> <button class="btn" onclick="gradeVocab('${v.word}',0.12)" title="死穴加权">🚨</button></td></tr>`;
+    return `<tr><td><strong>${v.word}</strong></td><td><span class="badge bg-purple">${v.syllabus_tier}</span></td><td><span class="badge bg-amber">${cntStr}</span></td><td>${v.last_seen_at}</td><td><strong>${v.urgency_score}</strong></td><td class="${mCls}" onclick="this.classList.toggle('revealed')"><strong>[${v.exam_source}]</strong> ${v.contextual_meaning}</td><td style="white-space:nowrap;"><button class="btn" onclick="openDetailModal('VOCAB','${v.word}')">🔎 血缘</button> <button class="btn" onclick="lookupWord('${v.word}')">🔍+1</button> <button class="btn" onclick="gradeVocab('${v.word}',-0.12)" title="熟记降权">✅</button> <button class="btn" onclick="gradeVocab('${v.word}',0.12)" title="死穴加权">🚨</button></td></tr>`;
   }).join('');
 }
 function promoteToEssay(noteId) {
@@ -1462,9 +1521,9 @@ function renderEssayCorpus() {
   const list = essayCorpus.filter(c => (currentEssayTheme === 'ALL' || c.theme === currentEssayTheme) && (currentEssaySlot === 'ALL' || c.slot === currentEssaySlot) && (!q || c.en.toLowerCase().includes(q) || c.zh.toLowerCase().includes(q) || c.theme.includes(q)));
   document.getElementById('essayCorpusList').innerHTML = list.map(c => {
     if (!isLoggedIn() && c.is_blurred) {
-      return `<div class="note-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><button class="btn" onclick="focusLoginBox()">🔑 登录解锁</button></div><div class="guest-card-blur" style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${c.en}</div><div style="font-size:0.78rem;color:var(--amber);font-weight:600;">${c.zh}</div></div>`;
+      return `<div class="note-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><div style="display:flex;gap:4px;"><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="openDetailModal('ESSAY','${c.id}')">🔎 字段血缘</button><button class="btn" onclick="focusLoginBox()">🔑 登录解锁</button></div></div><div class="guest-card-blur" style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${c.en}</div><div style="font-size:0.78rem;color:var(--amber);font-weight:600;">${c.zh}</div></div>`;
     }
-    return `<div class="note-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><button class="btn" onclick="insertDraft(${JSON.stringify(c.en).replace(/"/g,'&quot;')})">➕ 插入草稿</button></div><div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${clozeActive ? c.cloze : c.en}</div><div style="font-size:0.78rem;color:var(--muted);">${c.zh} <span style="color:var(--primary);">[${c.source}]</span></div></div>`;
+    return `<div class="note-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><div style="display:flex;gap:4px;"><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="openDetailModal('ESSAY','${c.id}')">🔎 字段血缘</button><button class="btn" onclick="insertDraft(${JSON.stringify(c.en).replace(/"/g,'&quot;')})">➕ 插入草稿</button></div></div><div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${clozeActive ? c.cloze : c.en}</div><div style="font-size:0.78rem;color:var(--muted);">${c.zh} <span style="color:var(--primary);">[${c.source}]</span></div></div>`;
   }).join('');
 }
 function insertDraft(text) {
@@ -1479,6 +1538,33 @@ try {
 } catch(e){}
 renderTables(); updateDraftCount(); updateAuthUI(); switchTab(defaultGuestTab); initializeSession();
 </script>
+
+<div id="detailModalOverlay" class="modal-overlay" onclick="if(event.target===this)closeDetailModal()">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:10px;">
+      <div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:4px;">
+          <span class="badge bg-purple" id="detCode">ID</span>
+          <span class="badge bg-green" id="detStatus">STATUS</span>
+          <span style="font-size:0.78rem;color:var(--muted);" id="detSub">SUBTITLE</span>
+        </div>
+        <h2 id="detTitle" style="margin:0;font-size:1.05rem;">数据血缘与物理库表字段下钻详情</h2>
+      </div>
+      <button class="btn" onclick="closeDetailModal()">✖ 关闭</button>
+    </div>
+    <div id="detBody"></div>
+  </div>
+</div>
+
+<div id="infoModalOverlay" class="modal-overlay" onclick="if(event.target===this)closeInfoModal()">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:10px;">
+      <h2 id="infoModalTitle" style="margin:0;font-size:1.02rem;font-weight:800;">🔎 双擎生产库实时 SQL 行数据浏览器与 18表146列 Schema 曝光矩阵</h2>
+      <button class="btn" onclick="closeInfoModal()">✖ 关闭</button>
+    </div>
+    <div id="infoModalBody"></div>
+  </div>
+</div>
 
 <!-- Live storage status: populated only from a successful health response. -->
 <script>

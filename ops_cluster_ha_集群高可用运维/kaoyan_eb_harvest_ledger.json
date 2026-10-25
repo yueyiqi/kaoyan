@@ -1,0 +1,1903 @@
+{
+  "schema": "kaoyan_eb_harvest_ledger/v1",
+  "generated_at": "2026-10-25T03:58:27.746669+00:00",
+  "bz_symlink": ".bz/95_kaoyan_考研",
+  "bz_canonical": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台",
+  "total_harvested_nonslot_files": 260,
+  "promoted_git_tracked_ops_scripts": [
+    {
+      "script": "remote.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "1d71e5089acc703edd20d38f54a4a4bd0df4ab310d659d0c7316fd3d4eff8058",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/remote.py"
+    },
+    {
+      "script": "runtime_audit.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "77c38fa4d9736bfd06425a050f6dcecaf5427b3ed47e57d40238ea2c6459e18e",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/runtime_audit.py"
+    },
+    {
+      "script": "deep_schema_audit.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "88a6e780fed697c0e4b2da4cb43a070ee91dcf92e45ecbe342b5ab1796a5bd04",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/deep_schema_audit.py"
+    },
+    {
+      "script": "deploy_edge.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "5631d8c21060f313786ba8bc48a0b916943718133e1e4e45b6bc100f91f1c681",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/deploy_edge.py"
+    },
+    {
+      "script": "verify_edge.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "14a5a929b2d80cc6dd300e5d8213afad6f23037edd89e73d895aa3ddc54fdc59",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/verify_edge.py"
+    },
+    {
+      "script": "cutover_runtime.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "97361b52e136e5ce10493ca22ff7e563af094d13cc2257511506e5abbdfb39ba",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/cutover_runtime.py"
+    },
+    {
+      "script": "kaoyan_coordinator_failover.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "3081ec88b3cd0f40e3be5d4c271c3bc78b00b51d7a9b6cbe64b1cb6e52fd343d",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/kaoyan_coordinator_failover.py"
+    },
+    {
+      "script": "verify_phase4_cold_archive_and_wsl_stack.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "3e4e1b4df137591430e5b3d78ca0cf1da086da20a410c4a9953af1286f546b9e",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/verify_phase4_cold_archive_and_wsl_stack.py"
+    },
+    {
+      "script": "production_acceptance.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "24a7d1eac05abdc807695319bb80d198934e03ce9316813272374a6136b5660e",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/production_acceptance.py"
+    },
+    {
+      "script": "final_runtime_audit.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "4e870ec8f00d22e493062611d25c43fe10be5f5c1b458b5fb59440bb6605d873",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/final_runtime_audit.py"
+    },
+    {
+      "script": "final_signoff.py",
+      "source_eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "sha256": "fc6c97ca74af4cf48291c237f2d36e1d30bc416de2d2e6aa083e7a86dea52751",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/final_signoff.py"
+    },
+    {
+      "script": "srbg10_lease_forensics_and_unblock_shunt.py",
+      "source_eb": "eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation",
+      "sha256": "64eb0fe52a61a9583aa7efdc1ee6c6531657856972b24c1b0794b4d45b0e8a24",
+      "bz_tracked_path": ".bz/08_research_frontier_前沿研究与探索验证/95_kaoyanEnglishHub_考研英语精读平台/ops_cluster_ha_集群高可用运维/srbg10_lease_forensics_and_unblock_shunt.py"
+    }
+  ],
+  "harvest_entries": [
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": ".gitignore",
+      "size_bytes": 33,
+      "sha256": "edf12d5dd994cc6744c2581de52027cd8f09dcf5079b2d19d5d883273f888e0b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/.gitignore"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "artifact_hashes.json",
+      "size_bytes": 1596,
+      "sha256": "4e13ae411e81b4ab803708d4185fed5d0d1a877d61d9da42b6553f5d8de916fb",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/artifact_hashes.json"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "commit_checkpoint.log",
+      "size_bytes": 39414,
+      "sha256": "ce0d9905065dfaf0c50d50bc4edbf0d5e4ef4426562895a02bef53a7bca4b501",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/commit_checkpoint.log"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "cross_host_result.json",
+      "size_bytes": 311,
+      "sha256": "d074127f714bc79d5a347ccfefe99bf7e826fd60690d42fe849721b50f481cb4",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/cross_host_result.json"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "cross_host_roundtrip.py",
+      "size_bytes": 3417,
+      "sha256": "83e7a711927002294208ad55e44bc2dd851713901bcbd74dd2ea53b9b49a9c9a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/cross_host_roundtrip.py"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "cross_host_s1_result.json",
+      "size_bytes": 330,
+      "sha256": "ef9f26a440a3aaf02470ac72ac4098e080226027fead98987a636b0e82c557ec",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/cross_host_s1_result.json"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "cross_host_s1_roundtrip.py",
+      "size_bytes": 3690,
+      "sha256": "5aafedfbc2d5875032f31e7f02ffa2293a39bedf28f3c199779e68e23077c1a1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/cross_host_s1_roundtrip.py"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "deploy_hp.py",
+      "size_bytes": 3139,
+      "sha256": "cf90062f0a260506e1b0fe5c187de4d00bb874217dc7ea5b4060acc767205307",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/deploy_hp.py"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "evidence.jsonl",
+      "size_bytes": 103809,
+      "sha256": "b4fa271d7e1cf68f50d59524b6e5ca8d28bb2ce792f0119dcc0296fd76d3c456",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/evidence.jsonl"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "evidence.jsonl.lock",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/evidence.jsonl.lock"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "final_delivery_check.py",
+      "size_bytes": 1306,
+      "sha256": "1e05f3725471f2733e500c1b7c2833cc5d5389411f9054442d0a1684db6829df",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/final_delivery_check.py"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "final_hp_acceptance.json",
+      "size_bytes": 1296,
+      "sha256": "2bb90226fac86ce0a66426ee27d10bd04042ca95efa352c4e3e4f50ea647b6ac",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/final_hp_acceptance.json"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "final_hp_acceptance.py",
+      "size_bytes": 2972,
+      "sha256": "f7f96139167a910e19301262a9e9d57acefffa78fc8699340cffaaffaf1ce470",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/final_hp_acceptance.py"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "final_hp_refresh.log",
+      "size_bytes": 2103,
+      "sha256": "9d5e63c41885bf55f3f53318b8bd76665080851ad6b28480926d6653134f1fa1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/final_hp_refresh.log"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "hp_before.txt",
+      "size_bytes": 1026,
+      "sha256": "1d663d5562dce23ad1fb054e2f346aec8180453cf5443a9085a534c8c6dfeede",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/hp_before.txt"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "hp_mounted_db_before.json",
+      "size_bytes": 204,
+      "sha256": "ae7d629449efb9a1221ee98960040e36b352a08d50ca73e4382befa85311aa0c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/hp_mounted_db_before.json"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "initial_status.txt",
+      "size_bytes": 10009,
+      "sha256": "342e03de273583d334d447dc71745cd1a2bc562928d835ae70bbb57acdb4261e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/initial_status.txt"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "pre_commit_full.log",
+      "size_bytes": 16692,
+      "sha256": "e3308c77acd68481ebf4332045d1b0a66cbd32ea666564f3c55a8bea7a86a262",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/pre_commit_full.log"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "pre_commit_full_2.log",
+      "size_bytes": 18162,
+      "sha256": "f441b7206e06b20b3e2596f19effb10e852148ab4472c1e41830f6a9e2f6b209",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/pre_commit_full_2.log"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "prior_spec.json",
+      "size_bytes": 12767,
+      "sha256": "c64844e1faa43e215d830bd8761db5c4e1b9c56f93a4a7ca23bb99e6a3a82cc7",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/prior_spec.json"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "remote_native.py",
+      "size_bytes": 2039,
+      "sha256": "03209c0084a009333c7fedec658e45505e82a6bbc8c5a937040626d6f90693a9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/remote_native.py"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "run_image_suite.py",
+      "size_bytes": 738,
+      "sha256": "94c2e515f67a44f555a7d88d029a2cd0dcec5b59bd9d2b5b9415118a208d51b6",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/run_image_suite.py"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "source_drift_failed_guardrail.json",
+      "size_bytes": 1199,
+      "sha256": "9e4002684c7e25de692eb35ad2717eded162008dd75924a0c0e4000601785ee8",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/source_drift_failed_guardrail.json"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "source_drift_note.md",
+      "size_bytes": 643,
+      "sha256": "b83c50e05ff4b0b38ce0b8649d46de87d8640d76e98afe25fe5446de473f8ffb",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/source_drift_note.md"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "target_hosts.json",
+      "size_bytes": 266,
+      "sha256": "de1b6844de70880eb542b7bf917d599de8940a4307f4d17a0a7c88992e8e8d72",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/target_hosts.json"
+    },
+    {
+      "eb": "eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit",
+      "file": "verify_simulator_boundary.py",
+      "size_bytes": 953,
+      "sha256": "3f32973659fc12692707d42faadfef2c4de10ac0c2bfef854db501a693bc9ea0",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261019_srbg10_H_codex_gpt-6_kaoyan-cross-os-schema-field-audit/verify_simulator_boundary.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": ".gitignore",
+      "size_bytes": 31,
+      "sha256": "8a0d6082caef55fa4c0b3c1400dc05f42a4590f61a5269d6c0c642d97e686499",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/.gitignore"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "commit_batch.py",
+      "size_bytes": 1972,
+      "sha256": "a582d871a90ea4e7486735cc3376b3c71d4135251c89870edbd3e71e7e1eb407",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/commit_batch.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "commit_progress.json",
+      "size_bytes": 179,
+      "sha256": "36040fcecee8b16b905e41c003b3af8044f0fbbb5ff9eee277bae7e3cbd4612c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/commit_progress.json"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "deploy_native.py",
+      "size_bytes": 9149,
+      "sha256": "f01586d1d88afaf5347872d243488eefd8d077ff1ba84d7b147590f8eafdea3c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/deploy_native.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "evidence.jsonl",
+      "size_bytes": 102699,
+      "sha256": "f593b284600b1587f3aeaa25b18f888b9b9740ed131e4e58ec9f23115a501d0a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/evidence.jsonl"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "evidence.jsonl.lock",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/evidence.jsonl.lock"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "execution_scope.json",
+      "size_bytes": 323,
+      "sha256": "cbcb378f6f678b7c40b9acfaff73420153cdf603b90627b4f6679d9dd2126885",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/execution_scope.json"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "https_probe.py",
+      "size_bytes": 963,
+      "sha256": "aab4fff216819b14756d0dcc5e20b0bb09cca97f643dfdd08bb59b899c6f799f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/https_probe.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "native_live_acceptance.json",
+      "size_bytes": 3494,
+      "sha256": "057c716f4e153c4fbe4baa3d96e45e94e69e0491439a47df68b21c6c71a81b4a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/native_live_acceptance.json"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "native_live_acceptance.py",
+      "size_bytes": 11973,
+      "sha256": "b18ee0d3c20439a5e4d08c84b2a00ffe554f8963b4e86131f30bf358c36f7ee5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/native_live_acceptance.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "native_regression.py",
+      "size_bytes": 842,
+      "sha256": "c702208a1bacd2fa4b1faf6e02770a49c038e9f8fc3dcaa9275fb967730eb7d5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/native_regression.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "native_status.py",
+      "size_bytes": 630,
+      "sha256": "842bdfbb18ddb291623a5f651008197c576b9f1a1512d0bb3b0bb1f1a1c788ee",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/native_status.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "production_acceptance.json",
+      "size_bytes": 3094,
+      "sha256": "3d2b5fa248bf68714e243b7fca329342d064226b7c87bcabc98caff4e5442705",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/production_acceptance.json"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "production_acceptance.py",
+      "size_bytes": 6498,
+      "sha256": "87edd71559d8c91a8c0e517335655a4318759421079e7c1059fccf913fc71e25",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/production_acceptance.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "production_assets.py",
+      "size_bytes": 1608,
+      "sha256": "5dfaee93b4a5e6a05a48a784b1e38c9fb606f5ccf789d2370cea0e8b2a4b5f47",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/production_assets.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "production_cutover.json",
+      "size_bytes": 461,
+      "sha256": "1ad9b3d8623d7122c36f3c162f92a048e2338c8773c092a965924c2abdedfadd",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/production_cutover.json"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "production_cutover.py",
+      "size_bytes": 6793,
+      "sha256": "204942271315543c9b6ab37843ae2edc69017b9e3ae5536987dbcabd95a2e70f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/production_cutover.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "production_edge.py",
+      "size_bytes": 3170,
+      "sha256": "abeebcdf0bf16ee6df8697355632cf39fcfb333159f98478f87bbdd2fe01255e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/production_edge.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "production_source_audit.json",
+      "size_bytes": 7451,
+      "sha256": "a9487ba780ad76e865a3522a6a3fdb5ba21dda29ebbc236601ff44760ff0ce20",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/production_source_audit.json"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "production_source_audit.py",
+      "size_bytes": 1916,
+      "sha256": "1660862d19f0edd2445c0c2bf42ee84f498572437fa4352993c02c8b17c8f19f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/production_source_audit.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "push_verify.py",
+      "size_bytes": 1359,
+      "sha256": "1c183c3743f0dfb6c6c7cf900f63fa6aa6ed803fa6a15e3079efa9085bfd81d5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/push_verify.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "release_manifest.json",
+      "size_bytes": 2068,
+      "sha256": "2999ff13ca6b2bce84164a12bc8fee6acfa0e2a9d8e6ed134565f66aa4b6a098",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/release_manifest.json"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "rolling_transport_update.py",
+      "size_bytes": 1583,
+      "sha256": "d7e8dca4badf57fac8b2e32533dd52aa2ff8bb839def51992adceb8ec52b1b86",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/rolling_transport_update.py"
+    },
+    {
+      "eb": "eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows",
+      "file": "sync_native.py",
+      "size_bytes": 1468,
+      "sha256": "9b74a9bc618a282f45b10a4ea916b2a072fb2ae2cd497d6d8c261415dde21dd8",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261020_srbg10_H_codex_gpt-6_kaoyan-live-switchover-windows/sync_native.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "acceptance_summary.json",
+      "size_bytes": 410,
+      "sha256": "9546b59e745175e9a3737b08da010b90c09626887ccac36ec202c7407f46f5e0",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/acceptance_summary.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "browser_acceptance.json",
+      "size_bytes": 4670,
+      "sha256": "c8628ddbc535d0ebb55a6f3073a223dc550740ac86ec819a7b0555a2dba18b6e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/browser_acceptance.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "commit_batches.py",
+      "size_bytes": 2079,
+      "sha256": "8fd312047d68484a587e1d7d7a431017579882c184f86766703c94f2d82d3525",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/commit_batches.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "commit_groups.json",
+      "size_bytes": 13569,
+      "sha256": "071fa7de57e6743008855e465262f5338879d0c0e59485331f9918331106c56e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/commit_groups.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "commit_progress.json",
+      "size_bytes": 115,
+      "sha256": "3332a47e7ee091d6f7fb15e7773e2e498064d0be2994d778f0536e7e2fd947f3",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/commit_progress.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "concurrent_delivery_hold.json",
+      "size_bytes": 13036,
+      "sha256": "6b6cdf586789785c0bbf7a2ab1c8cdc0bdc852ec3f1f3dd23b189960c8fd709f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/concurrent_delivery_hold.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "deliver_current_branch.py",
+      "size_bytes": 1211,
+      "sha256": "7c7a13af0685eee94c36bc23babc135324d2f350b3892c009b0644c1c6218c3e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/deliver_current_branch.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "delivery_result.json",
+      "size_bytes": 255,
+      "sha256": "6f58d099af96be54b4c99b0cfc2d61564ec6f76304efba407872f771ee4556e8",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/delivery_result.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "evidence.jsonl",
+      "size_bytes": 79521,
+      "sha256": "ef5e5df932be840357364192811acd387f12230534f47da42c0a7c38261f9c10",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/evidence.jsonl"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "evidence.jsonl.lock",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/evidence.jsonl.lock"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "final_deployment.json",
+      "size_bytes": 3966,
+      "sha256": "78cc5769cc55aef63c6422f6b8262286c56a4dcb25069a0a2df5d68d86773168",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/final_deployment.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "https_acceptance.json",
+      "size_bytes": 19414,
+      "sha256": "18f27c8a7b0ceceef25c6a73bb2274a183507699a5dc8b6c00b6a1270aaa3505",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/https_acceptance.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "https_acceptance.py",
+      "size_bytes": 1308,
+      "sha256": "8ee06f97ddbbb9764d8625904a63f4d0df99ccd023c32df08b35980471fbb0dd",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/https_acceptance.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "managed_recovery.json",
+      "size_bytes": 415,
+      "sha256": "1b6f0bcbc928d6cc3f7902750e4481f053c0eb5bdffcfbd2296be905aa2053d4",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/managed_recovery.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "native_admin_regression.py",
+      "size_bytes": 1038,
+      "sha256": "d87f6828bfc279ea4eb9e1d4a1648ac0a0c6dc3c89224fe87904d1d8db2b9d15",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/native_admin_regression.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "physical_schema.json",
+      "size_bytes": 3259,
+      "sha256": "16bfe9e19142796930e5b27591de2414c94c0fc3fe615b4cdf08d848f140af51",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/physical_schema.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "recover_managed_worker.py",
+      "size_bytes": 2277,
+      "sha256": "5a607efcd5c3bf602fa113ec4e6760e80d07d3a9f52b574aa305f5e781c534ce",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/recover_managed_worker.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "rollout_admin.py",
+      "size_bytes": 4881,
+      "sha256": "5912fb58628b1a50b2b92f95dbbcdbf8dedd6afb9f4df9e8ae8562182faa2e4a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/rollout_admin.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "rollout_result.json",
+      "size_bytes": 4150,
+      "sha256": "913a80155bdac1b0de5464494592b89bd03c389c34ab6941da0b684324aa77d6",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/rollout_result.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "rollout_static_result.json",
+      "size_bytes": 594,
+      "sha256": "c634acbd37d3c982a855e47103349d16dcda7b051e4605f9f852a9a81eb3e746",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/rollout_static_result.json"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "runtime_asset_probe.py",
+      "size_bytes": 1118,
+      "sha256": "88935bb9b9398cf2def88a32afde8354c975f57d084b6e7e0162b1cba8c7b1be",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/runtime_asset_probe.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "test_report_regeneration.py",
+      "size_bytes": 1595,
+      "sha256": "0552cd9cf9f2479afffa022fca31181cda484cd155fc092fb17d1183b065bff5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/test_report_regeneration.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "verify_artifacts.py",
+      "size_bytes": 2036,
+      "sha256": "79fc45afc6d02a3214eb8f3266d33690b2cbad3ca2db12f5469b103abb88054c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/verify_artifacts.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "verify_browser_evidence.py",
+      "size_bytes": 1176,
+      "sha256": "bdb7aa822741aad1b2dc109a3b4a465c255f7b5eb9c32446554391e042e49a5c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/verify_browser_evidence.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "verify_deployed_release.py",
+      "size_bytes": 1379,
+      "sha256": "bce0e1a033e1d82915be7b50365f8706f09cd287408bff12735d0a7e2d902824",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/verify_deployed_release.py"
+    },
+    {
+      "eb": "eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix",
+      "file": "write_acceptance_report.py",
+      "size_bytes": 5904,
+      "sha256": "a565ee81755fc5cd389ff5b3704463e7d728b84f27f66d4d0094343d89bf0ac5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261022_srbg10_H_codex_gpt-6_kaoyan-admin-audit-login-fix/write_acceptance_report.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "allocate_runtime.py",
+      "size_bytes": 1194,
+      "sha256": "fda778fda4a46f32f5dbcf50c5473152a503fc26f65f79f28e1f5a57ef2a9f8e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/allocate_runtime.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "base_image.json",
+      "size_bytes": 329,
+      "sha256": "269e80070f2c601e905660bf7f491720f8ee6193df50a3c8b034bf6c671bdbd1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/base_image.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "boot_task.json",
+      "size_bytes": 145,
+      "sha256": "574745b3ca20d565e4712c90acc93b2e170a60035d8580b9b62542e05c664da1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/boot_task.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "build_container.py",
+      "size_bytes": 3324,
+      "sha256": "9ee74976c760df24f91493a870b421fffebd25a201fc946b0acf3b531db78654",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/build_container.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "claude_restart_review.json",
+      "size_bytes": 5064,
+      "sha256": "8c281db4778af3159b0c19d2cc5e14c84a37f799b3a2a9449a565397c0d1e66b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/claude_restart_review.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "claude_review.json",
+      "size_bytes": 9684,
+      "sha256": "a24bc114988f56d71cd237f5af13a90711edef37e427f07b434d100d589d8228",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/claude_review.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "compose_canary_result.json",
+      "size_bytes": 479,
+      "sha256": "3aec058bbf84e1f5902316cf0db2c47dfed62ad3b95eb52fcf66e70a4d304408",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/compose_canary_result.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "container_release.json",
+      "size_bytes": 3933,
+      "sha256": "d4e36bf751db8993b5e85b0e853f892a388918dff1cfc65d82cb354f490e2b17",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/container_release.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "container_test_result.json",
+      "size_bytes": 424,
+      "sha256": "5eb0f76e677617a2dff930ee30e51f6ceeb1b59d3ae79cdd8a1e789222cf3045",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/container_test_result.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "coordinator_failover_result.json",
+      "size_bytes": 1661,
+      "sha256": "015aa39add2df75790dd1be03645c22c7f5df4ad78a53aaca52366605a97c2ac",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/coordinator_failover_result.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "cutover_result.json",
+      "size_bytes": 495,
+      "sha256": "88e34920344b0f77c2e559c96c4cc87562a0e260e99f2e988b7c400abedc8f8c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/cutover_result.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "cutover_runtime.py",
+      "size_bytes": 6843,
+      "sha256": "97361b52e136e5ce10493ca22ff7e563af094d13cc2257511506e5abbdfb39ba",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/cutover_runtime.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "cutover_source.json",
+      "size_bytes": 4305,
+      "sha256": "e5f0be17d7864a291b2931268460bf3aa2e7b94b24d2bd56cd98d29c8c645465",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/cutover_source.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "deep_schema_audit.py",
+      "size_bytes": 1843,
+      "sha256": "88a6e780fed697c0e4b2da4cb43a070ee91dcf92e45ecbe342b5ab1796a5bd04",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/deep_schema_audit.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "delivery_summary.json",
+      "size_bytes": 1007,
+      "sha256": "8a116eeec1ce699eeaab1b5b91711e7492f4021ad55e14ba7cd85e898bff7eb7",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/delivery_summary.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "deploy_edge.py",
+      "size_bytes": 4180,
+      "sha256": "5631d8c21060f313786ba8bc48a0b916943718133e1e4e45b6bc100f91f1c681",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/deploy_edge.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "deploy_phase2_cluster_upgrade.py",
+      "size_bytes": 6256,
+      "sha256": "c0d771dca1588f655fd5ca99789fac5fbb80d8d026597290b9520a50d104ae14",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/deploy_phase2_cluster_upgrade.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "edge_acceptance.json",
+      "size_bytes": 583,
+      "sha256": "6988ff0a9157e527c930c181ee0523096c468a28e77b4d6d037c836d3fb62cc9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/edge_acceptance.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "edge_release.json",
+      "size_bytes": 754,
+      "sha256": "0e945f49c7db85b904cc4f0b309a748eef742fae06cca3914bcdc70271dfce38",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/edge_release.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "edge_retirement.json",
+      "size_bytes": 1457,
+      "sha256": "0ed5cf6c39767bbab301d22b36183f7216a20c679a5ef0eece64a89e17a2842f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/edge_retirement.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "elena_survey.txt",
+      "size_bytes": 2213,
+      "sha256": "11e6ccc533d12e2a0670c31fec2946a9b0460f21502e66b771a3707d5c03146d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/elena_survey.txt"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "escalate_to_claude.md",
+      "size_bytes": 1369,
+      "sha256": "60e64b9b2ed0013dc779c63f0174043aa7911a9cc8c0a383ccb0ab882511877d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/escalate_to_claude.md"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "evidence.jsonl",
+      "size_bytes": 86849,
+      "sha256": "226ceec7846274f1641e2cd1ef65afce22c6225e9446a63db27dd38292e01f11",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/evidence.jsonl"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "evidence.jsonl.lock",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/evidence.jsonl.lock"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "final_runtime_audit.json",
+      "size_bytes": 2121,
+      "sha256": "351f1d9175441c49ca51c74e5305119ae467435c9e884237738d330debf2b263",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/final_runtime_audit.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "final_runtime_audit.py",
+      "size_bytes": 2220,
+      "sha256": "4e870ec8f00d22e493062611d25c43fe10be5f5c1b458b5fb59440bb6605d873",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/final_runtime_audit.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "final_signoff.json",
+      "size_bytes": 1964,
+      "sha256": "d3ca6b07f19889f6f96dfd3e0f24d73a63ccd8b6893d4d89a5732ac10043fc35",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/final_signoff.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "final_signoff.py",
+      "size_bytes": 2319,
+      "sha256": "fc6c97ca74af4cf48291c237f2d36e1d30bc416de2d2e6aa083e7a86dea52751",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/final_signoff.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "hp_survey.txt",
+      "size_bytes": 753,
+      "sha256": "3650f156a3448d989123ff27d4c63f7127bdf7f224bb55576e7d62f8d87d38f7",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/hp_survey.txt"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "install_boot.py",
+      "size_bytes": 1649,
+      "sha256": "648b97feb6beb881074c5590af4074a465af8e43d305bf06d6dcee49980630b4",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/install_boot.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "kaoyan_coordinator_failover.py",
+      "size_bytes": 8510,
+      "sha256": "3081ec88b3cd0f40e3be5d4c271c3bc78b00b51d7a9b6cbe64b1cb6e52fd343d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/kaoyan_coordinator_failover.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "live_l0_l7_probe_result.json",
+      "size_bytes": 1585,
+      "sha256": "16f95c0857c62f5b30cc90c5cf350ce4d4113a9f941f79f29852303b62842982",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/live_l0_l7_probe_result.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "phase2_latency_benchmark.json",
+      "size_bytes": 358,
+      "sha256": "7a76a06723e4768239e54091d1b4926b078a75c91b4c16cb0a7021b21525d859",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/phase2_latency_benchmark.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "phase4_cold_archive_and_wsl_stack.json",
+      "size_bytes": 2310,
+      "sha256": "7bb03155a99418adfb2ddea1d1554f29752d5ddeb479b3c8afb818d3ab1b91cf",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/phase4_cold_archive_and_wsl_stack.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "physical_schema.json",
+      "size_bytes": 22804,
+      "sha256": "3d0e42c2aa29696397d7ed4da7807cc6c21d1a82a15bcbc9a9b415da46f9b914",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/physical_schema.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "ports.json",
+      "size_bytes": 113,
+      "sha256": "89533f2a41ca0c4d45f586aa4364174a5055bda6938514039a47013eea8d665f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/ports.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "prepare_tunnels.py",
+      "size_bytes": 3813,
+      "sha256": "383a3dce557b549096df85b0d9b2c75868ae146e5a27992ac0030ad4dac625e8",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/prepare_tunnels.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "production_acceptance.py",
+      "size_bytes": 6663,
+      "sha256": "24a7d1eac05abdc807695319bb80d198934e03ce9316813272374a6136b5660e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/production_acceptance.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "production_acceptance_result.json",
+      "size_bytes": 2942,
+      "sha256": "2df91a29b5ef21a14ec3c87479c33d0e97154f8e69d7f193633feb41ba052f7d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/production_acceptance_result.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "remote.py",
+      "size_bytes": 2600,
+      "sha256": "1d71e5089acc703edd20d38f54a4a4bd0df4ab310d659d0c7316fd3d4eff8058",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/remote.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "restart_result.json",
+      "size_bytes": 1495,
+      "sha256": "bb45e2997549fdee8cc3c94f8a914fc1ba66a993e6c84241d0e2623c49e9bd06",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/restart_result.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "retire_edge_database.py",
+      "size_bytes": 3717,
+      "sha256": "e8621cf846d425d388ce20d2d21d0ce98f67af7f07f62365a22f76f34f3d4eef",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/retire_edge_database.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "rollback_result.json",
+      "size_bytes": 290,
+      "sha256": "bc515c2a5edad5b0ca414fb0820f5886b93a8d8432c8e9b47b1c3667db8cc3e6",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/rollback_result.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "run_p6_delivery.py",
+      "size_bytes": 8538,
+      "sha256": "e3faa1dc11881d28430e99fcf5df25e2147d780132c82e754216fae594ccc22e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/run_p6_delivery.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "runtime_audit.py",
+      "size_bytes": 2873,
+      "sha256": "77c38fa4d9736bfd06425a050f6dcecaf5427b3ed47e57d40238ea2c6459e18e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/runtime_audit.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "runtime_baseline.json",
+      "size_bytes": 35155,
+      "sha256": "e3e3acaca83c065fa977414852e9d00c0f5195d73dd7fa84b42d3f3ad7f5eb24",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/runtime_baseline.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "stage_runtime.py",
+      "size_bytes": 4367,
+      "sha256": "90f50bf11feb0082537041e01952ccc604a6ee0086690d58d178e5b9012c8bd5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/stage_runtime.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "staged_runtime.json",
+      "size_bytes": 317,
+      "sha256": "d491c085e3f354137d569f31bb736d7aed3deb018b8931b9da2314935102fd4f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/staged_runtime.json"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "test_compose_canary.py",
+      "size_bytes": 5100,
+      "sha256": "dbef4473782d3e6d3536611239b9110c1e3ffb52394f5b62acf5cee931fb0a2f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/test_compose_canary.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "test_image.py",
+      "size_bytes": 1101,
+      "sha256": "a74358329e2ef95fd9ecb0f9aad657fbf3854f82cd4fc2d7726dc3b9e6e51d75",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/test_image.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "test_runtime_restart.py",
+      "size_bytes": 4603,
+      "sha256": "77f3cb0762faed42cb2447676558b33504ea7335bf3a856bad205f8b3616fadb",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/test_runtime_restart.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "tls_elena.txt",
+      "size_bytes": 1371,
+      "sha256": "dd25c135bd145350ad6407b7795270b4c75a06bcfa0fe0c3d283342cf5f464ce",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/tls_elena.txt"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "tls_hp.txt",
+      "size_bytes": 812,
+      "sha256": "d846ba61575b53c8628d4708283a3a59684ac670e67082e5a86495a6e50cad74",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/tls_hp.txt"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "verify_edge.py",
+      "size_bytes": 1532,
+      "sha256": "14a5a929b2d80cc6dd300e5d8213afad6f23037edd89e73d895aa3ddc54fdc59",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/verify_edge.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "verify_phase4_cold_archive_and_wsl_stack.py",
+      "size_bytes": 6537,
+      "sha256": "3e4e1b4df137591430e5b3d78ca0cf1da086da20a410c4a9953af1286f546b9e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/verify_phase4_cold_archive_and_wsl_stack.py"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "w1_survey.txt",
+      "size_bytes": 606,
+      "sha256": "f5d1228484fea305428d3d745348562ae3f431c56ba27a2be2a71e527031078f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/w1_survey.txt"
+    },
+    {
+      "eb": "eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit",
+      "file": "w1_wsl_probe.txt",
+      "size_bytes": 446,
+      "sha256": "714aa32b574eea32cc61b0bc8be28a4db5ed8a070fc12121f2017b00b18498cf",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_20261024_srbg10_H_codex_gpt-6_kaoyan-w1-docker-edge-audit/w1_wsl_probe.txt"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "06_elenalyl_go_live_watcher_elenalyl域名解封自动上线守护.py",
+      "size_bytes": 7117,
+      "sha256": "8f87179d63ef0814f7484b8f5fc867f6e755b36d344ec13922fb5e09978cb5cc",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/06_elenalyl_go_live_watcher_elenalyl域名解封自动上线守护.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "07_blade_router_tiering_and_elenalyl_status_probe_刀刃路由档位修复与域名上线阻塞现状.md",
+      "size_bytes": 5334,
+      "sha256": "f3aed7f0a85bd5e54a0fccc63e73123c94ffb9586b7f65f89ca042ffe83ba46e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/07_blade_router_tiering_and_elenalyl_status_probe_刀刃路由档位修复与域名上线阻塞现状.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "07_blade_router_tiering_and_elenalyl_status_probe_刀刃路由档位修复与域名上线阻塞现状.py",
+      "size_bytes": 2075,
+      "sha256": "8823b15d4af82928fe1491dfa40c0151a3522c04e0539ff8a2f45f0a0c68eb2f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/07_blade_router_tiering_and_elenalyl_status_probe_刀刃路由档位修复与域名上线阻塞现状.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "08_duckdns_kaoyan_elena_edge_autowire_duckdns绑定自动接线香港边缘.py",
+      "size_bytes": 4272,
+      "sha256": "c4b2db1894e606cb0a345a4188cbb715ad99f46db8203e546fdcfc18e8241ec1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/08_duckdns_kaoyan_elena_edge_autowire_duckdns绑定自动接线香港边缘.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "09_kaoyan_elenalyl_top_deployment_and_ssl_test_report_kaoyan域名部署与证书访问全链路测试报告.md",
+      "size_bytes": 12180,
+      "sha256": "717de736ca1980730dced017104f4ec074a49577b15d76170ff0f921cfa53cd1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/09_kaoyan_elenalyl_top_deployment_and_ssl_test_report_kaoyan域名部署与证书访问全链路测试报告.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "09_kaoyan_elenalyl_top_deployment_and_ssl_test_report_kaoyan域名部署与证书访问全链路测试报告.py",
+      "size_bytes": 7216,
+      "sha256": "08b8766acd5bd170b07469f4cb8fe507b43350464c794928d29f69d54953c780",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/09_kaoyan_elenalyl_top_deployment_and_ssl_test_report_kaoyan域名部署与证书访问全链路测试报告.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "10_windows_ssh_passwordless_config_and_elena_pubkey_spec_Windows免密登录8.163.29.42完整配置与公钥部署方案.md",
+      "size_bytes": 5007,
+      "sha256": "cc9f0ae484fd9c50434d968fca78adb2e5f64d97b21aaa979e3cf94467e1bc07",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/10_windows_ssh_passwordless_config_and_elena_pubkey_spec_Windows免密登录8.163.29.42完整配置与公钥部署方案.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "10_windows_ssh_passwordless_config_and_elena_pubkey_spec_Windows免密登录8.163.29.42完整配置与公钥部署方案.py",
+      "size_bytes": 2311,
+      "sha256": "9875c8e0a1b4bb4dabd84dc9e182e303180ae5460045104d76706d22d6e5156c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/10_windows_ssh_passwordless_config_and_elena_pubkey_spec_Windows免密登录8.163.29.42完整配置与公钥部署方案.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "11_student_ssh_git_contradiction_forensics_and_vscode_deploy_loop_spec_截图与免密登录矛盾穿透取证及VSCode一键发布闭环方案.md",
+      "size_bytes": 8696,
+      "sha256": "31b33d94d537f5e703c47d3c18995494dc5923692b886bf5ca13eec69fc1feb4",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/11_student_ssh_git_contradiction_forensics_and_vscode_deploy_loop_spec_截图与免密登录矛盾穿透取证及VSCode一键发布闭环方案.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "11_student_ssh_git_contradiction_forensics_and_vscode_deploy_loop_spec_截图与免密登录矛盾穿透取证及VSCode一键发布闭环方案.py",
+      "size_bytes": 5531,
+      "sha256": "296a4886a1b808ca8406eadc65ffad1e80e25eb5899717ded116b902e0d5c4e6",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/11_student_ssh_git_contradiction_forensics_and_vscode_deploy_loop_spec_截图与免密登录矛盾穿透取证及VSCode一键发布闭环方案.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.html",
+      "size_bytes": 23290,
+      "sha256": "9308cc3019cf918d822d60de48ea51a43430bea1d3f10679a4171eb43c196dc4",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.html"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.md",
+      "size_bytes": 16272,
+      "sha256": "21a1054a3d7eca048e41d652f47df29093819be5c3c7098ba587b1fe197a1946",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.png",
+      "size_bytes": 359200,
+      "sha256": "a6d14408ca95c64b2560592fd2a262750091290b148cf7739cdc61f8b3d8649c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.pptx",
+      "size_bytes": 43801,
+      "sha256": "e37025f9643f937d9c290c543837f452c47d02777443430c44df9c9f51798d54",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.pptx"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.py",
+      "size_bytes": 80238,
+      "sha256": "ca7cc68c108e4c252a79153bd3340f46fd518f8c7c074667a3dd520bb1bb62e2",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.svg",
+      "size_bytes": 11503,
+      "sha256": "07e4e08c6c0f7da6ec050e72006c001eef6066974b0ca7730bc877bbaab2175e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典_slides_preview.md",
+      "size_bytes": 2817,
+      "sha256": "643ef3a52117a1c69d23674e954d45a9755dec06d6ddaef96eab7c181d099f53",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典_slides_preview.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典_slides_preview.png",
+      "size_bytes": 1089917,
+      "sha256": "ba2efb9672a331134b8352f57183257d81938c392d48319795c1f4ebc1e8f4a0",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典_slides_preview.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典_slides_preview.svg",
+      "size_bytes": 34409,
+      "sha256": "67bcce308bbbf73bc6826e9d847cbe7ea5834380d03a44d185310f8fbdd3be50",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_login_framework_uml_swimlane_and_5_visual_paradigms_spec_SSH免密登录与Git发布框架UML泳道图及五大可视化全景大典_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_uml_swimlane_and_key_lock_diagram_泳道与锁钥拓扑图.png",
+      "size_bytes": 575226,
+      "sha256": "c0e612ae7ffffe6c24108526bcb3f595018d9bcd64f5bc872548617cf1721101",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_uml_swimlane_and_key_lock_diagram_泳道与锁钥拓扑图.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "12_ssh_passwordless_uml_swimlane_and_key_lock_diagram_泳道与锁钥拓扑图.svg",
+      "size_bytes": 22627,
+      "sha256": "7c2785cac5e37dc60e27e39922e7313e52b4485cdaef01de443530ac5837b65f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/12_ssh_passwordless_uml_swimlane_and_key_lock_diagram_泳道与锁钥拓扑图.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_publishing_architecture_diagram_Windows发布HTTPS全链路架构图.png",
+      "size_bytes": 664262,
+      "sha256": "ccc5992b0fa3bcc54bd9e9d54fc93feb6b98da964a83e6b9295673f01483f621",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_publishing_architecture_diagram_Windows发布HTTPS全链路架构图.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_publishing_architecture_diagram_Windows发布HTTPS全链路架构图.svg",
+      "size_bytes": 20235,
+      "sha256": "cb77efcbd603045ef9c5a8a85d80227021aa189678d43ca53eb197e3c99050ec",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_publishing_architecture_diagram_Windows发布HTTPS全链路架构图.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.html",
+      "size_bytes": 16448,
+      "sha256": "520f73e202e44539782cefdec6161511e1d2c9792b308fdd87f968d0b15985b5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.html"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.md",
+      "size_bytes": 15452,
+      "sha256": "c43a71617c7726e8383adf811b05c5ab0131b441a1471e9988ef0ff416983c78",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.png",
+      "size_bytes": 359839,
+      "sha256": "90b16140fd43b6c89db82e6baafcb916b7f3527ac6e952412efd4d28c0cfe3de",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.pptx",
+      "size_bytes": 44294,
+      "sha256": "a52dad604fb1bd792d4375883490bbe7246e4fa65078d33c559b129096e7f297",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.pptx"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.py",
+      "size_bytes": 69406,
+      "sha256": "2e241ea9e4f5feb46b7396f7a8667a56cc0a881cc00fe818b534d59c719a9c44",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.svg",
+      "size_bytes": 11523,
+      "sha256": "59366ed02d6bcc5056aa3a8fb53f4fb81bdc9589f3d455e479f9d47e07d2b570",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典_slides_preview.md",
+      "size_bytes": 2602,
+      "sha256": "a33730ef94877bce3f005af0c63f4b4c325d7b75a9bed9689fc69cdf0dab19fa",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典_slides_preview.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典_slides_preview.png",
+      "size_bytes": 1111642,
+      "sha256": "c38b10ffd2a9d57c1843ccaf3a9482f91cb9ef9ef431e585fea3986fe18f01e7",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典_slides_preview.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典_slides_preview.svg",
+      "size_bytes": 34852,
+      "sha256": "8ef5461d347fc850a2118504e330507b35ec638fb132fb58288bfa8ab5547143",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/13_windows_kaoyan_https_site_publishing_master_summary_spec_Windows视角考研英语HTTPS站点发布全链路总结大典_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_12stage_architecture_diagram_PG18双擎高可用与十二阶全栈架构全景图.png",
+      "size_bytes": 540411,
+      "sha256": "4db2bb2b2ef5e4f951004032306ae80710485afb782ed4f06f74df873d5ae96d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_12stage_architecture_diagram_PG18双擎高可用与十二阶全栈架构全景图.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_12stage_architecture_diagram_PG18双擎高可用与十二阶全栈架构全景图.svg",
+      "size_bytes": 20729,
+      "sha256": "32d6926f1cb8ec304a9b0cd75e70afaec2d0c9ed2f2258856359d36bd991e12a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_12stage_architecture_diagram_PG18双擎高可用与十二阶全栈架构全景图.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.html",
+      "size_bytes": 25885,
+      "sha256": "8613cfd1348258c98123d546b97a21528e29c54e70eb68e2624a8936b1c33102",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.html"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.md",
+      "size_bytes": 24976,
+      "sha256": "1b18f50977cc7dca6e07dcf4b1b5fca404f760553fb7995d64e1e9468d20d043",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.png",
+      "size_bytes": 329493,
+      "sha256": "ddf8a4031df6766e446992283d8d5bf4c2fefda85b95345f2179c727cf2064a8",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.pptx",
+      "size_bytes": 44939,
+      "sha256": "d97f804f04039209aa8c12bb1cee55ece6785a7035d437bfca43d415492c727d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.pptx"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.py",
+      "size_bytes": 72253,
+      "sha256": "1117f0a7d8253148084c6baee160a9c4d0f6157415ea73e2f494327d310af114",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.svg",
+      "size_bytes": 11274,
+      "sha256": "aabb010ac0eecae72eb3105a4896f03b22d573b44dd58041968dbd3c50bf91e1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典_slides_preview.md",
+      "size_bytes": 2789,
+      "sha256": "dbf7a4cd2dd0d82e5d8f829ac44eab434a3cd7023fa1a1c7555c30db96779ceb",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典_slides_preview.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典_slides_preview.png",
+      "size_bytes": 1203844,
+      "sha256": "9fe25189d86c1288e851ed84c89fcf6fe8a63187fb7827bfc2b7908cb4eac7d8",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典_slides_preview.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典_slides_preview.svg",
+      "size_bytes": 35342,
+      "sha256": "744e219037daf4329f9b55829cc04a758a2f32a81ba5c2fd4f8b4886be42671d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/14_kaoyan_pg18_ha_fullstack_12stage_architecture_and_acceptance_spec_考研英语全栈PG高可用架构十二阶设计与测试验收大典_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncArch_多槽治理同步棘轮架构图.png",
+      "size_bytes": 546018,
+      "sha256": "4e15cea94cc16c8458ddff24ccfc219e7bc5ee1eabf9bb1fcd815fc6d75456b9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncArch_多槽治理同步棘轮架构图.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncArch_多槽治理同步棘轮架构图.svg",
+      "size_bytes": 9785,
+      "sha256": "20276395dc651f6291d10d0e7dd3b9db034257931ffeb64ab9973edd3671a66b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncArch_多槽治理同步棘轮架构图.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.html",
+      "size_bytes": 17398,
+      "sha256": "6f0a6dbc7a5237897be4d84f69cf3ee0767acf9706e0c425bbf326f8a1af9a78",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.html"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.md",
+      "size_bytes": 9254,
+      "sha256": "66153a1dc0a0af1185f137000b8d50d65e4baa4c74afcff60118503c2d6db88b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.png",
+      "size_bytes": 546018,
+      "sha256": "4e15cea94cc16c8458ddff24ccfc219e7bc5ee1eabf9bb1fcd815fc6d75456b9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.pptx",
+      "size_bytes": 35009,
+      "sha256": "41038ba0ee6b7ef37aba972901798e359f6d451b9a2e324face34cdae2c62150",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.pptx"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.py",
+      "size_bytes": 38689,
+      "sha256": "4ba980b0b887f795a9143e2d4e3142405613b9aac221bb1db4da893c73b3ebab",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.svg",
+      "size_bytes": 9785,
+      "sha256": "20276395dc651f6291d10d0e7dd3b9db034257931ffeb64ab9973edd3671a66b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮_slides_preview.md",
+      "size_bytes": 1760,
+      "sha256": "0e9e769aedc111c407776d6e660e37fe5c924397eea8d2341011a8f2849d8c71",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮_slides_preview.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮_slides_preview.png",
+      "size_bytes": 683035,
+      "sha256": "aba823ef9c4d1a7909112170bf341884ba122fc141b0e185827a989d9e13e938",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮_slides_preview.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮_slides_preview.svg",
+      "size_bytes": 16378,
+      "sha256": "db9755e717d0ba65094f47a42de0e68726cec5f3529d795065f601c1e99891ed",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/16_treeworkerGovSyncRatchet_多槽治理失步根治与棘轮_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_crossOsHaRoamingSwimlane_跨系统瞬时迁移泳道图.png",
+      "size_bytes": 450728,
+      "sha256": "c0a743cc0814c18ce22661ada64fd811790359025afaa46ad7659d5a62e39491",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_crossOsHaRoamingSwimlane_跨系统瞬时迁移泳道图.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_crossOsHaRoamingSwimlane_跨系统瞬时迁移泳道图.svg",
+      "size_bytes": 15486,
+      "sha256": "14dd3d7557e4e806dd211eddecf1dcbca78175b7dc7506971caf8ef416544a7e",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_crossOsHaRoamingSwimlane_跨系统瞬时迁移泳道图.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.html",
+      "size_bytes": 17511,
+      "sha256": "facba9181da42fdb5d4c846c9b652bbb4c3565a212f484effd11efa1abab3872",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.html"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.md",
+      "size_bytes": 20177,
+      "sha256": "b7b8ee45ef7802291a1e4d8782f38e5f8f775fca4ba574039160b753fb1a16a5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.png",
+      "size_bytes": 513974,
+      "sha256": "2342e52e99b018698cf36f13fdb347bcb1f4a0ee8e727d885c79781d82dfae83",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.pptx",
+      "size_bytes": 35121,
+      "sha256": "56cbb03715197d059aef92fa85c0bcce987f2c3a90007d2d70039720532d7756",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.pptx"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.py",
+      "size_bytes": 7933,
+      "sha256": "06ba2253a30b643de47eac02287bfb3e51789f2293afa7132a428305ba411302",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.svg",
+      "size_bytes": 9823,
+      "sha256": "106c5309d0d78b61a532e06974606d1fb2499019e3718d95c3e38dfa809a182f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收_slides_preview.md",
+      "size_bytes": 1812,
+      "sha256": "1233d26f2bae1908b65827245635935188f8551b815a4bcb857516c2392539a2",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收_slides_preview.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收_slides_preview.png",
+      "size_bytes": 670069,
+      "sha256": "f8c3e712331f61b3047aeee311946309d73e7b631b446b4e47420f427cf592e4",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收_slides_preview.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收_slides_preview.svg",
+      "size_bytes": 16173,
+      "sha256": "e30d9d2b427d312838f6b2fe8e5abde3a7197bd7717e04cb6237a9baa203ffb1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanCrossOsRoamingHaPrd_跨系统漫游高可用与验收_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.html",
+      "size_bytes": 17834,
+      "sha256": "b5cf3e67d73a1568a9f7fc5082cdbc0196cf1b319d19ad9fe2a00ef3a6fbfc01",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.html"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.md",
+      "size_bytes": 15164,
+      "sha256": "bb4f910f3773599224298df9d6323609a149a2156a603b7ca85742aec9814efc",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.png",
+      "size_bytes": 616118,
+      "sha256": "906f69b113df5a713972b0cec4edb595438bb36211753846f54714f8329f26a9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.pptx",
+      "size_bytes": 35475,
+      "sha256": "de614d9eb4dffcf863822eba74ed267935fece07ac7e8388d1e3d2d0703f3676",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.pptx"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.py",
+      "size_bytes": 44109,
+      "sha256": "7d22d9d8aa738256d433387669574afbaa754efe7494233d2e34c509f839a1b6",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.svg",
+      "size_bytes": 10211,
+      "sha256": "eb00aa26145dcb0c5898bdc787d4b45b80867fdb21429d0a58b6c7ce1d7c25c5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.md",
+      "size_bytes": 1880,
+      "sha256": "ed5bd38cc7025436f1630b8ffb3082961126d4aa5d8fba5367c62a7e2ac0716b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.md"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.png",
+      "size_bytes": 697781,
+      "sha256": "14ab9d89edd314a806618fde46e8a28c4809be7abc4fc06689a44afe55f70da9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.png"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.svg",
+      "size_bytes": 16482,
+      "sha256": "466d43caed9c7b730343565286c2a9d85e6657d5d137f8a06742fcec9a81c11b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "_kaoyan_cross_os_context.py",
+      "size_bytes": 2149,
+      "sha256": "7e661a0d50b792e6fa3192be9e7a57430c957f55e68c36004a668eec1fd2c002",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/_kaoyan_cross_os_context.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "_kaoyan_cross_os_document.py",
+      "size_bytes": 27580,
+      "sha256": "27372b3ae94bcfd7a12a3faed009bc81fe8ebc29ff804cf5829fcb257b230350",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/_kaoyan_cross_os_document.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "_kaoyan_cross_os_figures.py",
+      "size_bytes": 39570,
+      "sha256": "433c8fd55db3a813db9aa80c1973224ff37bcc941330a2dc83c2cc877d69feb8",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/_kaoyan_cross_os_figures.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "elena_tiered_storage_and_t2_backup_report.json",
+      "size_bytes": 865,
+      "sha256": "eafc018a539358215150cce330fe6ed37229afd5a16e94540b11df282ee171d6",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/elena_tiered_storage_and_t2_backup_report.json"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "evidence.jsonl",
+      "size_bytes": 237695,
+      "sha256": "60a3536e82729679d7cbb4d847b4ca7b9332f09e811d3755c0384b1e8320a0f3",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/evidence.jsonl"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "evidence.jsonl.lock",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/evidence.jsonl.lock"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "kaoyan_24_acceptance_test_report.json",
+      "size_bytes": 7958,
+      "sha256": "8e52bda05eb28bad00dd635cdf44c454fd43be3d4d4fab5242c8b310c1789715",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/kaoyan_24_acceptance_test_report.json"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "kaoyan_english_web_prd_report.json",
+      "size_bytes": 27493,
+      "sha256": "7a5a5c0293d98a21adcd9646f5f817d6af3a117f0933c34bba5738954f48e775",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/kaoyan_english_web_prd_report.json"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "kaoyan_english_web_v2_benchmark_report.json",
+      "size_bytes": 19504,
+      "sha256": "13c2cb06d8a186285d92a10be42935f8a5ab2021a16024536928d80f858d789f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/kaoyan_english_web_v2_benchmark_report.json"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "kaoyan_ssl_remediation_report.json",
+      "size_bytes": 535,
+      "sha256": "e8b6e495a8e98f25ad0530169b09ddd196453e4296e860b9cdedc67bd9b10f4f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/kaoyan_ssl_remediation_report.json"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "phase2_3_deploy_pg18_ha_and_modular_backend.py",
+      "size_bytes": 54216,
+      "sha256": "4add1558d7b161202a07052151d4dfe716bd82f0f89396d715073565515bec5f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/phase2_3_deploy_pg18_ha_and_modular_backend.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "phase4_upgrade_frontend_cold_backup_and_git_sync.py",
+      "size_bytes": 26781,
+      "sha256": "6a212b0db73adf67aa388d8f6f0bbf15faf14dfee357bf60cb147fb34800c31f",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/phase4_upgrade_frontend_cold_backup_and_git_sync.py"
+    },
+    {
+      "eb": "eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt",
+      "file": "phase5_run_24_acceptance_tests.py",
+      "size_bytes": 20350,
+      "sha256": "09bd6ae756813db07b365a92e1264a25a7f2a31f596ab2d10924c47c006a4ee1",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9036_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-english-web-semantic-spec-and-prd-shunt/phase5_run_24_acceptance_tests.py"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.html",
+      "size_bytes": 17834,
+      "sha256": "b5cf3e67d73a1568a9f7fc5082cdbc0196cf1b319d19ad9fe2a00ef3a6fbfc01",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.html"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.md",
+      "size_bytes": 14884,
+      "sha256": "cd44a3d4ba6cf495c0e1088644cabe8e80c089f3dfe1aae473d290e970908700",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.md"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.png",
+      "size_bytes": 616118,
+      "sha256": "906f69b113df5a713972b0cec4edb595438bb36211753846f54714f8329f26a9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.png"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.pptx",
+      "size_bytes": 35475,
+      "sha256": "de614d9eb4dffcf863822eba74ed267935fece07ac7e8388d1e3d2d0703f3676",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.pptx"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.py",
+      "size_bytes": 44042,
+      "sha256": "4919d91281cb17ce5efec429e232ceb6eb9c378c50ac6e1a8548acdadb21c000",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.py"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.svg",
+      "size_bytes": 10211,
+      "sha256": "eb00aa26145dcb0c5898bdc787d4b45b80867fdb21429d0a58b6c7ce1d7c25c5",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案.svg"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.md",
+      "size_bytes": 1880,
+      "sha256": "ed5bd38cc7025436f1630b8ffb3082961126d4aa5d8fba5367c62a7e2ac0716b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.md"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.png",
+      "size_bytes": 697781,
+      "sha256": "14ab9d89edd314a806618fde46e8a28c4809be7abc4fc06689a44afe55f70da9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.png"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.svg",
+      "size_bytes": 16482,
+      "sha256": "466d43caed9c7b730343565286c2a9d85e6657d5d137f8a06742fcec9a81c11b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/17_kaoyanUnauthPreviewBlur_未登录预览比例与糊化方案_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.html",
+      "size_bytes": 5845,
+      "sha256": "47f6040010496a6cd7a23e492215be68a15b31c76c82a3e3c06e0535e269030a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.html"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.md",
+      "size_bytes": 9337,
+      "sha256": "4c1b13abebd8ffdd0adcccc4143f274398b98c5908b70119fc1fdc22db1bec22",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.md"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.png",
+      "size_bytes": 127130,
+      "sha256": "aa00ac2c74b739d659475287c2af59465abceef0d98e15de303b12dc0cacdcd2",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.png"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.pptx",
+      "size_bytes": 371657,
+      "sha256": "c1d6ebd29b52de675b41824b3211c3eb6710d8424d1edca2c6a4b8f1827155ee",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.pptx"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.py",
+      "size_bytes": 8956,
+      "sha256": "2100dd4a12f8cea292a6a1634febe6e78cc6629551965c782542393b0a35f717",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.py"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.svg",
+      "size_bytes": 7000,
+      "sha256": "3f404c21d2aab1f86715c8a8fed329b32d79e38fb9e8633a59fe66dade0a90a9",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告.svg"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告_slides_preview.md",
+      "size_bytes": 726,
+      "sha256": "0b17f6083717f935f9d3db506cf8900477bd080855c5a7c8d94f2f46720c7908",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告_slides_preview.md"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告_slides_preview.png",
+      "size_bytes": 176787,
+      "sha256": "22922d3dbc244b4a0a618b9d5dd3550286512e936123490549169dbae220401d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告_slides_preview.png"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_crossOsSchemaFieldAudit_跨系统缺表实勘报告_slides_preview.svg",
+      "size_bytes": 1729,
+      "sha256": "76b50163a193da22fd22a46da34443e847aeaa7bddd716678e0c5f67f7bf403d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_crossOsSchemaFieldAudit_跨系统缺表实勘报告_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.html",
+      "size_bytes": 17206,
+      "sha256": "4edd97cc685abf0b94f6d3c75ab706b724f56d0e9949857d56e9fb0ae1c8a92a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.html"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.md",
+      "size_bytes": 16938,
+      "sha256": "aa966a87615a6a0baa8aeb11582dc623814999106cf17d1d0013c3f2a26d2024",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.md"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.png",
+      "size_bytes": 511843,
+      "sha256": "9b920a5023e77802be159b32aefec3f27d74fce08c5df3093e7aabfaa271c25b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.png"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.pptx",
+      "size_bytes": 34813,
+      "sha256": "127c506371f58c4248ea2ca45e6444102743033a5f3c8e0e28651582aeb60f4b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.pptx"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.py",
+      "size_bytes": 43326,
+      "sha256": "dfa23b553e27629fc607d9ededcb3097c74da5f56f1907a7d859bceb885e43ff",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.py"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.svg",
+      "size_bytes": 9966,
+      "sha256": "8b268499586ea74c1cf1dc0986f7780c614bb6a9449acdb11336dbd5199fbba4",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告.svg"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告_slides_preview.md",
+      "size_bytes": 1821,
+      "sha256": "54d8876752329b395791947f19d1e1b50b51de5fd72e3e455dcdd98980105e7d",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告_slides_preview.md"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告_slides_preview.png",
+      "size_bytes": 635655,
+      "sha256": "4d4671e0815bb1e1780e8a857695dc8fad5a9d0fde7766279d79813b4fee1b1c",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告_slides_preview.png"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "18_kaoyanRbacAccountMgmt_账号权限管理与验收报告_slides_preview.svg",
+      "size_bytes": 15857,
+      "sha256": "991453eaddbc6f62cc77a70dc5d9476e2e1cb1b95e7948af6d38b6931506e0dc",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/18_kaoyanRbacAccountMgmt_账号权限管理与验收报告_slides_preview.svg"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "evidence.jsonl",
+      "size_bytes": 64023,
+      "sha256": "9e329907eab4ab7797f03ad90f3258526fe2880be2a413e7289ecd2649994b4a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/evidence.jsonl"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "evidence.jsonl.lock",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/evidence.jsonl.lock"
+    },
+    {
+      "eb": "eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure",
+      "file": "kaoyan_unauth_preview_blur_shunt_report.json",
+      "size_bytes": 4664,
+      "sha256": "2c053af810b5146526383c84bbefe3853fdb9dada349e63faf06ce3b6e7413fc",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9039_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-unauth-preview-blur-and-tiered-exposure/kaoyan_unauth_preview_blur_shunt_report.json"
+    },
+    {
+      "eb": "eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation",
+      "file": "06_srbg10_lease_forensics_and_unblock_report.md",
+      "size_bytes": 11388,
+      "sha256": "01f04079ce3bba3019bc7c70f72576e6b827ce3199a5525bd0024fab834bfe3a",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation/06_srbg10_lease_forensics_and_unblock_report.md"
+    },
+    {
+      "eb": "eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation",
+      "file": "evidence.jsonl",
+      "size_bytes": 54639,
+      "sha256": "b1100075c297fe7d65e7acdd18c7cdf6b88b779de94911a1471d59daea4e0754",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation/evidence.jsonl"
+    },
+    {
+      "eb": "eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation",
+      "file": "evidence.jsonl.lock",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation/evidence.jsonl.lock"
+    },
+    {
+      "eb": "eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation",
+      "file": "live_l0_l7_probe_result.json",
+      "size_bytes": 1585,
+      "sha256": "98d4f23faa8a108a60ffa3a726215879b3b6e7bd27474ecfa66f5be56ab72aaa",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation/live_l0_l7_probe_result.json"
+    },
+    {
+      "eb": "eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation",
+      "file": "srbg10_lease_forensics_and_unblock_shunt.py",
+      "size_bytes": 8331,
+      "sha256": "64eb0fe52a61a9583aa7efdc1ee6c6531657856972b24c1b0794b4d45b0e8a24",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation/srbg10_lease_forensics_and_unblock_shunt.py"
+    },
+    {
+      "eb": "eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation",
+      "file": "srbg10_lease_forensics_snapshot.json",
+      "size_bytes": 2378,
+      "sha256": "96f4492ecf6b0359eb134e3664f705b640be0e8125165d92f8d53f1f2bb076b8",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9041_srbg10_H_antigravity_gemini-4-argon-high_kaoyan-w1-docker-edge-deep-arch-and-multiphase-remediation/srbg10_lease_forensics_snapshot.json"
+    },
+    {
+      "eb": "eb_9044_srbg10_H_antigravity_qwen3.8-max_kaoyan-bz-consolidation-and-sandbox-zero-orphan-meta-arch",
+      "file": "evidence.jsonl",
+      "size_bytes": 10927,
+      "sha256": "d771df722396c3f6d9fe4559d2ff00529c4c53059df82f535846113022e71188",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9044_srbg10_H_antigravity_qwen3.8-max_kaoyan-bz-consolidation-and-sandbox-zero-orphan-meta-arch/evidence.jsonl"
+    },
+    {
+      "eb": "eb_9044_srbg10_H_antigravity_qwen3.8-max_kaoyan-bz-consolidation-and-sandbox-zero-orphan-meta-arch",
+      "file": "evidence.jsonl.lock",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9044_srbg10_H_antigravity_qwen3.8-max_kaoyan-bz-consolidation-and-sandbox-zero-orphan-meta-arch/evidence.jsonl.lock"
+    },
+    {
+      "eb": "eb_9044_srbg10_H_antigravity_qwen3.8-max_kaoyan-bz-consolidation-and-sandbox-zero-orphan-meta-arch",
+      "file": "kaoyan_consolidation_verify.json",
+      "size_bytes": 923,
+      "sha256": "a5d7da801b54efa52232d8f7c7f74a2f23d4466f33f9a677344651afa47493c3",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9044_srbg10_H_antigravity_qwen3.8-max_kaoyan-bz-consolidation-and-sandbox-zero-orphan-meta-arch/kaoyan_consolidation_verify.json"
+    },
+    {
+      "eb": "eb_9044_srbg10_H_antigravity_qwen3.8-max_kaoyan-bz-consolidation-and-sandbox-zero-orphan-meta-arch",
+      "file": "sandbox_census_before.json",
+      "size_bytes": 19246,
+      "sha256": "b70ed6a25be93822442fd6b5278893f0e83090625ac549430ccb352a38bc980b",
+      "bz_mirror_rel": ".bz/95_kaoyan_考研/_workspace_eb_campaigns_沙箱全量归仓/eb_9044_srbg10_H_antigravity_qwen3.8-max_kaoyan-bz-consolidation-and-sandbox-zero-orphan-meta-arch/sandbox_census_before.json"
+    }
+  ]
+}

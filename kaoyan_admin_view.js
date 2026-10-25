@@ -33,11 +33,12 @@ function bindDataClick(element, attribute, callback) {
 function renderRuntimeSchema() {
   const body = document.getElementById('dbSchemaTableBody');
   if (!body) return;
-  body.innerHTML = runtimeCatalog().map(t => '<tr><td>' + escapeHtmlStr(t.table_no) +
+  const list = runtimeCatalog();
+  body.innerHTML = list.map(t => '<tr><td>' + escapeHtmlStr(t.table_no) +
     '</td><td><code>' + escapeHtmlStr(t.table_name) + '</code></td><td>' +
-    escapeHtmlStr(t.pk_columns.join(', ')) + '</td><td><code>' +
-    escapeHtmlStr(t.columns.map(c => c.name).join(', ')) + '</code></td><td>' +
-    t.column_count + ' 字段 (fields)</td></tr>').join('');
+    escapeHtmlStr(t.pk_columns.join(', ')) + '</td><td>' +
+    t.columns.map(c => '<a href="javascript:void(0)" onclick="if(typeof openLiveTableBrowser===\'function\')openLiveTableBrowser(\'' + escapeHtmlStr(t.table_name) + '\',\'' + escapeHtmlStr(c.name) + '\',\'\')" style="display:inline-block;margin:1px 3px;padding:1px 5px;border-radius:4px;background:var(--primary-soft);color:var(--primary);text-decoration:none;font-family:monospace;font-size:0.75rem;">' + escapeHtmlStr(c.name) + '</a>').join(' ') + '</td><td>' +
+    t.column_count + ' 字段 (fields) · <button class="btn" style="padding:2px 7px;font-size:0.74rem;" onclick="if(typeof openLiveTableBrowser===\'function\')openLiveTableBrowser(\'' + escapeHtmlStr(t.table_name) + '\',\'\',\'\')">🔎 EIDS行下钻</button></td></tr>').join('');
 }
 function renderFullFieldCatalog() {
   const body = document.getElementById('adminFullFieldCatalogBody');
@@ -54,7 +55,8 @@ function renderFullFieldCatalog() {
       escapeHtmlStr(t.table_name) + '</code></td><td>' + c.cid + '</td><td><code>' +
       escapeHtmlStr(c.name) + '</code></td><td>' + escapeHtmlStr(c.type) + '</td><td>' +
       escapeHtmlStr(fieldConstraints(c)) + '</td><td>' + escapeHtmlStr(description) + '</td><td>' +
-      drillButton('查看数据 (View data)', 'data-open-table', t.table_name) + '</td></tr>';
+      drillButton('查看数据 (View data)', 'data-open-table', t.table_name) +
+      ' <button class="btn" style="padding:2px 7px;font-size:0.74rem;" onclick="if(typeof openLiveTableBrowser===\'function\')openLiveTableBrowser(\'' + escapeHtmlStr(t.table_name) + '\',\'' + escapeHtmlStr(c.name) + '\',\'\')">🎯 高亮列</button></td></tr>';
   }).join('')).join('');
   const badge = document.getElementById('adminFullCatalogCountBadge');
   if (badge) badge.textContent = matched + ' / ' + total + ' 实际字段 (Live fields)';

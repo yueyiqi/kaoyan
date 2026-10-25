@@ -1,0 +1,23 @@
+# GitHub Linguist language classification for KaoyanEnglish Hub v6.0
+# Exclude numbered documentation compiler scripts, test harnesses, and archived campaign sandboxes from language stats
+[0-9][0-9]_*.py linguist-documentation=true
+[0-9][0-9]_*.html linguist-documentation=true
+README.py linguist-documentation=true
+README.html linguist-documentation=true
+*_shunt_engine.py linguist-documentation=true
+verify_*.py linguist-documentation=true
+elena_cold_offload_to_t2.py linguist-documentation=true
+_workspace_eb_campaigns_沙箱全量归仓/** linguist-documentation=true
+ops_cluster_ha_集群高可用运维/** linguist-documentation=true
+tests/** linguist-documentation=true
+backend/** linguist-generated=true
+frontend/index.html linguist-generated=true
+*_slides_preview.md linguist-generated=true
+
+# Explicitly mark core application languages as detectable
+src/main/java/**/*.java linguist-detectable=true linguist-language=Java
+src/test/java/**/*.java linguist-detectable=true linguist-language=Java
+frontend/components/**/*.vue linguist-detectable=true linguist-language=Vue
+*.js linguist-detectable=true linguist-language=JavaScript
+kaoyan_*.py linguist-detectable=true linguist-language=Python
+db_migrations/**/*.sql linguist-detectable=true linguist-language=SQL

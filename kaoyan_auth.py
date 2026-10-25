@@ -3,7 +3,7 @@ from __future__ import annotations
 from kaoyan_runtime import CORE_TABLES, RBAC_ROLE_PERMS_MAP, json, math, now_str, psycopg2, uuid
 from kaoyan_repository import REPO
 
-from kaoyan_admin_catalog import build_admin_db_drilldown_payload
+from kaoyan_admin_catalog import build_admin_db_drilldown_payload, build_eids_lineage_payload
 from kaoyan_admin_redaction import mask_sensitive_row_fields
 
 

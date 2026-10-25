@@ -1,7 +1,11 @@
-"""Session and permission helpers shared by HTTP routes."""
+"""Session, permission, and Admin 5-layer full-DB drill-down helpers shared by HTTP routes."""
 from __future__ import annotations
-from kaoyan_runtime import RBAC_ROLE_PERMS_MAP, json, math, now_str, psycopg2, uuid
+from kaoyan_runtime import CORE_TABLES, RBAC_ROLE_PERMS_MAP, json, math, now_str, psycopg2, uuid
 from kaoyan_repository import REPO
+
+from kaoyan_admin_catalog import build_admin_db_drilldown_payload, build_eids_lineage_payload
+from kaoyan_admin_redaction import mask_sensitive_row_fields
+
 
 def calc_ebbinghaus_urgency(lookup_count: int, days_since_seen: float, syllabus_tier: str) -> float:
     freq_term = 0.35 * math.log(1.0 + max(1, lookup_count))
@@ -115,3 +119,5 @@ def require_admin(headers, client_ip: str = "127.0.0.1", endpoint: str = "", sim
         record_rbac_audit(ctx["user_id"], ctx["role"], endpoint or "admin_api", "UNAUTHORIZED_BLOCKED", {"reason": "insufficient_role_requires_admin"}, client_ip, sim_down=simulate_pg_down)
         return None, 403, f"RBAC 权限拦截：当前账号 ({ctx['user_id']}) 角色为 {ctx['role']}，无权执行管理员操作 (需 ADMIN 角色)"
     return ctx, 200, "OK"
+
+

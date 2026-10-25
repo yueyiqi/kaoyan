@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="daylight">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>31 · 沙箱零孤儿不变量与外部 .bz 自动立项及主动语义归类元方案 — 同源交互式幻灯片预览</title>
+<script>(function(){try{var t=localStorage.getItem('srbg_pptx_preview_theme')||'daylight';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root, [data-theme="daylight"] { --app-bg:#F1F5F9; --bar-bg:#FFFFFF; --bar-text:#0F172A; --bar-muted:#475569; --bar-border:#CBD5E1; --accent:#2563EB; --stage-shadow:0 10px 28px rgba(15,23,42,0.12); }
+[data-theme="midnight"] { --app-bg:#0F172A; --bar-bg:#1E293B; --bar-text:#F8FAFC; --bar-muted:#94A3B8; --bar-border:#334155; --accent:#3B82F6; --stage-shadow:0 12px 32px rgba(0,0,0,0.45); }
+[data-theme="eyecare"] { --app-bg:#F5F2E8; --bar-bg:#FAF7F0; --bar-text:#1E293B; --bar-muted:#57534E; --bar-border:#D6D3CD; --accent:#0D9488; --stage-shadow:0 8px 24px rgba(28,25,23,0.10); }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--app-bg); color:var(--bar-text); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; min-height:100vh; display:flex; flex-direction:column; }
+.topbar { background:var(--bar-bg); border-bottom:1px solid var(--bar-border); padding:10px 16px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; position:sticky; top:0; z-index:50; }
+.brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:14px; }
+.badge-ok { background:#DCFCE7; color:#166534; border:1px solid #86EFAC; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:600; }
+.controls { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+button.btn, button.pill { background:var(--bar-bg); color:var(--bar-text); border:1px solid var(--bar-border); padding:5px 10px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; }
+button.pill.active, button.btn.primary { background:var(--accent); color:#FFFFFF; border-color:var(--accent); }
+.deck-container { flex:1; padding:14px; display:flex; flex-direction:column; align-items:center; gap:18px; }
+.slide-wrap { display:none; width:100%; max-width:1280px; flex-direction:column; gap:6px; }
+.slide-wrap.active, body.grid-mode .slide-wrap { display:flex; }
+.slide-meta-bar { display:flex; justify-content:space-between; font-size:12px; font-weight:600; color:var(--bar-muted); padding:0 4px; }
+.stage-outer { width:100%; position:relative; overflow:hidden; border-radius:10px; box-shadow:var(--stage-shadow); border:1px solid var(--bar-border); background:#F8FAFC; }
+.stage-canvas { width:1280px; height:720px; position:relative; transform-origin:top left; background:#F8FAFC; overflow:hidden; }
+.sp { position:absolute; display:flex; flex-direction:column; justify-content:flex-start; padding:2px 4px; overflow:hidden; line-height:1.28; word-break:break-word; }
+.sp.has-bg { justify-content:center; align-items:center; }
+.sp-p { width:100%; margin-bottom:2px; }
+</style></head>
+<body>
+<header class="topbar">
+  <div class="brand"><span>📊 1:1 同源矢量演示预览器</span><span class="badge-ok">✅ 1页 · 6原生图元 · 0死图</span></div>
+  <div class="controls">
+    <button class="btn" onclick="prevSlide()">◀ 上一页</button><button class="pill active" onclick="goSlide(0)" title="31 · 沙箱零孤儿不变量与外部 .bz 自动立项及主动语义归类元方案">P1</button><button class="btn" onclick="nextSlide()">下一页 ▶</button>
+    <button class="btn primary" id="modeBtn" onclick="toggleGrid()">⊞ 全页总览</button>
+    <button class="btn" onclick="setTheme('daylight')">☀️ 日间</button><button class="btn" onclick="setTheme('midnight')">🌙 暗夜</button><button class="btn" onclick="setTheme('eyecare')">🌿 护眼</button>
+  </div>
+</header>
+<main class="deck-container" id="deckRoot"><section class="slide-wrap active" data-idx="0"><div class="slide-meta-bar"><span>第 1 / 1 页 · 31 · 沙箱零孤儿不变量与外部 .bz 自动立项及主动语义归类元方案</span><span>6 原生矢量图元</span></div><div class="stage-outer"><div class="stage-canvas"><div class="sp " style="left:0.0px;top:0.0px;width:1280.0px;height:720.0px;background:#F8FAFC;border-radius:4px"></div><div class="sp " style="left:38.4px;top:28.8px;width:1203.2px;height:110.4px;background:#0F172A;border-radius:4px"><div class="sp-p" style="font-size:25.6px;font-weight:700;color:#F8FAFC;text-align:center;">31 · 沙箱零孤儿不变量与外部 .bz 自动立项及主动语义归类元方案</div><div class="sp-p" style="font-size:15.4px;font-weight:500;color:#94A3B8;text-align:left;">Sandbox Zero-Orphan Invariant &amp; Proactive .bz Semantic Routing Meta-Architecture (ADR-0716)</div></div><div class="sp " style="left:38.4px;top:158.4px;width:588.49px;height:244.8px;background:#FFFFFF;border:2.0px solid #2563EB;border-radius:4px"><div class="sp-p" style="font-size:17.9px;font-weight:700;color:#1E40AF;text-align:center;">① 一揽子方案 1-2：ADR-0716 与 0-Token 语义路由外专</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• ADR-0716 全局架构裁决: 确立『五槽位过程账本留沙箱，一切实质资产归 .bz/』第一性公理。</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• sandbox_to_bz_semantic_router_shunt.py: 支撑 census / route / bind-eb / consolidate-kaoyan / verify 五大算子。</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• 全仓 375 个 EB 定量普查: 识别 244 个 EB (65.07%) 共 2,940 项非槽位资产并建立路由矩阵。</div><div class="sp-p" style="font-size:14.1px;font-weight:700;color:#1E40AF;text-align:left;">架构定谳: 彻底终结『资产困在沙箱』与『人工提醒建目录』</div></div><div class="sp " style="left:652.82px;top:158.4px;width:588.49px;height:244.8px;background:#FFFFFF;border:2.0px solid #059669;border-radius:4px"><div class="sp-p" style="font-size:17.9px;font-weight:700;color:#065F46;text-align:center;">② 一揽子方案 3-4：.bz/95_kaoyan_考研 与 261 项资产归仓</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• 顶层直达入口 .bz/95_kaoyan_考研: 符合 ADR-0701 v2.0 双数字+驼峰+中文正则，直通 01..32 核心大典。</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• 12 个核心运维脚本晋升 Git 纳管: 落盘 ops_cluster_ha_集群高可用运维/ 并附 SHA-256 机器总账本。</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• 7+1 考研 EB 261 项非槽位文件全量镜像: 1:1 归仓 _workspace_eb_campaigns_沙箱全量归仓/，孤儿残留 = 0。</div><div class="sp-p" style="font-size:14.1px;font-weight:700;color:#065F46;text-align:left;">跨槽对齐: srbg10 / srbg0 / idea0 / cfzy0 四大工作树 100% 同步</div></div><div class="sp " style="left:38.4px;top:427.2px;width:588.49px;height:244.8px;background:#FFFFFF;border:2.0px solid #EF4444;border-radius:4px"><div class="sp-p" style="font-size:17.9px;font-weight:700;color:#991B1B;text-align:center;">③ 一揽子方案 5：入口自动立项与绑定 (new_eb.sh)</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• 状态 1 (Score&gt;=0.65): 自动绑定存量 .bz: 命中 kaoyan/考研 等特征词自动写入 Cogni-Target-BZ: .bz/95_kaoyan_考研。</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• 状态 2 (0.35&lt;=Score&lt;0.65): 路由治理域: 命中 skill/gate/adr/rrsi 自动归入 .adr / .agents/skills / scripts。</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• 状态 3 (Score&lt;0.35): 自动触发 new_bz.sh: 全新业务/探索课题自动发号建立外部 .bz 项目目录，零冗余追问。</div><div class="sp-p" style="font-size:14.1px;font-weight:700;color:#991B1B;text-align:left;">前置赋能: 会话创建即完成外部 .bz 目标目录绑定</div></div><div class="sp " style="left:652.82px;top:427.2px;width:588.49px;height:244.8px;background:#FFFFFF;border:2.0px solid #7C3AED;border-radius:4px"><div class="sp-p" style="font-size:17.9px;font-weight:700;color:#5B21B6;text-align:center;">④ 一揽子方案 6：出口门禁哨兵 (gate_0522 v3.0 &amp; Skill 42)</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• gate_0522 v3.0 Section 0.5 守卫: SANDBOX_ONLY_ORPHAN_GUARD 自动扫描暂存区 EB 非五槽位实质文件。</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• Skill 42 (slot-artifact-persistence v6): 固化 G13 零沙箱孤儿铁律与自动 .bz 语义归类标准作业程序。</div><div class="sp-p" style="font-size:14.1px;font-weight:500;color:#334155;text-align:left;">• 真机实测与哈希链证据入账: verify 模式实测 sandbox_only_orphan_count = 0 (ev:ev-0002)。</div><div class="sp-p" style="font-size:14.1px;font-weight:700;color:#5B21B6;text-align:left;">门禁闭环: Rule + ADR-0716 + Skill 42 v6 + Gate 0522 v3.0</div></div></div></div></section></main>
+<script>
+var cur=0,total=1;
+function updateView(){var s=document.querySelectorAll('.slide-wrap'),p=document.querySelectorAll('.pill');for(var i=0;i<s.length;i++)s[i].classList.toggle('active',i===cur);for(var j=0;j<p.length;j++)p[j].classList.toggle('active',j===cur);fitStages();}
+function goSlide(n){cur=(n+total)%total;updateView();} function nextSlide(){goSlide(cur+1);} function prevSlide(){goSlide(cur-1);}
+function toggleGrid(){var b=document.body;b.classList.toggle('grid-mode');document.getElementById('modeBtn').textContent=b.classList.contains('grid-mode')?'▶ 单页放映':'⊞ 全页总览';fitStages();}
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('srbg_pptx_preview_theme',t);}catch(e){}}
+function fitStages(){var o=document.querySelectorAll('.stage-outer');for(var i=0;i<o.length;i++){var w=o[i].clientWidth;if(w<=0)continue;var sc=w/1280.0;o[i].style.height=Math.round(720*sc)+'px';var c=o[i].querySelector('.stage-canvas');if(c)c.style.transform='scale('+sc.toFixed(4)+')';}}
+window.addEventListener('resize',fitStages);window.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown')nextSlide();if(e.key==='ArrowLeft'||e.key==='PageUp')prevSlide();});
+fitStages();setTimeout(fitStages,80);
+</script></body></html>

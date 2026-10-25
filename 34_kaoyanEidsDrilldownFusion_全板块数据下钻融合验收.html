@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="daylight">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>考研英语精读平台 (KaoyanEnglish Hub v3.6) 借鉴 EIDS 全板块数据下钻融合与验收报告 (#34)</title>
+  <script>(function(){document.documentElement.setAttribute('data-theme',localStorage.getItem('kaoyan34_theme')||'daylight');})();</script>
+  <style>
+    :root[data-theme="daylight"] { --bg:#F8FAFC; --card:#FFFFFF; --text:#0F172A; --muted:#475569; --accent:#2563EB; --border:#E2E8F0; }
+    :root[data-theme="midnight"] { --bg:#0F172A; --card:#1E293B; --text:#F8FAFC; --muted:#94A3B8; --accent:#60A5FA; --border:#334155; }
+    :root[data-theme="eyecare"]  { --bg:#F4F1EA; --card:#FAF8F5; --text:#1F2937; --muted:#4B5563; --accent:#059669; --border:#D6D3CD; }
+    body { margin:0; font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); padding:24px; line-height:1.6; }
+    .header { display:flex; justify-content:space-between; align-items:center; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px 28px; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(460px,1fr)); gap:20px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px; }
+    h1 { margin:0 0 8px 0; font-size:22px; } h2 { margin:0 0 12px 0; font-size:18px; color:var(--accent); }
+    ul { padding-left:20px; margin:0; } button { cursor:pointer; padding:8px 14px; border-radius:8px; border:1px solid var(--border); background:var(--card); color:var(--text); margin-left:6px; font-weight:600; }
+    .badge { display:inline-block; padding:4px 10px; border-radius:6px; background:#DCFCE7; color:#166534; font-weight:700; font-size:13px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div><h1>考研英语精读平台 (KaoyanEnglish Hub v3.6) 借鉴 EIDS 全板块数据下钻融合与验收报告 (#34)</h1><div><span class="badge">VERIFIED · 16/16 线上 E2E + 19/19 双栈单测通过 (0 Bug · ev:ev-0024)</span> · 对标 eids.liuzengyu.com · 全站 8 大板块可下钻</div></div>
+    <div><button onclick="setTheme('daylight')">☀️ Daylight</button><button onclick="setTheme('midnight')">🌙 Midnight</button><button onclick="setTheme('eyecare')">🍵 Eyecare</button></div>
+  </div>
+  <div class="grid">
+    <div class="card"><h2>① 借鉴 EIDS 六大核心下钻表现与能力</h2><ul>
+      <li><b>双层叠跳模态弹窗</b>：<code>#detailModalOverlay</code> (L1/L2 业务实体血缘卡) + <code>#infoModalOverlay</code> (L3~L5 物理表实时抽样与 Schema 矩阵)。</li>
+      <li><b>物理表实时抽样与列高亮</b>：<code>openLiveTableBrowser(table, highlightCol, q)</code> 支持全列搜索、目标列琥珀高亮与单行字段显微镜。</li>
+      <li><b>18表×146列透出率矩阵 &amp; 五大业务域 SVG 环形图</b>：实时展示每列非空率 (Non-Null%) 与脱敏样本值，点击扇区或字段一键跳表。</li>
+    </ul></div>
+    <div class="card"><h2>② 全站 8 大板块融入与 16/16 零 Bug 验收</h2><ul>
+      <li><b>全板块覆盖</b>：Top 5 KPI 卡 + Tab 0 (总览环形图/对标表) + Tab 1 (四轨) + Tab 2 (真题/批注) + Tab 3 (词库) + Tab 4 (写作) + Tab 5 (架构Chip) + Tab 6 (后台)。</li>
+      <li><b>三级 RBAC 安全血缘</b>：<code>GUEST_TEASER</code> (公共表样板行，私有表 0 行泄露)、<code>SCHOLAR_SCOPED</code> (本人行隔离)、<code>ADMIN_FULL</code> (全库 18表146列)。</li>
+      <li><b>0 Bug 真机验收</b>：11 项 Python 单测 + 8 项 Node VM 单测 + 16 项公网 HTTPS 探针全部通过 (<code>ev:ev-0024</code>)。</li>
+    </ul></div>
+  </div>
+  <script>function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('kaoyan34_theme',t);}</script>
+</body></html>

@@ -1,0 +1,47 @@
+server:
+  port: ${KAOYAN_PORT:8199}
+  compression:
+    enabled: true
+    mime-types: application/json,text/html,text/css,application/javascript
+
+spring:
+  application:
+    name: kaoyan-english-hub
+  jackson:
+    default-property-inclusion: always
+    serialization:
+      write-dates-as-timestamps: false
+
+kaoyan:
+  ha:
+    node-id: ${KAOYAN_CLUSTER_NODE:W1-DOCKER-PRIMARY}
+    active-engine: ${KAOYAN_DB_ENGINE:DUAL_PG18_SQLITE_WAL}
+    failover-threshold-ms: 5
+    rpo-seconds: 0
+    rto-seconds: 3
+    postgres:
+      jdbc-url: ${KAOYAN_PG_URL:jdbc:postgresql://127.0.0.1:5432/kaoyan_hub}
+      username: ${KAOYAN_PG_USER:kaoyan_app}
+      password: ${KAOYAN_PG_PASSWORD:KaoyanPg18HaPass}
+      max-pool-size: 16
+    sqlite:
+      jdbc-url: ${KAOYAN_SQLITE_URL:jdbc:sqlite:./db_volume/kaoyan_hub.sqlite3}
+      wal-enabled: true
+      busy-timeout-ms: 5000
+    cluster:
+      epoch: 600
+      quorum-size: 2
+      peers:
+        - node-id: W1
+          role: PRIMARY_DOCKER_GATEWAY
+          endpoint: http://127.0.0.1:8199
+        - node-id: HP
+          role: HOT_STANDBY_REPLICA
+          endpoint: http://127.0.0.1:18199
+        - node-id: S1
+          role: ROAMING_STANDBY_REPLICA
+          endpoint: http://127.0.0.1:28199
+    security:
+      pbkdf2-iterations: 10000
+      token-ttl-seconds: 86400
+      zero-memory-password-mask: "********"

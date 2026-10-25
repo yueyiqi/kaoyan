@@ -2,7 +2,7 @@
 from __future__ import annotations
 from kaoyan_runtime import CORE_TABLES, HTML_PATH, RBAC_ROLE_PERMS_MAP, annotations, json, parse_qs, psycopg2, time, urlparse, uuid
 from kaoyan_repository import REPO
-from kaoyan_auth import build_admin_db_drilldown_payload, get_role_permissions, get_session_user, mask_sensitive_row_fields, require_admin, verify_bearer
+from kaoyan_auth import build_admin_db_drilldown_payload, build_eids_lineage_payload, get_role_permissions, get_session_user, mask_sensitive_row_fields, require_admin, verify_bearer
 
 class ReadHandlerMixin:
     def log_message(self, format, *args):
@@ -344,7 +344,7 @@ class ReadHandlerMixin:
                 engine_hdr=engine_used,
             )
 
-        if parsed.path in ("/", "/index.html", "/kaoyan_network.js", "/kaoyan_admin_view.js", "/kaoyan_admin.js", "/kaoyan_admin_accounts.js", "/kaoyan_login.js"):
+        if parsed.path in ("/", "/index.html", "/kaoyan_network.js", "/kaoyan_admin_view.js", "/kaoyan_admin.js", "/kaoyan_admin_accounts.js", "/kaoyan_login.js", "/kaoyan_eids_drilldown.js"):
             is_script = parsed.path.endswith(".js")
             html = (HTML_PATH.with_name(parsed.path.lstrip("/")) if is_script else HTML_PATH).read_bytes()
             self.send_response(200)
@@ -354,6 +354,17 @@ class ReadHandlerMixin:
             self.end_headers()
             self.wfile.write(html)
             return
+
+        if parsed.path in ("/api/db/lineage", "/api/eids/drilldown"):
+            ctx = get_session_user(self.headers, simulate_pg_down=sim_down)
+            sconn = REPO.get_sqlite_conn()
+            try:
+                payload = build_eids_lineage_payload(sconn, parse_qs(parsed.query, keep_blank_values=True), ctx)
+            except ValueError as exc:
+                return self._send_json(400, {"status": "invalid_filter", "message": str(exc)}, req_id=req_id, t0=t0)
+            finally:
+                sconn.close()
+            return self._send_json(200, payload, req_id=req_id, t0=t0)
 
         if parsed.path == "/api/auth/me":
             ctx = get_session_user(self.headers, simulate_pg_down=sim_down)
