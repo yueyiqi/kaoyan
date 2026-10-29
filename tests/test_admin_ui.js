@@ -16,12 +16,20 @@ function setup() {
   };
   const context = vm.createContext({URLSearchParams, console, setTimeout, clearTimeout,
     location: {protocol: 'https:'}, localStorage: {setItem() {}, removeItem() {}, getItem() {return null;}},
-    document: {getElementById: node, querySelectorAll() {return [];}, createElement: tag => node('new-' + tag)},
-    alert: text => alerts.push(text), window: {addEventListener() {}},
+    document: {
+      getElementById: node,
+      querySelectorAll() {return [];},
+      createElement: tag => node('new-' + tag),
+      body: node('body'),
+      documentElement: {scrollHeight: 2000, clientHeight: 800, setAttribute(k, v) { this[k] = v; }}
+    },
+    alert: text => alerts.push(text), window: {scrollY: 600, addEventListener() {}, performance: {mark() {}}},
     fetch: (url, opts) => new Promise(resolve => calls.push({url, opts, resolve}))
   });
   const main = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).find(s => s.includes('let authState'));
   vm.runInContext(main.slice(0, main.lastIndexOf("try {\n  clearAllPasswordInputs();")), context);
+  const orthScript = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).find(s => s.includes('toggleZenFocusMode'));
+  if (orthScript) vm.runInContext(orthScript, context);
   for (const name of ['kaoyan_admin_view.js','kaoyan_admin.js','kaoyan_admin_accounts.js','kaoyan_login.js','kaoyan_eids_drilldown.js']) {
     const f = path.join(root,name);
     if (fs.existsSync(f)) vm.runInContext(fs.readFileSync(f,'utf8'),context);
@@ -167,9 +175,27 @@ async function testEidsCrossModuleModalsAndLiveTableBrowser() {
   assert.ok(s.node('modalLiveSqlBrowserBox').innerHTML.includes('2024 英语一 Text 1'));
   assert.ok(s.node('modalLiveSqlBrowserBox').innerHTML.includes('🎯'));
 }
+async function testOrthogonalAestheticAndCommandPalette() {
+  const s = setup();
+  s.run('toggleZenFocusMode()');
+  assert.equal(s.run('zenFocusActive'), true);
+  assert.match(s.node('zenFocusBtn').textContent, /退出专注/);
+  s.run('cycleReadingFontSize()');
+  assert.equal(s.context.document.documentElement['data-font-scale'], 'large');
+  assert.match(s.node('fontScaleBtn').textContent, /大字护眼/);
+  s.run('openCommandPalette()');
+  assert.equal(s.node('cmdPaletteOverlay').style.display, 'flex');
+  s.run("renderCommandPaletteList('专注')");
+  assert.ok(s.node('cmdPaletteList').innerHTML.includes('Alt+Z'));
+  s.run('runCommandPaletteItem(0)');
+  assert.equal(s.node('cmdPaletteOverlay').style.display, 'none');
+  assert.equal(s.context.window.selectedTab, 2);
+  s.run('updateReadingProgressHairline()');
+  assert.equal(s.node('readingProgressBar').style.width, '50%');
+}
 (async () => {
   const failures = [];
-  for (const test of [testLogin,testLoginFailure,testEmptyPassword,testDrillRaceAndFailure,testForeignKeyAndLogout,testExpiredRestoreAndNullRendering,testAuditPreviewAllFields,testEidsCrossModuleModalsAndLiveTableBrowser]) {
+  for (const test of [testLogin,testLoginFailure,testEmptyPassword,testDrillRaceAndFailure,testForeignKeyAndLogout,testExpiredRestoreAndNullRendering,testAuditPreviewAllFields,testEidsCrossModuleModalsAndLiveTableBrowser,testOrthogonalAestheticAndCommandPalette]) {
     try { await test(); console.log('PASS',test.name); }
     catch (e) { failures.push(test.name); console.error('FAIL',test.name,e.message); }
   }

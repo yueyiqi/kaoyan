@@ -82,17 +82,47 @@ function openSpanRecordDrawer(span) {
 <style scoped>
 .kaoyan-split-reader {
   display: grid;
-  grid-template-columns: 7fr 5fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 18px;
+  align-items: start;
+}
+.para-en {
+  font-family: var(--font-serif-en, "Charter", "Source Serif 4", "Georgia", serif);
+  font-size: var(--reading-font-size, 1.03rem);
+  line-height: var(--reading-line-height, 1.82);
+  max-width: 74ch;
+}
+.right-annotation-pane {
+  position: sticky;
+  top: 68px;
+  max-height: calc(100vh - 84px);
+  overflow-y: auto;
+}
+.para-index, .offset-tag {
+  font-variant-numeric: tabular-nums;
+}
+.btn-chip:focus-visible {
+  outline: 2px solid var(--primary, rgb(37, 99, 235));
+  outline-offset: 2px;
 }
 .blurred-locked {
   filter: blur(6px);
   pointer-events: none;
   user-select: none;
 }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 @media (max-width: 960px) {
   .kaoyan-split-reader {
     grid-template-columns: 1fr;
+  }
+  .right-annotation-pane {
+    position: static;
+    max-height: none;
   }
 }
 </style>
