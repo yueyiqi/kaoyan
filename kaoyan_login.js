@@ -37,7 +37,7 @@ async function loginWithCredentials() {
       method: 'POST', headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({username, passcode})
     });
-    const data = await response.json();
+    const data = await (window.safeJsonResponse ? window.safeJsonResponse(response, '登录服务暂不可用，请稍后重试') : response.json());
     if (generation !== sessionGeneration) return;
     if (!response.ok) throw new Error(data.message || '登录失败，请重试 (Sign-in failed)');
     if (!data.token || !['ADMIN', 'SCHOLAR'].includes(data.role)) throw new Error('登录响应无效 (Invalid sign-in response)');
@@ -94,7 +94,7 @@ async function initializeSession() {
   try {
     const response = await fetch('/api/auth/me', {headers:{Authorization:'Bearer ' + saved.token}});
     if (!response.ok) throw new Error('Session unavailable');
-    const me = await response.json();
+    const me = await (window.safeJsonResponse ? window.safeJsonResponse(response) : response.json());
     if (generation !== sessionGeneration) return;
     if (!me.authenticated || !['ADMIN','SCHOLAR'].includes(me.role)) {
       resetPrivateSession('会话已失效，请重新登录 (Session expired)');

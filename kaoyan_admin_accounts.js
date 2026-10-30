@@ -15,7 +15,7 @@ async function loadAdminAccounts(token) {
   if (status) status.textContent = '正在加载账号 (Loading accounts)';
   try {
     const response = await fetch('/api/admin/users', {headers:authHeaders()});
-    const data = await response.json();
+    const data = await (window.safeJsonResponse ? window.safeJsonResponse(response) : response.json());
     if (authState.token !== token || !isAdmin()) return;
     if (response.status === 401 || response.status === 403) {
       resetPrivateSession('会话或权限已变更，请重新登录 (Session or permission changed)'); return;

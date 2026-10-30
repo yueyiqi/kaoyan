@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="/kaoyan_network.js" defer></script>
+<script src="/kaoyan_network.js"></script>
+<script src="/kaoyan_local_first_db_snapshot.js"></script>
 <script src="/kaoyan_admin_view.js"></script>
 <script src="/kaoyan_admin.js"></script>
 <script src="/kaoyan_admin_accounts.js"></script>
@@ -1483,7 +1484,7 @@ async function submitSelfPasswordChange() {
         headers: authHeaders(),
         body: JSON.stringify({ username: authState.userId, old_passcode: oldK, new_passcode: newK })
       });
-      const d = await r.json();
+      const d = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
       if (!r.ok) {
         st.style.color = 'var(--rose)';
         st.textContent = '❌ ' + (d.message || '原密码校验失败');
@@ -1531,7 +1532,7 @@ async function submitAdminCreateUser() {
         headers: authHeaders(),
         body: JSON.stringify({ username: u, display_name: disp, role, passcode: k })
       });
-      const d = await r.json();
+      const d = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
       if (!r.ok) {
         st.style.color = 'var(--rose)';
         st.textContent = '❌ ' + (d.message || '创建账号失败');
@@ -1573,7 +1574,7 @@ async function submitAdminResetPassword() {
         headers: authHeaders(),
         body: JSON.stringify({ target_user_id: target, new_passcode: newK })
       });
-      const d = await r.json();
+      const d = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
       if (!r.ok) {
         st.style.color = 'var(--rose)';
         st.textContent = '❌ ' + (d.message || '重置密码失败');
@@ -1601,7 +1602,7 @@ async function toggleUserRoleStatus(targetUserId, newRole, newStatus) {
       headers: authHeaders(),
       body: JSON.stringify({ target_user_id: targetUserId, role: newRole, account_status: newStatus })
     });
-    const d = await r.json();
+    const d = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
     if (!r.ok) {
       alert('❌ ' + (d.message || '变更角色/状态失败'));
       return;
@@ -1918,7 +1919,7 @@ async function syncFromServer() {
   const sessionToken = authState.token;
   try {
     const r = await fetch('/api/state?user_id=' + encodeURIComponent(authState.userId), { headers: authHeaders() }); if (!r.ok) return;
-    const st = await r.json();
+    const st = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
     if (sessionToken !== authState.token) return;
     if (st.auth_tier === 'GUEST_TEASER' && !isLoggedIn()) {
       if (st.vocab && st.vocab.length) vocabData = st.vocab;

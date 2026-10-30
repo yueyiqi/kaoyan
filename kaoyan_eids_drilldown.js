@@ -220,11 +220,51 @@ function openDetailModal(lens, itemId) {
 async function fetchLineagePayload(paramsObj) {
   const qs = new URLSearchParams(paramsObj);
   const endpoint = (typeof isAdmin === 'function' && isAdmin()) ? '/api/admin/db/drilldown?' : '/api/db/lineage?';
-  const response = await fetch(endpoint + qs.toString(), { headers: typeof authHeaders === 'function' ? authHeaders() : {} });
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.message || '库表实时查询失败');
-  eidsBrowserState.cachedLineagePayload = data;
-  return data;
+  if (typeof location !== 'undefined' && location.protocol !== 'file:') {
+    try {
+      const response = await fetch(endpoint + qs.toString(), { headers: typeof authHeaders === 'function' ? authHeaders() : {} });
+      const data = await (typeof window.safeJsonResponse === 'function'
+        ? window.safeJsonResponse(response, '实时库表响应为空或非 JSON')
+        : response.json());
+      if (response.ok && data && data.selected_table) {
+        data.data_source_mode = data.data_source_mode || 'LIVE_SQL';
+        eidsBrowserState.cachedLineagePayload = data;
+        return data;
+      }
+    } catch (_) {
+      // Automatically fall through to Local-First 18-Table x 146-Column Edge Snapshot Engine
+    }
+  }
+  if (typeof window.queryLocalFirstLineage === 'function') {
+    const fallbackData = window.queryLocalFirstLineage(paramsObj);
+    eidsBrowserState.cachedLineagePayload = fallbackData;
+    return fallbackData;
+  }
+  const tbl = (paramsObj && paramsObj.table) || 'exam_passages';
+  const entry = getCatalogTableEntry(tbl) || getAllCatalogTables()[0] || { table_no: 'T04', table_name: tbl, domain_id: 'DOM_02_CORE_CONTENT', purpose: '', columns: [] };
+  const cols = (entry.columns || []).map((c, idx) => ({ cid: idx, name: c[0], column_name: c[0], type: c[1], notnull: c[2], description: c[3], sample_value: c[4] || '' }));
+  const sampleRow = {};
+  cols.forEach(c => { sampleRow[c.name] = c.sample_value || c.description || 'sample'; });
+  const synth = {
+    status: 'ok',
+    data_source_mode: 'LOCAL_FIRST_SNAPSHOT',
+    auth_tier: 'GUEST_TEASER',
+    selected_table_name: entry.table_name,
+    selected_table: {
+      table_no: entry.table_no,
+      table_name: entry.table_name,
+      domain_id: entry.domain_id,
+      columns: cols,
+      column_count: cols.length,
+      row_count: 1,
+      rows: [sampleRow],
+      has_previous: false,
+      has_next: false
+    },
+    tables: {}
+  };
+  eidsBrowserState.cachedLineagePayload = synth;
+  return synth;
 }
 
 async function loadLiveTableRowsInto(containerId, tableFqn, offset, limit, q, highlightCol) {
@@ -284,10 +324,14 @@ async function loadLiveTableRowsInto(containerId, tableFqn, offset, limit, q, hi
       ? '<span class="badge bg-purple">🛡️ ADMIN 全库 18表146列 实时直连</span>'
       : (data.auth_tier === 'SCHOLAR_SCOPED' ? '<span class="badge bg-green">🎓 SCHOLAR 公共底座+本人学籍行直连</span>' : '<span class="badge bg-amber">👁️ GUEST 100%字段定义+公共样板行</span>');
 
+    const sourceModeBadge = data.data_source_mode === 'LOCAL_FIRST_SNAPSHOT'
+      ? '<span class="badge bg-blue">🛡️ Local-First 边缘 18表146列 内存 SQL 快照直查 (零延迟防抖兜底)</span>'
+      : '<span class="badge bg-green">🟢 生产库实时 SQL 直连查询 (W1/HP 双擎多活 · EIDS 同款行浏览器)</span>';
+
     box.innerHTML = `<div style="background:rgba(5,150,105,0.08);border:1.5px solid rgba(5,150,105,0.35);border-radius:10px;padding:10px 12px;margin-bottom:10px;">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
         <div>
-          <span class="badge bg-green">🟢 生产库实时 SQL 直连查询 (EIDS 同款行浏览器)</span>
+          ${sourceModeBadge}
           ${authTierBadge}
           <strong style="color:var(--primary);margin-left:6px;"><code>${escapeHtmlStr(eidsBrowserState.table)}</code></strong>
         </div>

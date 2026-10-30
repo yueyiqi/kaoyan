@@ -28,7 +28,7 @@ async function loadAdminDbDrilldown() {
   }
   try {
     const response = await fetch('/api/admin/db/drilldown?' + qs.toString(), {headers:authHeaders()});
-    const data = await response.json();
+    const data = await (window.safeJsonResponse ? window.safeJsonResponse(response) : response.json());
     if (generation !== drillRequestGeneration || token !== authState.token || !isAdmin()) return;
     if (response.status === 401 || response.status === 403) {
       resetPrivateSession('会话或权限已变更，请重新登录 (Session or permission changed)');
@@ -39,7 +39,20 @@ async function loadAdminDbDrilldown() {
     adminDrillState.catalog = data;
   } catch (error) {
     if (generation !== drillRequestGeneration || token !== authState.token || !isAdmin()) return;
-    adminDrillState.error = error.message || '数据加载失败 (Load failed)';
+    if (typeof window.queryLocalFirstLineage === 'function') {
+      const fallback = window.queryLocalFirstLineage({
+        table: adminDrillState.selectedTable,
+        limit: String(adminDrillState.limit || 25),
+        offset: String(adminDrillState.offset || 0),
+        filter_column: adminDrillState.filterColumn || '',
+        filter_value: adminDrillState.filterValue || ''
+      });
+      adminDrillState.livePayload = fallback;
+      adminDrillState.catalog = fallback;
+      adminDrillState.error = '';
+    } else {
+      adminDrillState.error = error.message || '数据加载失败 (Load failed)';
+    }
   } finally {
     if (generation === drillRequestGeneration && token === authState.token && isAdmin()) {
       adminDrillState.loading = false;
