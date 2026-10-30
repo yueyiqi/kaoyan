@@ -706,8 +706,8 @@ code.field-value, pre.field-value { white-space: pre-wrap; overflow-wrap: anywhe
   </div>
   <div class="nav-tabs" id="mainTabs">
     <button class="tab-btn" id="tabBtn0" style="display:none;" onclick="switchTab(0)">📊 0. 架构总览</button>
-    <button class="tab-btn active" id="tabBtn2" onclick="switchTab(2)">📖 1. 真题左文右注精读 (30%免费试读)</button>
-    <button class="tab-btn" id="tabBtn3" onclick="switchTab(3)">🧠 2. 5500考纲词库与熟词僻义</button>
+    <button class="tab-btn active" id="tabBtn2" onclick="switchTab(2)">📖 1. 真题左文右注精读 &amp; 12维长难句舱</button>
+    <button class="tab-btn" id="tabBtn3" onclick="switchTab(3)">🎬 2. 三考一词一义动画与8390词库 (考研·六级·雅思8分)</button>
     <button class="tab-btn" id="tabBtn4" onclick="switchTab(4)">✍️ 3. 考研大作文三维语料</button>
     <button class="tab-btn" id="tabBtn1" onclick="switchTab(1)">📥 4. 四轨导入中心 🔒</button>
     <button class="tab-btn" id="tabBtn6" style="display:none;" onclick="switchTab(6)">🔐 5. 账号与RBAC管理</button>
@@ -854,8 +854,9 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
     </div>
   </section>
 
-  <!-- TAB 2 -->
+  <!-- TAB 2 (配置文件修改测试：挂载12维长难句深度解构舱) -->
   <section class="panel active" id="tab2">
+    <div id="long-sentence-12d-root"></div>
     <div class="dual-pane">
       <div class="card">
         <h2>
@@ -899,8 +900,9 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
     </div>
   </section>
 
-  <!-- TAB 3 -->
+  <!-- TAB 3 (配置文件修改测试：挂载三考8390全量动画词库舱) -->
   <section class="panel" id="tab3">
+    <div id="tri-exam-polysemy-root"></div>
     <div class="card">
       <h2>
         <span>🧠 考研 5500 大纲词库与个人生词本 (前 2 词公共释义开放 · 个人词频与死穴词毛玻璃脱敏)</span>
@@ -2328,6 +2330,7 @@ try {
 </script>
 <script src="/kaoyan_tri_exam_corpus_8390.js"></script>
 <script src="/kaoyan_tri_exam_polysemy.js"></script>
+<script src="/kaoyan_long_sentence_12d_xray.js"></script>
 
 </body>
 </html>

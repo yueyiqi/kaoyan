@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="/kaoyan_network.js" defer></script>
+<script src="/kaoyan_network.js"></script>
+<script src="/kaoyan_local_first_db_snapshot.js"></script>
 <script src="/kaoyan_admin_view.js"></script>
 <script src="/kaoyan_admin.js"></script>
 <script src="/kaoyan_admin_accounts.js"></script>
@@ -14,80 +15,690 @@
 <title>研词真源 · 考研英语真题左文右注精读与 5500 考纲词库工作台</title>
 <script>(function(){try{var s=localStorage.getItem('kaoyan_hub_theme')||'daylight';document.documentElement.setAttribute('data-theme',s);}catch(e){}})();</script>
 <style>
-:root, [data-theme="daylight"] { --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --muted: #475569; --border: #cbd5e1; --primary: #2563eb; --primary-soft: #dbeafe; --emerald: #059669; --emerald-soft: #d1fae5; --amber: #d97706; --amber-soft: #fef3c7; --purple: #7c3aed; --purple-soft: #ede9fe; --rose: #e11d48; --rose-soft: #ffe4e6; }
-[data-theme="midnight"] { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --muted: #94a3b8; --border: #334155; --primary: #3b82f6; --primary-soft: #1e3a8a; --emerald: #10b981; --emerald-soft: #064e3b; --amber: #f59e0b; --amber-soft: #78350f; --purple: #8b5cf6; --purple-soft: #4c1d95; --rose: #f43f5e; --rose-soft: #881337; }
-[data-theme="eyecare"] { --bg: #f4f1ea; --card: #faf8f5; --text: #1c1917; --muted: #57534e; --border: #d6d3d1; --primary: #0d9488; --primary-soft: #ccfbf1; --emerald: #15803d; --emerald-soft: #dcfce7; --amber: #b45309; --amber-soft: #fef3c7; --purple: #6d28d9; --purple-soft: #ede9fe; --rose: #be123c; --rose-soft: #ffe4e6; }
+/* ============================================================================
+ * KaoyanEnglish Hub v6.2 — 16-Skill Aesthetic & 8-Orthogonal UX Design System
+ * Governed by: Skill 217 (Vercel A11y & V/M/D) + Skill 213 (DESIGN.md 3 Laws)
+ *              + Skill 215 (80/15/5 & Rare UI) + Skill 128/133/138/147/148/86/153/162
+ * ============================================================================ */
+:root, [data-theme="daylight"] {
+  --bg: #f8fafc;
+  --bg-subtle: rgb(241, 245, 249);
+  --card: rgb(255, 255, 255);
+  --surface-2: rgb(241, 245, 249);
+  --surface-elevated: rgba(255, 255, 255, 0.92);
+  --text: #0f172a;
+  --text-secondary: rgb(51, 65, 85);
+  --muted: rgb(71, 85, 105);
+  --border: rgb(226, 232, 240);
+  --border-strong: rgb(203, 213, 225);
+  --primary: rgb(37, 99, 235);
+  --primary-hover: rgb(29, 78, 216);
+  --primary-soft: rgb(219, 234, 254);
+  --emerald: rgb(5, 150, 105);
+  --emerald-soft: rgb(209, 250, 229);
+  --amber: rgb(217, 119, 6);
+  --amber-soft: rgb(254, 243, 199);
+  --purple: rgb(124, 58, 237);
+  --purple-soft: rgb(237, 233, 254);
+  --rose: rgb(225, 29, 72);
+  --rose-soft: rgb(255, 228, 230);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 2px 6px -1px rgba(15, 23, 42, 0.05), 0 1px 3px -1px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 10px 24px -4px rgba(15, 23, 42, 0.07), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  --prism-edge: linear-gradient(90deg, rgba(37, 99, 235, 0.0) 0%, rgba(37, 99, 235, 0.45) 35%, rgba(5, 150, 105, 0.45) 65%, rgba(37, 99, 235, 0.0) 100%);
+  --spotlight-glow: radial-gradient(360px circle at 50% 0%, rgba(37, 99, 235, 0.065), transparent 70%);
+}
+
+/* Skill 213 Law 2: Dark-Mode Luminance Stepping over Drop Shadows (Level 0..2b) */
+[data-theme="midnight"] {
+  --bg: rgb(9, 13, 22);
+  --bg-subtle: rgb(15, 21, 35);
+  --card: rgb(19, 28, 46);
+  --surface-2: rgb(25, 36, 58);
+  --surface-elevated: rgba(19, 28, 46, 0.92);
+  --text: rgb(241, 245, 249);
+  --text-secondary: rgb(203, 213, 225);
+  --muted: rgb(148, 163, 184);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --primary: rgb(59, 130, 246);
+  --primary-hover: rgb(96, 165, 250);
+  --primary-soft: rgba(59, 130, 246, 0.18);
+  --emerald: rgb(16, 185, 129);
+  --emerald-soft: rgba(16, 185, 129, 0.18);
+  --amber: rgb(245, 158, 11);
+  --amber-soft: rgba(245, 158, 11, 0.18);
+  --purple: rgb(167, 139, 250);
+  --purple-soft: rgba(139, 92, 246, 0.20);
+  --rose: rgb(251, 113, 133);
+  --rose-soft: rgba(244, 63, 94, 0.20);
+  --shadow-xs: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-sm: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-md: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 14px 32px rgba(0, 0, 0, 0.42);
+  --prism-edge: linear-gradient(90deg, rgba(59, 130, 246, 0.0) 0%, rgba(59, 130, 246, 0.65) 35%, rgba(16, 185, 129, 0.65) 65%, rgba(59, 130, 246, 0.0) 100%);
+  --spotlight-glow: radial-gradient(380px circle at 50% 0%, rgba(59, 130, 246, 0.12), transparent 70%);
+}
+
+/* Skill 153 & Skill 128: Warm Xuan-Paper Eyecare Sepia */
+[data-theme="eyecare"] {
+  --bg: rgb(244, 239, 230);
+  --bg-subtle: rgb(235, 228, 216);
+  --card: rgb(250, 247, 240);
+  --surface-2: rgb(239, 233, 221);
+  --surface-elevated: rgba(250, 247, 240, 0.94);
+  --text: rgb(28, 25, 23);
+  --text-secondary: rgb(41, 37, 36);
+  --muted: rgb(87, 83, 78);
+  --border: rgb(220, 213, 201);
+  --border-strong: rgb(199, 191, 177);
+  --primary: rgb(15, 118, 110);
+  --primary-hover: rgb(17, 94, 89);
+  --primary-soft: rgb(204, 251, 241);
+  --emerald: rgb(21, 128, 61);
+  --emerald-soft: rgb(220, 252, 231);
+  --amber: rgb(180, 83, 9);
+  --amber-soft: rgb(254, 243, 199);
+  --purple: rgb(109, 40, 217);
+  --purple-soft: rgb(237, 233, 254);
+  --rose: rgb(190, 18, 60);
+  --rose-soft: rgb(255, 228, 230);
+  --shadow-xs: 0 1px 2px rgba(28, 25, 23, 0.04);
+  --shadow-sm: 0 2px 6px rgba(28, 25, 23, 0.05);
+  --shadow-md: 0 10px 24px rgba(28, 25, 23, 0.07);
+  --prism-edge: linear-gradient(90deg, rgba(15, 118, 110, 0.0) 0%, rgba(15, 118, 110, 0.45) 50%, rgba(15, 118, 110, 0.0) 100%);
+  --spotlight-glow: radial-gradient(360px circle at 50% 0%, rgba(15, 118, 110, 0.065), transparent 70%);
+}
+
+:root {
+  --font-sans-cn: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --font-serif-en: "Charter", "Source Serif 4", "Iowan Old Style", "Georgia", "Cambria", "Times New Roman", "Songti SC", serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+  --reading-font-size: 1.02rem;
+  --reading-line-height: 1.82;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+html[data-font-scale="compact"] { --reading-font-size: 0.94rem; --reading-line-height: 1.72; }
+html[data-font-scale="comfort"] { --reading-font-size: 1.03rem; --reading-line-height: 1.84; }
+html[data-font-scale="large"]   { --reading-font-size: 1.15rem; --reading-line-height: 1.94; }
+
 * { box-sizing: border-box; }
-body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; }
-.topbar { position: sticky; top: 0; z-index: 50; background: var(--card); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
-.brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1.05rem; flex-wrap: wrap; }
-.badge { padding: 3px 9px; border-radius: 999px; font-size: 0.74rem; font-weight: 700; display: inline-block; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans-cn);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ORTH-04 & Skill 217 VERCEL-TYPO-05: Tabular Numerals & Balanced Headings */
+.kpi-val, .badge, code, td, th, #wordCountBadge, #noteCountBadge, #paraAnchorBadge, #adminDbCoverageBadge, #adminDrillSummaryBadge, #adminFullCatalogCountBadge {
+  font-variant-numeric: tabular-nums;
+}
+h1, h2, h3, .brand {
+  text-wrap: balance;
+  letter-spacing: -0.015em;
+}
+code, pre { font-family: var(--font-mono); }
+
+/* ORTH-04 & Skill 217 VERCEL-A11Y-02: Explicit Keyboard Focus Ring */
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+/* ORTH-03: Top Reading Progress Hairline */
+.reading-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 120;
+  background: transparent;
+  pointer-events: none;
+}
+.reading-progress-bar {
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--emerald) 100%);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transform-origin: left center;
+}
+
+/* ORTH-05 Rare Hook #1: Specular Prism Edge Sticky Topbar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--surface-elevated);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-xs);
+}
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1.5px;
+  background: var(--prism-edge);
+  pointer-events: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.04rem;
+  flex-wrap: wrap;
+  letter-spacing: -0.02em;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1.35;
+}
 .bg-blue { background: var(--primary-soft); color: var(--primary); }
-.bg-green { background: var(--emerald-soft); color: var(--emerald); }
+.bg-green, .bg-emerald { background: var(--emerald-soft); color: var(--emerald); }
 .bg-amber { background: var(--amber-soft); color: var(--amber); }
 .bg-purple { background: var(--purple-soft); color: var(--purple); }
 .bg-rose { background: var(--rose-soft); color: var(--rose); }
-.nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-.tab-btn, .btn { border: 1px solid var(--border); background: var(--bg); color: var(--text); padding: 6px 11px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.81rem; transition: 0.15s; }
-.tab-btn.active, .btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-.container { max-width: 1440px; margin: 0 auto; padding: 14px 20px; }
-.auth-banner { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.83rem; }
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; margin-bottom: 14px; }
-.kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px; cursor: pointer; transition: transform 0.14s, box-shadow 0.14s, border-color 0.14s; position: relative; }
-.kpi-card:hover { transform: translateY(-2px); border-color: var(--primary); box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12); }
-.kpi-drill-hint { font-size: 0.69rem; font-weight: 700; color: var(--primary); margin-top: 3px; display: inline-block; }
-.modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.58); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 900; padding: 18px; }
-.modal-card { background: var(--card); color: var(--text); border: 1.5px solid var(--border); border-radius: 14px; width: min(1260px, 96vw); max-height: 88vh; overflow-y: auto; padding: 18px 20px; box-shadow: 0 24px 48px rgba(15, 23, 42, 0.28); }
-tbody tr.clickable-row { cursor: pointer; transition: background 0.12s; }
-tbody tr.clickable-row:hover { background: var(--primary-soft); }
-.kpi-val { font-size: 1.28rem; font-weight: 800; color: var(--primary); }
-.kpi-lbl { font-size: 0.76rem; color: var(--muted); }
+
+/* Skill 162 Segmented Pill Navigation & Compositor-Safe Transitions */
+.nav-tabs {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  background: var(--surface-2);
+  padding: 4px;
+  border-radius: 11px;
+  border: 1px solid var(--border);
+}
+.tab-btn, .btn {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding: 6px 11px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.81rem;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+.nav-tabs .tab-btn {
+  border-color: transparent;
+  background: transparent;
+}
+.tab-btn:hover, .btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+.tab-btn:active, .btn:active {
+  transform: translateY(0);
+}
+.tab-btn.active, .btn.active {
+  background: var(--primary);
+  color: rgb(255, 255, 255);
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.24);
+}
+
+/* Skill 128 & Skill 217: Centered Macro Viewport Container */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 16px 24px 36px;
+}
+
+.auth-banner {
+  background: var(--card);
+  background-image: var(--spotlight-glow);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.83rem;
+  box-shadow: var(--shadow-xs);
+}
+
+/* ORTH-05 Rare Hook #2: Spotlight Radial Bento KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.kpi-card {
+  background: var(--card);
+  background-image: var(--spotlight-glow);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 13px 16px;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.22s ease;
+  position: relative;
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+}
+.kpi-card:hover {
+  transform: translateY(-2.5px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+.kpi-drill-hint {
+  font-size: 0.71rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 5px;
+  display: inline-block;
+}
+.kpi-val {
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.022em;
+}
+.kpi-lbl {
+  font-size: 0.77rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ORTH-01: Immersive Zen Focus Reading Mode */
+body.zen-focus-mode .auth-banner,
+body.zen-focus-mode .exposure-strip,
+body.zen-focus-mode .kpi-grid {
+  display: none !important;
+}
+body.zen-focus-mode .container {
+  max-width: 1360px;
+  padding-top: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  padding: 18px;
+}
+.modal-card {
+  background: var(--card);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  width: min(1260px, 96vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 20px 22px;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.28);
+}
+
+tbody tr.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.14s ease;
+}
+tbody tr.clickable-row:hover {
+  background: var(--primary-soft);
+}
+
 .panel { display: none; }
-.panel.active { display: block; }
-.dual-pane { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 16px; align-items: start; }
-.bento-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 14px; }
-@media (max-width: 960px) { .dual-pane, .bento-2x2 { grid-template-columns: 1fr; } }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 14px; }
-.card h2 { margin: 0 0 10px 0; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
-.passage-text p { margin: 0 0 12px 0; padding: 10px 12px; border-radius: 8px; border-left: 3px solid transparent; transition: 0.2s; font-size: 0.94rem; cursor: pointer; }
-.passage-text p.active-para { border-left-color: var(--emerald); background: var(--emerald-soft); }
-.passage-text.spotlight-on p:not(.active-para) { opacity: 0.55; }
-.hl-word { color: var(--amber); padding: 1px 4px; font-weight: 700; cursor: pointer; border-bottom: 2px solid var(--amber); }
-.hl-sent { background: var(--primary-soft); color: var(--primary); padding: 2px 4px; border-radius: 4px; cursor: pointer; border-bottom: 2px solid var(--primary); }
-.mode-clean .hl-word, .mode-clean .hl-sent { background: transparent !important; color: inherit !important; border-bottom: none !important; font-weight: inherit !important; }
-.blur-mask { filter: blur(5px); transition: 0.2s; cursor: pointer; user-select: none; }
+.panel.active {
+  display: block;
+  animation: panelFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Skill 217 & ORTH-03: Asymmetric Reader Split-Pane & Sticky Right Notebook */
+.dual-pane {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 18px;
+  align-items: start;
+}
+.bento-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.sticky-notes-pane {
+  position: sticky;
+  top: 68px;
+  max-height: calc(100vh - 84px);
+  overflow-y: auto;
+}
+@media (max-width: 960px) {
+  .dual-pane, .bento-2x2 { grid-template-columns: 1fr; }
+  .sticky-notes-pane { position: static; max-height: none; }
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.card h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.02rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Skill 213 Law 1 & ORTH-06: Academic Editorial Serif for Kaoyan Exam Passages */
+.passage-text {
+  font-family: var(--font-serif-en);
+  font-size: var(--reading-font-size);
+  line-height: var(--reading-line-height);
+  color: var(--text);
+}
+.passage-text p {
+  margin: 0 0 14px 0;
+  padding: 13px 16px;
+  border-radius: 10px;
+  border-left: 3.5px solid transparent;
+  background: var(--bg-subtle);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+  cursor: pointer;
+  max-width: 74ch;
+}
+.passage-text p strong {
+  font-family: var(--font-sans-cn);
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+.passage-text p.active-para {
+  border-left-color: var(--emerald);
+  background: var(--emerald-soft);
+  box-shadow: var(--shadow-xs);
+}
+.passage-text.spotlight-on p:not(.active-para) {
+  opacity: 0.58;
+}
+
+.hl-word {
+  color: var(--amber);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  border-bottom: 2px solid var(--amber);
+  background: var(--amber-soft);
+}
+.hl-sent {
+  background: var(--primary-soft);
+  color: var(--primary);
+  padding: 2px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  border-bottom: 2px solid var(--primary);
+}
+.mode-clean .hl-word, .mode-clean .hl-sent {
+  background: transparent !important;
+  color: inherit !important;
+  border-bottom: none !important;
+  font-weight: inherit !important;
+}
+
+.blur-mask { filter: blur(5px); transition: filter 0.2s ease; cursor: pointer; user-select: none; }
 .blur-mask:hover, .blur-mask.revealed { filter: none; }
-.guest-paywall-zone { position: relative; margin-top: 8px; border-radius: 12px; overflow: hidden; }
-.guest-fade-blur { position: relative; mask-image: linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.06) 100%); -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.06) 100%); filter: blur(3.8px); user-select: none; pointer-events: none; padding-bottom: 36px; }
-.guest-paywall-floating-card { position: relative; margin-top: -54px; z-index: 5; padding: 16px 20px; border-radius: 12px; border: 1.5px solid var(--primary); background: var(--card); box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; backdrop-filter: blur(12px); }
+
+.guest-paywall-zone { position: relative; margin-top: 8px; border-radius: var(--radius-md); overflow: hidden; }
+.guest-fade-blur {
+  position: relative;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.06) 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 52%, rgba(0,0,0,0.06) 100%);
+  filter: blur(3.8px);
+  user-select: none;
+  pointer-events: none;
+  padding-bottom: 36px;
+}
+.guest-paywall-floating-card {
+  position: relative;
+  margin-top: -54px;
+  z-index: 5;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--primary);
+  background: var(--surface-elevated);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  backdrop-filter: blur(12px);
+}
 .guest-cell-blur { filter: blur(4.2px); user-select: none; pointer-events: none; display: inline-block; padding: 0 4px; opacity: 0.80; }
 .guest-card-blur { filter: blur(4.2px); user-select: none; pointer-events: none; opacity: 0.72; }
-.guest-unlock-card { margin-top: 10px; padding: 14px 18px; border-radius: 12px; border: 1.5px dashed var(--primary); background: var(--primary-soft); color: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.83rem; backdrop-filter: blur(8px); }
-.guest-rbac-gate { padding: 32px 24px; text-align: center; border: 1.5px dashed var(--primary); border-radius: 14px; background: var(--primary-soft); margin: 12px 0; }
-.exposure-strip { display: grid; grid-template-columns: 30fr 45fr 25fr; gap: 6px; margin-bottom: 14px; font-size: 0.77rem; font-weight: 700; }
-.exposure-seg { padding: 6px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
-.note-card { border: 1px solid var(--border); border-radius: 10px; padding: 11px; margin-bottom: 9px; background: var(--bg); transition: 0.2s; position: relative; }
-.note-card.highlight { border: 2px solid var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.guest-unlock-card {
+  margin-top: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  border: 1.5px dashed var(--primary);
+  background: var(--primary-soft);
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.83rem;
+}
+.guest-rbac-gate {
+  padding: 32px 24px;
+  text-align: center;
+  border: 1.5px dashed var(--primary);
+  border-radius: var(--radius-lg);
+  background: var(--primary-soft);
+  margin: 12px 0;
+}
+
+.exposure-strip {
+  display: grid;
+  grid-template-columns: 30fr 45fr 25fr;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+.exposure-seg {
+  padding: 7px 13px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border);
+}
+
+.note-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  background: var(--bg-subtle);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.18s ease, box-shadow 0.18s ease;
+  position: relative;
+}
+.note-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+.note-card.highlight {
+  border: 2px solid var(--primary);
+  background: var(--card);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+/* ORTH-06: Sticky Table Headers & High-Density Tabular Alignment */
 table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-th, td { border-bottom: 1px solid var(--border); padding: 7px 9px; text-align: left; vertical-align: top; }
-th { background: var(--bg); font-weight: 700; }
-.input-box, select, textarea { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 0.83rem; margin-top: 5px; font-family: inherit; }
-pre.code-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px; font-size: 0.78rem; overflow-x: auto; margin: 6px 0; }
-code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere; word-break:break-word; display:block; min-width:100px; max-width:500px; }
-.drill-controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:10px 0; }
-.drill-controls .input-box { width:180px; }
-.dual-pane > *, .bento-2x2 > * { min-width:0; }
-.card { min-width:0; overflow-wrap:anywhere; }
-.card > table { display:block; overflow-x:auto; }
-.input-box { min-width:0; }
-.account-reset-controls { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto; gap:8px; align-items:center; }
-/* Narrow screens must scroll the expanded navigation away from table controls. */
-@media(max-width:960px) { .topbar { position:static; } }
-@media(max-width:640px) { .drill-controls label,.drill-controls .input-box { width:100%; } .account-reset-controls { grid-template-columns:1fr; } }
+th, td { border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+th {
+  background: var(--surface-2);
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+.card > table { display: block; overflow-x: auto; }
+
+.input-box, select, textarea {
+  width: 100%;
+  padding: 7px 11px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.83rem;
+  margin-top: 5px;
+  font-family: inherit;
+  min-width: 0;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+#essayDraftBox {
+  font-family: var(--font-serif-en);
+  font-size: 0.96rem;
+  line-height: 1.72;
+}
+pre.code-block { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px; font-size: 0.78rem; overflow-x: auto; margin: 6px 0; }
+code.field-value, pre.field-value { white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; display: block; min-width: 100px; max-width: 500px; }
+.drill-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.drill-controls .input-box { width: 180px; }
+.dual-pane > *, .bento-2x2 > * { min-width: 0; }
+.account-reset-controls { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) auto; gap: 8px; align-items: center; }
+
+/* Semantic utility classes replacing scattered inline styles (Skill 148 Stage 1) */
+.flex-row-wrap { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.flex-between-wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.toolbar-row { margin-bottom: 10px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+.section-subtext { margin: 0 0 10px 0; font-size: 0.83rem; color: var(--muted); }
+.btn-xs { padding: 3px 9px; font-size: 0.75rem; }
+.kbd-hint {
+  display: inline-block;
+  padding: 1px 5px;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+/* ORTH-02: Command Palette (⌘K) Styles */
+.cmd-palette-card {
+  background: var(--card);
+  color: var(--text);
+  border: 1.5px solid var(--primary);
+  border-radius: var(--radius-lg);
+  width: min(640px, 94vw);
+  max-height: 78vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+}
+.cmd-palette-head {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.cmd-palette-search {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.cmd-palette-search .input-box { margin-top: 0; }
+.cmd-palette-list {
+  padding: 10px 14px;
+  overflow-y: auto;
+  max-height: 52vh;
+  display: grid;
+  gap: 4px;
+}
+.cmd-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.84rem;
+  border: 1px solid transparent;
+  transition: transform 0.14s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.14s ease, border-color 0.14s ease;
+}
+.cmd-item:hover, .cmd-item:focus-visible {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+  transform: translateX(2px);
+}
+
+/* ORTH-04 & Skill 217 VERCEL-MOTION-04: Vestibular Accessibility Guard */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 960px) { .topbar { position: static; } .exposure-strip { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .drill-controls label, .drill-controls .input-box { width: 100%; } .account-reset-controls { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-<header class="topbar">
+<div class="reading-progress-track" aria-hidden="true"><div class="reading-progress-bar" id="readingProgressBar"></div></div>
+<header class="topbar" data-rare-hook="specular-prism-header">
   <div class="brand">
     <span>🎓 研词真源 · 考研英语精读工作台</span>
     <span class="badge bg-emerald" id="authBadge">👁️ 访客免费试读模式 (已开放 30% 真题样章 · 45% 毛玻璃预览)</span>
@@ -95,14 +706,17 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
   </div>
   <div class="nav-tabs" id="mainTabs">
     <button class="tab-btn" id="tabBtn0" style="display:none;" onclick="switchTab(0)">📊 0. 架构总览</button>
-    <button class="tab-btn active" id="tabBtn2" onclick="switchTab(2)">📖 1. 真题左文右注精读 (30%免费试读)</button>
-    <button class="tab-btn" id="tabBtn3" onclick="switchTab(3)">🧠 2. 5500考纲词库与熟词僻义</button>
+    <button class="tab-btn active" id="tabBtn2" onclick="switchTab(2)">📖 1. 真题左文右注精读 &amp; 12维长难句舱</button>
+    <button class="tab-btn" id="tabBtn3" onclick="switchTab(3)">🎬 2. 三考一词一义动画与8390词库 (考研·六级·雅思8分)</button>
     <button class="tab-btn" id="tabBtn4" onclick="switchTab(4)">✍️ 3. 考研大作文三维语料</button>
     <button class="tab-btn" id="tabBtn1" onclick="switchTab(1)">📥 4. 四轨导入中心 🔒</button>
     <button class="tab-btn" id="tabBtn6" style="display:none;" onclick="switchTab(6)">🔐 5. 账号与RBAC管理</button>
     <button class="tab-btn" id="tabBtn5" style="display:none;" onclick="switchTab(5)">🐳 6. 双擎库表</button>
   </div>
-  <div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap;">
+  <div class="flex-row-wrap">
+    <button class="btn" id="cmdPaletteBtn" onclick="openCommandPalette()" title="Linear 式全局快捷命令面板 (⌘K / Ctrl+K)">⌘K 命令面板</button>
+    <button class="btn" id="zenFocusBtn" onclick="toggleZenFocusMode()" title="一键收起顶部非阅读区，进入沉浸专注精读态 (Alt+Z)">🧘 专注阅读</button>
+    <button class="btn" id="fontScaleBtn" onclick="cycleReadingFontSize()" title="一键切换真题精读字号阶梯 (紧凑 / 适中 / 大字护眼)">👓 字号: 适中</button>
     <button class="btn" onclick="openOdsSchemaModal()" title="借鉴 EIDS 全库 18表146列 Schema 与样本值曝光矩阵">🗄️ 18表146列矩阵</button>
     <button class="btn" onclick="openLiveTableBrowser('exam_passages','paragraphs_json','')" title="借鉴 EIDS 实时 SQL 行数据浏览器">🔎 实时SQL下钻</button>
     <button class="btn active" id="loginToggleBtn" onclick="focusLoginBox()">🔑 账号登录</button>
@@ -124,7 +738,7 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
         <span>支持 <strong>系统管理员 (<code>ADMIN</code> · L100)</strong> 与 <strong>正式研友学籍 (<code>SCHOLAR</code> · L50)</strong> 登录 · 密码全链路默认掩码 (<code>••••••</code>) 且页面零记忆留存</span>
       </div>
     </div>
-    <div id="guestLoginControls" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+    <div id="guestLoginControls" class="flex-row-wrap">
       <input id="scholarUserInput" class="input-box" style="width:140px;margin:0;padding:5px 9px;" value="" placeholder="账号 (学籍/管理员)" autocomplete="off" data-lpignore="true">
       <input id="scholarKeyInput" type="password" class="input-box" style="width:130px;margin:0;padding:5px 9px;" value="" placeholder="掩码密码 (••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
       <button id="loginSubmitBtn" class="btn active" onclick="loginWithCredentials()">🔑 登录并恢复进度</button>
@@ -142,7 +756,7 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
     <div class="exposure-seg bg-blue"><span>🔒 25% 专属学籍锁闭区</span><span>四轨批量导题导词 + 个人断点云端同步</span></div>
   </div>
 
-  <div class="kpi-grid">
+  <div class="kpi-grid" data-rare-hook="spotlight-bento-kpi">
     <div class="kpi-card" style="border-top:3px solid var(--emerald);" onclick="openLiveTableBrowser('user_progress_anchors','last_para_idx','')"><div class="kpi-val" id="kpiAnchor"><span class="guest-cell-blur">Para 2 · 连续 12天</span> 🔒</div><div class="kpi-lbl" id="kpiAnchorLbl">个人学籍续读断点 (登录即刻恢复上次段落)</div><span class="kpi-drill-hint">🔎 点击下钻 user_progress_anchors ➔</span></div>
     <div class="kpi-card" style="border-top:3px solid var(--primary);" onclick="openLiveTableBrowser('exam_passages','title','')"><div class="kpi-val" id="kpiPassages">2024 英语一 Text 1</div><div class="kpi-lbl" id="kpiPassagesLbl">当前试读真题篇章 (首段 30% 免费开放划词)</div><span class="kpi-drill-hint">🔎 点击下钻 exam_passages ➔</span></div>
     <div class="kpi-card" style="border-top:3px solid var(--amber);" onclick="openLiveTableBrowser('user_vocab_ledger','urgency_score','')"><div class="kpi-val" id="kpiVocab">5,500 + <span class="guest-cell-blur">18 词</span> 🔒</div><div class="kpi-lbl" id="kpiVocabLbl">考研大纲底座 + 个人真题高频生词账本</div><span class="kpi-drill-hint">🔎 点击下钻 user_vocab_ledger ➔</span></div>
@@ -153,15 +767,15 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
   <!-- TAB 0 -->
   <section class="panel" id="tab0">
     <div id="tab0GuestGate" class="guest-rbac-gate" style="display:none;">
-      <h3 style="margin:0 0 8px 0;">🔒 模块总览与工程架构规格矩阵 (25% 刚性鉴权锁闭区)</h3>
-      <p style="margin:0 0 12px 0;font-size:0.86rem;color:var(--muted);">为遵循零黑话脱敏与防白嫖规范，未登录访客默认开放【Tab 2 左文右注精读 (30%明文+45%渐变毛玻璃)】【Tab 3 5500词库样板】【Tab 4 作文语料样板】。系统六大模块设计矩阵仅对已认证学籍开放。</p>
+      <h3 >🔒 模块总览与工程架构规格矩阵 (25% 刚性鉴权锁闭区)</h3>
+      <p class="section-subtext">为遵循零黑话脱敏与防白嫖规范，未登录访客默认开放【Tab 2 左文右注精读 (30%明文+45%渐变毛玻璃)】【Tab 3 5500词库样板】【Tab 4 作文语料样板】。系统六大模块设计矩阵仅对已认证学籍开放。</p>
       <button class="btn active" onclick="focusLoginBox()">🔑 立即在顶栏输入学籍账号口令解锁</button>
     </div>
     <div id="tab0ScholarContent">
       <div class="card">
         <h2>
           <span>📡 借鉴 EIDS 全域态势感知：五大受治业务域 × 18张物理表 × 146字段 环形分布与交互式下钻总枢</span>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <div class="flex-row-wrap">
             <button class="btn active" onclick="openDomainDrilldownModal('ALL')">📡 打开 5大业务域分面下钻舱</button>
             <button class="btn" onclick="openOdsSchemaModal()">🗄️ 18表146列 100% 曝光矩阵</button>
             <button class="btn" onclick="openLiveTableBrowser('sys_users','role','')">🔎 实时 SQL 行数据浏览器</button>
@@ -170,21 +784,21 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
         <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:center;">
           <div style="display:flex;align-items:center;justify-content:center;gap:12px;">
             <svg width="116" height="116" viewBox="0 0 112 112" style="overflow:visible;">
-              <circle cx="56" cy="56" r="42" fill="none" stroke="#7c3aed" stroke-width="15" stroke-dasharray="65.1 263.9" stroke-dashoffset="0" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_01_RBAC_AUTH')"><title>DOM_01_RBAC_AUTH: 5表 36列 (点击下钻)</title></circle>
-              <circle cx="56" cy="56" r="42" fill="none" stroke="#2563eb" stroke-width="15" stroke-dasharray="36.2 263.9" stroke-dashoffset="-65.1" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_02_CORE_CONTENT')"><title>DOM_02_CORE_CONTENT: 2表 20列 (点击下钻)</title></circle>
-              <circle cx="56" cy="56" r="42" fill="none" stroke="#059669" stroke-width="15" stroke-dasharray="83.2 263.9" stroke-dashoffset="-101.3" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_03_SCHOLAR_STUDY')"><title>DOM_03_SCHOLAR_STUDY: 4表 46列 (点击下钻)</title></circle>
-              <circle cx="56" cy="56" r="42" fill="none" stroke="#d97706" stroke-width="15" stroke-dasharray="36.2 263.9" stroke-dashoffset="-184.5" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_04_HA_INFRA')"><title>DOM_04_HA_INFRA: 3表 20列 (点击下钻)</title></circle>
-              <circle cx="56" cy="56" r="42" fill="none" stroke="#0d9488" stroke-width="15" stroke-dasharray="43.2 263.9" stroke-dashoffset="-220.7" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_05_CLUSTER_ROAMING')"><title>DOM_05_CLUSTER_ROAMING: 4表 24列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="var(--purple)" stroke-width="15" stroke-dasharray="65.1 263.9" stroke-dashoffset="0" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_01_RBAC_AUTH')"><title>DOM_01_RBAC_AUTH: 5表 36列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="var(--primary)" stroke-width="15" stroke-dasharray="36.2 263.9" stroke-dashoffset="-65.1" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_02_CORE_CONTENT')"><title>DOM_02_CORE_CONTENT: 2表 20列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="var(--emerald)" stroke-width="15" stroke-dasharray="83.2 263.9" stroke-dashoffset="-101.3" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_03_SCHOLAR_STUDY')"><title>DOM_03_SCHOLAR_STUDY: 4表 46列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="var(--amber)" stroke-width="15" stroke-dasharray="36.2 263.9" stroke-dashoffset="-184.5" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_04_HA_INFRA')"><title>DOM_04_HA_INFRA: 3表 20列 (点击下钻)</title></circle>
+              <circle cx="56" cy="56" r="42" fill="none" stroke="var(--primary)" stroke-width="15" stroke-dasharray="43.2 263.9" stroke-dashoffset="-220.7" style="cursor:pointer;" onclick="openDomainDrilldownModal('DOM_05_CLUSTER_ROAMING')"><title>DOM_05_CLUSTER_ROAMING: 4表 24列 (点击下钻)</title></circle>
               <text x="56" y="53" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">18表</text>
-              <text x="56" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="#059669">146列 100%</text>
+              <text x="56" y="68" text-anchor="middle" font-size="10" font-weight="700" fill="var(--emerald)">146列 100%</text>
             </svg>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;">
-            <button class="btn" style="text-align:left;border-left:4px solid #7c3aed;" onclick="openDomainDrilldownModal('DOM_01_RBAC_AUTH')">🛡️ <strong>D1 RBAC权限与审计域</strong><br><span style="font-size:0.75rem;color:var(--muted);">5张物理表 · 36个字段 · 点击下钻 ➔</span></button>
-            <button class="btn" style="text-align:left;border-left:4px solid #2563eb;" onclick="openDomainDrilldownModal('DOM_02_CORE_CONTENT')">📚 <strong>D2 真题篇章与5500考纲域</strong><br><span style="font-size:0.75rem;color:var(--muted);">2张物理表 · 20个字段 · 点击下钻 ➔</span></button>
-            <button class="btn" style="text-align:left;border-left:4px solid #059669;" onclick="openDomainDrilldownModal('DOM_03_SCHOLAR_STUDY')">🎓 <strong>D3 研友五维学习资产域</strong><br><span style="font-size:0.75rem;color:var(--muted);">4张物理表 · 46个字段 · 点击下钻 ➔</span></button>
-            <button class="btn" style="text-align:left;border-left:4px solid #d97706;" onclick="openDomainDrilldownModal('DOM_04_HA_INFRA')">⚡ <strong>D4 双擎高可用与幂等域</strong><br><span style="font-size:0.75rem;color:var(--muted);">3张物理表 · 20个字段 · 点击下钻 ➔</span></button>
-            <button class="btn" style="text-align:left;border-left:4px solid #0d9488;" onclick="openDomainDrilldownModal('DOM_05_CLUSTER_ROAMING')">🌐 <strong>D5 跨机三副本协调漫游域</strong><br><span style="font-size:0.75rem;color:var(--muted);">4张物理表 · 24个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid var(--purple);" onclick="openDomainDrilldownModal('DOM_01_RBAC_AUTH')">🛡️ <strong>D1 RBAC权限与审计域</strong><br><span style="font-size:0.75rem;color:var(--muted);">5张物理表 · 36个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid var(--primary);" onclick="openDomainDrilldownModal('DOM_02_CORE_CONTENT')">📚 <strong>D2 真题篇章与5500考纲域</strong><br><span style="font-size:0.75rem;color:var(--muted);">2张物理表 · 20个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid var(--emerald);" onclick="openDomainDrilldownModal('DOM_03_SCHOLAR_STUDY')">🎓 <strong>D3 研友五维学习资产域</strong><br><span style="font-size:0.75rem;color:var(--muted);">4张物理表 · 46个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid var(--amber);" onclick="openDomainDrilldownModal('DOM_04_HA_INFRA')">⚡ <strong>D4 双擎高可用与幂等域</strong><br><span style="font-size:0.75rem;color:var(--muted);">3张物理表 · 20个字段 · 点击下钻 ➔</span></button>
+            <button class="btn" style="text-align:left;border-left:4px solid var(--primary);" onclick="openDomainDrilldownModal('DOM_05_CLUSTER_ROAMING')">🌐 <strong>D5 跨机三副本协调漫游域</strong><br><span style="font-size:0.75rem;color:var(--muted);">4张物理表 · 24个字段 · 点击下钻 ➔</span></button>
           </div>
         </div>
       </div>
@@ -202,8 +816,8 @@ code.field-value, pre.field-value { white-space:pre-wrap; overflow-wrap:anywhere
   <!-- TAB 1 -->
   <section class="panel" id="tab1">
     <div id="tab1GuestGate" class="guest-rbac-gate" style="display:none;">
-      <h3 style="margin:0 0 8px 0;">🔒 四轨零摩擦数据导入与全站 .kaoyan.json 导出中枢 (需学籍登录)</h3>
-      <p style="margin:0 0 12px 0;font-size:0.86rem;color:var(--muted);">批量导入历年真题原文、批量写入个人高频生词账本及导出全站 <code>.kaoyan.json</code> 便携知识包属于写库与核心资产导出能力（25% 刚性锁闭区），请先登录学籍账号以防匿名覆盖。</p>
+      <h3 >🔒 四轨零摩擦数据导入与全站 .kaoyan.json 导出中枢 (需学籍登录)</h3>
+      <p class="section-subtext">批量导入历年真题原文、批量写入个人高频生词账本及导出全站 <code>.kaoyan.json</code> 便携知识包属于写库与核心资产导出能力（25% 刚性锁闭区），请先登录学籍账号以防匿名覆盖。</p>
       <button class="btn active" onclick="focusLoginBox()">🔑 登录学籍解锁四轨导入与全量导出</button>
     </div>
     <div id="tab1ScholarContent">
@@ -240,24 +854,25 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
     </div>
   </section>
 
-  <!-- TAB 2 -->
+  <!-- TAB 2 (配置文件修改测试：挂载12维长难句深度解构舱) -->
   <section class="panel active" id="tab2">
+    <div id="long-sentence-12d-root"></div>
     <div class="dual-pane">
       <div class="card">
         <h2>
           <span id="currentPassageTitle">📖 左栏：2024 考研英语一 Text 1 真题原文 (首段 30% 明文试读 · 次段渐变毛玻璃保护)</span>
-          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <div class="flex-row-wrap">
             <span class="badge bg-blue" id="paraAnchorBadge">访客试读: Para 1 开放</span>
-            <button class="btn" style="padding:3px 9px;font-size:0.76rem;" onclick="openDetailModal('PASSAGE','P2024_EN1_T1')">🔎 真题篇章库表血缘下钻</button>
+            <button class="btn"  onclick="openDetailModal('PASSAGE','P2024_EN1_T1')">🔎 真题篇章库表血缘下钻</button>
           </div>
         </h2>
-        <div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap;justify-content:space-between;">
-          <div style="display:flex;gap:5px;flex-wrap:wrap;">
+        <div class="toolbar-row">
+          <div class="flex-row-wrap">
             <button class="btn" id="modeBtn1" onclick="setReadMode('CLEAN')">1️⃣ 裸读模考态(粉笔式)</button>
             <button class="btn active" id="modeBtn2" onclick="setReadMode('PARSE')">2️⃣ 精读拆解态(Readwise+唐迟SVO)</button>
             <button class="btn" id="modeBtn3" onclick="setReadMode('MASK')">3️⃣ 遮罩二刷态(墨墨式Blur自测)</button>
           </div>
-          <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <div class="flex-row-wrap">
             <button class="btn active" onclick="extractSelection('SENTENCE', this)">➕长难句[2]</button>
             <button class="btn" onclick="extractSelection('WORD', this)">➕生词+1[1]</button>
             <button class="btn" onclick="extractSelection('PARAGRAPH', this)">➕段落[3]</button>
@@ -272,9 +887,9 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
           <button class="btn active" onclick="focusLoginBox()">🔑 登录学籍解锁全文与阅读断点</button>
         </div>
       </div>
-      <div class="card">
+      <div class="card sticky-notes-pane">
         <h2><span>🗂️ 右栏：结构化锚定精读笔记本 (前 2 张公开样板 · 后续毛玻璃脱敏)</span><span class="badge bg-green" id="noteCountBadge">4 张精读卡</span></h2>
-        <div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap;">
+        <div class="toolbar-row">
           <button class="btn active" onclick="filterNotes('ALL', this)">全部粒度</button>
           <button class="btn" onclick="filterNotes('SENTENCE', this)">🔵 长难句</button>
           <button class="btn" onclick="filterNotes('WORD', this)">🟡 生词</button>
@@ -285,12 +900,13 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
     </div>
   </section>
 
-  <!-- TAB 3 -->
+  <!-- TAB 3 (配置文件修改测试：挂载三考8390全量动画词库舱) -->
   <section class="panel" id="tab3">
+    <div id="tri-exam-polysemy-root"></div>
     <div class="card">
       <h2>
         <span>🧠 考研 5500 大纲词库与个人生词本 (前 2 词公共释义开放 · 个人词频与死穴词毛玻璃脱敏)</span>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <div class="flex-row-wrap">
           <button class="btn active" onclick="sortVocab('urgency', this)">🔥 按紧迫度排序 (推荐)</button>
           <button class="btn" onclick="sortVocab('count', this)">🔢 按查询次数排序</button>
           <button class="btn" onclick="sortVocab('recent', this)">🕒 按最近遇到时间排序</button>
@@ -314,18 +930,18 @@ pedagogy, n. 教育学；教学法, 2, BASIC_3700</textarea>
       <div class="card">
         <h2>
           <span>🗂️ 左栏：考研作文三维语料检索台 (首条样板开放 · 后续真题升格句毛玻璃脱敏)</span>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <div class="flex-row-wrap">
             <button class="btn" id="clozeBtn" onclick="toggleCloze()">🎯 开启挖空默写</button>
             <button class="btn" onclick="openLiveTableBrowser('essay_corpus_snippets','theme_tag','')">🔎 语料表实时SQL下钻</button>
           </div>
         </h2>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+        <div class="toolbar-row">
           <button class="btn active" onclick="setEssayTheme('ALL', this)">全部母题</button>
           <button class="btn" onclick="setEssayTheme('科技创新', this)">科技创新</button>
           <button class="btn" onclick="setEssayTheme('教育文化', this)">教育文化</button>
           <button class="btn" onclick="setEssayTheme('生态环保', this)">生态环保</button>
         </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+        <div class="toolbar-row">
           <button class="btn active" onclick="setEssaySlot('ALL', this)">全部槽位</button>
           <button class="btn" onclick="setEssaySlot('第一段·图画图表描述', this)">第一段·图画描述</button>
           <button class="btn" onclick="setEssaySlot('第二段·原因与正反论证', this)">第二段·原因论证</button>
@@ -356,15 +972,15 @@ As is vividly depicted in the drawing above,
   <!-- TAB 5 -->
   <section class="panel" id="tab5">
     <div id="tab5GuestGate" class="guest-rbac-gate" style="display:none;">
-      <h3 style="margin:0 0 8px 0;">🔒 后端受治关系库表 Schema 与容器化高可用部署拓扑 (25% 刚性鉴权锁闭区)</h3>
-      <p style="margin:0 0 12px 0;font-size:0.86rem;color:var(--muted);">为严格执行交付脱敏与零内部黑话外泄原则，数据库表结构 DDL、容器化挂载卷配置与边缘网关拓扑在未登录访客态下完全隐藏，仅对已登录学籍与教研管理员开放。</p>
+      <h3 >🔒 后端受治关系库表 Schema 与容器化高可用部署拓扑 (25% 刚性鉴权锁闭区)</h3>
+      <p class="section-subtext">为严格执行交付脱敏与零内部黑话外泄原则，数据库表结构 DDL、容器化挂载卷配置与边缘网关拓扑在未登录访客态下完全隐藏，仅对已登录学籍与教研管理员开放。</p>
       <button class="btn active" onclick="focusLoginBox()">🔑 登录学籍解锁库表与高可用架构详情</button>
     </div>
     <div id="tab5ScholarContent">
       <div class="card">
         <h2>
           <span>🗄️ 追问四解决方案：后端受治关系库表设计 (<code>MOD-05</code> Schema &amp; DDL · 点击任意表或字段直接下钻 EIDS 实时行浏览器)</span>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <div class="flex-row-wrap">
             <button class="btn active" onclick="openOdsSchemaModal()">🗄️ 18表146列 100% 曝光与样本值矩阵 (EIDS同款)</button>
             <button class="btn" onclick="openLiveTableBrowser('sys_users','role','')">🔎 实时 SQL 行数据浏览器</button>
           </div>
@@ -378,8 +994,8 @@ As is vividly depicted in the drawing above,
   <!-- TAB 6: Post-Login RBAC Account & Security Management Center -->
   <section class="panel" id="tab6">
     <div id="tab6GuestGate" class="guest-rbac-gate" style="display:none;">
-      <h3 style="margin:0 0 8px 0;">🔒 登录后账号与 RBAC 权限管理中心 (需先登录学籍或管理员账号)</h3>
-      <p style="margin:0 0 12px 0;font-size:0.86rem;color:var(--muted);">为保障密码安全与零信任隔离，未登录访客无法访问账号管理系统。请在顶部输入账号与掩码密码登录后进入。</p>
+      <h3 >🔒 登录后账号与 RBAC 权限管理中心 (需先登录学籍或管理员账号)</h3>
+      <p class="section-subtext">为保障密码安全与零信任隔离，未登录访客无法访问账号管理系统。请在顶部输入账号与掩码密码登录后进入。</p>
       <button class="btn active" onclick="focusLoginBox()">🔑 前往顶栏登录</button>
     </div>
     <div id="tab6ScholarContent">
@@ -404,7 +1020,7 @@ As is vividly depicted in the drawing above,
               <span>🔑 1. 本人登录密码修改 (管理员与普通用户通用 · 掩码零留存)</span>
               <span class="badge bg-green">Perm: account:password:self</span>
             </h2>
-            <p style="margin:0 0 8px 0;font-size:0.8rem;color:var(--muted);">修改当前已登录账号 (<strong id="selfPwdAccountLabel">-</strong>) 的密码。所有密码框强制启用 <code>type="password"</code> 与 <code>autocomplete="new-password"</code>，提交后立即清空 DOM 值并自动轮换会话签名令牌。</p>
+            <p class="section-subtext">修改当前已登录账号 (<strong id="selfPwdAccountLabel">-</strong>) 的密码。所有密码框强制启用 <code>type="password"</code> 与 <code>autocomplete="new-password"</code>，提交后立即清空 DOM 值并自动轮换会话签名令牌。</p>
             <input id="selfOldPwd" type="password" class="input-box" value="" placeholder="输入当前原密码 (默认掩码 ••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
             <input id="selfNewPwd" type="password" class="input-box" value="" placeholder="输入新密码 (不少于 4 位，默认掩码 ••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
             <input id="selfConfirmPwd" type="password" class="input-box" value="" placeholder="再次确认新密码 (默认掩码 ••••••)" autocomplete="new-password" data-lpignore="true" data-form-type="other">
@@ -488,7 +1104,7 @@ As is vividly depicted in the drawing above,
                 <span>👥 2C. 全量注册账号 13 字段完整台账与角色/启停/下钻管控 (<code>sys_users</code> 13/13 列 100% 展示 · 凭据掩码脱敏)</span>
                 <button class="btn" onclick="loadAdminRbacData()">🔄 刷新台账与全库下钻</button>
               </h2>
-              <div style="overflow-x:auto;">
+              <div >
                 <table>
                   <thead>
                     <tr>
@@ -511,7 +1127,7 @@ As is vividly depicted in the drawing above,
                 <span>📜 2D. 安全审计摘要 · 全部记录请在下方审计表分页查看 (Audit preview · full history below)</span>
                 <span class="badge bg-purple">Perm: admin:rbac:audit</span>
               </h2>
-              <div style="overflow-x:auto;">
+              <div >
                 <table>
                   <thead><tr><th><code>audit_id</code></th><th><code>actor_user_id</code> / <code>actor_role</code></th><th><code>target_user_id</code></th><th><code>action</code></th><th><code>detail_json</code></th><th><code>client_ip</code></th><th><code>created_at</code></th></tr></thead>
                   <tbody id="adminAuditTableBody"></tbody>
@@ -531,14 +1147,14 @@ As is vividly depicted in the drawing above,
               <!-- Layer 1: Domain Cluster Bar -->
               <div style="margin-bottom:10px;">
                 <div style="font-size:0.78rem;font-weight:700;color:var(--primary);margin-bottom:4px;">【L1 · 第一层】按实际数据库归类的业务与服务域 (Live database domains)：</div>
-                <div id="adminDrillDomainBar" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+                <div id="adminDrillDomainBar" class="flex-row-wrap"></div>
               </div>
 
               <!-- Layer 2: Physical Table Selector & User Cross-Table Cascade -->
               <div style="margin-bottom:10px;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);">
-                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+                <div class="flex-between-wrap">
                   <span style="font-size:0.78rem;font-weight:700;color:var(--primary);">【L2 · 第二层】实际库表选择与账号关联下钻 (Tables and account relations)：</span>
-                  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                  <div class="flex-row-wrap">
                     <label for="adminDrillUserSelect" style="font-size:0.76rem;color:var(--muted);">👤 账号跨表全链路下钻：</label>
                     <select id="adminDrillUserSelect" class="input-box" style="width:auto;margin-top:0;padding:3px 8px;font-size:0.76rem;" onchange="selectDrillUserCascade(this.value)">
                       <option value="">-- 全部账号 (不按用户过滤) --</option>
@@ -549,13 +1165,13 @@ As is vividly depicted in the drawing above,
                     </select>
                   </div>
                 </div>
-                <div id="adminDrillTableBar" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+                <div id="adminDrillTableBar" class="flex-row-wrap"></div>
                 <div id="adminUserCascadeSummary" style="margin-top:6px;font-size:0.76rem;color:var(--emerald);display:none;"></div>
               </div>
 
               <!-- Layer 3: 100% Column Row Matrix for Selected Table -->
               <div style="margin-bottom:10px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:4px;">
+                <div class="flex-between-wrap">
                   <span style="font-size:0.78rem;font-weight:700;color:var(--primary);">【L3 · 第三层】选中表 100% 全字段真实数据宽表层 (<code id="adminDrillActiveTableLabel">sys_users</code> · 点击任意行下钻至 L4/L5 字段显微镜)：</span>
                   <span class="badge bg-blue" id="adminDrillTableColBadge">13/13 字段 (100%)</span>
                 </div>
@@ -582,7 +1198,7 @@ As is vividly depicted in the drawing above,
                 <div style="font-size:0.78rem;font-weight:700;color:var(--primary);margin-bottom:6px;">
                   【L4 &amp; L5 · 第四/五层】单行记录 100% 库表字段元数据显微镜 &amp; 复合 JSON 树展开 / 外键跨表一键下钻 (<span id="adminInspectorRowTitle">请点击上方 L3 表格中的任意数据行</span>)：
                 </div>
-                <div style="overflow-x:auto;">
+                <div >
                   <table>
                     <thead>
                       <tr>
@@ -870,7 +1486,7 @@ async function submitSelfPasswordChange() {
         headers: authHeaders(),
         body: JSON.stringify({ username: authState.userId, old_passcode: oldK, new_passcode: newK })
       });
-      const d = await r.json();
+      const d = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
       if (!r.ok) {
         st.style.color = 'var(--rose)';
         st.textContent = '❌ ' + (d.message || '原密码校验失败');
@@ -918,7 +1534,7 @@ async function submitAdminCreateUser() {
         headers: authHeaders(),
         body: JSON.stringify({ username: u, display_name: disp, role, passcode: k })
       });
-      const d = await r.json();
+      const d = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
       if (!r.ok) {
         st.style.color = 'var(--rose)';
         st.textContent = '❌ ' + (d.message || '创建账号失败');
@@ -960,7 +1576,7 @@ async function submitAdminResetPassword() {
         headers: authHeaders(),
         body: JSON.stringify({ target_user_id: target, new_passcode: newK })
       });
-      const d = await r.json();
+      const d = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
       if (!r.ok) {
         st.style.color = 'var(--rose)';
         st.textContent = '❌ ' + (d.message || '重置密码失败');
@@ -988,7 +1604,7 @@ async function toggleUserRoleStatus(targetUserId, newRole, newStatus) {
       headers: authHeaders(),
       body: JSON.stringify({ target_user_id: targetUserId, role: newRole, account_status: newStatus })
     });
-    const d = await r.json();
+    const d = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
     if (!r.ok) {
       alert('❌ ' + (d.message || '变更角色/状态失败'));
       return;
@@ -1305,7 +1921,7 @@ async function syncFromServer() {
   const sessionToken = authState.token;
   try {
     const r = await fetch('/api/state?user_id=' + encodeURIComponent(authState.userId), { headers: authHeaders() }); if (!r.ok) return;
-    const st = await r.json();
+    const st = await (window.safeJsonResponse ? window.safeJsonResponse(r) : r.json());
     if (sessionToken !== authState.token) return;
     if (st.auth_tier === 'GUEST_TEASER' && !isLoggedIn()) {
       if (st.vocab && st.vocab.length) vocabData = st.vocab;
@@ -1365,11 +1981,11 @@ function switchTab(idx) {
 }
 function renderTables() {
   document.getElementById('critiqueTableBody').innerHTML = REPORT_DATA.intake_decoding.module_deep_critique.map(m =>
-    `<tr class="clickable-row" onclick="openDetailModal('MODULE','${m.module_id}')"><td><strong>${m.name}</strong></td><td>${m.colleague_insight}</td><td style="color:var(--rose)">${m.literal_trap}</td><td style="color:var(--emerald)">${m.reframed_solution}</td><td><button class="btn" style="padding:2px 8px;font-size:0.75rem;" onclick="event.stopPropagation();openDetailModal('MODULE','${m.module_id}')">🔎 下钻库表</button></td></tr>`).join('');
+    `<tr class="clickable-row" onclick="openDetailModal('MODULE','${m.module_id}')"><td><strong>${m.name}</strong></td><td>${m.colleague_insight}</td><td style="color:var(--rose)">${m.literal_trap}</td><td style="color:var(--emerald)">${m.reframed_solution}</td><td><button class="btn"  onclick="event.stopPropagation();openDetailModal('MODULE','${m.module_id}')">🔎 下钻库表</button></td></tr>`).join('');
   document.getElementById('benchTableBody').innerHTML = REPORT_DATA.benchmark_9d.map(b =>
-    `<tr class="clickable-row" onclick="openDetailModal('BENCHMARK','${b.dim}')"><td><strong>${b.dim}</strong></td><td>${b.benchmark}</td><td>${b.insight}</td><td><button class="btn" style="padding:2px 8px;font-size:0.75rem;" onclick="event.stopPropagation();openDetailModal('BENCHMARK','${b.dim}')">🔎 查血缘</button></td></tr>`).join('');
+    `<tr class="clickable-row" onclick="openDetailModal('BENCHMARK','${b.dim}')"><td><strong>${b.dim}</strong></td><td>${b.benchmark}</td><td>${b.insight}</td><td><button class="btn"  onclick="event.stopPropagation();openDetailModal('BENCHMARK','${b.dim}')">🔎 查血缘</button></td></tr>`).join('');
   document.getElementById('tracksTableBody').innerHTML = REPORT_DATA.ingestion_and_deployment.question_1_ingestion_hub.tracks.map(t =>
-    `<tr class="clickable-row" onclick="openDetailModal('TRACK','${t.track_id}')"><td><span class="badge bg-blue">${t.track_id}</span></td><td><strong>${t.name}</strong></td><td>${t.input_formats}</td><td>${t.pipeline}</td><td><span class="badge bg-green">${t.sla}</span></td><td><button class="btn" style="padding:2px 8px;font-size:0.75rem;" onclick="event.stopPropagation();openDetailModal('TRACK','${t.track_id}')">🔎 目标库表</button></td></tr>`).join('');
+    `<tr class="clickable-row" onclick="openDetailModal('TRACK','${t.track_id}')"><td><span class="badge bg-blue">${t.track_id}</span></td><td><strong>${t.name}</strong></td><td>${t.input_formats}</td><td>${t.pipeline}</td><td><span class="badge bg-green">${t.sla}</span></td><td><button class="btn"  onclick="event.stopPropagation();openDetailModal('TRACK','${t.track_id}')">🔎 目标库表</button></td></tr>`).join('');
   renderRuntimeSchema();
   document.getElementById('authLayersTableBody').innerHTML = REPORT_DATA.ingestion_and_deployment.question_3_auth_and_progress_anchor.layers.map(ly =>
     `<tr><td><span class="badge bg-amber">${ly.layer_id}</span></td><td><strong>${ly.name}</strong></td><td>${ly.mechanism}</td></tr>`).join('');
@@ -1432,9 +2048,9 @@ function renderNotes() {
   document.getElementById('notesContainer').innerHTML = list.map(n => {
     const isGuestBlur = (!isLoggedIn() && n.is_blurred);
     if (isGuestBlur) {
-      return `<div class="note-card" id="note-${n.id}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;"><span class="badge bg-amber">${n.tag}</span><div style="display:flex;gap:4px;"><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="openDetailModal('NOTE','${n.id}')">🔎 字段血缘</button><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="focusLoginBox()">🔑 登录解锁</button></div></div><div class="guest-card-blur"><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div></div><div style="font-size:0.79rem;color:var(--amber);font-weight:600;margin-top:4px;">${n.comment}</div></div>`;
+      return `<div class="note-card" id="note-${n.id}"><div class="flex-between-wrap"><span class="badge bg-amber">${n.tag}</span><div class="flex-row-wrap"><button class="btn"  onclick="openDetailModal('NOTE','${n.id}')">🔎 字段血缘</button><button class="btn"  onclick="focusLoginBox()">🔑 登录解锁</button></div></div><div class="guest-card-blur"><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div></div><div style="font-size:0.79rem;color:var(--amber);font-weight:600;margin-top:4px;">${n.comment}</div></div>`;
     }
-    return `<div class="note-card" id="note-${n.id}" onmouseenter="document.getElementById('passageCanvas').classList.add('spotlight-on')" onmouseleave="if(readMode==='CLEAN')document.getElementById('passageCanvas').classList.remove('spotlight-on')"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;"><span class="badge bg-blue">${n.tag}</span><div style="display:flex;gap:4px;"><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="openDetailModal('NOTE','${n.id}')">🔎 字段血缘</button><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="promoteToEssay('${n.id}')">🚀 升格入作文库</button></div></div><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.8rem;color:var(--emerald);font-weight:600;">💡 ${n.comment}</div></div>`;
+    return `<div class="note-card" id="note-${n.id}" onmouseenter="document.getElementById('passageCanvas').classList.add('spotlight-on')" onmouseleave="if(readMode==='CLEAN')document.getElementById('passageCanvas').classList.remove('spotlight-on')"><div class="flex-between-wrap"><span class="badge bg-blue">${n.tag}</span><div class="flex-row-wrap"><button class="btn"  onclick="openDetailModal('NOTE','${n.id}')">🔎 字段血缘</button><button class="btn"  onclick="promoteToEssay('${n.id}')">🚀 升格入作文库</button></div></div><div style="font-weight:700;font-size:0.87rem;margin-bottom:4px;">${n.text}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.81rem;color:var(--muted);margin-bottom:4px;">${n.breakdown}</div><div class="${mCls}" onclick="this.classList.toggle('revealed')" style="font-size:0.8rem;color:var(--emerald);font-weight:600;">💡 ${n.comment}</div></div>`;
   }).join('');
 }
 function filterNotes(g, btn) { currentNoteFilter = g; btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderNotes(); }
@@ -1521,9 +2137,9 @@ function renderEssayCorpus() {
   const list = essayCorpus.filter(c => (currentEssayTheme === 'ALL' || c.theme === currentEssayTheme) && (currentEssaySlot === 'ALL' || c.slot === currentEssaySlot) && (!q || c.en.toLowerCase().includes(q) || c.zh.toLowerCase().includes(q) || c.theme.includes(q)));
   document.getElementById('essayCorpusList').innerHTML = list.map(c => {
     if (!isLoggedIn() && c.is_blurred) {
-      return `<div class="note-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><div style="display:flex;gap:4px;"><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="openDetailModal('ESSAY','${c.id}')">🔎 字段血缘</button><button class="btn" onclick="focusLoginBox()">🔑 登录解锁</button></div></div><div class="guest-card-blur" style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${c.en}</div><div style="font-size:0.78rem;color:var(--amber);font-weight:600;">${c.zh}</div></div>`;
+      return `<div class="note-card"><div class="flex-between-wrap"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><div class="flex-row-wrap"><button class="btn"  onclick="openDetailModal('ESSAY','${c.id}')">🔎 字段血缘</button><button class="btn" onclick="focusLoginBox()">🔑 登录解锁</button></div></div><div class="guest-card-blur" style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${c.en}</div><div style="font-size:0.78rem;color:var(--amber);font-weight:600;">${c.zh}</div></div>`;
     }
-    return `<div class="note-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><div style="display:flex;gap:4px;"><button class="btn" style="padding:2px 8px;font-size:0.74rem;" onclick="openDetailModal('ESSAY','${c.id}')">🔎 字段血缘</button><button class="btn" onclick="insertDraft(${JSON.stringify(c.en).replace(/"/g,'&quot;')})">➕ 插入草稿</button></div></div><div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${clozeActive ? c.cloze : c.en}</div><div style="font-size:0.78rem;color:var(--muted);">${c.zh} <span style="color:var(--primary);">[${c.source}]</span></div></div>`;
+    return `<div class="note-card"><div class="flex-between-wrap"><div><span class="badge bg-green">${c.theme}</span> <span class="badge bg-blue">${c.slot}</span> <span class="badge bg-amber">${c.gran}</span></div><div class="flex-row-wrap"><button class="btn"  onclick="openDetailModal('ESSAY','${c.id}')">🔎 字段血缘</button><button class="btn" onclick="insertDraft(${JSON.stringify(c.en).replace(/"/g,'&quot;')})">➕ 插入草稿</button></div></div><div style="font-weight:700;font-size:0.88rem;margin-bottom:4px;">${clozeActive ? c.cloze : c.en}</div><div style="font-size:0.78rem;color:var(--muted);">${c.zh} <span style="color:var(--primary);">[${c.source}]</span></div></div>`;
   }).join('');
 }
 function insertDraft(text) {
@@ -1573,6 +2189,148 @@ window.addEventListener('DOMContentLoaded', function () {
   if (window.refreshHaTelemetry) window.refreshHaTelemetry();
 });
 </script>
+
+
+<!-- ORTH-02: Linear-Style ⌘K / Ctrl+K Global Command Palette Modal -->
+<div id="cmdPaletteOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cmdPaletteTitle" onclick="if(event.target===this)closeCommandPalette()">
+  <div class="cmd-palette-card">
+    <div class="cmd-palette-head">
+      <strong id="cmdPaletteTitle">⌘K 全局快捷命令面板 (Command Palette · 零鼠标直达)</strong>
+      <button class="btn btn-xs" onclick="closeCommandPalette()">ESC 关闭</button>
+    </div>
+    <div class="cmd-palette-search">
+      <input id="cmdPaletteInput" class="input-box" placeholder="输入关键词过滤命令：如 精读 / 词库 / 专注态 / 暗夜 / RBAC / sys_users ..." oninput="renderCommandPaletteList(this.value)">
+    </div>
+    <div id="cmdPaletteList" class="cmd-palette-list"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================================
+ * KaoyanEnglish Hub v6.2 — 8 Orthogonal Frontend Perspectives Runtime
+ * ORTH-01: Zen Focus Mode & 3-Step Reading Font Scale (15px / 17px / 19px)
+ * ORTH-02: ⌘K / Ctrl+K Global Command Palette & Keyboard Shortcuts
+ * ORTH-03: Real-Time Reading Progress Hairline & Sticky Notebook Sync
+ * ORTH-07: flash-perf-opt Interactive Readiness Telemetry Mark
+ * ============================================================================ */
+let zenFocusActive = false;
+const FONT_SCALES = ['compact', 'comfort', 'large'];
+const FONT_SCALE_LABELS = { compact: '👓 字号: 紧凑', comfort: '👓 字号: 适中', large: '👓 字号: 大字护眼' };
+let currentFontScaleIdx = 1;
+
+function toggleZenFocusMode() {
+  zenFocusActive = !zenFocusActive;
+  document.body.classList.toggle('zen-focus-mode', zenFocusActive);
+  const btn = document.getElementById('zenFocusBtn');
+  if (btn) {
+    btn.classList.toggle('active', zenFocusActive);
+    btn.textContent = zenFocusActive ? '🧘 退出专注 (Alt+Z)' : '🧘 专注阅读';
+  }
+  try { localStorage.setItem('kaoyan_zen_focus', zenFocusActive ? '1' : '0'); } catch (_) {}
+}
+
+function cycleReadingFontSize() {
+  currentFontScaleIdx = (currentFontScaleIdx + 1) % FONT_SCALES.length;
+  const scale = FONT_SCALES[currentFontScaleIdx];
+  document.documentElement.setAttribute('data-font-scale', scale);
+  const btn = document.getElementById('fontScaleBtn');
+  if (btn) btn.textContent = FONT_SCALE_LABELS[scale];
+  try { localStorage.setItem('kaoyan_font_scale', scale); } catch (_) {}
+}
+
+const COMMAND_PALETTE_ITEMS = [
+  { label: '📖 切换至：1. 真题左文右注精读工作台 (Tab 2)', hint: 'Alt+1', run: function() { switchTab(2); } },
+  { label: '🧠 切换至：2. 5500考纲词库与熟词僻义账本 (Tab 3)', hint: 'Alt+2', run: function() { switchTab(3); } },
+  { label: '✍️ 切换至：3. 考研大作文三维语料组装台 (Tab 4)', hint: 'Alt+3', run: function() { switchTab(4); } },
+  { label: '📥 切换至：4. 四轨零摩擦导入中心 (Tab 1)', hint: 'Alt+4', run: function() { switchTab(1); } },
+  { label: '🛡️ 切换至：5. 账号与五表 RBAC 管理中心 (Tab 6)', hint: 'Alt+5', run: function() { switchTab(6); } },
+  { label: '📊 切换至：0. 架构总览与五域环形下钻 (Tab 0)', hint: 'Alt+0', run: function() { switchTab(0); } },
+  { label: '🧘 开启/退出：沉浸专注阅读模式 (折叠顶部横幅与KPI)', hint: 'Alt+Z', run: function() { toggleZenFocusMode(); } },
+  { label: '👓 切换：真题精读字号阶梯 (紧凑 / 适中 / 大字护眼)', hint: 'Font Scale', run: function() { cycleReadingFontSize(); } },
+  { label: '☀️ 主题：切换至 日间亮底 (Daylight)', hint: 'Theme', run: function() { setTheme('daylight'); } },
+  { label: '🌙 主题：切换至 深邃暗夜 (Midnight · 白透阶梯海拔)', hint: 'Theme', run: function() { setTheme('midnight'); } },
+  { label: '🍵 主题：切换至 宣纸护眼 (Eyecare Sepia)', hint: 'Theme', run: function() { setTheme('eyecare'); } },
+  { label: '1️⃣ 阅读态：裸读模考态 (粉笔式纯净阅读)', hint: 'Mode 1', run: function() { switchTab(2); setReadMode('CLEAN'); } },
+  { label: '2️⃣ 阅读态：精读拆解态 (Readwise + 唐迟SVO高亮)', hint: 'Mode 2', run: function() { switchTab(2); setReadMode('PARSE'); } },
+  { label: '3️⃣ 阅读态：遮罩二刷态 (墨墨式 Blur 自测)', hint: 'Mode 3', run: function() { switchTab(2); setReadMode('MASK'); } },
+  { label: '🗄️ 打开：全库 18表146列 Schema 100% 曝光矩阵', hint: 'Schema', run: function() { if (typeof openOdsSchemaModal === 'function') openOdsSchemaModal(); } },
+  { label: '🔎 打开：双擎生产库实时 SQL 行数据浏览器 (exam_passages)', hint: 'Live SQL', run: function() { if (typeof openLiveTableBrowser === 'function') openLiveTableBrowser('exam_passages', 'title', ''); } },
+  { label: '🔑 聚焦：顶栏学籍/管理员账号掩码登录框', hint: 'Sign In', run: function() { focusLoginBox(); } }
+];
+
+function openCommandPalette() {
+  const ov = document.getElementById('cmdPaletteOverlay');
+  const inp = document.getElementById('cmdPaletteInput');
+  if (!ov) return;
+  ov.style.display = 'flex';
+  renderCommandPaletteList('');
+  if (inp) { inp.value = ''; setTimeout(function() { inp.focus(); }, 30); }
+}
+
+function closeCommandPalette() {
+  const ov = document.getElementById('cmdPaletteOverlay');
+  if (ov) ov.style.display = 'none';
+}
+
+function renderCommandPaletteList(query) {
+  const box = document.getElementById('cmdPaletteList');
+  if (!box) return;
+  const q = String(query || '').trim().toLowerCase();
+  const matched = COMMAND_PALETTE_ITEMS.filter(function(it) {
+    return !q || it.label.toLowerCase().includes(q) || it.hint.toLowerCase().includes(q);
+  });
+  box.innerHTML = matched.map(function(it, idx) {
+    const origIdx = COMMAND_PALETTE_ITEMS.indexOf(it);
+    return '<div class="cmd-item" tabindex="0" onclick="runCommandPaletteItem(' + origIdx + ')" onkeydown="handleCommandItemKey(event,' + origIdx + ')">' +
+      '<span>' + it.label + '</span><span class="kbd-hint">' + it.hint + '</span></div>';
+  }).join('') || '<div class="section-subtext" style="padding:12px;">未找到匹配命令 (No matching commands)</div>';
+}
+
+function handleCommandItemKey(e, index) {
+  if (e && e.key === 'Enter') runCommandPaletteItem(index);
+}
+
+function runCommandPaletteItem(index) {
+  const item = COMMAND_PALETTE_ITEMS[index];
+  closeCommandPalette();
+  if (item && typeof item.run === 'function') item.run();
+}
+
+function updateReadingProgressHairline() {
+  const bar = document.getElementById('readingProgressBar');
+  if (!bar) return;
+  const docEl = document.documentElement;
+  const maxScroll = Math.max(1, docEl.scrollHeight - docEl.clientHeight);
+  const ratio = Math.min(1, Math.max(0.18, window.scrollY / maxScroll));
+  bar.style.width = Math.round(ratio * 100) + '%';
+}
+
+window.addEventListener('scroll', updateReadingProgressHairline, { passive: true });
+window.addEventListener('keydown', function(e) {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    const ov = document.getElementById('cmdPaletteOverlay');
+    if (ov && ov.style.display === 'flex') closeCommandPalette();
+    else openCommandPalette();
+  } else if (e.key === 'Escape') {
+    closeCommandPalette();
+  } else if (e.altKey && e.key.toLowerCase() === 'z') {
+    e.preventDefault();
+    toggleZenFocusMode();
+  }
+});
+
+try {
+  const savedScale = localStorage.getItem('kaoyan_font_scale') || 'comfort';
+  document.documentElement.setAttribute('data-font-scale', savedScale);
+  if (window.performance && typeof window.performance.mark === 'function') {
+    window.performance.mark('kaoyan:ui:interactive');
+  }
+} catch (_) {}
+</script>
+<script src="/kaoyan_tri_exam_corpus_8390.js"></script>
+<script src="/kaoyan_tri_exam_polysemy.js"></script>
+<script src="/kaoyan_long_sentence_12d_xray.js"></script>
 
 </body>
 </html>
