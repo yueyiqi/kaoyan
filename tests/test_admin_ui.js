@@ -30,7 +30,7 @@ function setup() {
   vm.runInContext(main.slice(0, main.lastIndexOf("try {\n  clearAllPasswordInputs();")), context);
   const orthScript = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).find(s => s.includes('toggleZenFocusMode'));
   if (orthScript) vm.runInContext(orthScript, context);
-  for (const name of ['kaoyan_admin_view.js','kaoyan_admin.js','kaoyan_admin_accounts.js','kaoyan_login.js','kaoyan_eids_drilldown.js']) {
+  for (const name of ['kaoyan_admin_view.js','kaoyan_admin.js','kaoyan_admin_accounts.js','kaoyan_login.js','kaoyan_eids_drilldown.js','kaoyan_tri_exam_polysemy.js']) {
     const f = path.join(root,name);
     if (fs.existsSync(f)) vm.runInContext(fs.readFileSync(f,'utf8'),context);
   }
@@ -175,6 +175,22 @@ async function testEidsCrossModuleModalsAndLiveTableBrowser() {
   assert.ok(s.node('modalLiveSqlBrowserBox').innerHTML.includes('2024 英语一 Text 1'));
   assert.ok(s.node('modalLiveSqlBrowserBox').innerHTML.includes('🎯'));
 }
+
+async function testTriExamPolysemyAndContextualLadder() {
+  const s = setup();
+  assert.equal(s.run('window.TRI_EXAM_DATA.stats.tri_union_total'), 8390, 'Tri-exam union must be 8390 words');
+  assert.equal(s.run('window.TRI_EXAM_DATA.stats.tri_intersection_3way'), 2259, '3-way core must be 2259 words');
+  s.run("selectTriExamWord('check')");
+  assert.match(s.node('triExamPolysemyStudio').innerHTML, /keep inflation in check/, 'must render check phrases and contextual ladder');
+  assert.match(s.node('triExamPolysemyStudio').innerHTML, /brake-check/, 'must render micro-passage story');
+  s.run("toggleTriClozeMask()");
+  assert.match(s.node('triExamPolysemyStudio').innerHTML, /点我揭晓/, 'cloze mask must mask target word in micro-passage');
+  s.run("setTriViewMode('GLANCE')");
+  assert.match(s.node('triExamPolysemyStudio').innerHTML, /triGlanceTableBody/, 'must switch to single-line 9-column glanceable table');
+  s.run("setTriExamTrack('IELTS')");
+  assert.match(s.node('triExamPolysemyStudio').innerHTML, /IELTS/, 'must filter IELTS track');
+}
+
 async function testOrthogonalAestheticAndCommandPalette() {
   const s = setup();
   s.run('toggleZenFocusMode()');
