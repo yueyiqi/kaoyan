@@ -42,6 +42,16 @@ class GatewayHandler(BaseHTTPRequestHandler):
                     return self.respond(403, b'{"status":"forbidden"}')
                 result = cluster.control(json.loads(raw))
                 return self.respond(200, json.dumps(result).encode())
+            if self.path == '/api/ai/long-sentence-coach/status' and self.command == 'GET':
+                # 配置文件修改测试：W1 后端探测 N6 本地 Ollama (qwen3:32b) 状态
+                from kaoyan_w1_n6_llm_coach_backend import handle_coach_status
+                return self.respond(200, json.dumps(handle_coach_status(), ensure_ascii=False).encode('utf-8'))
+            if self.path == '/api/ai/long-sentence-coach' and self.command == 'POST':
+                from kaoyan_w1_n6_llm_coach_backend import handle_coach_diagnose
+                payload = json.loads(raw.decode('utf-8') if raw else '{}')
+                res = handle_coach_diagnose(payload)
+                code = 400 if res.get('status') == 'bad_request' else 200
+                return self.respond(code, json.dumps(res, ensure_ascii=False).encode('utf-8'))
             if self.path in ('/api/health', '/api/ha/status'):
                 with cluster.lock:
                     if not cluster.state:
