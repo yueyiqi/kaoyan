@@ -168,24 +168,25 @@
        ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
 │ 第一层：elena ECS (8.163.29.42 · 阿里云广东广州 cn-guangzhou-a) — 边缘层│
-│ • 运行进程物理核验 (ps aux): 100% 仅有 caddy 与 frps，零其他业务进程    │
+│ • 运行形态: ⚙️ 纯宿主 Systemd 进程 (100% 仅有 caddy 与 frps，0 Docker)  │
 │ • 静态资源: /srv/kaoyan-edge (index.html + kaoyan_long_sentence_12d_xray)│
-│ • 动态路由: /api/* 经 Caddy reverse_proxy 127.0.0.1:39928 转发至 FRP   │
+│ • 动态路由: /api/* 经 Caddy reverse_proxy 127.0.0.1:39928/39925 转发    │
 └─────────────────────────────────────────────────────────────────────────┘
        │  FRP 加密隧道 (:40100 Control / :39928 HTTP Tunnel)
        ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│ 第二层：W1 节点 (kaoyan-w1-gateway :60236) — 业务网关与评分调度层       │
-│ • 模块: kaoyan_cluster_gateway.py + kaoyan_w1_n6_llm_coach_backend.py   │
-│ • 端点: GET/POST /api/ai/long-sentence-coach(/status)                   │
-│ • 职责: 4×0.5分采分点规则扫描 + 组装苏格拉底盲译 Prompt + 靶向句匹配    │
+│ 第二层：W1 节点 (/srv/kaoyan-docker/compose.yml) — 🐳 Docker 容器化网关 │
+│ • 网关容器: 🐳 kaoyan-w1-gateway (:60236 · image: kaoyan-cluster:56a835)│
+│ • 数据容器: 🐳 kaoyan-w1-worker (:60228 · /data/production.sqlite3 18表)│
+│ • 异地热备: 🐳 HP kaoyan-w9-gateway(:60235) &amp; kaoyan-w9-worker(:60232) │
+│ • 盲译编排: 挂载 kaoyan_w1_n6_llm_coach_backend.py 执行 4×0.5分规则扫描│
 └─────────────────────────────────────────────────────────────────────────┘
-       │  局域网高速直连 (实测 ping_ms = 67ms)
+       │  加密穿透直连 (:39516 ➔ N6 :11434 · 实测 ping_ms = 67ms)
        ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
-│ 第三层：N6 节点 (:11434) — 本地大模型算力底座                           │
+│ 第三层：N6 节点 (:11434) — 🔥 宿主 GPU 守护 + 🐳 周边 Docker 容器栈     │
 │ • 硬件: Dual NVIDIA GeForce RTX 3090 (2 × 24,576 MiB VRAM)              │
-│ • 引擎: Ollama 本地服务 · 常驻模型 qwen3:32b (think=false, keep_alive)  │
+│ • 引擎: Host /usr/local/bin/ollama serve · 常驻 qwen3:32b + 🐳 frpc容器│
 └─────────────────────────────────────────────────────────────────────────┘</div>
   </section>
 </div>

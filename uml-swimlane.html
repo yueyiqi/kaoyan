@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>kaoyan-elena.duckdns.org 业务数据流转部署泳道 UML 图 (Interactive Swimlane UML)</title>
+  <title>kaoyan-elena.duckdns.org 业务数据流转部署泳道 UML 图 (含 Docker 容器资产边界)</title>
   <script>(function(){try{var t=localStorage.getItem('kaoyan_uml_theme')||'daylight';document.documentElement.setAttribute('data-theme',t);document.documentElement.className=t;}catch(e){}})();</script>
   <style>
     :root, html.daylight {
       --bg: #f8fafc; --card: #ffffff; --card-alt: #f1f5f9; --text: #0f172a; --muted: #475569;
-      --border: #cbd5e1; --accent: #2563eb; --accent-soft: #eff6ff; --ok: #059669; --ok-bg: #d1fae5;
+      --border: #cbd5e1; --accent: #2563eb; --accent-soft: #eff6ff; --ok: #059669; --ok-bg: #d1fae5; --amber: #b45309; --amber-bg: #fef3c7;
     }
     html.midnight {
       --bg: #0b0f19; --card: #111827; --card-alt: #1e293b; --text: #f8fafc; --muted: #94a3b8;
-      --border: #334155; --accent: #3b82f6; --accent-soft: #1e3a8a; --ok: #34d399; --ok-bg: #064e3b;
+      --border: #334155; --accent: #3b82f6; --accent-soft: #1e3a8a; --ok: #34d399; --ok-bg: #064e3b; --amber: #fbbf24; --amber-bg: #78350f;
     }
     html.eyecare {
       --bg: #f2f6ef; --card: #fafcf8; --card-alt: #e6efe2; --text: #1b2e1e; --muted: #4a634e;
-      --border: #c5d6bf; --accent: #2e7d32; --accent-soft: #dff0d8; --ok: #1b5e20; --ok-bg: #c8e6c9;
+      --border: #c5d6bf; --accent: #2e7d32; --accent-soft: #dff0d8; --ok: #1b5e20; --ok-bg: #c8e6c9; --amber: #8d6e63; --amber-bg: #efebe9;
     }
     * { box-sizing: border-box; }
     body { margin: 0; padding: 18px; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.5; }
-    .wrap { max-width: 1440px; margin: 0 auto; }
+    .wrap { max-width: 1460px; margin: 0 auto; }
     body.mobile-view .wrap { max-width: 440px; border: 2px solid var(--border); border-radius: 18px; padding: 12px; background: var(--card); }
     .hdr { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding: 16px 20px; background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; margin-bottom: 16px; }
     .btn { cursor: pointer; border: 1px solid var(--border); background: var(--card-alt); color: var(--text); padding: 6px 12px; border-radius: 8px; font-size: 12.5px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
@@ -30,7 +30,10 @@
     .lanes-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 16px; }
     body.mobile-view .lanes-grid, @media (max-width: 1024px) { .lanes-grid { grid-template-columns: 1fr; } }
     .step-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; background: var(--card-alt); }
-    .badge { font-size: 11.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+    .badge { font-size: 11.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); display: inline-block; }
+    table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    th, td { border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top; }
+    th { background: var(--card-alt); font-weight: 800; }
   </style>
 </head>
 <body>
@@ -39,16 +42,16 @@
     <div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
         <span class="badge">📐 五泳道部署与调用时序 UML 图</span>
-        <span class="badge">🔒 elena ECS 仅运行 caddy + frps</span>
-        <span class="badge">⚡ W1 (:60236) ➔ N6 双卡3090 (qwen3:32b · 67ms)</span>
+        <span class="badge" style="background:var(--ok-bg);color:var(--ok);">⚙️ elena 广州ECS：纯宿主 caddy+frps (0 Docker)</span>
+        <span class="badge" style="background:var(--amber-bg);color:var(--amber);">🐳 W1/HP 业务与数据层：Docker Compose 容器化运行</span>
       </div>
-      <h1 style="margin:0;font-size:20px;font-weight:900;">https://kaoyan-elena.duckdns.org/ 业务数据流转调用关系 · 部署泳道 UML 全景图</h1>
+      <h1 style="margin:0;font-size:20px;font-weight:900;">https://kaoyan-elena.duckdns.org/ 业务数据流转调用关系 · 部署泳道与 Docker 容器边界 UML 图</h1>
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;">
       <a class="btn active" href="https://kaoyan-elena.duckdns.org/" target="_blank" rel="noopener">🚀 访问线上工作台</a>
       <a class="btn" href="report-12d-xray.html">📊 查看前后对比测试报告</a>
-      <button class="btn" onclick="setViewport('pc')" id="vp-pc">🖥️ PC视口</button>
-      <button class="btn" onclick="setViewport('mobile')" id="vp-mobile">📱 移动视口</button>
+      <button class="btn" onclick="setViewport('pc')">🖥️ PC视口</button>
+      <button class="btn" onclick="setViewport('mobile')">📱 移动视口</button>
       <button class="btn" onclick="setTheme('daylight')">☀️ 日光</button>
       <button class="btn" onclick="setTheme('midnight')">🌙 极夜</button>
       <button class="btn" onclick="setTheme('eyecare')">🍵 润眼</button>
@@ -57,8 +60,8 @@
 
   <section class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
-      <div style="font-weight:800;font-size:15px;">🗺️ 矢量级五泳道部署与调用时序 UML 图 (Swimlane Deployment &amp; Sequence Diagram)</div>
-      <div style="font-size:12px;color:var(--muted);">横向5大物理部署泳道 × 纵向4大核心业务数据流 (Flow A / Flow B / Flow C / Flow D)</div>
+      <div style="font-weight:800;font-size:15px;">🗺️ 矢量级五泳道部署与 Docker 容器调用时序 UML 图 (Swimlane Deployment &amp; Docker Container Sequence UML)</div>
+      <div style="font-size:12px;color:var(--muted);">显式区分：🌐 浏览器端 | ⚙️ 纯宿主进程 (elena caddy+frps / N6 ollama serve) | 🐳 Docker 容器资产 (kaoyan-w1-gateway &amp; kaoyan-w1-worker)</div>
     </div>
     <div class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1130" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
   <defs>
@@ -68,10 +71,11 @@
     <marker id="arr-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/></marker>
     <marker id="arr-rose" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#e11d48"/></marker>
     <style>
-      .t-cn { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 24px; font-weight: 900; fill: #0f172a; }
+      .t-cn { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 23.5px; font-weight: 900; fill: #0f172a; }
       .t-en { font-family: "SF Pro Text", "Helvetica Neue", sans-serif; font-size: 12.5px; font-weight: 600; fill: #64748b; }
-      .l-t { font-family: "PingFang SC", sans-serif; font-size: 14px; font-weight: 800; }
-      .l-s { font-family: "SF Mono", Menlo, monospace; font-size: 11px; fill: #475569; }
+      .l-b { font-family: "PingFang SC", sans-serif; font-size: 11px; font-weight: 800; }
+      .l-t { font-family: "PingFang SC", sans-serif; font-size: 13.5px; font-weight: 800; }
+      .l-s { font-family: "SF Mono", Menlo, monospace; font-size: 10.8px; fill: #334155; font-weight: 700; }
       .b-t { font-family: "PingFang SC", sans-serif; font-size: 13px; font-weight: 800; fill: #ffffff; }
       .m-t { font-family: "PingFang SC", sans-serif; font-size: 12.5px; font-weight: 800; fill: #0f172a; }
       .m-s { font-family: "PingFang SC", sans-serif; font-size: 11px; fill: #475569; }
@@ -80,135 +84,164 @@
   </defs>
   <rect width="100%" height="100%" fill="#f8fafc"/>
   <rect x="16" y="16" width="1768" height="1098" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <g transform="translate(40, 48)">
-    <text x="0" y="0" class="t-cn">https://kaoyan-elena.duckdns.org/ 业务数据流转调用关系 · 五泳道部署与时序 UML 图 (Swimlane UML)</text>
-    <text x="0" y="24" class="t-en">Five-Swimlane Deployment &amp; Sequence Architecture: Browser SPA &lt;-&gt; elena ECS (ONLY caddy + frps) &lt;-&gt; W1 Gateway (:60236) &lt;-&gt; W1 DBs &amp; N6 Dual-3090 Ollama (qwen3:32b)</text>
+  <g transform="translate(40, 46)">
+    <text x="0" y="0" class="t-cn">https://kaoyan-elena.duckdns.org/ 五泳道部署、Docker 容器边界与业务数据流转时序 UML 图</text>
+    <text x="0" y="23" class="t-en">Swimlane Deployment &amp; Docker Container UML: Browser SPA &lt;-&gt; elena 广州ECS (0-Docker) &lt;-&gt; W1 Docker (kaoyan-w1-gateway &amp; kaoyan-w1-worker) &lt;-&gt; N6 Dual-3090 (qwen3:32b)</text>
   </g>
-  <rect x="32" y="230" width="1736" height="145" rx="10" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1.4"/>
-  <rect x="32" y="230" width="780" height="26" rx="6" fill="#2563eb"/>
-  <text x="46" y="247" class="b-t">Flow A · 静态首屏与三考 8,390 词库及 12 维长难句本地引擎水合流 (0ms 后端零阻塞)</text>
-  <rect x="32" y="390" width="1736" height="215" rx="10" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.4"/>
-  <rect x="32" y="390" width="930" height="26" rx="6" fill="#7c3aed"/>
-  <text x="46" y="407" class="b-t">Flow B · 18表146列实时 SQL 下钻与三擎生产数据库探查流 (Browser ➔ elena ➔ W1 ➔ PG16/Mongo7)</text>
+  <rect x="32" y="238" width="1736" height="140" rx="10" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1.4"/>
+  <rect x="32" y="238" width="824" height="26" rx="6" fill="#2563eb"/>
+  <text x="46" y="255" class="b-t">Flow A · 静态首屏与三考 8,390 词库及 12 维长难句本地引擎水合流 (elena 宿主 Caddy 零后端阻塞)</text>
+  <rect x="32" y="392" width="1736" height="215" rx="10" fill="#f8fafc" stroke="#ddd6fe" stroke-width="1.4"/>
+  <rect x="32" y="392" width="1215" height="26" rx="6" fill="#7c3aed"/>
+  <text x="46" y="409" class="b-t">Flow B · 18表146列实时 SQL 下钻流 (Browser ➔ elena ➔ W1 🐳 kaoyan-w1-gateway 容器 ➔ 🐳 kaoyan-w1-worker 容器)</text>
   <rect x="32" y="620" width="1736" height="295" rx="10" fill="#fffbfa" stroke="#fecdd3" stroke-width="1.4"/>
-  <rect x="32" y="620" width="1003" height="26" rx="6" fill="#e11d48"/>
-  <text x="46" y="637" class="b-t">Flow C · 苏格拉底「先盲译后批改」AI 弱点诊断与靶向训练流 (Browser ➔ elena ➔ W1 ➔ N6 双卡3090 qwen3:32b)</text>
-  <rect x="32" y="930" width="1736" height="135" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.4"/>
-  <rect x="32" y="930" width="780" height="26" rx="6" fill="#059669"/>
-  <text x="46" y="947" class="b-t">Flow D · 12维长难句 X 光深度解构与三模主动回忆内化流 (5显式维 + 7正交维本地0-Token交互)</text>
-  <line x1="195" y1="210" x2="195" y2="1075" stroke="#2563eb" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
-  <g transform="translate(40, 92)">
-    <rect width="310" height="112" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-    <rect width="310" height="34" rx="12" fill="#eff6ff"/>
-    <rect y="22" width="310" height="12" fill="#eff6ff"/>
-    <text x="155" y="22" text-anchor="middle" class="l-t" fill="#1d4ed8">泳道1：考生浏览器端 (Browser SPA)</text>
-    <text x="155" y="54" text-anchor="middle" class="l-s">https://kaoyan-elena.duckdns.org/</text>
-    <rect x="14" y="68" width="282" height="30" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="155" y="87" text-anchor="middle" class="m-s" style="font-weight:700;fill:#1e293b;">index.html + 8390词库包 + 12维X光JS</text>
+  <rect x="32" y="620" width="1227" height="26" rx="6" fill="#e11d48"/>
+  <text x="46" y="637" class="b-t">Flow C · 苏格拉底「先盲译后批改」AI 弱点诊断流 (Browser ➔ elena ➔ W1 🐳 kaoyan-w1-gateway 容器 ➔ N6 双卡3090 qwen3:32b)</text>
+  <rect x="32" y="928" width="1736" height="135" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.4"/>
+  <rect x="32" y="928" width="824" height="26" rx="6" fill="#059669"/>
+  <text x="46" y="945" class="b-t">Flow D · 12维长难句 X 光深度解构与三模主动回忆内化流 (5显式维 + 7正交维纯浏览器本地 0-Token 交互)</text>
+  <line x1="195" y1="220" x2="195" y2="1075" stroke="#2563eb" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
+  <g transform="translate(37, 84)">
+    <rect width="316" height="136" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2.2"/>
+    <rect width="316" height="54" rx="12" fill="#eff6ff"/>
+    <rect y="42" width="316" height="12" fill="#eff6ff"/>
+    <rect x="14" y="7" width="288" height="20" rx="999" fill="#ffffff" stroke="#2563eb" stroke-width="1"/>
+    <text x="158" y="21" text-anchor="middle" class="l-b" fill="#1d4ed8">🌐 Browser SPA (非容器前端)</text>
+    <text x="158" y="45" text-anchor="middle" class="l-t" fill="#1d4ed8">泳道1：考生浏览器端 (Browser SPA)</text>
+    <text x="158" y="74" text-anchor="middle" class="l-s">https://kaoyan-elena.duckdns.org/</text>
+    <rect x="12" y="88" width="292" height="36" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="158" y="110" text-anchor="middle" class="m-s" style="font-weight:700;fill:#0f172a;">index.html + 8390词库包 + 12维X光JS</text>
   </g>
-  <line x1="545" y1="210" x2="545" y2="1075" stroke="#059669" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
-  <g transform="translate(390, 92)">
-    <rect width="310" height="112" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2"/>
-    <rect width="310" height="34" rx="12" fill="#ecfdf5"/>
-    <rect y="22" width="310" height="12" fill="#ecfdf5"/>
-    <text x="155" y="22" text-anchor="middle" class="l-t" fill="#047857">泳道2：elena 边缘节点 (广州 ECS)</text>
-    <text x="155" y="54" text-anchor="middle" class="l-s">8.163.29.42 (广州) · 仅运行 caddy + frps</text>
-    <rect x="14" y="68" width="282" height="30" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="155" y="87" text-anchor="middle" class="m-s" style="font-weight:700;fill:#1e293b;">Caddy (:443) + frps (:40100/:39928)</text>
+  <line x1="545" y1="220" x2="545" y2="1075" stroke="#059669" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
+  <g transform="translate(387, 84)">
+    <rect width="316" height="136" rx="12" fill="#ffffff" stroke="#059669" stroke-width="2.2"/>
+    <rect width="316" height="54" rx="12" fill="#ecfdf5"/>
+    <rect y="42" width="316" height="12" fill="#ecfdf5"/>
+    <rect x="14" y="7" width="288" height="20" rx="999" fill="#ffffff" stroke="#059669" stroke-width="1"/>
+    <text x="158" y="21" text-anchor="middle" class="l-b" fill="#047857">⚙️ Host Systemd (0 Docker 容器)</text>
+    <text x="158" y="45" text-anchor="middle" class="l-t" fill="#047857">泳道2：elena 边缘节点 (广州 ECS)</text>
+    <text x="158" y="74" text-anchor="middle" class="l-s">8.163.29.42 (广州) · 仅宿主 caddy + frps</text>
+    <rect x="12" y="88" width="292" height="36" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="158" y="110" text-anchor="middle" class="m-s" style="font-weight:700;fill:#0f172a;">Host Caddy (:443) + frps (:40100/:39928)</text>
   </g>
-  <line x1="895" y1="210" x2="895" y2="1075" stroke="#d97706" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
-  <g transform="translate(740, 92)">
-    <rect width="310" height="112" rx="12" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
-    <rect width="310" height="34" rx="12" fill="#fffbeb"/>
-    <rect y="22" width="310" height="12" fill="#fffbeb"/>
-    <text x="155" y="22" text-anchor="middle" class="l-t" fill="#b45309">泳道3：W1 业务网关层 (WSL2 宿主)</text>
-    <text x="155" y="54" text-anchor="middle" class="l-s">kaoyan-w1-gateway (:60236) + frpc</text>
-    <rect x="14" y="68" width="282" height="30" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="155" y="87" text-anchor="middle" class="m-s" style="font-weight:700;fill:#1e293b;">cluster_gateway + n6_coach_backend</text>
+  <line x1="895" y1="220" x2="895" y2="1075" stroke="#d97706" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
+  <g transform="translate(737, 84)">
+    <rect width="316" height="136" rx="12" fill="#ffffff" stroke="#d97706" stroke-width="2.2"/>
+    <rect width="316" height="54" rx="12" fill="#fffbeb"/>
+    <rect y="42" width="316" height="12" fill="#fffbeb"/>
+    <rect x="14" y="7" width="288" height="20" rx="999" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+    <text x="158" y="21" text-anchor="middle" class="l-b" fill="#b45309">🐳 Docker Container (/srv/kaoyan-docker)</text>
+    <text x="158" y="45" text-anchor="middle" class="l-t" fill="#b45309">泳道3：W1 业务网关容器 (Docker)</text>
+    <text x="158" y="74" text-anchor="middle" class="l-s">🐳 kaoyan-w1-gateway (:60236 · 512M)</text>
+    <rect x="12" y="88" width="292" height="36" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="158" y="110" text-anchor="middle" class="m-s" style="font-weight:700;fill:#0f172a;">镜像 kaoyan-cluster:56a8353092a2 (host网)</text>
   </g>
-  <line x1="1245" y1="210" x2="1245" y2="1075" stroke="#7c3aed" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
-  <g transform="translate(1090, 92)">
-    <rect width="310" height="112" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
-    <rect width="310" height="34" rx="12" fill="#f5f3ff"/>
-    <rect y="22" width="310" height="12" fill="#f5f3ff"/>
-    <text x="155" y="22" text-anchor="middle" class="l-t" fill="#6d28d9">泳道4：W1 三擎数据库集群 (DBs)</text>
-    <text x="155" y="54" text-anchor="middle" class="l-s">PG16(:5432) / Mongo7(:27017) / Redis7</text>
-    <rect x="14" y="68" width="282" height="30" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="155" y="87" text-anchor="middle" class="m-s" style="font-weight:700;fill:#1e293b;">18表146列真题与生词账本 + 种子兜底</text>
+  <line x1="1245" y1="220" x2="1245" y2="1075" stroke="#7c3aed" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
+  <g transform="translate(1087, 84)">
+    <rect width="316" height="136" rx="12" fill="#ffffff" stroke="#7c3aed" stroke-width="2.2"/>
+    <rect width="316" height="54" rx="12" fill="#f5f3ff"/>
+    <rect y="42" width="316" height="12" fill="#f5f3ff"/>
+    <rect x="14" y="7" width="288" height="20" rx="999" fill="#ffffff" stroke="#7c3aed" stroke-width="1"/>
+    <text x="158" y="21" text-anchor="middle" class="l-b" fill="#6d28d9">🐳 Docker Worker 容器群 + 数据卷</text>
+    <text x="158" y="45" text-anchor="middle" class="l-t" fill="#6d28d9">泳道4：Docker 数据容器群 (Workers)</text>
+    <text x="158" y="74" text-anchor="middle" class="l-s">🐳 kaoyan-w1-worker(:60228) + HP w9-worker</text>
+    <rect x="12" y="88" width="292" height="36" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="158" y="110" text-anchor="middle" class="m-s" style="font-weight:700;fill:#0f172a;">挂载卷 /data/production.sqlite3 (18表146列)</text>
   </g>
-  <line x1="1595" y1="210" x2="1595" y2="1075" stroke="#e11d48" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
-  <g transform="translate(1440, 92)">
-    <rect width="310" height="112" rx="12" fill="#ffffff" stroke="#e11d48" stroke-width="2"/>
-    <rect width="310" height="34" rx="12" fill="#fff1f2"/>
-    <rect y="22" width="310" height="12" fill="#fff1f2"/>
-    <text x="155" y="22" text-anchor="middle" class="l-t" fill="#be123c">泳道5：N6 本地算力底座 (Local LLM)</text>
-    <text x="155" y="54" text-anchor="middle" class="l-s">Dual RTX 3090 (2×24GB) · Ollama :11434</text>
-    <rect x="14" y="68" width="282" height="30" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="155" y="87" text-anchor="middle" class="m-s" style="font-weight:700;fill:#1e293b;">常驻 qwen3:32b (think=false, 67ms)</text>
+  <line x1="1595" y1="220" x2="1595" y2="1075" stroke="#e11d48" stroke-width="2" stroke-dasharray="7,5" opacity="0.55"/>
+  <g transform="translate(1437, 84)">
+    <rect width="316" height="136" rx="12" fill="#ffffff" stroke="#e11d48" stroke-width="2.2"/>
+    <rect width="316" height="54" rx="12" fill="#fff1f2"/>
+    <rect y="42" width="316" height="12" fill="#fff1f2"/>
+    <rect x="14" y="7" width="288" height="20" rx="999" fill="#ffffff" stroke="#e11d48" stroke-width="1"/>
+    <text x="158" y="21" text-anchor="middle" class="l-b" fill="#be123c">🔥 Host GPU 守护 + 🐳 N6 容器栈</text>
+    <text x="158" y="45" text-anchor="middle" class="l-t" fill="#be123c">泳道5：N6 本地算力底座 (Dual 3090)</text>
+    <text x="158" y="74" text-anchor="middle" class="l-s">Host ollama(:11434) + 🐳 cf-n6-frpc</text>
+    <rect x="12" y="88" width="292" height="36" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="158" y="110" text-anchor="middle" class="m-s" style="font-weight:700;fill:#0f172a;">双卡3090常驻 qwen3:32b (think=false, 67ms)</text>
   </g>
-  <circle cx="195" cy="280" r="4.5" fill="#2563eb"/>
-  <line x1="195" y1="280" x2="537" y2="280" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr-blue)"/>
-  <rect x="47" y="251" width="646" height="24" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.2" opacity="0.98"/>
-  <text x="370" y="267" text-anchor="middle" class="m-t" fill="#2563eb">[A1] HTTPS GET / &amp; kaoyan_tri_exam_full_packs.js + kaoyan_long_sentence_12d_xray.js</text>
-  <text x="370" y="295" text-anchor="middle" class="m-s">TLS 1.3 请求静态页面与三考词库分片及12维引擎</text>
-  <circle cx="545" cy="335" r="4.5" fill="#059669"/>
-  <line x1="545" y1="335" x2="203" y2="335" stroke="#059669" stroke-width="2.2" stroke-dasharray="6,4" marker-end="url(#arr-green)"/>
-  <rect x="159" y="306" width="422" height="24" rx="5" fill="#ffffff" stroke="#059669" stroke-width="1.2" opacity="0.98"/>
-  <text x="370" y="322" text-anchor="middle" class="m-t" fill="#059669">[A2] 200 OK Gzip 静态直出 (/srv/kaoyan-edge 零后端阻塞)</text>
-  <text x="370" y="350" text-anchor="middle" class="m-s">浏览器水合8,390词(考研5478/六级3991/雅思5275)与K01-K12力场动画</text>
-  <circle cx="195" cy="440" r="4.5" fill="#2563eb"/>
-  <line x1="195" y1="440" x2="537" y2="440" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr-blue)"/>
-  <rect x="184" y="411" width="372" height="24" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.2" opacity="0.98"/>
-  <text x="370" y="427" text-anchor="middle" class="m-t" fill="#2563eb">[B1] GET /api/v1/sql-drill?table=exam_passages</text>
-  <text x="370" y="455" text-anchor="middle" class="m-s">点击实时SQL下钻弹窗 ➔ Caddy handle /api/* 反代 127.0.0.1:39928/39925</text>
-  <circle cx="545" cy="485" r="4.5" fill="#059669"/>
-  <line x1="545" y1="485" x2="887" y2="485" stroke="#059669" stroke-width="2.2" marker-end="url(#arr-green)"/>
-  <rect x="493" y="456" width="455" height="24" rx="5" fill="#ffffff" stroke="#059669" stroke-width="1.2" opacity="0.98"/>
-  <text x="720" y="472" text-anchor="middle" class="m-t" fill="#059669">[B2] FRP 加密隧道透传 (elena frps :39928 ➔ W1 frpc :60236)</text>
-  <text x="720" y="500" text-anchor="middle" class="m-s">穿透内网抵达 W1 节点 kaoyan-w1-gateway 守护服务</text>
-  <circle cx="895" cy="530" r="4.5" fill="#7c3aed"/>
-  <line x1="895" y1="530" x2="1237" y2="530" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#arr-purple)"/>
-  <rect x="844" y="501" width="453" height="24" rx="5" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2" opacity="0.98"/>
-  <text x="1070" y="517" text-anchor="middle" class="m-t" fill="#7c3aed">[B3] 并发查询 PG16(:5432) + Mongo7(:27017) + Redis7(:6379)</text>
-  <text x="1070" y="545" text-anchor="middle" class="m-s">读取18表146列真题与生词账本 (异常时自动切换内置确定性种子兜底)</text>
-  <circle cx="1245" cy="575" r="4.5" fill="#7c3aed"/>
-  <line x1="1245" y1="575" x2="203" y2="575" stroke="#7c3aed" stroke-width="2.2" stroke-dasharray="6,4" marker-end="url(#arr-purple)"/>
-  <rect x="471" y="546" width="498" height="24" rx="5" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2" opacity="0.98"/>
-  <text x="720" y="562" text-anchor="middle" class="m-t" fill="#7c3aed">[B4] 200 OK application/json (经 W1 ➔ elena 原路返回结构化表数据)</text>
-  <text x="720" y="590" text-anchor="middle" class="m-s">前端渲染双擎实时 SQL 行数据浏览器弹窗，根除 JSON 截断报错</text>
+  <circle cx="195" cy="285" r="4.5" fill="#2563eb"/>
+  <line x1="195" y1="285" x2="537" y2="285" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr-blue)"/>
+  <rect x="44" y="256" width="653" height="24" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.2" opacity="0.98"/>
+  <text x="370" y="272" text-anchor="middle" class="m-t" fill="#2563eb">[A1] HTTPS GET / &amp; kaoyan_tri_exam_corpus_8390.js + kaoyan_long_sentence_12d_xray.js</text>
+  <text x="370" y="300" text-anchor="middle" class="m-s">TLS 1.3 请求静态页面与三考词库分片及12维引擎</text>
+  <circle cx="545" cy="340" r="4.5" fill="#059669"/>
+  <line x1="545" y1="340" x2="203" y2="340" stroke="#059669" stroke-width="2.2" stroke-dasharray="6,4" marker-end="url(#arr-green)"/>
+  <rect x="106" y="311" width="528" height="24" rx="5" fill="#ffffff" stroke="#059669" stroke-width="1.2" opacity="0.98"/>
+  <text x="370" y="327" text-anchor="middle" class="m-t" fill="#059669">[A2] 200 OK Gzip 静态直出 (elena 广州ECS 宿主 Caddy /srv/kaoyan-edge)</text>
+  <text x="370" y="355" text-anchor="middle" class="m-s">浏览器水合8,390词(考研5478/六级3991/雅思5275)与K01-K12力场动画</text>
+  <circle cx="195" cy="442" r="4.5" fill="#2563eb"/>
+  <line x1="195" y1="442" x2="537" y2="442" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arr-blue)"/>
+  <rect x="184" y="413" width="372" height="24" rx="5" fill="#ffffff" stroke="#2563eb" stroke-width="1.2" opacity="0.98"/>
+  <text x="370" y="429" text-anchor="middle" class="m-t" fill="#2563eb">[B1] GET /api/v1/sql-drill?table=exam_passages</text>
+  <text x="370" y="457" text-anchor="middle" class="m-s">点击实时SQL下钻弹窗 ➔ elena 宿主 Caddy 反代 127.0.0.1:39928/39925</text>
+  <circle cx="545" cy="487" r="4.5" fill="#059669"/>
+  <line x1="545" y1="487" x2="887" y2="487" stroke="#059669" stroke-width="2.2" marker-end="url(#arr-green)"/>
+  <rect x="475" y="458" width="491" height="24" rx="5" fill="#ffffff" stroke="#059669" stroke-width="1.2" opacity="0.98"/>
+  <text x="720" y="474" text-anchor="middle" class="m-t" fill="#059669">[B2] FRP 隧道穿透至 W1 🐳 Docker 容器 kaoyan-w1-gateway (:60236)</text>
+  <text x="720" y="502" text-anchor="middle" class="m-s">宿主机 network_mode:host 映射进入 /srv/kaoyan-docker 网关容器</text>
+  <circle cx="895" cy="532" r="4.5" fill="#7c3aed"/>
+  <line x1="895" y1="532" x2="1237" y2="532" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#arr-purple)"/>
+  <rect x="830" y="503" width="481" height="24" rx="5" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2" opacity="0.98"/>
+  <text x="1070" y="519" text-anchor="middle" class="m-t" fill="#7c3aed">[B3] 网关容器 RPC 调用 🐳 Docker 容器 kaoyan-w1-worker (:60228)</text>
+  <text x="1070" y="547" text-anchor="middle" class="m-s">读取容器卷 /data/production.sqlite3 (18表146列 + HP 🐳 w9-worker 异地副本)</text>
+  <circle cx="1245" cy="577" r="4.5" fill="#7c3aed"/>
+  <line x1="1245" y1="577" x2="203" y2="577" stroke="#7c3aed" stroke-width="2.2" stroke-dasharray="6,4" marker-end="url(#arr-purple)"/>
+  <rect x="454" y="548" width="532" height="24" rx="5" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2" opacity="0.98"/>
+  <text x="720" y="564" text-anchor="middle" class="m-t" fill="#7c3aed">[B4] 200 OK application/json (经 W1 🐳网关容器 ➔ elena 原路返回表数据)</text>
+  <text x="720" y="592" text-anchor="middle" class="m-s">前端渲染双擎实时 SQL 行数据浏览器弹窗，根除 JSON 截断报错</text>
   <circle cx="195" cy="670" r="4.5" fill="#e11d48"/>
   <line x1="195" y1="670" x2="887" y2="670" stroke="#e11d48" stroke-width="2.2" marker-end="url(#arr-rose)"/>
   <rect x="284" y="641" width="523" height="24" rx="5" fill="#ffffff" stroke="#e11d48" stroke-width="1.2" opacity="0.98"/>
   <text x="545" y="657" text-anchor="middle" class="m-t" fill="#e11d48">[C1] POST /api/ai/long-sentence-coach (隐藏中文解释，提交考生盲译文本)</text>
-  <text x="545" y="685" text-anchor="middle" class="m-s">经 elena 广州ECS Caddy(:443) ➔ frps(:39928) ➔ FRP隧道 ➔ W1 网关(:60236)</text>
+  <text x="545" y="685" text-anchor="middle" class="m-s">经 elena 广州ECS 穿透进入 W1 🐳 Docker 容器 kaoyan-w1-gateway (:60236)</text>
   <path d="M 895 712 L 943 712 L 943 734 L 901 734" fill="none" stroke="#d97706" stroke-width="2.2" marker-end="url(#arr-amber)"/>
   <rect x="953" y="702" width="680" height="36" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1.2"/>
-  <text x="963" y="718" class="m-t" fill="#d97706">[C2] W1 确定性 4×0.5=2.0分 采分点规则扫描 (检测 borne≠出生 / not merely漏译)</text>
-  <text x="963" y="733" class="m-s">生成规则初评得分 + 组装苏格拉底不泄题盲译纠偏 Prompt</text>
+  <text x="963" y="718" class="m-t" fill="#d97706">[C2] 🐳 kaoyan-w1-gateway 容器内执行 4×0.5=2.0分 采分点规则扫描</text>
+  <text x="963" y="733" class="m-s">容器只读挂载 kaoyan_w1_n6_llm_coach_backend.py 检测 borne≠出生 并组装 Prompt</text>
   <circle cx="895" cy="775" r="4.5" fill="#e11d48"/>
   <line x1="895" y1="775" x2="1587" y2="775" stroke="#e11d48" stroke-width="2.2" marker-end="url(#arr-rose)"/>
-  <rect x="953" y="746" width="585" height="24" rx="5" fill="#ffffff" stroke="#e11d48" stroke-width="1.2" opacity="0.98"/>
-  <text x="1245" y="762" text-anchor="middle" class="m-t" fill="#e11d48">[C3] 局域网直连 POST http://n6:11434/api/chat (model=qwen3:32b, think=false)</text>
-  <text x="1245" y="790" text-anchor="middle" class="m-s">W1 ➔ N6 双卡 RTX 3090 实测 ping=67ms，显存常驻 keep_alive=24h</text>
+  <rect x="960" y="746" width="570" height="24" rx="5" fill="#ffffff" stroke="#e11d48" stroke-width="1.2" opacity="0.98"/>
+  <text x="1245" y="762" text-anchor="middle" class="m-t" fill="#e11d48">[C3] 🐳网关容器经隧道调用 N6 宿主 Ollama (:39516➔N6:11434, model=qwen3:32b)</text>
+  <text x="1245" y="790" text-anchor="middle" class="m-s">W1 容器环境变量 KAOYAN_N6_OLLAMA_URL 直连 N6 双卡 RTX 3090 (ping=67ms)</text>
   <circle cx="1595" cy="830" r="4.5" fill="#e11d48"/>
   <line x1="1595" y1="830" x2="903" y2="830" stroke="#e11d48" stroke-width="2.2" stroke-dasharray="6,4" marker-end="url(#arr-rose)"/>
   <rect x="991" y="801" width="508" height="24" rx="5" fill="#ffffff" stroke="#e11d48" stroke-width="1.2" opacity="0.98"/>
   <text x="1245" y="817" text-anchor="middle" class="m-t" fill="#e11d48">[C4] N6 返回结构化 JSON 批改诊断 (总评 + 逐点纠偏 + W01-W05 弱点归因)</text>
-  <text x="1245" y="845" text-anchor="middle" class="m-s">W1 合并规则分并从 WEAKNESS_DRILL_BANK 抽取同构靶向强化训练句</text>
+  <text x="1245" y="845" text-anchor="middle" class="m-s">W1 🐳网关容器合并规则分并从 WEAKNESS_DRILL_BANK 抽取同构靶向强化训练句</text>
   <circle cx="895" cy="885" r="4.5" fill="#059669"/>
   <line x1="895" y1="885" x2="203" y2="885" stroke="#059669" stroke-width="2.2" stroke-dasharray="6,4" marker-end="url(#arr-green)"/>
   <rect x="272" y="856" width="547" height="24" rx="5" fill="#ffffff" stroke="#059669" stroke-width="1.2" opacity="0.98"/>
   <text x="545" y="872" text-anchor="middle" class="m-t" fill="#059669">[C5] 200 OK 返回完整私教诊断单 (得分1.0/2.0 + W02过去分词盲区 + 靶向强化句)</text>
   <text x="545" y="900" text-anchor="middle" class="m-s">前端高亮失分采分点，提供「一键载入靶向训练句」完成闭环消缺</text>
-  <path d="M 195 987 L 243 987 L 243 1009 L 201 1009" fill="none" stroke="#059669" stroke-width="2.2" marker-end="url(#arr-green)"/>
-  <rect x="253" y="977" width="746" height="36" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.2"/>
-  <text x="263" y="993" class="m-t" fill="#059669">[D1] 盲译后解锁 12维X光深度解构 (D01四档变速跟读 / D02九词主干树 / D03-D05词根分词 / D06-D12正交提分舱)</text>
-  <text x="263" y="1008" class="m-s">纯前端 0-Token 毫秒级交互：命题人暗号四选一、写作三母题仿写、四阶逆向生长动画与三模主动盲测</text>
-  <text x="40" y="1098" class="f-t">Verified End-to-End Topology: Browser SPA &lt;-&gt; elena ECS (8.163.29.42, ONLY caddy+frps) &lt;-&gt; W1 Gateway (:60236) &lt;-&gt; W1 DB Cluster &amp; N6 Dual-RTX-3090 Ollama (qwen3:32b, 67ms)</text>
+  <path d="M 195 984 L 243 984 L 243 1006 L 201 1006" fill="none" stroke="#059669" stroke-width="2.2" marker-end="url(#arr-green)"/>
+  <rect x="253" y="974" width="746" height="36" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.2"/>
+  <text x="263" y="990" class="m-t" fill="#059669">[D1] 盲译后解锁 12维X光深度解构 (D01四档变速跟读 / D02九词主干树 / D03-D05词根分词 / D06-D12正交提分舱)</text>
+  <text x="263" y="1005" class="m-s">纯前端 0-Token 毫秒级交互：命题人暗号四选一、写作三母题仿写、四阶逆向生长动画与三模主动盲测</text>
+  <text x="40" y="1098" class="f-t">Verified Container &amp; Host Topology: elena 广州ECS (0-Docker: caddy+frps) &lt;-&gt; W1 Docker (/srv/kaoyan-docker: kaoyan-w1-gateway:60236 &amp; kaoyan-w1-worker:60228) &lt;-&gt; N6 Dual-3090 Ollama (qwen3:32b)</text>
 </svg></div>
   </section>
 
   <section class="lanes-grid" id="lanes-box"></section>
+
+  <!-- 🐳 Docker 容器化资产与宿主进程边界对账表 -->
+  <section class="card">
+    <div style="font-weight:800;font-size:15px;margin-bottom:10px;">🐳 全链路 Docker 容器资产与 `/srv/kaoyan-docker/compose.yml` 编排核验表 (Docker vs Host Process Boundary)</div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:190px;">容器名称 / 运行形态</th>
+            <th style="width:145px;">物理宿主节点</th>
+            <th style="width:195px;">Docker 镜像与网络端口</th>
+            <th style="width:220px;">安全沙盒与资源配额 (compose.yml)</th>
+            <th>持久化数据卷挂载 (Volumes) 与核心职责</th>
+          </tr>
+        </thead>
+        <tbody id="docker-tbody"></tbody>
+      </table>
+    </div>
+  </section>
 
   <section class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
@@ -217,7 +250,7 @@
         <button class="btn active" id="f-all" onclick="filterFlow('all')">全部调用步 (12步)</button>
         <button class="btn" id="f-Flow A" onclick="filterFlow('Flow A')">Flow A · 8390词库水合</button>
         <button class="btn" id="f-Flow B" onclick="filterFlow('Flow B')">Flow B · 18表实时SQL下钻</button>
-        <button class="btn" id="f-Flow C" onclick="filterFlow('Flow C')">Flow C · W1+N6盲译AI私教</button>
+        <button class="btn" id="f-Flow C" onclick="filterFlow('Flow C')">Flow C · W1容器+N6盲译私教</button>
         <button class="btn" id="f-Flow D" onclick="filterFlow('Flow D')">Flow D · 12维长难句X光</button>
       </div>
     </div>
@@ -225,8 +258,9 @@
   </section>
 </div>
 <script>
-const LANES = [{"id": "L1", "title": "泳道1：考生浏览器客户端 (Browser SPA)", "sub": "https://kaoyan-elena.duckdns.org/", "color": [37, 99, 235], "bg": [239, 246, 255], "hex": "#2563eb", "items": ["index.html 四大备考工作台 + 实时SQL下钻器", "kaoyan_tri_exam_full_packs.js (8,390词离线水合)", "kaoyan_long_sentence_12d_xray.js (12维X光+盲译舱)", "Web Speech API (0.65x-1.2x四档变速) + localStorage"]}, {"id": "L2", "title": "泳道2：elena 边缘节点 (阿里云广州 ECS)", "sub": "8.163.29.42 (cn-guangzhou-a) · 仅 caddy + frps", "color": [5, 150, 105], "bg": [236, 253, 245], "hex": "#059669", "items": ["Caddy (:80/:443 TLS1.3) 托管 /srv/kaoyan-edge 静态包", "Caddy handle /api/* 反代至本机 127.0.0.1:39928/39925", "frps (:40100控制端口 / :39928隧道端口) 单守护加固", "严苛进程隔离：100% 零业务容器、零多余进程"]}, {"id": "L3", "title": "泳道3：W1 业务网关层 (内网 WSL2 宿主)", "sub": "kaoyan-w1-gateway (:60236) + frpc", "color": [217, 119, 6], "bg": [255, 251, 235], "hex": "#d97706", "items": ["frpc 加密隧道客户端：将 W1:60236 穿透至 elena:39928", "kaoyan_cluster_gateway.py：/api/v1/health & sql-drill", "kaoyan_w1_n6_llm_coach_backend.py：盲译私教编排", "4×0.5=2.0分确定性采分规则扫描 + W01-W05弱点路由"]}, {"id": "L4", "title": "泳道4：W1 三擎数据库集群 (Persistence)", "sub": "PG16(:5432) + Mongo7(:27017) + Redis7(:6379)", "color": [124, 58, 237], "bg": [245, 243, 255], "hex": "#7c3aed", "items": ["PostgreSQL 16：18表146列 (exam_passages/vocab_ledger)", "MongoDB 7.0：长难句AST语法树与篇章JSON文档", "Redis 7.2：热点SQL下钻缓存与高频词检索加速", "双保险机制：实库查询 + 内置确定性种子零中断兜底"]}, {"id": "L5", "title": "泳道5：N6 本地大模型算力底座 (Local LLM)", "sub": "Dual RTX 3090 (2×24GB) · Ollama :11434", "color": [225, 29, 72], "bg": [255, 241, 242], "hex": "#e11d48", "items": ["双卡 NVIDIA RTX 3090 (48GB VRAM) 局域网直连 W1", "Ollama 常驻模型 qwen3:32b (keep_alive=24h)", "think=false 低延迟结构化 JSON 批改模式 (ping 67ms)", "执行苏格拉底盲译纠偏、弱点诊断与修改建议生成"]}];
-const STEPS = [{"code": "A1", "flow": "Flow A · 静态首屏与8,390词库水合", "from": "L1 浏览器", "to": "L2 elena (Caddy)", "proto": "HTTPS GET / & /*.js", "desc": "浏览器请求首页与三考词库分片包 (kaoyan_tri_exam_full_packs.js) 及长难句12维引擎 (kaoyan_long_sentence_12d_xray.js)"}, {"code": "A2", "flow": "Flow A · 静态首屏与8,390词库水合", "from": "L2 elena (Caddy)", "to": "L1 浏览器", "proto": "200 OK (Gzip 静态直出)", "desc": "Caddy 从 /srv/kaoyan-edge 直接返回静态资产，浏览器本地水合8,390词(考研5478/六级3991/雅思5275)与K01-K12力场动画"}, {"code": "B1", "flow": "Flow B · 18表146列实时SQL下钻", "from": "L1 浏览器", "to": "L2 elena (Caddy➔frps)", "proto": "GET /api/v1/sql-drill?table=...", "desc": "用户点击实时SQL下钻弹窗，Caddy匹配 /api/* 反代至本机 127.0.0.1:39928/39925 (frps隧道)"}, {"code": "B2", "flow": "Flow B · 18表146列实时SQL下钻", "from": "L2 elena (frps)", "to": "L3 W1 网关 (:60236)", "proto": "FRP Tunnel (:40100/:39928)", "desc": "流量经 FRP 加密长连接穿透至内网 W1 节点的 kaoyan-w1-gateway (:60236)"}, {"code": "B3", "flow": "Flow B · 18表146列实时SQL下钻", "from": "L3 W1 网关 (:60236)", "to": "L4 W1 三擎数据库", "proto": "TCP :5432 / :27017 / :6379", "desc": "网关查询 PG16 关系表与 Mongo7 文档库（Redis7 缓存热点），异常时无缝启用确定性种子兜底"}, {"code": "B4", "flow": "Flow B · 18表146列实时SQL下钻", "from": "L3 W1 网关 (:60236)", "to": "L1 浏览器 (经elena)", "proto": "application/json (rows+schema)", "desc": "返回标准化表结构与行数据 JSON，前端渲染双擎实时 SQL 行数据浏览器弹窗"}, {"code": "C1", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L1 浏览器", "to": "L3 W1 网关 (经elena)", "proto": "POST /api/ai/long-sentence-coach", "desc": "考生在隐藏解释态下提交盲译文本(如将borne误译为出生)，经 elena Caddy➔frps 穿透至 W1 网关"}, {"code": "C2", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L3 W1 网关 (:60236)", "to": "L3 W1 规则扫描器", "proto": "In-Process 4×0.5pt Rubric", "desc": "W1 执行 4×0.5=2.0分 采分点规则预检，识别漏译/误译信号并组装苏格拉底盲译批改 Prompt"}, {"code": "C3", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L3 W1 网关 (:60236)", "to": "L5 N6 算力节点 (:11434)", "proto": "LAN POST /api/chat (67ms)", "desc": "W1 通过局域网调用 N6 双卡 RTX 3090 上的 Ollama qwen3:32b (format=json, think=false)"}, {"code": "C4", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L5 N6 (qwen3:32b)", "to": "L3 W1 网关 (:60236)", "proto": "Structured JSON Diagnosis", "desc": "N6 返回总评、逐点批改、弱点归因 (W01-W05) 与修改建议；W1 自动匹配同构靶向强化训练句"}, {"code": "C5", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L3 W1 网关 (:60236)", "to": "L1 浏览器 (经elena)", "proto": "200 OK (Coach Report + Drill)", "desc": "前端渲染得分(如1.0/2.0分)、弱点徽章(W02过去分词盲区)与靶向训练句，支持一键载入加练"}, {"code": "D1", "flow": "Flow D · 12维长难句X光深度解构", "from": "L1 浏览器", "to": "L1 本地12维引擎", "proto": "0-Token Local Render", "desc": "盲译后解锁 D01四档发音、D02九词主干+五层树、D03-D05词根分词、D06-D11命题暗号/逆向生长、D12三模盲测"}];
+const LANES = [{"id": "L1", "runtime_badge": "🌐 浏览器沙盒 (Browser SPA)", "title": "泳道1：考生浏览器客户端 (Browser SPA)", "sub": "https://kaoyan-elena.duckdns.org/", "color": [37, 99, 235], "bg": [239, 246, 255], "hex": "#2563eb", "items": ["index.html 四大备考工作台 + 实时SQL下钻器", "kaoyan_tri_exam_corpus_8390.js (8,390词离线水合)", "kaoyan_long_sentence_12d_xray.js (12维X光+盲译舱)", "Web Speech API (0.65x-1.2x四档变速) + localStorage"]}, {"id": "L2", "runtime_badge": "⚙️ 纯宿主 Systemd · 0 Docker 容器", "title": "泳道2：elena 边缘节点 (阿里云广州 ECS)", "sub": "8.163.29.42 (cn-guangzhou-a) · 仅 caddy + frps", "color": [5, 150, 105], "bg": [236, 253, 245], "hex": "#059669", "items": ["[Host Process] caddy (:80/:443) 托管 /srv/kaoyan-edge", "[Host Process] frps (:40100控制面 / :39928&:39925隧道)", "Caddy handle /api/* 反代至本机 127.0.0.1:39928/39925", "严苛边界：100% 零 Docker 容器、零业务进程驻留"]}, {"id": "L3", "runtime_badge": "🐳 Docker 容器 (W1 WSL2 Docker Engine)", "title": "泳道3：W1 业务网关容器 (Docker Gateway)", "sub": "🐳 kaoyan-w1-gateway (:60236 · kaoyan-cluster:56a8353092a2)", "color": [217, 119, 6], "bg": [255, 251, 235], "hex": "#d97706", "items": ["🐳 容器名: kaoyan-w1-gateway (/srv/kaoyan-docker/compose.yml)", "🐳 镜像: kaoyan-cluster:56a8353092a2 (network_mode: host, 512M)", "🐳 安全加固: read_only:true + cap_drop:[ALL] + /data卷挂载", "挂载模块: kaoyan_cluster_gateway.py + kaoyan_w1_n6_llm_coach"]}, {"id": "L4", "runtime_badge": "🐳 跨节点 Docker Worker 容器群 + 数据卷", "title": "泳道4：Docker 数据工作容器群 (Docker Workers)", "sub": "🐳 kaoyan-w1-worker(:60228) + HP kaoyan-w9-worker(:60232)", "color": [124, 58, 237], "bg": [245, 243, 255], "hex": "#7c3aed", "items": ["🐳 W1主库容器: kaoyan-w1-worker (:60228, mem_limit:256m)", "💾 持久化卷: /srv/kaoyan-docker/worker:/data:rw (production.sqlite3)", "🐳 HP热备容器群: kaoyan-w9-gateway(:60235) + kaoyan-w9-worker(:60232)", "18表146列真题与生词账本 + W1/HP/S1 三节点多活同步兜底"]}, {"id": "L5", "runtime_badge": "🔥 宿主 GPU 守护 + 🐳 周边 Docker 容器栈", "title": "泳道5：N6 本地大模型算力底座 (Dual RTX 3090)", "sub": "Host ollama serve (:11434) + 🐳 cf-n6-frpc / pg16", "color": [225, 29, 72], "bg": [255, 241, 242], "hex": "#e11d48", "items": ["[Host GPU Process] /usr/local/bin/ollama serve (:11434)", "双卡 RTX 3090 (48GB VRAM) 常驻 qwen3:32b (keep_alive=24h)", "🐳 N6 辅助容器: cf-n6-frpc-cogniforge + cf-n6-gpu-dual3090-lab", "W1网关容器经隧道 (:39516->N6:11434, 67ms) 调取盲译JSON诊断"]}];
+const DOCKERS = [{"container": "🐳 kaoyan-w1-gateway", "host": "W1 (WSL2 Ubuntu-26.04)", "image": "kaoyan-cluster:56a8353092a2", "net_port": "network_mode: host · :60236", "limits": "mem_limit: 512m · cpus: 1.0 · read_only: true · cap_drop: [ALL]", "volumes": "/srv/kaoyan-docker/gateway:/data:rw (production_coordinator.sqlite3) + 挂载 kaoyan_cluster_gateway.py & kaoyan_w1_n6_llm_coach_backend.py", "role": "核心业务 API 网关容器：处理 /api/v1/sql-drill、/api/ai/long-sentence-coach、4×0.5分规则初筛与 N6 qwen3:32b 盲译私教调度"}, {"container": "🐳 kaoyan-w1-worker", "host": "W1 (WSL2 Ubuntu-26.04)", "image": "kaoyan-cluster:56a8353092a2", "net_port": "network_mode: host · :60228", "limits": "mem_limit: 256m · cpus: 1.0 · read_only: true · cap_drop: [ALL]", "volumes": "/srv/kaoyan-docker/worker:/data:rw (production.sqlite3 + /data/backups)", "role": "W1 本地数据存储与 RPC Worker 容器：承载 18 表 146 列核心关系账本读写与快照备份"}, {"container": "🐳 kaoyan-w9-gateway & kaoyan-w9-worker", "host": "HP (热备算力主炮)", "image": "kaoyan-cluster:878870a021ce", "net_port": "network_mode: host · :60235 / :60232", "limits": "Docker Compose 守护 · 异地热备双容器", "volumes": "/srv/kaoyan-docker/{gateway,worker}:/data:rw", "role": "跨节点异地热备网关与数据副本容器：通过 elena:39925 备隧道与 W1:60237 副本同步隧道提供高可用容灾"}, {"container": "🐳 cf-n6-frpc-cogniforge & cf-n6-gpu-dual3090-lab", "host": "N6 (Dual RTX 3090 节点)", "image": "snowdreamtech/frpc:0.61.1 / cogniforge/gpu-lab:n6-dual3090-ready", "net_port": "Docker 容器 + 宿主 /usr/local/bin/ollama serve (:11434)", "limits": "2 × RTX 3090 (48GB GDDR6X VRAM)", "volumes": "Ollama 模型权重仓 (qwen3:32b 显存常驻 keep_alive=24h)", "role": "N6 本地大模型算力与穿透支撑栈：向 W1 kaoyan-w1-gateway 容器提供 67ms 低延迟盲译弱点诊断推理"}];
+const STEPS = [{"code": "A1", "flow": "Flow A · 静态首屏与8,390词库水合", "from": "L1 浏览器", "to": "L2 elena广州ECS (Host Caddy)", "proto": "HTTPS GET / & /*.js", "desc": "浏览器请求首页与三考词库包 (kaoyan_tri_exam_corpus_8390.js) 及长难句12维引擎 (kaoyan_long_sentence_12d_xray.js)"}, {"code": "A2", "flow": "Flow A · 静态首屏与8,390词库水合", "from": "L2 elena广州ECS (Host Caddy)", "to": "L1 浏览器", "proto": "200 OK (Gzip 静态直出)", "desc": "elena 宿主 Caddy 从 /srv/kaoyan-edge 直接返回静态资产，浏览器本地水合8,390词与K01-K12力场动画"}, {"code": "B1", "flow": "Flow B · 18表146列实时SQL下钻", "from": "L1 浏览器", "to": "L2 elena广州ECS (Caddy➔frps)", "proto": "GET /api/v1/sql-drill?table=...", "desc": "用户点击实时SQL下钻弹窗，elena 宿主 Caddy 匹配 /api/* 反代至本机 127.0.0.1:39928/39925 (frps隧道)"}, {"code": "B2", "flow": "Flow B · 18表146列实时SQL下钻", "from": "L2 elena广州ECS (Host frps)", "to": "L3 🐳 kaoyan-w1-gateway (:60236)", "proto": "FRP Tunnel (:40100/:39928)", "desc": "流量经 FRP 隧道穿透进入 W1 WSL2 Docker 容器 kaoyan-w1-gateway (:60236, image: kaoyan-cluster:56a8353092a2)"}, {"code": "B3", "flow": "Flow B · 18表146列实时SQL下钻", "from": "L3 🐳 kaoyan-w1-gateway", "to": "L4 🐳 kaoyan-w1-worker (:60228)", "proto": "Docker Host-Net RPC + /data Volume", "desc": "网关容器调用同机 Docker 容器 kaoyan-w1-worker (:60228) 及挂载卷 /data/production.sqlite3（并同步 HP 🐳 kaoyan-w9-worker 副本）"}, {"code": "B4", "flow": "Flow B · 18表146列实时SQL下钻", "from": "L3 🐳 kaoyan-w1-gateway", "to": "L1 浏览器 (经elena)", "proto": "application/json (rows+schema)", "desc": "返回标准化18表146列结构与行数据 JSON，前端渲染双擎实时 SQL 行数据浏览器弹窗"}, {"code": "C1", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L1 浏览器", "to": "L3 🐳 kaoyan-w1-gateway", "proto": "POST /api/ai/long-sentence-coach", "desc": "考生在隐藏解释态下提交盲译文本，经 elena 广州ECS 穿透进入 W1 Docker 容器 kaoyan-w1-gateway (:60236)"}, {"code": "C2", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L3 🐳 kaoyan-w1-gateway", "to": "L3 容器内规则扫描器", "proto": "In-Container 4×0.5pt Rubric", "desc": "网关容器内 kaoyan_w1_n6_llm_coach_backend.py 执行 4×0.5=2.0分 采分点扫描(检测 borne≠出生)并组装苏格拉底 Prompt"}, {"code": "C3", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L3 🐳 kaoyan-w1-gateway", "to": "L5 N6 Ollama (:11434)", "proto": "Tunnel POST /api/chat (67ms)", "desc": "网关容器通过 KAOYAN_N6_OLLAMA_URL 隧道调用 N6 双卡 RTX 3090 上的宿主 Ollama qwen3:32b (format=json, think=false)"}, {"code": "C4", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L5 N6 (qwen3:32b)", "to": "L3 🐳 kaoyan-w1-gateway", "proto": "Structured JSON Diagnosis", "desc": "N6 返回总评、逐点批改、弱点归因 (W01-W05)；网关容器自动从 WEAKNESS_DRILL_BANK 挂载同构靶向强化训练句"}, {"code": "C5", "flow": "Flow C · 先盲译AI弱点诊断私教闭环", "from": "L3 🐳 kaoyan-w1-gateway", "to": "L1 浏览器 (经elena)", "proto": "200 OK (Coach Report + Drill)", "desc": "前端渲染得分(1.0/2.0分)、弱点徽章(W02过去分词盲区)与靶向训练句，支持一键载入加练"}, {"code": "D1", "flow": "Flow D · 12维长难句X光深度解构", "from": "L1 浏览器", "to": "L1 本地12维引擎", "proto": "0-Token Local Render", "desc": "盲译后解锁 D01四档发音、D02九词主干+五层树、D03-D05词根分词、D06-D11命题暗号/逆向生长、D12三模盲测"}];
 function setTheme(t) {
   document.documentElement.setAttribute('data-theme', t);
   document.documentElement.className = t;
@@ -237,10 +271,19 @@ function setViewport(v) {
 }
 document.getElementById('lanes-box').innerHTML = LANES.map(l => `
   <div class="card" style="margin-bottom:0;border-top:4px solid ${l.hex};">
+    <div style="margin-bottom:6px;"><span class="badge" style="font-size:11px;">${l.runtime_badge}</span></div>
     <div style="font-weight:900;font-size:14px;color:${l.hex};">${l.title}</div>
-    <div style="font-size:11.5px;color:var(--muted);margin:3px 0 8px;">${l.sub}</div>
+    <div style="font-size:11.5px;color:var(--muted);margin:3px 0 8px;font-family:monospace;">${l.sub}</div>
     <ul style="margin:0;padding-left:16px;font-size:12px;">${l.items.map(i => `<li style="margin-bottom:4px;">${i}</li>`).join('')}</ul>
   </div>`).join('');
+document.getElementById('docker-tbody').innerHTML = DOCKERS.map(d => `
+  <tr>
+    <td style="font-weight:800;color:var(--accent);">${d.container}</td>
+    <td style="font-weight:700;">${d.host}</td>
+    <td><code style="font-size:11.5px;">${d.image}</code><div style="font-size:11.5px;color:var(--muted);margin-top:2px;">${d.net_port}</div></td>
+    <td style="font-size:12px;color:var(--muted);">${d.limits}</td>
+    <td><div style="font-family:monospace;font-size:11.5px;margin-bottom:4px;">${d.volumes}</div><div style="font-weight:600;">${d.role}</div></td>
+  </tr>`).join('');
 function filterFlow(prefix) {
   ['all','Flow A','Flow B','Flow C','Flow D'].forEach(k => {
     const el = document.getElementById('f-' + k);
