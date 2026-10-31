@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="daylight" class="daylight">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>N6 算力底座 (Ollama) 0.0.0.0 裸奔修复与 Ed25519 密钥对防 DDoS 前后对比测试报告</title>
+  <script>(function(){try{var t=localStorage.getItem('kaoyan_n6_sec_theme')||'daylight';document.documentElement.setAttribute('data-theme',t);document.documentElement.className=t;}catch(e){}})();</script>
+  <style>
+    :root, html.daylight { --bg:#f8fafc; --card:#ffffff; --alt:#f1f5f9; --text:#0f172a; --muted:#475569; --border:#cbd5e1; --accent:#2563eb; --ok:#059669; --danger:#dc2626; }
+    html.midnight { --bg:#0b0f19; --card:#111827; --alt:#1e293b; --text:#f8fafc; --muted:#94a3b8; --border:#334155; --accent:#3b82f6; --ok:#10b981; --danger:#f87171; }
+    html.eyecare { --bg:#f2f6ef; --card:#fafcf8; --alt:#e6efe2; --text:#1b2e1e; --muted:#4a634e; --border:#c5d6bf; --accent:#2e7d32; --ok:#1b5e20; --danger:#c62828; }
+    * { box-sizing:border-box; }
+    body { margin:0; padding:18px; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.55; }
+    .wrap { max-width:1440px; margin:0 auto; }
+    body.mobile-view .wrap { max-width:430px; border:2px solid var(--border); border-radius:18px; padding:12px; background:var(--card); }
+    .hdr, .card { background:var(--card); border:1.5px solid var(--border); border-radius:14px; padding:16px 20px; margin-bottom:16px; }
+    .hdr { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; }
+    .btn { cursor:pointer; border:1px solid var(--border); background:var(--alt); color:var(--text); padding:6px 12px; border-radius:8px; font-size:12.5px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:5px; }
+    .btn:hover, .btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px; }
+    body.mobile-view .grid2, @media (max-width:960px) { .grid2 { grid-template-columns:1fr; } }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { border:1px solid var(--border); padding:9px 11px; text-align:left; vertical-align:top; }
+    th { background:var(--alt); font-weight:800; }
+    pre { background:var(--alt); padding:12px; border-radius:10px; overflow-x:auto; font-size:12px; border:1px solid var(--border); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hdr">
+    <div>
+      <div style="font-size:12px;font-weight:800;color:var(--ok);">🛡️ SECURITY REMEDIATION REPORT · ev:ev-0042 (Before) ➔ ev:ev-0046 (After)</div>
+      <h1 style="margin:4px 0 0;font-size:20px;font-weight:900;">N6 算力底座 (Ollama :11434/:11435) 0.0.0.0 裸奔修复与 Ed25519 密钥对防 DDoS 前后对比测试报告</h1>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <a class="btn active" href="https://kaoyan-elena.duckdns.org/" target="_blank">🚀 线上工作台</a>
+      <a class="btn" href="uml-swimlane.html">📐 五泳道架构图</a>
+      <button class="btn" onclick="document.body.classList.remove('mobile-view')">🖥️ PC视口</button>
+      <button class="btn" onclick="document.body.classList.add('mobile-view')">📱 移动视口</button>
+      <button class="btn" onclick="setTheme('daylight')">☀️ 日光</button>
+      <button class="btn" onclick="setTheme('midnight')">🌙 极夜</button>
+      <button class="btn" onclick="setTheme('eyecare')">🍵 润眼</button>
+    </div>
+  </header>
+
+  <section class="card">
+    <h2 style="margin:0 0 10px;font-size:16px;">📊 矢量级实施前后架构与六大攻防渗透看板 (SVG Panorama)</h2>
+    <div style="background:#fff;border-radius:10px;padding:8px;overflow-x:auto;border:1px solid var(--border);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" width="100%" preserveAspectRatio="xMidYMid meet" style="background:#F8FAFC;font-family:'PingFang SC','Microsoft YaHei',sans-serif;">
+  <defs>
+    <linearGradient id="hdr" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#065F46"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+    <filter id="sh" x="-4%" y="-4%" width="108%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect x="24" y="20" width="1552" height="90" rx="14" fill="url(#hdr)" filter="url(#sh)"/>
+  <text x="50" y="58" font-size="24" font-weight="800" fill="#FFFFFF">N6 算力底座 (Ollama) 0.0.0.0 裸奔修复与 Ed25519 密钥对防 DDoS 实施前后对比测试报告</text>
+  <text x="50" y="88" font-size="14" fill="#A7F3D0">Before (ev:ev-0042 Wildcard 0.0.0.0 + Unauth 200 OK) vs After (ev:ev-0046 Loopback 127.0.0.1 + Ed25519 Guard 401/403/429 + E2E 200 OK)</text>
+
+  <!-- Left Column: Before -->
+  <rect x="24" y="130" width="760" height="390" rx="14" fill="#FFFFFF" stroke="#FCA5A5" stroke-width="2" filter="url(#sh)"/>
+  <rect x="24" y="130" width="760" height="44" rx="14" fill="#FEF2F2"/>
+  <text x="48" y="158" font-size="17" font-weight="800" fill="#991B1B">[BEFORE] 修复前实测状态 (ev:ev-0042 · 高危裸奔态)</text>
+
+  <text x="48" y="204" font-size="14" font-weight="700" fill="#B91C1C">1. N6 宿主机监听套接字：*:11434 &amp; *:11435 (0.0.0.0 全网卡裸奔)</text>
+  <text x="48" y="230" font-size="13" fill="#475569">- ollama-gpu0.service: Environment="OLLAMA_HOST=0.0.0.0:11434"</text>
+  <text x="48" y="254" font-size="13" fill="#475569">- ollama-gpu1.service: Environment="OLLAMA_HOST=0.0.0.0:11435"</text>
+  <text x="48" y="286" font-size="14" font-weight="700" fill="#B91C1C">2. 跨域与公网隧道直通漏洞：OLLAMA_ORIGINS=* &amp; 39516 -&gt; 11434</text>
+  <text x="48" y="312" font-size="13" fill="#475569">- 匿名未授权请求 GET http://47.121.112.172:39516/api/tags -&gt; 200 OK！</text>
+  <text x="48" y="336" font-size="13" fill="#475569">- 恶意删除接口 DELETE /api/delete 暴露，双卡 3090 模型权重可被直接擦除</text>
+  <text x="48" y="368" font-size="14" font-weight="700" fill="#B91C1C">3. 防重放与防 DDoS 能力：0% (无签名、无时间戳、无令牌桶)</text>
+  <text x="48" y="394" font-size="13" fill="#475569">- 恶意并发推理洪水可直接塞满 GPU 队列导致 OOM 显存死机</text>
+  <text x="48" y="426" font-size="14" font-weight="700" fill="#B91C1C">4. 传统静态 IP 白名单窘境</text>
+  <text x="48" y="452" font-size="13" fill="#475569">- 若靠固定 IP 段锁死，一旦 W1 网络重拨或 IP 段改变即刻引发线上私教失联</text>
+
+  <!-- Right Column: After -->
+  <rect x="808" y="130" width="768" height="390" rx="14" fill="#FFFFFF" stroke="#6EE7B7" stroke-width="2" filter="url(#sh)"/>
+  <rect x="808" y="130" width="768" height="44" rx="14" fill="#ECFDF5"/>
+  <text x="832" y="158" font-size="17" font-weight="800" fill="#065F46">[AFTER] 修复后真机实测 (ev:ev-0046 · 零信任 Ed25519 守卫态)</text>
+
+  <text x="832" y="204" font-size="14" font-weight="700" fill="#047857">1. N6 宿主机监听套接字：100% 收敛至 127.0.0.1 本机回环</text>
+  <text x="832" y="230" font-size="13" fill="#334155">- LISTEN 127.0.0.1:11434 (ollama-gpu0) | LISTEN 127.0.0.1:11435 (ollama-gpu1)</text>
+  <text x="832" y="254" font-size="13" fill="#334155">- LISTEN 127.0.0.1:11436 (n6-ollama-keypair-guard.service 承接公网 39516)</text>
+  <text x="832" y="286" font-size="14" font-weight="700" fill="#047857">2. 六项真机攻防渗透测试 100% 拦截 (详见下方矩阵)</text>
+  <text x="832" y="312" font-size="13" fill="#334155">- 匿名请求 -&gt; 401 | 删模型 DELETE -&gt; 403 | 过期时间戳 -&gt; 401</text>
+  <text x="832" y="336" font-size="13" fill="#334155">- 篡改签名 1 bit -&gt; 401 | 同 Nonce 重放 -&gt; 401 | DDoS 突发洪水 -&gt; 429</text>
+  <text x="832" y="368" font-size="14" font-weight="700" fill="#047857">3. 100% 免疫 IP 段改变 (密码学身份代替 IP 白名单)</text>
+  <text x="832" y="394" font-size="13" fill="#334155">- W1 容器持 Ed25519 私钥签名，N6 仅存公钥 7457ca40... 验签，任意 IP 漂移零中断</text>
+  <text x="832" y="426" font-size="14" font-weight="700" fill="#047857">4. 线上生产链路回归：200 OK (ping=73ms, qwen3:32b 盲译批改正常)</text>
+  <text x="832" y="452" font-size="13" fill="#334155">- 精准识别 borne 误译为『出生』与 disproportionately 漏译，输出 1.5/2.0 分诊断</text>
+
+  <!-- Bottom Bento: 6 Penetration Test Cards -->
+  <rect x="24" y="540" width="1552" height="356" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" filter="url(#sh)"/>
+  <rect x="24" y="540" width="1552" height="44" rx="14" fill="#F1F5F9"/>
+  <text x="48" y="568" font-size="17" font-weight="800" fill="#0F172A">[PENETRATION MATRIX] 公网入口 http://47.121.112.172:39516 六大攻击向量实测拦截回执 (ev:ev-0046)</text>
+
+  <rect x="48" y="602" width="484" height="126" rx="10" fill="#F8FAFC" stroke="#94A3B8"/>
+  <text x="66" y="630" font-size="15" font-weight="800" fill="#0F172A">Case 1: 匿名未授权探测 GET /api/tags</text>
+  <text x="66" y="656" font-size="13" fill="#B91C1C" font-weight="700">Before: 200 OK  ---&gt;  After: 401 Unauthorized (124.14 ms)</text>
+  <text x="66" y="682" font-size="12" fill="#475569">{"error": "missing_ed25519_keypair_headers", "shield": "n6-ollama-keypair-guard"}</text>
+
+  <rect x="558" y="602" width="484" height="126" rx="10" fill="#F8FAFC" stroke="#94A3B8"/>
+  <text x="576" y="630" font-size="15" font-weight="800" fill="#0F172A">Case 2: 恶意删模型 DELETE /api/delete</text>
+  <text x="576" y="656" font-size="13" fill="#B91C1C" font-weight="700">Before: Exposed ---&gt;  After: 403 Forbidden (144.33 ms)</text>
+  <text x="576" y="682" font-size="12" fill="#475569">{"error": "destructive_ollama_endpoint_blocked", "path": "/api/delete"}</text>
+
+  <rect x="1068" y="602" width="484" height="126" rx="10" fill="#F8FAFC" stroke="#94A3B8"/>
+  <text x="1086" y="630" font-size="15" font-weight="800" fill="#0F172A">Case 3: 过期时间戳重放 (now - 300s)</text>
+  <text x="1086" y="656" font-size="13" fill="#047857" font-weight="700">After: 401 Unauthorized (108.89 ms)</text>
+  <text x="1086" y="682" font-size="12" fill="#475569">{"error": "timestamp_outside_60s_window", "shield": "n6-ollama-keypair-guard"}</text>
+
+  <rect x="48" y="746" width="484" height="126" rx="10" fill="#F8FAFC" stroke="#94A3B8"/>
+  <text x="66" y="774" font-size="15" font-weight="800" fill="#0F172A">Case 4: 篡改 Ed25519 签名 1 bit</text>
+  <text x="66" y="800" font-size="13" fill="#047857" font-weight="700">After: 401 Unauthorized (126.90 ms)</text>
+  <text x="66" y="826" font-size="12" fill="#475569">{"error": "ed25519_signature_verification_failed", "shield": "n6-ollama-keypair-guard"}</text>
+
+  <rect x="558" y="746" width="484" height="126" rx="10" fill="#F8FAFC" stroke="#94A3B8"/>
+  <text x="576" y="774" font-size="15" font-weight="800" fill="#0F172A">Case 5: 60s 窗口内同 Nonce 抓包重放</text>
+  <text x="576" y="800" font-size="13" fill="#047857" font-weight="700">First: 200 OK ---&gt; Replay: 401 Unauthorized (125.00 ms)</text>
+  <text x="576" y="826" font-size="12" fill="#475569">{"error": "replay_nonce_detected", "shield": "n6-ollama-keypair-guard"}</text>
+
+  <rect x="1068" y="746" width="484" height="126" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <text x="1086" y="774" font-size="15" font-weight="800" fill="#065F46">Case 6: 突发 DDoS 洪水 &amp; W1 正常私教回归</text>
+  <text x="1086" y="800" font-size="13" fill="#047857" font-weight="700">Burst Codes: [200,200,200,200,200,429,429] | E2E: 200 OK</text>
+  <text x="1086" y="826" font-size="12" fill="#065F46">令牌桶秒级拦截超额洪峰；W1 网关签名调 N6 qwen3:32b 端到端 100% 正常</text>
+</svg></div>
+  </section>
+
+  <section class="card">
+    <h2 style="margin:0 0 10px;font-size:16px;">⚖️ 实施前后八维核心安全指标逐项对账表 (Before vs After Matrix)</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th>测试维度</th><th>实施前基线 (ev:ev-0042)</th><th>实施后实测 (ev:ev-0046)</th><th>验证结论</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>1. N6 ollama-gpu0 (:11434)</b></td><td style="color:var(--danger);"><code>0.0.0.0:11434</code> (*:11434 全网卡暴露)</td><td style="color:var(--ok);"><b><code>127.0.0.1:11434</code> (仅本机回环)</b></td><td>✅ 消除局域网/公网直连面</td></tr>
+          <tr><td><b>2. N6 ollama-gpu1 (:11435)</b></td><td style="color:var(--danger);"><code>0.0.0.0:11435</code> (*:11435 全网卡暴露)</td><td style="color:var(--ok);"><b><code>127.0.0.1:11435</code> (仅本机回环)</b></td><td>✅ 双卡双实例同步回环收敛</td></tr>
+          <tr><td><b>3. OLLAMA_ORIGINS 跨域</b></td><td style="color:var(--danger);"><code>*</code> (任意恶意网页 JS 可跨域调用)</td><td style="color:var(--ok);"><b><code>http://127.0.0.1,http://localhost</code></b></td><td>✅ 阻断浏览器 Drive-by CSRF</td></tr>
+          <tr><td><b>4. 公网 FRP :39516 落点</b></td><td style="color:var(--danger);">直通裸 <code>127.0.0.1:11434</code></td><td style="color:var(--ok);"><b>接管至 <code>127.0.0.1:11436</code> (Ed25519 守卫)</b></td><td>✅ 100% 流量强制过密码学验签</td></tr>
+          <tr><td><b>5. 匿名 GET /api/tags</b></td><td style="color:var(--danger);">返回 <b>200 OK</b> (模型清单裸奔)</td><td style="color:var(--ok);"><b>返回 401 Unauthorized (124.14 ms)</b></td><td>✅ 无私钥签名请求 100% 拒止</td></tr>
+          <tr><td><b>6. 恶意删库 DELETE /api/delete</b></td><td style="color:var(--danger);">暴露，可删除 <code>qwen3:32b</code></td><td style="color:var(--ok);"><b>返回 403 Forbidden (144.33 ms)</b></td><td>✅ 高危破坏性端点硬熔断</td></tr>
+          <tr><td><b>7. 抓包重放与篡改攻击</b></td><td style="color:var(--danger);">无时间戳/Nonce/签名校验</td><td style="color:var(--ok);"><b>过期/篡改/重放 Nonce 均返回 401</b></td><td>✅ 60s 时间窗 + Nonce 防重放</td></tr>
+          <tr><td><b>8. 防 DDoS 与动态 IP 适应性</b></td><td style="color:var(--danger);">无限排队；若锁死 IP 段则 IP 变即断联</td><td style="color:var(--ok);"><b>突发洪峰触发 429；Ed25519 密钥对无惧 IP 漂移</b></td><td>✅ 防 DDoS + 零 IP 变动焦虑</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 style="margin:0 0 10px;font-size:16px;">🔬 真机渗透测试与线上 E2E 回归原始物证账本 (Raw JSON Evidence · ev:ev-0046)</h2>
+    <pre>{
+  "timestamp": "2026-10-31T02:05:00Z",
+  "before": {
+    "n6_ollama_gpu0_bind": "0.0.0.0:11434 (*:11434 wildcard exposed)",
+    "n6_ollama_gpu1_bind": "0.0.0.0:11435 (*:11435 wildcard exposed)",
+    "ollama_origins_cors": "* (wildcard cross-origin vulnerable)",
+    "wan_frp_39516_target": "127.0.0.1:11434 (raw unauthenticated Ollama)",
+    "unauth_get_api_tags_http": 200,
+    "destructive_delete_endpoint_http": "200/404 (exposed to model deletion)",
+    "replay_protection": "NONE",
+    "ddos_rate_limiter": "NONE (unbounded GPU queue)",
+    "ip_drift_resilience": "N/A (unprotected)"
+  },
+  "after": {
+    "n6_sockets_verified": [
+      "LISTEN 0      4096       127.0.0.1:11435      0.0.0.0:*    users:((\"ollama\",pid=3892130,fd=3))                         ",
+      "LISTEN 0      4096       127.0.0.1:11434      0.0.0.0:*    users:((\"ollama\",pid=3892202,fd=3))                         ",
+      "LISTEN 0      5          127.0.0.1:11436      0.0.0.0:*    users:((\"python3\",pid=3896035,fd=3))"
+    ],
+    "n6_ollama_gpu0_bind": "127.0.0.1:11434 (loopback only)",
+    "n6_ollama_gpu1_bind": "127.0.0.1:11435 (loopback only)",
+    "n6_keypair_guard_bind": "127.0.0.1:11436 (Ed25519 + Anti-DDoS shield)",
+    "ollama_origins_cors": "http://127.0.0.1,http://localhost",
+    "wan_frp_39516_target": "127.0.0.1:11436 (n6-ollama-keypair-guard.service)",
+    "ed25519_key_id": "kaoyan-w1-ed25519-v1",
+    "ed25519_pubkey_hex": "7457ca40a2c3bd299d5f8715fbfb2bf5a3693e72b7c54077cc6ae8d43805fbe8",
+    "penetration_tests": {
+      "unauth_anonymous_get_tags": {
+        "http_code": 401,
+        "response": {
+          "error": "missing_ed25519_keypair_headers",
+          "shield": "n6-ollama-keypair-guard"
+        },
+        "latency_ms": 124.14
+      },
+      "destructive_delete_model": {
+        "http_code": 403,
+        "response": {
+          "error": "destructive_ollama_endpoint_blocked",
+          "path": "/api/delete",
+          "shield": "n6-ollama-keypair-guard"
+        },
+        "latency_ms": 144.33
+      },
+      "expired_timestamp_replay": {
+        "http_code": 401,
+        "response": {
+          "error": "timestamp_outside_60s_window",
+          "shield": "n6-ollama-keypair-guard"
+        },
+        "latency_ms": 108.89
+      },
+      "tampered_ed25519_signature": {
+        "http_code": 401,
+        "response": {
+          "error": "ed25519_signature_verification_failed",
+          "shield": "n6-ollama-keypair-guard"
+        },
+        "latency_ms": 126.9
+      },
+      "duplicate_nonce_replay": {
+        "first_http": 200,
+        "replay_http": 401,
+        "response": {
+          "error": "replay_nonce_detected",
+          "shield": "n6-ollama-keypair-guard"
+        },
+        "latency_ms": 125.0
+      },
+      "burst_ddos_flood_codes": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        429,
+        429
+      ]
+    },
+    "e2e_production_verification": {
+      "status_endpoint": {
+        "status": "ok",
+        "topology": "elena ECS (Caddy + frps ONLY) -> W1 Backend (kaoyan-w1-gateway) -> N6 Ed25519 Guard (:11436) -> Ollama (127.0.0.1:11434)",
+        "edge_node": "elena (caddy + frps only)",
+        "backend_node": "W1 (WSL2 container gateway)",
+        "llm_node": "N6 (2x NVIDIA GeForce RTX 3090 · 127.0.0.1 Loopback + Ed25519 Guard)",
+        "auth_mode": "Ed25519 Asymmetric Keypair + 60s Nonce Anti-Replay + Token-Bucket Anti-DDoS (Zero Static IP Lock)",
+        "auth_key_id": "kaoyan-w1-ed25519-v1",
+        "auth_pubkey_hex": "7457ca40a2c3bd299d5f8715fbfb2bf5a3693e72b7c54077cc6ae8d43805fbe8",
+        "n6_ollama_reachable": true,
+        "active_vram_models": [
+          "qwen3:32b"
+        ],
+        "ping_ms": 73
+      },
+      "coach_endpoint_llm": {
+        "ok": true,
+        "llm_provider": "N6 Local Ollama (Dual RTX 3090 · Ed25519 Keypair Verified)",
+        "auth_key_id": "kaoyan-w1-ed25519-v1",
+        "auth_pubkey_prefix": "7457ca40a2c3bd29",
+        "model": "qwen3:32b",
+        "latency_ms": 13530,
+        "critique": "1. 【译文亮点与失分定位】：前半句准确，但“borne”误译为“出生”，应为“承担”；“disproportionately”漏译，应体现“不成比例地”。\n\n2. 【弱点病根剖析】：忽视过去分词作表语的被动含义，及熟词僻义辨析不足。\n\n3. 【针对性通关口诀】：见“ed”先判被动义，熟词放回句中猜，逻辑主语定方向。"
+      },
+      "coach_endpoint_score": 1.5
+    }
+  }
+}</pre>
+  </section>
+</div>
+<script>
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);document.documentElement.className=t;try{localStorage.setItem('kaoyan_n6_sec_theme',t);}catch(e){}}
+</script>
+</body>
+</html>
